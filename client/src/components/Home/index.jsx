@@ -3,7 +3,15 @@ import React from 'react'
 function Home() {
   return (
     <div>
-      <h1>Acá van los elementos</h1>
+    <div>
+      <h1>NAVBAR</h1>
+    </div>
+    <div>
+      <h1>BODY</h1>
+    </div>
+    <div>
+      <h1>FOOTER</h1>
+    </div>
     </div>
   )
 }

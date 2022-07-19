@@ -5,7 +5,7 @@ import Home from './views/HomeView';
 import Details from './views/DetailsView';
 import EditBuy from './views/EditBuyView';
 import Buy from './views/BuyView';
-
+import Services from './views/ServicesView';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
       <Route path="/details" element={<Details/>} />
       <Route path="/buy" element={<EditBuy/>} />
       <Route path="/editBuy" element={<Buy/>} />
+      <Route path="/services" element={<Services/>} />
     </Routes>
     </div>
   );

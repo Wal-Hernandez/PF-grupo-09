@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { Route, Routes} from 'react-router-dom';
-import Home from './components/Home';
+import Home from './views/Home';
 
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
     <div className="App">
     <Routes>
       <Route path="/" element={<Home/>} />
+      <Route path="/details" element={<Details/>} />
     </Routes>
     </div>
   );

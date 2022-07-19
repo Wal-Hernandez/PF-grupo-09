@@ -1,0 +1,604 @@
+{
+	"data": [
+		{
+			"id_platform": "57cc66ff-5e36-4be6-bd3b-c73584f321ba",
+			"terminal": 277,
+			"address": "Suite 835",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "6c8dea14-7d3e-42d3-800f-067cc8998b3b",
+			"terminal": 775,
+			"address": "Suite 706",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "4c623715-547e-4229-8539-80d0a602a0e3",
+			"terminal": 539,
+			"address": "Apt. 119",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "533ea6ea-2b85-4046-9d62-aaf7798c02ea",
+			"terminal": 122,
+			"address": "Suite 267",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "8fd00e88-d445-4012-92d2-54d1e7f0af11",
+			"terminal": 549,
+			"address": "Apt. 891",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "ecfa6ea7-9fc7-4aa4-b65d-302b84bea676",
+			"terminal": 678,
+			"address": "Suite 646",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "deb92f90-4b71-4f07-9e25-4673aa969280",
+			"terminal": 682,
+			"address": "Suite 280",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "323591b4-5a13-4251-a2f9-2269030f0a92",
+			"terminal": 410,
+			"address": "Apt. 458",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "2e4f8009-f568-48cc-9609-ad0a88a41710",
+			"terminal": 846,
+			"address": "Suite 676",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "47d1ce23-daa2-4f24-9fc6-26821331df14",
+			"terminal": 730,
+			"address": "Apt. 352",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "953cd579-201c-4fbc-b0d3-810514d98441",
+			"terminal": 597,
+			"address": "Suite 386",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "6e1e4dc5-8b81-4766-acf0-19d16ad97b52",
+			"terminal": 189,
+			"address": "Suite 192",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "94eda112-7caa-4fca-a6e6-b9fcf68c0004",
+			"terminal": 572,
+			"address": "Suite 427",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "1c61cd4e-b2e7-4e2e-b0b3-beb6e41f3ea4",
+			"terminal": 655,
+			"address": "Apt. 053",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "15cffbd3-51df-4fe1-a0ad-a72ee4d5eef2",
+			"terminal": 175,
+			"address": "Apt. 298",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "bd9b29f5-ab19-474f-bbd8-02bc89c84ad6",
+			"terminal": 911,
+			"address": "Apt. 959",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "f77d5910-2b24-43a5-b242-c1ed070f8887",
+			"terminal": 606,
+			"address": "Suite 918",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "4ba0a157-87c1-40c7-90fc-5da60a739b4b",
+			"terminal": 177,
+			"address": "Apt. 066",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "3c1c7ed4-761e-4d4a-8063-1b067ec6f701",
+			"terminal": 624,
+			"address": "Suite 220",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "2d746ad2-2b66-47b9-aec1-8ae89dd5654d",
+			"terminal": 320,
+			"address": "Apt. 302",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "edf4e595-8f56-413f-8d0e-605465cb938b",
+			"terminal": 571,
+			"address": "Suite 408",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "ea70dd6d-3c8f-4b37-bc07-af78865bb449",
+			"terminal": 693,
+			"address": "Suite 177",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "4e18bae7-1ac3-4c89-a867-02a174482fb8",
+			"terminal": 379,
+			"address": "Suite 100",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "a7ca7a93-2350-406d-a048-440688de7fad",
+			"terminal": 987,
+			"address": "Apt. 780",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "78817859-f20d-45de-96e9-0e7d1c44366f",
+			"terminal": 538,
+			"address": "Suite 109",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "6891a01e-4c01-424a-8ad0-e1b7721033f1",
+			"terminal": 402,
+			"address": "Suite 433",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "e6fec7bf-231c-4f5b-b8e5-6166ea7373d6",
+			"terminal": 550,
+			"address": "Apt. 690",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "9f2e9d21-fde2-4b30-878f-ed1cbdc96190",
+			"terminal": 438,
+			"address": "Apt. 043",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "6b2d9f54-0be4-4959-9c11-83f9a57642e2",
+			"terminal": 365,
+			"address": "Suite 334",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "90049bec-c8f2-4d9c-a739-a76c359340f9",
+			"terminal": 232,
+			"address": "Apt. 042",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "ed46eb7a-52a2-4b4d-b2f1-01c41077882e",
+			"terminal": 771,
+			"address": "Suite 969",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "07c9d95b-16f0-4f9d-8c32-9ded3b37334b",
+			"terminal": 274,
+			"address": "Apt. 074",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "8143f481-a119-4c4f-b248-495735918662",
+			"terminal": 358,
+			"address": "Apt. 547",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "a6a7d5b0-f53b-4af9-9669-7f0bb6f71223",
+			"terminal": 650,
+			"address": "Apt. 267",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "90aba9be-3cd0-4dd1-9dc8-47b2c6ee6fc0",
+			"terminal": 117,
+			"address": "Apt. 997",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "f64df00a-2109-417c-afc5-14010977a5e1",
+			"terminal": 593,
+			"address": "Suite 530",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "eee8c77b-fe2c-4be8-b2af-063957072b50",
+			"terminal": 445,
+			"address": "Suite 122",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "a63dcab5-7780-48a8-8e16-b2dd73f1f749",
+			"terminal": 689,
+			"address": "Apt. 501",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "1957e5a6-0a82-41b8-a2c6-9abf357d4edb",
+			"terminal": 182,
+			"address": "Suite 458",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "cf237dc1-d776-424f-a64e-3297366b5e17",
+			"terminal": 525,
+			"address": "Apt. 340",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "e7963880-a819-490f-bd2f-974480e92d26",
+			"terminal": 916,
+			"address": "Apt. 764",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "fda19cb6-0b83-4e14-bb0d-ec0992bdd555",
+			"terminal": 319,
+			"address": "Suite 985",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "9112d99b-4689-40e1-a339-9f5434a50706",
+			"terminal": 943,
+			"address": "Apt. 937",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "6db4b3b6-2841-42ff-8660-4cd828bf357f",
+			"terminal": 532,
+			"address": "Suite 464",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "374e733a-7f94-4a37-b37d-31c1fb461604",
+			"terminal": 381,
+			"address": "Suite 877",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "6a3f552b-6a62-4eb3-9b4e-5c1ea540efeb",
+			"terminal": 13,
+			"address": "Suite 188",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "b2e55745-1d3c-4a76-ab5f-908e13b6c224",
+			"terminal": 174,
+			"address": "Apt. 949",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "207fd70c-1dfe-40bd-9d0a-f85071e9efde",
+			"terminal": 930,
+			"address": "Suite 305",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "2338db1b-d5e4-4121-8e84-b5319bdb20c8",
+			"terminal": 43,
+			"address": "Apt. 824",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "5b9024b4-bfea-4d2c-9c79-ab7f4175c79f",
+			"terminal": 694,
+			"address": "Suite 182",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "ac6af2e8-7372-4b8e-a7a5-1576ee0e6d3a",
+			"terminal": 771,
+			"address": "Apt. 561",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "6b94f011-ce1a-4e83-a29c-7cbf5946aea8",
+			"terminal": 665,
+			"address": "Apt. 374",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "f7dcaee9-cd77-4599-955d-2a7f59f34d89",
+			"terminal": 363,
+			"address": "Apt. 403",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "518e8f53-da65-41dc-a167-c113568c73bb",
+			"terminal": 252,
+			"address": "Suite 692",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "547d1272-749a-495c-950a-647138f7f693",
+			"terminal": 66,
+			"address": "Suite 681",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "64892584-49d2-4922-a564-a75f515b9eb9",
+			"terminal": 780,
+			"address": "Suite 841",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "4814dfe9-4052-409f-a2ee-83ad14c2e586",
+			"terminal": 373,
+			"address": "Apt. 112",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "c3ff15f5-c2c7-421b-911a-2d66dc0f8145",
+			"terminal": 441,
+			"address": "Apt. 050",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "c1462d84-4151-4391-9925-4a075126ccc5",
+			"terminal": 980,
+			"address": "Suite 985",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "2ab3d909-fce4-4962-bcc9-270394078204",
+			"terminal": 471,
+			"address": "Suite 143",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "24284a20-6578-4022-9135-abfa4aaddc0e",
+			"terminal": 760,
+			"address": "Apt. 955",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "05036aa1-0939-458f-a8bd-81a8fb8c4160",
+			"terminal": 773,
+			"address": "Suite 509",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "f2f3c5c5-4e6c-4112-af5b-51a252a4b5cb",
+			"terminal": 610,
+			"address": "Suite 464",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "116d02af-d3f2-4922-a1a1-60c7b513db1d",
+			"terminal": 59,
+			"address": "Suite 934",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "c709bac8-a8a9-4f19-822d-d8c95cd2d112",
+			"terminal": 545,
+			"address": "Apt. 768",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "e9c5bc8d-091f-4346-b41c-8a595b4add90",
+			"terminal": 962,
+			"address": "Apt. 989",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "ab89340a-2160-4c08-a54c-0f93968cd2c4",
+			"terminal": 200,
+			"address": "Apt. 778",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "d87e25f7-f27a-4b18-8aa9-fde52601d62a",
+			"terminal": 88,
+			"address": "Suite 780",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "ab5ae7d6-1b02-42ce-ac09-0d0c579b89e1",
+			"terminal": 677,
+			"address": "Apt. 348",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "218ced34-d40a-4380-bb96-21457a77a806",
+			"terminal": 703,
+			"address": "Suite 329",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "70722e51-f432-407f-8f29-5cff92035d89",
+			"terminal": 170,
+			"address": "Suite 526",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "82b7c246-ec42-4986-a680-0b1513359df8",
+			"terminal": 940,
+			"address": "Apt. 132",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "15e121e9-28be-4f26-8698-2a0790725ac9",
+			"terminal": 975,
+			"address": "Suite 423",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "90389b95-a503-4d7f-9fd6-310f8fc7d7a7",
+			"terminal": 974,
+			"address": "Apt. 326",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "c6e7b338-2be7-4b79-b80a-069e2d7afe7c",
+			"terminal": 887,
+			"address": "Suite 606",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "929f97be-09b8-42e3-9932-fd04b02a64c6",
+			"terminal": 721,
+			"address": "Suite 225",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "35653cd0-a089-489c-8d33-cbc5115103e0",
+			"terminal": 360,
+			"address": "Suite 970",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "934f3d36-b783-4db1-9b0a-77632c4aaa0d",
+			"terminal": 883,
+			"address": "Apt. 779",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "0c834cd6-6db0-43d2-9cd2-b5b0368f6442",
+			"terminal": 929,
+			"address": "Apt. 517",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "38ba8e2f-6b27-4221-8cda-b6b7f8f902fa",
+			"terminal": 600,
+			"address": "Suite 102",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "00e3017e-1845-4a32-af36-811e28a4ad2c",
+			"terminal": 317,
+			"address": "Apt. 823",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "6a4793fc-ceda-4a98-8352-6f65814b7fe0",
+			"terminal": 347,
+			"address": "Suite 011",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "fc213e1e-74f9-4cef-b21d-cc6b1e5531f1",
+			"terminal": 998,
+			"address": "Apt. 294",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "408d5d74-5d1c-4ff2-9220-98c2e35dceac",
+			"terminal": 622,
+			"address": "Suite 863",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "62668624-1e39-4b41-82a4-d8483fd32456",
+			"terminal": 3,
+			"address": "Apt. 780",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "1f8074d6-ab01-4bd8-867a-76708ccb6b58",
+			"terminal": 216,
+			"address": "Suite 340",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "ce695ec3-76ec-4864-8477-57287da5db1e",
+			"terminal": 185,
+			"address": "Suite 798",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "f8107219-4921-4d22-a779-49b087308e9c",
+			"terminal": 586,
+			"address": "Suite 207",
+			"location": "Berkshire"
+		},
+		{
+			"id_platform": "1f535293-75f9-4de5-bd2b-aea7f7b23386",
+			"terminal": 260,
+			"address": "Apt. 689",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "2ab741aa-70e4-4b4c-a3ed-1457e7a94d37",
+			"terminal": 116,
+			"address": "Suite 251",
+			"location": "Buckinghamshire"
+		},
+		{
+			"id_platform": "04cbae67-fe5d-4adc-8028-f6318eba2d63",
+			"terminal": 111,
+			"address": "Suite 678",
+			"location": "Cambridgeshire"
+		},
+		{
+			"id_platform": "6bfb3138-0960-4fa7-9d03-160f72b34c2f",
+			"terminal": 992,
+			"address": "Suite 081",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "94b28764-beda-4bea-bfa1-330e79493c00",
+			"terminal": 878,
+			"address": "Suite 995",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "8eda351c-5968-4470-9299-049933d0d023",
+			"terminal": 945,
+			"address": "Suite 462",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "60e73916-6240-480e-ad99-456e32e5e73f",
+			"terminal": 432,
+			"address": "Apt. 214",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "568e2257-bdbf-45f3-82e0-4732551e142f",
+			"terminal": 584,
+			"address": "Suite 374",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "6d460c3c-084c-4e9f-826d-d7c9769feac4",
+			"terminal": 266,
+			"address": "Suite 106",
+			"location": "Bedfordshire"
+		},
+		{
+			"id_platform": "cf24778a-1b61-4c28-bf88-59c453bd5e2b",
+			"terminal": 271,
+			"address": "Apt. 737",
+			"location": "Borders"
+		},
+		{
+			"id_platform": "7b1bf2ff-d81d-474c-bf60-b0e762d6de7a",
+			"terminal": 207,
+			"address": "Apt. 632",
+			"location": "Avon"
+		},
+		{
+			"id_platform": "44e649cb-5aea-4101-89b2-1a7adc537bcf",
+			"terminal": 415,
+			"address": "Suite 441",
+			"location": "Berkshire"
+		}
+	]
+}

@@ -1,9 +1,10 @@
 import React from 'react'
+import Link from 'react-router-dom'
 
 function Navbar() {
   return (
     <div>
-      <h1>Acá van los elementos</h1>
+      <Link to="/">Volver al home</Link>
     </div>
   )
 }

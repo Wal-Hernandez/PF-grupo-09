@@ -9,7 +9,7 @@ function generateUsers() {
 		const mail = faker.internet.email();
 		const nro_user = faker.datatype.number()
 		const password = faker.datatype.string()
-		const id_type_user = faker.datatype.string()
+		const id_type_user = faker.datatype.number({ min: 1, max: 2})
 		users.push({
 			nro_user:nro_user,
 			name: name,

@@ -5,15 +5,12 @@ let city=[]
 function generateCity() {
 	for(let id=1; id<=100; id++) {
         const id_city = faker.datatype.uuid()
-		const name = faker.name.firstName()
-		const location = faker.lorem.slug()
+		const description = faker.lorem.text()
 		city.push({
             id_city:id_city,
-			name:name,
-			location:location,
+			description:description
 		})
 	}
-
 	return {data: city}
 }	
 

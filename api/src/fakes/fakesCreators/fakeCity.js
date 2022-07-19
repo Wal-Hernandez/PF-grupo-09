@@ -17,11 +17,6 @@ function generateCity() {
 	return {data: city}
 }	
 
-// id_city
-// name
-// location
-
-
 const generatedData = generateCity()
 console.log(generatedData)
 

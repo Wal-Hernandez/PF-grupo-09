@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pfhenry`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -30,10 +30,60 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Recipe } = sequelize.models;
+const { City,Bus,Activity,Plattform,Hotel,Invoice,Package,Booking,StatusBooking,User,TypeUser} = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
+
+// relationship Activity and City
+// id_city-> specify the foreign key, default is "cityid"
+City.hasMany(Activity);
+Activity.belongsTo(City);
+
+// relationship Hotel and City
+City.hasMany(Hotel);
+Hotel.belongsTo(City);
+
+// relationship User and TypeUser
+TypeUser.hasMany(User);
+User.belongsTo(TypeUser);
+
+// relationship Booking and Invoice
+
+Booking.hasOne(Invoice);
+Invoice.belongsTo(Booking);
+
+// relationship Booking and StatusBooking
+StatusBooking.hasMany(Booking);
+Booking.belongsTo(StatusBooking);
+
+// relationship Package and Booking
+Package.hasMany(Booking);
+Booking.belongsTo(Package);
+
+// relationship User and Booking
+User.hasMany(Booking);
+Booking.belongsTo(User);
+
+// relationship Plattform and Package
+Plattform.hasMany(Package);
+Package.belongsTo(Plattform);
+
+// relationship Activity and Package 
+Activity.belongsToMany(Package,{through:"package_activity",timestamps:false});
+Package.belongsToMany(Activity,{through:"package_activity",timestamps:false});
+
+// relationship Bus and Package 
+Bus.hasMany(Package);
+Package.belongsTo(Bus);
+
+// relationship City and Package 
+City.hasMany(Package);
+Package.belongsTo(City);
+
+// relationship Hotel and Package 
+Hotel.hasMany(Package);
+Package.belongsTo(Hotel);
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

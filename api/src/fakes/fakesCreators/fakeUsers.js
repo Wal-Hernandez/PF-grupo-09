@@ -23,9 +23,6 @@ function generateUsers() {
 	return {data: users}
 }	
 
-// id_type_user
-
-
 const generatedData = generateUsers()
 console.log(generatedData)
 

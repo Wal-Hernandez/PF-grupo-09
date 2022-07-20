@@ -10,7 +10,7 @@ const router = Router();
 const Booking=require("./bookingrouter");
 
 
-router.use('/',Booking);
+router.use('/booking',Booking);
 
 
 

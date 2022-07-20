@@ -1,7 +1,7 @@
 const {getAllBooking,getBookingByNumber,AddBooking,getDescriptionById} =require('../controllers/bookingcontroller.js')
 const {Router}=require("express")
 const router=Router()
-router.get('/booking', async(req,res,next)=>{
+router.get('/', async(req,res,next)=>{
 
     const{num} =req.query;
     try{ if(!num){

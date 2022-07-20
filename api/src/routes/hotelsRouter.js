@@ -1,0 +1,47 @@
+const { Router } = require("express");
+const { getHotels, createHotel } = require("../controllers/hotelsControllers");
+const router = Router();
+
+router.get("/", async (req, res) => {
+  try {
+    const hotels = await getHotels();
+
+    return res.status(200).json(hotels);
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const {
+      name,
+      location,
+      stars,
+      phone,
+      price,
+      pool,
+      wifi,
+      gym,
+      urlImage,
+      cityId,
+    } = req.body;
+    let hotel = await createHotel(
+      name,
+      location,
+      stars,
+      phone,
+      price,
+      pool,
+      wifi,
+      gym,
+      urlImage,
+      cityId
+    );
+    return res.status(201).json(hotel);
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+});
+
+module.exports = router;

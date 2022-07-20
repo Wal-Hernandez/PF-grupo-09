@@ -2,6 +2,7 @@ const { Router } = require("express");
 
 const City = require("./citiesRouter");
 const Hotel = require("./hotelsRouter");
+const Invoice=require("./invoiceRouter")
 const Buses = require('./busRouter')
 const Activity=require("./activityRouter")
 const Plattform=require("./plattformRouter")
@@ -16,6 +17,7 @@ router.use('/activities',Activity)
 router.use("/cities", City);
 router.use("/hotels", Hotel);
 router.use('/plattforms',Plattform)
+router.use('/invoices',Invoice)
 router.use('/packages', Package)
 
 

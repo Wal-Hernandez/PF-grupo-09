@@ -3,7 +3,7 @@ import React from 'react'
 function About() {
   return (
     <div>
-      <h1>Acá van los elementos</h1>
+      <h1>Acerca de nosotros</h1>
     </div>
   )
 }

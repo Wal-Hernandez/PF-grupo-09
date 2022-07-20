@@ -23,4 +23,4 @@ function generatePlatform() {
 const generatedData = generatePlatform()
 console.log(generatedData)
 
-fs.writeFileSync('api/src/fakes/fakesJsons/platform.json', JSON.stringify(generatedData, null, "\t"))
+fs.writeFileSync('api/src/fakes/fakesJsons/Platform.json', JSON.stringify(generatedData, null, "\t"))

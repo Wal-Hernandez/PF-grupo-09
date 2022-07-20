@@ -6,9 +6,11 @@ function generateCity() {
 	for(let id=1; id<=100; id++) {
         const id_city = faker.datatype.uuid()
 		const description = faker.lorem.text()
+		const location = faker.address.city()
 		city.push({
             id_city:id_city,
-			description:description
+			description:description,
+			location:location
 		})
 	}
 	return {data: city}
@@ -17,4 +19,4 @@ function generateCity() {
 const generatedData = generateCity()
 console.log(generatedData)
 
-fs.writeFileSync('api/src/fakes/fakesJsons/city.json', JSON.stringify(generatedData, null, "\t"))
+fs.writeFileSync('api/src/fakes/fakesJsons/City.json', JSON.stringify(generatedData, null, "\t"))

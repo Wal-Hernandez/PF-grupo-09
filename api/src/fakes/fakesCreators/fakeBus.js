@@ -23,4 +23,4 @@ function generateBus() {
 const generatedData = generateBus()
 console.log(generatedData)
 
-fs.writeFileSync('api/src/fakes/fakesJsons/bus.json', JSON.stringify(generatedData, null, "\t"))
+fs.writeFileSync('api/src/fakes/fakesJsons/Bus.json', JSON.stringify(generatedData, null, "\t"))

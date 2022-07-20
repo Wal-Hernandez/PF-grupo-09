@@ -26,4 +26,4 @@ function generateUsers() {
 const generatedData = generateUsers()
 console.log(generatedData)
 
-fs.writeFileSync('api/src/fakes/fakesJsons/users.json', JSON.stringify(generatedData, null, "\t"))
+fs.writeFileSync('api/src/fakes/fakesJsons/User.json', JSON.stringify(generatedData, null, "\t"))

@@ -36,4 +36,4 @@ function generateHotels() {
 const generatedData = generateHotels()
 console.log(generatedData)
 
-fs.writeFileSync('api/src/fakes/fakesJsons/hotels.json', JSON.stringify(generatedData, null, "\t"))
+fs.writeFileSync('api/src/fakes/fakesJsons/Hotel.json', JSON.stringify(generatedData, null, "\t"))

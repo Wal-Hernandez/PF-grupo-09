@@ -28,4 +28,4 @@ function generateBooking() {
 const generatedData = generateBooking()
 console.log(generatedData)
 
-fs.writeFileSync('api/src/fakes/fakesJsons/booking.json', JSON.stringify(generatedData, null, "\t"))
+fs.writeFileSync('api/src/fakes/fakesJsons/Booking.json', JSON.stringify(generatedData, null, "\t"))

@@ -39,4 +39,4 @@ function generatePackage() {
 const generatedData = generatePackage()
 console.log(generatedData)
 
-fs.writeFileSync('api/src/fakes/fakesJsons/packages.json', JSON.stringify(generatedData, null, "\t"))
+fs.writeFileSync('api/src/fakes/fakesJsons/Package.json', JSON.stringify(generatedData, null, "\t"))

@@ -7,6 +7,8 @@ function generateStatusBooking() {
         const id_status = faker.datatype.uuid()
 		const description = faker.name.firstName()
 		statusBooking.push({
+			id_status:id_status,
+			description:description
 
 		})
 	}
@@ -17,4 +19,4 @@ function generateStatusBooking() {
 const generatedData = generateStatusBooking()
 console.log(generatedData)
 
-fs.writeFileSync('api/src/fakes/fakesJsons/statusBooking.json', JSON.stringify(generatedData, null, "\t"))
+fs.writeFileSync('api/src/fakes/fakesJsons/Status_Booking.json', JSON.stringify(generatedData, null, "\t"))

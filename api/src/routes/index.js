@@ -6,7 +6,9 @@ const Invoice=require("./invoiceRouter")
 const Buses = require('./busRouter')
 const Activity=require("./activityRouter")
 const Plattform=require("./plattformRouter")
+const Booking=require("./bookingrouter");
 const Package = require('./packageRouter')
+
 
 const router = Router();
 
@@ -17,8 +19,10 @@ router.use('/activities',Activity)
 router.use("/cities", City);
 router.use("/hotels", Hotel);
 router.use('/plattforms',Plattform)
+router.use('/booking',Booking);
 router.use('/invoices',Invoice)
 router.use('/packages', Package)
+
 
 
 module.exports = router;

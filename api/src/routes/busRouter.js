@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const { getBuses, postBus, getBusesById } = require('../controllers/bus-controller')
+const { getBuses, postBus, getBusesById } = require('../controllers/busController')
 
 
 const router = Router()

@@ -7,12 +7,14 @@ import EditBuy from './views/EditBuyView';
 import Buy from './views/BuyView';
 import Services from './views/ServicesView';
 import Admin from './views/AdminView';
+import Login from './views/LoginView';
 
 function App() {
   return (
     <div className="App">
     <Routes>
       <Route path="/" element={<Home/>} />
+      <Route path="/login" element={<Login/>}/>
       <Route path="/details" element={<Details/>} />
       <Route path="/buy" element={<EditBuy/>} />
       <Route path="/editBuy" element={<Buy/>} />

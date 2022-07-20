@@ -5,7 +5,7 @@ let platform=[]
 function generatePlatform() {
 	for(let id=1; id<=100; id++) {
         const id_platform = faker.datatype.uuid()
-		const terminal = faker.datatype.number({ min: 1, max: 1000})
+		const terminal = faker.lorem.word()
         const address = faker.address.secondaryAddress()
 		const location = faker.address.county()
 		platform.push({

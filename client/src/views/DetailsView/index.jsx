@@ -22,9 +22,7 @@ function DetailsView() {
   <div>Hotel</div>
   <div>Actividad</div>
   </div>
-  <div>
-    Bot de ayuda
-  </div>
+
   </div>
   <div>
     <Footer/>

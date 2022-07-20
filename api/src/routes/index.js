@@ -8,7 +8,6 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 const Booking=require("./bookingrouter");
-const Status=require("./statusrouter");
 
 
 router.use('/',Booking);

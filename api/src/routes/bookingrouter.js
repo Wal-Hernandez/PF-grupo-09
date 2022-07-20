@@ -36,8 +36,8 @@ router.get('/booking', async(req,res,next)=>{
     
     router.post('/booking', async(req,res,next)=>{
     const{dateTime, numberPeople, amount, description}= req.body
-    let a = new Date(dateTime);
-    console.log(a)
+    // let a = new Date(dateTime);
+    // console.log(a)
     try{ let resp =await AddBooking(dateTime,numberPeople,amount,description)
         res.json(resp)}
     catch(error){next(error)}

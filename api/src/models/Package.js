@@ -9,11 +9,11 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     start_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     end_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING  ,
       allowNull: false,
     },
     price: {
@@ -24,5 +24,9 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    stock:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   },{timestamps:false});
 };

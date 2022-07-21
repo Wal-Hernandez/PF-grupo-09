@@ -12,6 +12,19 @@ const getCities = async () => {
     };
   }
 };
+
+const getCity=async(id)=>{
+  try {
+    let city = await City.findByPk(id);
+
+    return city;
+  } catch (err) {
+    return {
+      msg: "Error getHotels(hotelsController.js)",
+      error: err,
+    };
+  }
+}
 const createCity = async (name, location) => {
   try {
     const cities = await City.create({
@@ -27,4 +40,4 @@ const createCity = async (name, location) => {
     };
   }
 };
-module.exports = { getCities, createCity };
+module.exports = { getCities, createCity,getCity };

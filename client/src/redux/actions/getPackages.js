@@ -2,19 +2,17 @@ import {
     GET_PACKAGES,
 } from './actionTypes'
 
-function getPackages() {
-    return function (dispatch) {
-        axios.get().then(res => {
-            dispatch({
-            
+export const getPackages = () => {
+    return async function(dispatch) {
+        try {
+            let result = await axios.get(`http://localhost:3001/packages`);
+            return dispatch({
+                type: GET_PACKAGES,
+                payload: result.data
             })
-        }, err => {
-            dispatch({
-             
-            })
-        });
-    
-    }
-    }
 
-    export default getPackages
+        } catch (err) {
+            console.log(err)
+        }
+    };
+};

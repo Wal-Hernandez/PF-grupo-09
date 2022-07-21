@@ -7,9 +7,11 @@ import EditBuy from './views/EditBuyView';
 import Buy from './views/BuyView';
 import Services from './views/ServicesView';
 import Admin from './views/AdminView';
+
+
 import LoginView from './views/LoginView';
 import AboutView from './views/AboutView';
-
+import FAQ from './components/FAQ/FAQ.jsx'
 function App() {
   return (
     <div className="App">
@@ -21,7 +23,11 @@ function App() {
       <Route path="/editBuy" element={<Buy/>} />
       <Route path="/services" element={<Services/>} />
       <Route path="/admin" element={<Admin/>} />
+
+      <Route path ="/faq" element ={<FAQ/>}/>
+
       <Route path="/about" element={<AboutView/>} />
+
     </Routes>
     </div>
   );

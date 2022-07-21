@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const {getPlattforms,createPlattform}=require("../controllers/plattformController")
+const {getPlattforms,createPlattform,getPlattform, deletePlattform}=require("../controllers/plattformController")
 
 const router=Router()
 
@@ -8,6 +8,17 @@ router.get("/",async(req,res)=>{
          const plattforms=await getPlattforms()
         
          return res.status(200).json(plattforms)
+    } catch (err) {
+       return res.status(400).json(err);
+    }
+})
+
+router.get("/:id",async(req,res)=>{
+    try { 
+        const {id}=req.params
+         const plattform=await getPlattform(id)
+        
+         return res.status(200).json(plattform)
     } catch (err) {
        return res.status(400).json(err);
     }
@@ -23,17 +34,19 @@ router.post("/",async (req,res)=>{
     }
 })
 
-
-router.delete("/",async(req,res)=>{
-    console.log("delete")
-    // try {        
-    //      const activities=await getActivities()
-    //     // console.log(activities) ver las actividades de una ciudad
-    //      return res.status(200).json(activities)
-    // } catch (err) {
-    //    return res.status(400).json(err);
-    // }
-    res.send("delete")
+router.delete("/:id",async (req,res)=>{
+    const {id} = req.params
+    if(id) {
+        try { 
+             let deleteP=await deletePlattform(id) 
+             console.log
+             return res.status(200).json(deleteP)    
+    } catch (err) {
+        return res.status(400).json(err);
+    }
+    } else {
+        return res.status(400).json("Cannot remove platform") 
+    }
 })
 
 

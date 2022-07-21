@@ -15,6 +15,23 @@ const { Plattform } = require("../db");
    }
  };
 
+ const getPlattform= async (id) => {
+  try {
+    let plattform = await Plattform.findByPk(id);
+    
+    return plattform;
+  } catch (err) {
+    return {
+     msg: "Error getPlattform(plattformController.js)",
+     error: err,
+   };
+  }
+};
+
+
+
+
+
  const createPlattform = async (terminal,address,location) => {
   try {
   
@@ -36,4 +53,22 @@ const { Plattform } = require("../db");
   }
 };
 
- module.exports={getPlattforms,createPlattform}
+const deletePlattform = async (id) => {
+  try {
+        const buscarElemento = await Plattform.findByPk(id)
+        console.log(buscarElemento)      
+        if(buscarElemento) {
+          Plattform.destroy({where:{id:id}})
+          return {msg:"Platform removed successfully"}
+        } else {return {msg:"Platform not found"}}
+      } catch(err){
+      return {
+        msg: "Error getPlattforms(plattformController.js)",
+        error: err,
+      }
+  }
+}
+
+
+
+ module.exports={getPlattforms,createPlattform,getPlattform, deletePlattform}

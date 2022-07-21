@@ -1,12 +1,12 @@
 const {Router} = require('express')
-const { getBuses, postBus, getBusesById } = require('../controllers/bus-controller')
+const { getBuses, postBus, getBusesById } = require('../controllers/busController')
 
 
 const router = Router()
 
 router.get('/', getBuses)
 router.get('/:id', getBusesById)
-router.post('/createBus', postBus)
+router.post('/', postBus)
 //router.delete('/deleteBus/:id', deleteBus)
 
 

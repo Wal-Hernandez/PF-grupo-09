@@ -8,6 +8,7 @@ import Buy from './views/BuyView';
 import Services from './views/ServicesView';
 import Admin from './views/AdminView';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Login from './views/LoginView';
 import FAQ from './components/FAQ/FAQ.jsx'
 =======
@@ -15,6 +16,13 @@ import LoginView from './views/LoginView';
 import AboutView from './views/AboutView';
 
 >>>>>>> 2e1712779c741a86a4cf7030fed6871d5c67252a
+=======
+
+
+import LoginView from './views/LoginView';
+import AboutView from './views/AboutView';
+import FAQ from './components/FAQ/FAQ.jsx'
+>>>>>>> 7b40a4924307f8515ff1f18f5d820c700829ed98
 function App() {
   return (
     <div className="App">
@@ -27,10 +35,18 @@ function App() {
       <Route path="/services" element={<Services/>} />
       <Route path="/admin" element={<Admin/>} />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Route path ="/faq" element ={<FAQ/>}/>
 =======
       <Route path="/about" element={<AboutView/>} />
 >>>>>>> 2e1712779c741a86a4cf7030fed6871d5c67252a
+=======
+
+      <Route path ="/faq" element ={<FAQ/>}/>
+
+      <Route path="/about" element={<AboutView/>} />
+
+>>>>>>> 7b40a4924307f8515ff1f18f5d820c700829ed98
     </Routes>
     </div>
   );

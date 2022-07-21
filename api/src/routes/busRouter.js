@@ -6,7 +6,7 @@ const router = Router()
 
 router.get('/', getBuses)
 router.get('/:id', getBusesById)
-router.post('/createBus', postBus)
+router.post('/', postBus)
 //router.delete('/deleteBus/:id', deleteBus)
 
 

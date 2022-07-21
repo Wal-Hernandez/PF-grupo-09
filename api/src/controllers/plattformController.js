@@ -15,6 +15,23 @@ const { Plattform } = require("../db");
    }
  };
 
+ const getPlattform= async (id) => {
+  try {
+    let plattform = await Plattform.findByPk(id);
+    
+    return plattform;
+  } catch (err) {
+    return {
+     msg: "Error getPlattform(plattformController.js)",
+     error: err,
+   };
+  }
+};
+
+
+
+
+
  const createPlattform = async (terminal,address,location) => {
   try {
   
@@ -36,4 +53,6 @@ const { Plattform } = require("../db");
   }
 };
 
- module.exports={getPlattforms,createPlattform}
+
+
+ module.exports={getPlattforms,createPlattform,getPlattform}

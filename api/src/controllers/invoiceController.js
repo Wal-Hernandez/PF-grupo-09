@@ -1,4 +1,5 @@
-const { Invoice} = require("../db");
+const { Invoice,Booking} = require("../db");
+
 
 const getInvoices= async () => {
     try {
@@ -12,11 +13,16 @@ const getInvoices= async () => {
      };
     }
   };
-  const getInvoice= async (nro) => {
+  const getInvoice= async (id) => {
     try {
-      let invoices = await Invoice.findByPk(nro);
+      let invoice = await Invoice.findByPk(id,{
+        include: {
+          model: Booking,
+       
+        },
+      });
       
-      return invoices;
+      return invoice;
     } catch (err) {
       return {
        msg: "Error getInvoice(invoiceController.js)",
@@ -25,16 +31,20 @@ const getInvoices= async () => {
     }
   };
 
+
+
   const createInvoice = async (bookingId,confirmation) => {
     try {
     
-      const Invoice=await Invoice.create(
+      const fecha=Date(Date.now());
+     
+      const invoice=await Invoice.create(
         {
-        dateTime: Date. toISOString(),
+        dateTime: fecha,
         confirmation:confirmation,
         bookingId:bookingId
         })
-      
+      console.log(invoice)
        return "invoice created successfully"
          
         

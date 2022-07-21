@@ -1,6 +1,6 @@
 const { User, TypeUser } = require("../db");
 
-const getUser = async () => {
+const getUsers = async () => {
   try {
     let allUsers = await User.findAll({
       include: {
@@ -10,6 +10,23 @@ const getUser = async () => {
     });
 
     return allUsers;
+  } catch (err) {
+    return {
+      msg: "Error getUsers(userControllers.js)",
+      error: err,
+    };
+  }
+};
+const getUser = async (id) => {
+  try {
+    let user = await User.findByPk(id,{
+      include: {
+        model: TypeUser,
+        attributes: ["description"],
+      },
+    });
+
+    return user;
   } catch (err) {
     return {
       msg: "Error getUser(userControllers.js)",
@@ -36,4 +53,4 @@ const createUser = async (name, surname, mail, password, typeUserId) => {
   }
 };
 
-module.exports = { getUser, createUser };
+module.exports = { getUsers, createUser,getUser };

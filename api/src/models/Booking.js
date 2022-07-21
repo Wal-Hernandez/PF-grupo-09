@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const{moment} = require("moment");
+
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    description: {
+    status: {
       type: DataTypes.STRING,
       allowNull: false,
     }

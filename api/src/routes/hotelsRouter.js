@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getHotels, createHotel } = require("../controllers/hotelsControllers");
+const { getHotels, createHotel ,getHotel} = require("../controllers/hotelsControllers");
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -11,6 +11,17 @@ router.get("/", async (req, res) => {
     return res.status(400).json(err);
   }
 });
+router.get("/:id", async (req, res) => {
+  try {
+    const{id}=req.params
+    const hotel = await getHotel(id);
+
+    return res.status(200).json(hotel);
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+});
+
 
 router.post("/", async (req, res) => {
   try {

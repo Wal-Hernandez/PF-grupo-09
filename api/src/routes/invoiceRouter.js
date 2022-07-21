@@ -15,9 +15,9 @@ router.get("/",async(req,res)=>{
 router.get("/:id",async(req,res)=>{
     try { 
          const {id}=req.params
-         const invoices=await getInvoice(id)
+         const invoice=await getInvoice(id)
         
-         return res.status(200).json(plattforms)
+         return res.status(200).json(invoice)
     } catch (err) {
        return res.status(400).json(err);
     }

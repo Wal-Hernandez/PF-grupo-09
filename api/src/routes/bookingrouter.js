@@ -1,47 +1,40 @@
-const {getAllBooking,getBookingByNumber,AddBooking,getDescriptionById} =require('../controllers/bookingcontroller.js')
+const {createBooking,getAllBookings,getBooking} =require('../controllers/bookingController.js')
 const {Router}=require("express")
 const router=Router()
-router.get('/', async(req,res,next)=>{
 
-    const{num} =req.query;
-    try{ if(!num){
-    let allBooking = await getAllBooking()
-    res.json(allBooking);
+router.get("/",async(req,res)=>{
+    try {
+         const bookings=await getAllBookings()
+        
+         return res.status(200).json(bookings)
+    } catch (err) {
+       return res.status(400).json(err);
     }
-    let numBooking = await getBookingByNumber(Number(num));
-    
-    if(numBooking){
-        console.log(numBooking)
-    res.json(numBooking)
-    }
-    
-    
-    }
-    catch(error){()=>{ next(error)}}
-    
-    })
-    router.get('/status', async(req,res,next)=>{
+})
 
-        const{id} = req.query
-        try{ 
-            let numBooking = await getDescriptionById(Number(id));
-            
-            if(numBooking){
-                
-            res.json(numBooking)
-            }
-        }
-            catch(error){()=>{ next(error)}}
-    })
-    
-    router.post('/booking', async(req,res,next)=>{
-    const{dateTime, numberPeople, amount, description}= req.body
-    // let a = new Date(dateTime);
-    // console.log(a)
-    try{ let resp =await AddBooking(dateTime,numberPeople,amount,description)
-        res.json(resp)}
-    catch(error){next(error)}
-    
-    
-    })
-    module.exports=router;
+router.get("/:id",async(req,res)=>{
+    try {
+         const {id}=req.params
+         
+         const booking=await getBooking (id)
+       
+         return res.status(200).json(booking)
+    } catch (err) {
+       return res.status(400).json(err);
+    }
+})
+
+
+router.post("/",async (req,res)=>{
+    try {
+        console.log(req.body)
+        const{ numberPeople,amount,packageId,userId}=req.body
+        let booking=await createBooking(numberPeople,amount,packageId,userId)
+        return res.status(201).json(booking)
+    } catch (err) {
+        return res.status(400).json(err);
+    }
+})
+
+
+module.exports=router;

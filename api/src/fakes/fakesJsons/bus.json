@@ -1,0 +1,604 @@
+{
+	"data": [
+		{
+			"nro_bus": 101,
+			"patent": "0x9D33CF",
+			"seating": 33,
+			"brand": "Polestar"
+		},
+		{
+			"nro_bus": 497,
+			"patent": "0xEb0dbc",
+			"seating": 50,
+			"brand": "Polestar"
+		},
+		{
+			"nro_bus": 324,
+			"patent": "0x1603cd",
+			"seating": 36,
+			"brand": "Maserati"
+		},
+		{
+			"nro_bus": 193,
+			"patent": "0x4603b1",
+			"seating": 29,
+			"brand": "Cadillac"
+		},
+		{
+			"nro_bus": 263,
+			"patent": "0x0c6B5c",
+			"seating": 27,
+			"brand": "Ford"
+		},
+		{
+			"nro_bus": 396,
+			"patent": "0x68Ac80",
+			"seating": 23,
+			"brand": "Chevrolet"
+		},
+		{
+			"nro_bus": 54,
+			"patent": "0xcc34Ca",
+			"seating": 23,
+			"brand": "Fiat"
+		},
+		{
+			"nro_bus": 376,
+			"patent": "0x9f55aA",
+			"seating": 49,
+			"brand": "Polestar"
+		},
+		{
+			"nro_bus": 315,
+			"patent": "0x8fc0Be",
+			"seating": 48,
+			"brand": "Volvo"
+		},
+		{
+			"nro_bus": 87,
+			"patent": "0x0D195d",
+			"seating": 28,
+			"brand": "Bentley"
+		},
+		{
+			"nro_bus": 271,
+			"patent": "0xD52302",
+			"seating": 36,
+			"brand": "Mazda"
+		},
+		{
+			"nro_bus": 5,
+			"patent": "0xd10c70",
+			"seating": 28,
+			"brand": "Mazda"
+		},
+		{
+			"nro_bus": 230,
+			"patent": "0x55a6f0",
+			"seating": 40,
+			"brand": "Audi"
+		},
+		{
+			"nro_bus": 159,
+			"patent": "0xEDa3Ee",
+			"seating": 42,
+			"brand": "Land Rover"
+		},
+		{
+			"nro_bus": 475,
+			"patent": "0x63Dbb9",
+			"seating": 26,
+			"brand": "Land Rover"
+		},
+		{
+			"nro_bus": 265,
+			"patent": "0xa9B1CF",
+			"seating": 20,
+			"brand": "Bentley"
+		},
+		{
+			"nro_bus": 429,
+			"patent": "0x4768e2",
+			"seating": 49,
+			"brand": "Polestar"
+		},
+		{
+			"nro_bus": 258,
+			"patent": "0x026fBb",
+			"seating": 37,
+			"brand": "Hyundai"
+		},
+		{
+			"nro_bus": 462,
+			"patent": "0xE90AA5",
+			"seating": 22,
+			"brand": "Aston Martin"
+		},
+		{
+			"nro_bus": 190,
+			"patent": "0xb84d4E",
+			"seating": 48,
+			"brand": "Chevrolet"
+		},
+		{
+			"nro_bus": 88,
+			"patent": "0x8f7a41",
+			"seating": 20,
+			"brand": "Fiat"
+		},
+		{
+			"nro_bus": 88,
+			"patent": "0x2F75e1",
+			"seating": 43,
+			"brand": "Fiat"
+		},
+		{
+			"nro_bus": 344,
+			"patent": "0x05Bbe6",
+			"seating": 47,
+			"brand": "Porsche"
+		},
+		{
+			"nro_bus": 298,
+			"patent": "0x4C0648",
+			"seating": 20,
+			"brand": "Ferrari"
+		},
+		{
+			"nro_bus": 167,
+			"patent": "0xD595B1",
+			"seating": 23,
+			"brand": "Audi"
+		},
+		{
+			"nro_bus": 16,
+			"patent": "0xCd6Ab7",
+			"seating": 27,
+			"brand": "Jaguar"
+		},
+		{
+			"nro_bus": 239,
+			"patent": "0xCffF3B",
+			"seating": 43,
+			"brand": "Kia"
+		},
+		{
+			"nro_bus": 368,
+			"patent": "0xACD2BD",
+			"seating": 43,
+			"brand": "Mini"
+		},
+		{
+			"nro_bus": 107,
+			"patent": "0xDE35c0",
+			"seating": 50,
+			"brand": "Lamborghini"
+		},
+		{
+			"nro_bus": 63,
+			"patent": "0xaA6576",
+			"seating": 34,
+			"brand": "Lamborghini"
+		},
+		{
+			"nro_bus": 456,
+			"patent": "0xf1caFa",
+			"seating": 29,
+			"brand": "Land Rover"
+		},
+		{
+			"nro_bus": 472,
+			"patent": "0xCA6Fdc",
+			"seating": 27,
+			"brand": "Lamborghini"
+		},
+		{
+			"nro_bus": 92,
+			"patent": "0x768CCf",
+			"seating": 30,
+			"brand": "Cadillac"
+		},
+		{
+			"nro_bus": 266,
+			"patent": "0xC22dec",
+			"seating": 20,
+			"brand": "Cadillac"
+		},
+		{
+			"nro_bus": 352,
+			"patent": "0x3c8202",
+			"seating": 24,
+			"brand": "Mini"
+		},
+		{
+			"nro_bus": 276,
+			"patent": "0x1A7aD5",
+			"seating": 20,
+			"brand": "Tesla"
+		},
+		{
+			"nro_bus": 225,
+			"patent": "0xCEF830",
+			"seating": 30,
+			"brand": "Bentley"
+		},
+		{
+			"nro_bus": 194,
+			"patent": "0xbC3CEA",
+			"seating": 40,
+			"brand": "Kia"
+		},
+		{
+			"nro_bus": 327,
+			"patent": "0xA3e29F",
+			"seating": 33,
+			"brand": "Audi"
+		},
+		{
+			"nro_bus": 240,
+			"patent": "0x6f01Ab",
+			"seating": 44,
+			"brand": "Polestar"
+		},
+		{
+			"nro_bus": 73,
+			"patent": "0x74298a",
+			"seating": 44,
+			"brand": "Porsche"
+		},
+		{
+			"nro_bus": 176,
+			"patent": "0xBDded0",
+			"seating": 35,
+			"brand": "Cadillac"
+		},
+		{
+			"nro_bus": 231,
+			"patent": "0xcdA78f",
+			"seating": 33,
+			"brand": "Volkswagen"
+		},
+		{
+			"nro_bus": 122,
+			"patent": "0x8CCF0F",
+			"seating": 22,
+			"brand": "Mercedes Benz"
+		},
+		{
+			"nro_bus": 207,
+			"patent": "0x84FdC0",
+			"seating": 30,
+			"brand": "Ferrari"
+		},
+		{
+			"nro_bus": 62,
+			"patent": "0xEeDdAc",
+			"seating": 35,
+			"brand": "Volvo"
+		},
+		{
+			"nro_bus": 160,
+			"patent": "0x366deF",
+			"seating": 42,
+			"brand": "Smart"
+		},
+		{
+			"nro_bus": 202,
+			"patent": "0x43eCca",
+			"seating": 32,
+			"brand": "Fiat"
+		},
+		{
+			"nro_bus": 358,
+			"patent": "0x81C90B",
+			"seating": 28,
+			"brand": "BMW"
+		},
+		{
+			"nro_bus": 415,
+			"patent": "0xfDaE09",
+			"seating": 47,
+			"brand": "Maserati"
+		},
+		{
+			"nro_bus": 246,
+			"patent": "0xef0FC9",
+			"seating": 29,
+			"brand": "Kia"
+		},
+		{
+			"nro_bus": 83,
+			"patent": "0xcCFAF3",
+			"seating": 37,
+			"brand": "Aston Martin"
+		},
+		{
+			"nro_bus": 212,
+			"patent": "0xCDceDd",
+			"seating": 39,
+			"brand": "Chevrolet"
+		},
+		{
+			"nro_bus": 271,
+			"patent": "0xdaad35",
+			"seating": 24,
+			"brand": "Smart"
+		},
+		{
+			"nro_bus": 449,
+			"patent": "0x9D3383",
+			"seating": 41,
+			"brand": "Bugatti"
+		},
+		{
+			"nro_bus": 297,
+			"patent": "0xC7acf9",
+			"seating": 36,
+			"brand": "Chevrolet"
+		},
+		{
+			"nro_bus": 38,
+			"patent": "0xc077Dd",
+			"seating": 49,
+			"brand": "Chrysler"
+		},
+		{
+			"nro_bus": 347,
+			"patent": "0xaA9AEE",
+			"seating": 26,
+			"brand": "Volvo"
+		},
+		{
+			"nro_bus": 197,
+			"patent": "0xcC66E8",
+			"seating": 50,
+			"brand": "Smart"
+		},
+		{
+			"nro_bus": 271,
+			"patent": "0x71B1eC",
+			"seating": 48,
+			"brand": "Chevrolet"
+		},
+		{
+			"nro_bus": 47,
+			"patent": "0x0271cE",
+			"seating": 43,
+			"brand": "Chevrolet"
+		},
+		{
+			"nro_bus": 180,
+			"patent": "0xfcFB97",
+			"seating": 49,
+			"brand": "Land Rover"
+		},
+		{
+			"nro_bus": 472,
+			"patent": "0x33C317",
+			"seating": 34,
+			"brand": "Jaguar"
+		},
+		{
+			"nro_bus": 122,
+			"patent": "0xff04ac",
+			"seating": 34,
+			"brand": "Jaguar"
+		},
+		{
+			"nro_bus": 155,
+			"patent": "0xF7637B",
+			"seating": 36,
+			"brand": "Kia"
+		},
+		{
+			"nro_bus": 241,
+			"patent": "0x3DBfC2",
+			"seating": 28,
+			"brand": "Mazda"
+		},
+		{
+			"nro_bus": 2,
+			"patent": "0xAB87FA",
+			"seating": 30,
+			"brand": "Hyundai"
+		},
+		{
+			"nro_bus": 467,
+			"patent": "0x02f50E",
+			"seating": 50,
+			"brand": "Toyota"
+		},
+		{
+			"nro_bus": 85,
+			"patent": "0x02CafF",
+			"seating": 31,
+			"brand": "Ford"
+		},
+		{
+			"nro_bus": 257,
+			"patent": "0xaC7ff9",
+			"seating": 44,
+			"brand": "Lamborghini"
+		},
+		{
+			"nro_bus": 89,
+			"patent": "0xa8BBc6",
+			"seating": 41,
+			"brand": "Maserati"
+		},
+		{
+			"nro_bus": 428,
+			"patent": "0xFc0FC6",
+			"seating": 27,
+			"brand": "Jeep"
+		},
+		{
+			"nro_bus": 84,
+			"patent": "0x7Bf0bB",
+			"seating": 45,
+			"brand": "Jeep"
+		},
+		{
+			"nro_bus": 197,
+			"patent": "0x9e4697",
+			"seating": 31,
+			"brand": "Volkswagen"
+		},
+		{
+			"nro_bus": 400,
+			"patent": "0x840bCb",
+			"seating": 26,
+			"brand": "Bentley"
+		},
+		{
+			"nro_bus": 268,
+			"patent": "0xfE331F",
+			"seating": 46,
+			"brand": "Tesla"
+		},
+		{
+			"nro_bus": 284,
+			"patent": "0xD13bb1",
+			"seating": 30,
+			"brand": "Volkswagen"
+		},
+		{
+			"nro_bus": 164,
+			"patent": "0x955e1F",
+			"seating": 20,
+			"brand": "Rolls Royce"
+		},
+		{
+			"nro_bus": 364,
+			"patent": "0x42b3BE",
+			"seating": 41,
+			"brand": "Audi"
+		},
+		{
+			"nro_bus": 278,
+			"patent": "0xBAc57d",
+			"seating": 36,
+			"brand": "Chevrolet"
+		},
+		{
+			"nro_bus": 411,
+			"patent": "0xEbeb2a",
+			"seating": 43,
+			"brand": "Aston Martin"
+		},
+		{
+			"nro_bus": 141,
+			"patent": "0xaFDDE0",
+			"seating": 27,
+			"brand": "Nissan"
+		},
+		{
+			"nro_bus": 187,
+			"patent": "0x982f41",
+			"seating": 48,
+			"brand": "Tesla"
+		},
+		{
+			"nro_bus": 289,
+			"patent": "0x3fD4e2",
+			"seating": 34,
+			"brand": "Bugatti"
+		},
+		{
+			"nro_bus": 48,
+			"patent": "0xd2B8DD",
+			"seating": 32,
+			"brand": "Ferrari"
+		},
+		{
+			"nro_bus": 146,
+			"patent": "0xB1DcdA",
+			"seating": 37,
+			"brand": "Kia"
+		},
+		{
+			"nro_bus": 471,
+			"patent": "0x5FB9aE",
+			"seating": 32,
+			"brand": "Aston Martin"
+		},
+		{
+			"nro_bus": 422,
+			"patent": "0xb4Ac92",
+			"seating": 37,
+			"brand": "Aston Martin"
+		},
+		{
+			"nro_bus": 413,
+			"patent": "0x1872CE",
+			"seating": 40,
+			"brand": "Cadillac"
+		},
+		{
+			"nro_bus": 310,
+			"patent": "0xFF0716",
+			"seating": 30,
+			"brand": "Dodge"
+		},
+		{
+			"nro_bus": 462,
+			"patent": "0xb4B4f9",
+			"seating": 39,
+			"brand": "Jeep"
+		},
+		{
+			"nro_bus": 213,
+			"patent": "0xB3d9ce",
+			"seating": 23,
+			"brand": "Honda"
+		},
+		{
+			"nro_bus": 270,
+			"patent": "0xad77E6",
+			"seating": 26,
+			"brand": "Chrysler"
+		},
+		{
+			"nro_bus": 490,
+			"patent": "0xCfCffA",
+			"seating": 38,
+			"brand": "Toyota"
+		},
+		{
+			"nro_bus": 69,
+			"patent": "0xf75DBC",
+			"seating": 29,
+			"brand": "Kia"
+		},
+		{
+			"nro_bus": 44,
+			"patent": "0xDdf0cb",
+			"seating": 42,
+			"brand": "Honda"
+		},
+		{
+			"nro_bus": 228,
+			"patent": "0xe7Bf60",
+			"seating": 44,
+			"brand": "Kia"
+		},
+		{
+			"nro_bus": 433,
+			"patent": "0x681A2f",
+			"seating": 46,
+			"brand": "Cadillac"
+		},
+		{
+			"nro_bus": 183,
+			"patent": "0x7B6E9C",
+			"seating": 32,
+			"brand": "Dodge"
+		},
+		{
+			"nro_bus": 280,
+			"patent": "0xDDBacf",
+			"seating": 45,
+			"brand": "Mercedes Benz"
+		}
+	]
+}

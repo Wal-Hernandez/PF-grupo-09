@@ -8,6 +8,7 @@ import Buy from './views/BuyView';
 import Services from './views/ServicesView';
 import Admin from './views/AdminView';
 import LoginView from './views/LoginView';
+import AboutView from './views/AboutView';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/editBuy" element={<Buy/>} />
       <Route path="/services" element={<Services/>} />
       <Route path="/admin" element={<Admin/>} />
+      <Route path="/about" element={<AboutView/>} />
     </Routes>
     </div>
   );

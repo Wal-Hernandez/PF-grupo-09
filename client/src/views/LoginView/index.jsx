@@ -1,35 +1,12 @@
 import React from "react";
+import Login from "../../components/Login";
 
-function Login() {
+function LoginView() {
   return (
     <div>
-      <div>LoginView</div>
-      <form>
-        <div>
-          <label>Name*</label>
-          <div>
-            <input
-              type="text"
-              name="name"
-           /*    onChange={changeHandle} */
-              maxLength="256"
-            ></input>
-          </div>
-        </div>
-        <div>
-          <label>password*</label>
-          <div>
-            <input
-              type="password"
-              name="password"
-          /*     onChange={changeHandle} */
-              maxLength="256"
-            ></input>
-          </div>
-        </div>
-      </form>
+   <Login/>
     </div>
   );
 }
 
-export default Login;
+export default LoginView;

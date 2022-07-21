@@ -1,6 +1,10 @@
+import {} from '../actions/actionTypes';
 
 const initialState = {
-  first:[]
+  packages:[],
+  showPackages:[],
+  detail:[],
+  isAdmin: null,
 };
 
 

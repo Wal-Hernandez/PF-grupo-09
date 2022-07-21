@@ -1,3 +1,4 @@
+
 const { City } = require("../db");
 
 const getCities = async () => {

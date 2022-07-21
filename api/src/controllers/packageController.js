@@ -4,6 +4,7 @@ const getPackages = async (req, res, next) => {
   try {
     const allPackages = await Package.findAll({
       include: [
+       
         {
           model: Activity,
 
@@ -41,41 +42,34 @@ const getPackages = async (req, res, next) => {
 const getPackageById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const packageById =
-      id &&
-      (await Package.findByPk(Number(id), {
-        include: [
-          {
-            model: Activity,
+    const packageById = id && (await Package.findByPk(Number(id), 
+      {include: [
+       { 
+        model: Activity,
 
-            through: {
-              attributes: [],
-            },
-          },
-          {
-            model: Bus,
-            attributes: ["patent"],
-          },
-          {
-            model: Plattform,
-            attributes: ["terminal"],
-          },
-          {
-            model: City,
-            attributes: ["name"],
-          },
-          {
-            model: Hotel,
-            attributes: ["name"],
-          },
-        ],
-      }));
-
-    packageById
-      ? res.status(200).json(packageById)
-      : res.status(404).json({
-          msg: "Package not found",
-        });
+          through: {
+            attributes: [],
+          }
+        },
+        {
+          model: Bus,
+          attributes: ["patent"],
+        },
+        {
+          model: Plattform,
+          attributes: ["terminal"],
+        },
+        {
+          model: City,
+          attributes: ["name"],
+        },
+        {
+          model: Hotel,
+          attributes: ["name"],
+        },
+      ],}
+    ));
+    res.status(200).json(packageById)
   } catch (error) {
     res.status(404).json({
       msg: "Error getPackageById(packageController.js)",

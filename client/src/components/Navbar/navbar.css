@@ -1,0 +1,15 @@
+a {
+    margin: 1%
+}
+
+.navbarContainer {
+    background-color: gray;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.navbarContainer .navElement {
+    width: 30vw;
+    margin: 1%;
+}

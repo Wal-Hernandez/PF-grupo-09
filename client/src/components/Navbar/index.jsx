@@ -14,8 +14,6 @@ function Navbar() {
         <Link to="/login">Login</Link>
       </div>
       
-      
-      
     </div>
   )
 }

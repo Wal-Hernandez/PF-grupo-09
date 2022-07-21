@@ -5,6 +5,13 @@ const getPackages = async (req, res, next) => {
     const allPackages = await Package.findAll({
       include: [
         {
+          model: Activity,
+
+          through: {
+            attributes: [],
+          },
+        },
+        {
           model: Bus,
           attributes: ["patent"],
         },
@@ -38,6 +45,13 @@ const getPackageById = async (req, res, next) => {
       id &&
       (await Package.findByPk(Number(id), {
         include: [
+          {
+            model: Activity,
+
+            through: {
+              attributes: [],
+            },
+          },
           {
             model: Bus,
             attributes: ["patent"],
@@ -135,6 +149,7 @@ const postPackage = async (req, res, next) => {
         name: activity,
       },
     });
+    console.log(activities);
     await newPackage.addActivities(activities);
 
     res.status(201).send("Package created successfully");
@@ -165,9 +180,50 @@ const deletePackagesById = async (req, res) => {
   }
 };
 
+const updatePackage = async (req, res) => {
+  const { id } = req.params;
+  const {
+    name,
+    start_date,
+    end_date,
+    price,
+    discount,
+    activity,
+    busId,
+    plattformId,
+    cityId,
+    hotelId,
+    stock,
+  } = req.body;
+  try {
+    const a = Package.update(
+      {
+        name,
+        start_date,
+        end_date,
+        price,
+        discount,
+        activity,
+        busId,
+        plattformId,
+        cityId,
+        hotelId,
+        stock,
+      },
+      { where: { id: id } }
+    );
+    return res.status(201).json({
+      msg: "The package has been update successfully",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getPackages,
   getPackageById,
   postPackage,
   deletePackagesById,
+  updatePackage,
 };

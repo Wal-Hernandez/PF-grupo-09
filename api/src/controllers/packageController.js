@@ -4,6 +4,7 @@ const getPackages = async (req, res, next) => {
   try {
     const allPackages = await Package.findAll({
       include: [
+       
         {
           model: Bus,
           attributes: ["patent"],
@@ -37,6 +38,7 @@ const getPackageById = async (req, res, next) => {
     const { id } = req.params;
     const packageById = id && (await Package.findByPk(Number(id), 
       {include: [
+       
         {
           model: Bus,
           attributes: ["patent"],

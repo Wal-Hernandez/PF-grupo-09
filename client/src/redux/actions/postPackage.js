@@ -1,4 +1,4 @@
-import {
+/* import {
     POST_PACKAGE,
 } from './actionTypes'
 
@@ -17,4 +17,4 @@ function postPackage() {
     }
     }
 
-    export default postPackage
+    export default postPackage */

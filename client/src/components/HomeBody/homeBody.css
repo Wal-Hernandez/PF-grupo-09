@@ -18,3 +18,16 @@ margin-left: 45%;
     height: 900px;
     background-color: rgba(150, 6, 6, 0.733);
    }
+
+   .mainViewContainer{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+   }
+
+   .mainViewContainer img{
+ 
+    width: 600px;
+
+   }

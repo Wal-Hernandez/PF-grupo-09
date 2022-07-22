@@ -1,4 +1,3 @@
-
 import { GET_PACKAGES } from './actionTypes'
 import axios from 'axios'
 
@@ -16,4 +15,3 @@ export const getPackages = () => {
         }
     };
 };
-

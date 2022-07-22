@@ -10,7 +10,7 @@ export default function Services() {
   const packages = useSelector((state) => state.packages)
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [packagesPerPage /*setPackagesPerPage*/] = useState(10); //10 productos por pagina
+  const [packagesPerPage /*setPackagesPerPage*/] = useState(3); //10 productos por pagina
   const indexOfLastPackage = currentPage * packagesPerPage; // 10
   const indexOfFirstPackage = indexOfLastPackage - packagesPerPage; // 0
   const currentPackages = packages.slice(

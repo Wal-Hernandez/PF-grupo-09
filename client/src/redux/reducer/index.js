@@ -11,12 +11,13 @@ const initialState = {
 
 
 
-export default function rootReducer(state = initialState, action) {
-    switch (action.type) {
+export default function rootReducer(state = initialState, { type, payload }) {
+    console.log(payload);
+    switch (type) {
         case GET_PACKAGES:
             return {
                 ...state,
-                packages: action.payload
+                packages: payload
             }
         default:
             return state;

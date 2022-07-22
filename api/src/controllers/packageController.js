@@ -56,34 +56,36 @@ const getPackages = async (req, res, next) => {
 const getPackageById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const packageById = id && (await Package.findByPk(Number(id), 
-      {include: [
-       { 
-        model: Activity,
+    const packageById =
+      id &&
+      (await Package.findByPk(Number(id), {
+        include: [
+          {
+            model: Activity,
 
-          through: {
-            attributes: [],
-          }
-        },
-        {
-          model: Bus,
-          attributes: ["patent"],
-        },
-        {
-          model: Plattform,
-          attributes: ["terminal"],
-        },
-        {
-          model: City,
-          attributes: ["name"],
-        },
-        {
-          model: Hotel,
-          attributes: ["name"],
-        },
-      ],}
-    ));
-    res.status(200).json(packageById)
+            through: {
+              attributes: [],
+            },
+          },
+          {
+            model: Bus,
+            attributes: ["patent"],
+          },
+          {
+            model: Plattform,
+            attributes: ["terminal"],
+          },
+          {
+            model: City,
+            attributes: ["name"],
+          },
+          {
+            model: Hotel,
+            attributes: ["name"],
+          },
+        ],
+      }));
+    res.status(200).json(packageById);
   } catch (error) {
     res.status(404).json({
       msg: "Error getPackageById(packageController.js)",
@@ -171,19 +173,24 @@ const postPackage = async (req, res, next) => {
 const deletePackagesById = async (req, res) => {
   const { id } = req.params;
   try {
-    const findbyid = await Package.findByPk(id);
-    if (findbyid) {
-      const deletePackages = await Package.destroy({
-        where: { id: id },
-      });
+    const deletePackages = await Package.destroy({
+      where: { id: id },
+    });
+
+    if (deletePackages) {
       return res.status(201).json({
         msg: "The package has been removed successfully",
-        deletePackages,
+        valor: true,
+      });
+    } else {
+      return res.status(400).json({
+        msg: "The package cannot be removed because the id does not exist",
       });
     }
   } catch (error) {
     return res.status(400).json({
-      msg: "The package cannot be removed because the id does not exist",
+      msg: "Error deletePackagesById(packageController.js)",
+      error: error,
     });
   }
 };
@@ -204,6 +211,39 @@ const updatePackage = async (req, res) => {
     stock,
   } = req.body;
   try {
+    if (
+      !name ||
+      !start_date ||
+      !end_date ||
+      !price ||
+      !discount ||
+      !activity ||
+      !busId ||
+      !plattformId ||
+      !cityId ||
+      !hotelId ||
+      !stock
+    ) {
+      return res.status(404).json({
+        msg: "All fields are required",
+      });
+    }
+    if (
+      busId < 1 ||
+      plattformId < 1 ||
+      cityId < 1 ||
+      hotelId < 1 ||
+      stock < 1
+    ) {
+      return res.status(404).json({
+        msg: "Negative numbers are not allowed",
+      });
+    }
+    if (typeof name !== "string") {
+      return res.status(404).json({
+        msg: "Only letters are allowed in the name field",
+      });
+    }
     const a = Package.update(
       {
         name,
@@ -224,7 +264,10 @@ const updatePackage = async (req, res) => {
       msg: "The package has been update successfully",
     });
   } catch (error) {
-    console.log(error);
+    return res.status(400).json({
+      msg: "Error updatePackage(packageController.js)",
+      error: error,
+    });
   }
 };
 

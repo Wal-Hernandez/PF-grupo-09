@@ -6,8 +6,7 @@ import HomeBody from "../../components/HomeBody";
 
 
 function HomeView() {
-  return (
-  <>
+  return (<>
       <div>
         <Navbar />
       </div>

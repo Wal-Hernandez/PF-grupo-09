@@ -24,7 +24,6 @@ export default function DetailsView() {
       <div>
         <Navbar />
       </div>
-      <p>{packageDetail.hotel?.name }</p>
         <div className="detailsViewContainer">
           <div>
             <div>

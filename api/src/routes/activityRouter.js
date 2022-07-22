@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const {getActivitiesFromCity,getActivities,createActivity, updateActivity, deleteActivityById}=require("../controllers/activityController")
+const {getActivitiesFromCity,getActivities,createActivity,deleteActivityById,updateActivity}=require("../controllers/activityController")
 
 
 const router=Router()
@@ -60,6 +60,9 @@ router.delete("/:id", async (req, res) => {
       return res.status(400).json(error);
     }
   });
+
+
+
 
 
 module.exports=router;

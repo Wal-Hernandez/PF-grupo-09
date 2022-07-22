@@ -24,11 +24,11 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: Bus,
-          attributes: ["patent"],
+          
         },
         {
           model: Plattform,
-          attributes: ["terminal"],
+          
         },
         {
           model: City,
@@ -37,7 +37,7 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: Hotel,
-          attributes: ["name"],
+       
         },
       ],
     });
@@ -63,29 +63,29 @@ const getPackageById = async (req, res, next) => {
           {
             model: Activity,
 
-            through: {
-              attributes: [],
-            },
-          },
-          {
-            model: Bus,
-            attributes: ["patent"],
-          },
-          {
-            model: Plattform,
-            attributes: ["terminal"],
-          },
-          {
-            model: City,
-            attributes: ["name"],
-          },
-          {
-            model: Hotel,
-            attributes: ["name"],
-          },
-        ],
-      }));
-    res.status(200).json(packageById);
+          through: {
+            attributes: [],
+          }
+        },
+        {
+          model: Bus,
+         
+        },
+        {
+          model: Plattform,
+         
+        },
+        {
+          model: City,
+          
+        },
+        {
+          model: Hotel,
+          
+        },
+      ],}
+    ));
+    res.status(200).json(packageById)
   } catch (error) {
     res.status(404).json({
       msg: "Error getPackageById(packageController.js)",

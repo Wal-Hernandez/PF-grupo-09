@@ -79,8 +79,7 @@ const deleteActivityById = async (id) => {
 
 const updateActivity = async (id,name,description,price,cityId,) => {
   try {
-    console.log(id, name, description, price, cityId)
-    const activity = await Activity.update(
+    const activity = await Package.update(
       {
        name,
        description,
@@ -106,7 +105,4 @@ const updateActivity = async (id,name,description,price,cityId,) => {
   }
 };
 
-
-
-
-module.exports = { getActivitiesFromCity ,createActivity,getActivities, deleteActivityById, updateActivity};
+module.exports = { getActivitiesFromCity ,createActivity,getActivities,deleteActivityById,updateActivity};

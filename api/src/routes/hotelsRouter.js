@@ -1,5 +1,11 @@
 const { Router } = require("express");
-const { getHotels, createHotel ,getHotel} = require("../controllers/hotelsControllers");
+const {
+  getHotels,
+  createHotel,
+  getHotel,
+  updateHotelById,
+  deleteHotelById,
+} = require("../controllers/hotelsControllers");
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -13,7 +19,7 @@ router.get("/", async (req, res) => {
 });
 router.get("/:id", async (req, res) => {
   try {
-    const{id}=req.params
+    const { id } = req.params;
     const hotel = await getHotel(id);
 
     return res.status(200).json(hotel);
@@ -21,7 +27,6 @@ router.get("/:id", async (req, res) => {
     return res.status(400).json(err);
   }
 });
-
 
 router.post("/", async (req, res) => {
   try {
@@ -52,6 +57,48 @@ router.post("/", async (req, res) => {
     return res.status(201).json(hotel);
   } catch (err) {
     return res.status(400).json(err);
+  }
+});
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const hotel = await deleteHotelById(id);
+    return res.status(200).json(hotel);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const {
+    name,
+    location,
+    stars,
+    phone,
+    price,
+    pool,
+    wifi,
+    gym,
+    urlImage,
+    cityId,
+  } = req.body;
+  try {
+    const hotel = await updateHotelById(
+      id,
+      name,
+      location,
+      stars,
+      phone,
+      price,
+      pool,
+      wifi,
+      gym,
+      urlImage,
+      cityId
+    );
+    return res.status(200).json(hotel);
+  } catch (error) {
+    return res.status(400).json(error);
   }
 });
 

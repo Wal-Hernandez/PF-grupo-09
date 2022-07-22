@@ -175,15 +175,21 @@ const deletePackagesById = async(req, res) => {
 =======
 const getPackages = async (req, res, next) => {
   try {
-    const {destination, start, end, price, stock} = req.query;
+    const { destination, start, end, price, stock } = req.query;
 
-    const destinationWhere = destination? {name: {[Op.iLike]: `%${destination}%`}} : {};
-    const dateWhere = start && end ? {start_date: start, end_date: end} : {}
+    const destinationWhere = destination
+      ? { name: { [Op.iLike]: `%${destination}%` } }
+      : {};
+    const dateWhere = start && end ? { start_date: start, end_date: end } : {};
     // const dateStart = start ? {start_date: start} : {}
     // const dateEnd = end ? {end_date: end} : {}
-    const priceOrder = price ? ['price', price.toUpperCase()] : ['price', 'NULLS FIRST']
-    const stockOrder = stock ? ['stock', stock.toUpperCase()] : ['stock', 'NULLS FIRST']
-  
+    const priceOrder = price
+      ? ["price", price.toUpperCase()]
+      : ["price", "NULLS FIRST"];
+    const stockOrder = stock
+      ? ["stock", stock.toUpperCase()]
+      : ["stock", "NULLS FIRST"];
+
     const allPackages = await Package.findAll({
       order: [priceOrder, stockOrder],
       where: dateWhere,
@@ -215,7 +221,6 @@ const getPackages = async (req, res, next) => {
     });
 
     return res.status(200).json(allPackages);
-
   } catch (error) {
     res.status(404).json({
       msg: "There are no packages to show",
@@ -223,7 +228,6 @@ const getPackages = async (req, res, next) => {
     });
   }
 };
-
 
 const getPackageById = async (req, res, next) => {
   try {
@@ -419,7 +423,7 @@ const updatePackage = async (req, res) => {
         msg: "Only letters are allowed in the name field",
       });
     }
-    const a = Package.update(
+    const a = await Package.update(
       {
 >>>>>>> 8cb3a79bfda2a775cdd9a4dd77d9be050e15aadb
         name,
@@ -459,9 +463,17 @@ const updatePackage = async (req, res) => {
       },
       { where: { id: id } }
     );
-    return res.status(201).json({
-      msg: "The package has been update successfully",
-    });
+
+    if (a[0]) {
+      return res.status(201).json({
+        msg: "The package has been update successfully",
+        valor: true,
+      });
+    } else {
+      return res.status(400).json({
+        msg: "The package cannot be updated because the id does not exist",
+      });
+    }
   } catch (error) {
     return res.status(400).json({
       msg: "Error updatePackage(packageController.js)",

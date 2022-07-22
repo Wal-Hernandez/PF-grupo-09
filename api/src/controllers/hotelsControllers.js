@@ -17,6 +17,24 @@ const getHotels = async () => {
     };
   }
 };
+
+const getHotel=async(id)=>{
+  try {
+    let allHotels = await Hotel.findByPk(id,{
+      include: {
+        model: City,
+        attributes: ["name"],
+      },
+    });
+
+    return allHotels;
+  } catch (err) {
+    return {
+      msg: "Error getHotel(hotelsController.js)",
+      error: err,
+    };
+  }
+}
 const createHotel = async (
   name,
   location,
@@ -52,4 +70,4 @@ const createHotel = async (
   }
 };
 
-module.exports = { getHotels, createHotel };
+module.exports = { getHotels, createHotel ,getHotel};

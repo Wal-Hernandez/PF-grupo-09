@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 import { Link } from "react-router-dom";
 import "./homeBody.css";
-function HomeBody() {
+import { useDispatch, useSelector} from 'react-redux';
+import { getPackages } from '../../redux/actions/getPackages';
+
+export default function HomeBody() {
+  const packages = useSelector((state) => state.packages)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    !packages.length ? 
+    dispatch(getPackages()) : console.log("error")
+}, [dispatch, packages]);
+
   return (<>
     <div className="homeViewContainer">
     <div><h1>Ofertas</h1></div>
     <div>
-      <h1>Paquetes</h1>
       <Link to="/details">
         <h2 className="example">Paquete de ejemplo</h2>
       </Link>
@@ -18,5 +28,3 @@ function HomeBody() {
   </>
   )
 }
-
-export default HomeBody

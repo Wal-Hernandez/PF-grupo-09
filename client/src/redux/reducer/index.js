@@ -1,18 +1,26 @@
-import {} from '../actions/actionTypes';
+import { GET_PACKAGE_ID, GET_CLEAN } from "../actions/actionTypes";
 
 const initialState = {
-  packages:[],
-  showPackages:[],
-  detail:[],
+  packages: [],
+  showPackages: [],
+  detail: [],
   isAdmin: null,
 };
 
-
-
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case "first": return
-    default: return state;
+    case GET_PACKAGE_ID:
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    case GET_CLEAN:
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    default:
+      return state;
   }
 }
 

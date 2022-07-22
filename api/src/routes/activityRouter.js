@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const {getActivitiesFromCity,getActivities,createActivity}=require("../controllers/activityController")
+const {getActivitiesFromCity,getActivities,createActivity, updateActivity, deleteActivityById}=require("../controllers/activityController")
 
 
 const router=Router()
@@ -38,6 +38,28 @@ router.post("/",async (req,res)=>{
         return res.status(400).json(err);
     }
 })
+
+router.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+      const activityRemove = await deleteActivityById(id);
+      return res.status(200).json(activityRemove);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  });
+
+  router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const{name,description,price,cityId}=req.body
+
+    try {
+      const activityUpdate = await updateActivity(id,name,description,price,cityId);
+      return res.status(200).json(activityUpdate);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  });
 
 
 module.exports=router;

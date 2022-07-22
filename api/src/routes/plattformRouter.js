@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const {getPlattforms,createPlattform,getPlattform}=require("../controllers/plattformController")
+const {getPlattforms,createPlattform,getPlattform, deletePlattform, putPlattform}=require("../controllers/plattformController")
 
 const router=Router()
 
@@ -33,6 +33,36 @@ router.post("/",async (req,res)=>{
         return res.status(400).json(err);
     }
 })
+
+router.delete("/:id",async (req,res)=>{
+    const {id} = req.params
+    if(id) {
+        try { 
+             let deleteP=await deletePlattform(id) 
+             console.log
+             return res.status(200).json(deleteP)    
+    } catch (err) {
+        return res.status(400).json(err);
+    }
+    } else {
+        return res.status(400).json("Cannot remove platform") 
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    const { id } = req.params;
+    const { terminal, address, location } = req.body;
+    if(id) {
+     try {
+         let searchP=await putPlattform(id, terminal, address, location) 
+         return res.status(200).json(searchP)    
+        } catch (err) {
+            return res.status(400).json(err);
+        }
+        } else {
+            return res.status(400).json("cannot update platform") 
+        }
+  });
 
 
 module.exports=router;

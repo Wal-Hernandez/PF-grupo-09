@@ -55,4 +55,57 @@ const { Plattform } = require("../db");
 
 
 
- module.exports={getPlattforms,createPlattform,getPlattform}
+const deleteActivityById = async (id) => {
+  
+  try {
+      const deleteActivity = await Activity.destroy({
+        where: { id: id },
+      });
+      if(deleteActivity){
+        return {
+        msg: "The activity has been removed successfully",
+        valor:true,
+      }
+    }
+      return {
+       msg: "The activity cannot be removed because the id does not exist",     
+      }  
+  } catch (err) {
+    return{
+      msg: "Error createActivity(activityController.js)",
+      error: err,
+    }
+  }
+};
+
+const updateActivity = async (id,name,description,price,cityId,) => {
+  try {
+    const activity = await Package.update(
+      {
+       name,
+       description,
+       price,
+       cityId,
+      },
+      { where: { id: id } }
+    );
+    if(activity[0])
+    return {
+      msg: "the activity was updated successfully",
+      valor:true,
+    }
+    return {
+      msg: "the activity to update was not found",
+    }
+
+  } catch (err) {
+    return{
+      msg: "Error updateActivity(activityController.js)",
+      error: err,
+    }
+  }
+};
+
+
+ module.exports={getPlattforms,createPlattform,getPlattform, updateActivity, deleteActivityById}
+

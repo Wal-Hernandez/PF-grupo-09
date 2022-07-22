@@ -14,19 +14,19 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: Bus,
-          attributes: ["patent"],
+          
         },
         {
           model: Plattform,
-          attributes: ["terminal"],
+          
         },
         {
           model: City,
-          attributes: ["name"],
+       
         },
         {
           model: Hotel,
-          attributes: ["name"],
+       
         },
       ],
     });
@@ -53,19 +53,19 @@ const getPackageById = async (req, res, next) => {
         },
         {
           model: Bus,
-          attributes: ["patent"],
+         
         },
         {
           model: Plattform,
-          attributes: ["terminal"],
+         
         },
         {
           model: City,
-          attributes: ["name"],
+          
         },
         {
           model: Hotel,
-          attributes: ["name"],
+          
         },
       ],}
     ));

@@ -47,33 +47,24 @@ router.delete("/:id", async (req, res) => {
   });
   router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const {
-      name,
-      location,
-      stars,
-      phone,
-      price,
-      pool,
-      wifi,
-      gym,
-      urlImage,
-      cityId,
-    } = req.body;
+    const {dateTime,
+           numberPeople,
+           amount,
+           status,
+           packageId,
+           userId,
+          } = req.body;
     try {
-      const hotel = await updateHotelById(
+      const booking = await updateBooking(
         id,
-        name,
-        location,
-        stars,
-        phone,
-        price,
-        pool,
-        wifi,
-        gym,
-        urlImage,
-        cityId
+        dateTime,
+        numberPeople,
+        amount,
+        status,
+        packageId,
+        userId,
       );
-      return res.status(200).json(hotel);
+      return res.status(200).json(booking);
     } catch (error) {
       return res.status(400).json(error);
     }

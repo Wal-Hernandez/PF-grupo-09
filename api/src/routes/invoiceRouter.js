@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const {createInvoice,getInvoice,getInvoices}=require("../controllers/invoiceController")
+const {createInvoice,getInvoice,getInvoices,deleteInvoiceById,updateInvoice}=require("../controllers/invoiceController")
 
 const router=Router()
 
@@ -34,5 +34,34 @@ router.post("/",async (req,res)=>{
     }
 })
 
+router.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+      const invoice = await deleteInvoiceById(id);
+      return res.status(200).json(invoice);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  });
+  router.put("/:id", async (req, res) => {
+    try {
+    const { id } = req.params;
+    const {
+        dateTime,
+        confirmation,
+        bookingId
+          } = req.body;
+   
+      const invoice = await updateInvoice(
+        id,
+        dateTime,
+        confirmation,
+        bookingId
+      );
+      return res.status(200).json(invoice);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  });
 
 module.exports=router;

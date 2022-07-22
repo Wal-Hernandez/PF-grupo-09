@@ -1,4 +1,4 @@
-import {
+/* import {
    
 } from "./actionTypes";
 
@@ -18,4 +18,4 @@ function getPackageId() {
     }
     }
     
-    export default getPackageId
+    export default getPackageId */

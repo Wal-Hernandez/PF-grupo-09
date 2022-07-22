@@ -1,10 +1,13 @@
 import {
-   
+    GET_OFFERS
 } from "./actionTypes";
 
 
+
 function getOffers() {
-    return {}
+    return {
+        type: GET_OFFERS,
+    }
     }
     
     export default getOffers

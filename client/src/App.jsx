@@ -11,6 +11,8 @@ import Login from './views/LoginView';
 import FAQ from './components/FAQ/FAQ.jsx'
 import LoginView from './views/LoginView';
 import AboutView from './views/AboutView';
+
+
 function App() {
   return (
     <div className="App">

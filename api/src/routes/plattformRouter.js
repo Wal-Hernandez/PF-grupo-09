@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const {getPlattforms,createPlattform,getPlattform, deletePlattform, searchPlatform}=require("../controllers/plattformController")
+const {getPlattforms,createPlattform,getPlattform, deletePlattform, putPlattform}=require("../controllers/plattformController")
 
 const router=Router()
 
@@ -54,7 +54,7 @@ router.put('/:id', async (req, res) => {
     const { terminal, address, location } = req.body;
     if(id) {
      try {
-         let searchP=await searchPlatform(id, terminal, address, location) 
+         let searchP=await putPlattform(id, terminal, address, location) 
          return res.status(200).json(searchP)    
         } catch (err) {
             return res.status(400).json(err);

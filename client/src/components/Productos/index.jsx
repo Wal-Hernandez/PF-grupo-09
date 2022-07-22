@@ -1,12 +1,12 @@
 import React from 'react'
 import "./productos.css"
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 
-export default function Productos() {
+export default function Productos(props) {
 
-  const packages = useSelector((state) => state.packages)
+  const {currentPackages} = props
+  const packages = currentPackages
   
   return (
     <div>

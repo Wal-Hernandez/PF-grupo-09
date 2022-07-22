@@ -30,7 +30,7 @@ const getHotel=async(id)=>{
     return allHotels;
   } catch (err) {
     return {
-      msg: "Error getHotels(hotelsController.js)",
+      msg: "Error getHotel(hotelsController.js)",
       error: err,
     };
   }

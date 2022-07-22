@@ -1,20 +1,17 @@
-import {
-    GET_PACKAGES,
-} from './actionTypes'
-import axios from "axios"
-export const getPackages= () => {
-    return function (dispatch) {
-        axios.get(`http://localhost:3000/packages`).then(res => {
-            dispatch({
-                type: GET_PACKAGES, payload: res.data || {}
-            })
-        },err => {
-            dispatch({
-                type: GET_PACKAGES, payload: err || {}
-            })
-        });
-    
-    }
-    }
+import { GET_PACKAGES } from './actionTypes'
+import axios from 'axios'
 
-   
+export const getPackages = () => {
+    return async function(dispatch) {
+        try {
+            let result = await axios.get(`http://localhost:3000/packages`);
+            return dispatch({
+                type: GET_PACKAGES,
+                payload: result.data
+            })
+
+        } catch (err) {
+            console.log(err)
+        }
+    };
+};

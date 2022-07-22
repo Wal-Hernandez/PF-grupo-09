@@ -1,13 +1,23 @@
 const { Package, Activity, Bus, Plattform, City, Hotel } = require("../db");
+const { Op } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
   try {
+    const {destination, start, end, price, stock} = req.query;
+
+    const destinationWhere = destination? {name: {[Op.iLike]: `%${destination}%`}} : {};
+    const dateWhere = start && end ? {start_date: start, end_date: end} : {}
+    // const dateStart = start ? {start_date: start} : {}
+    // const dateEnd = end ? {end_date: end} : {}
+    const priceOrder = price ? ['price', price.toUpperCase()] : ['price', 'NULLS FIRST']
+    const stockOrder = stock ? ['stock', stock.toUpperCase()] : ['stock', 'NULLS FIRST']
+  
     const allPackages = await Package.findAll({
+      order: [priceOrder, stockOrder],
+      where: dateWhere,
       include: [
-       
         {
           model: Activity,
-
           through: {
             attributes: [],
           },
@@ -22,6 +32,7 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: City,
+          where: destinationWhere,
           attributes: ["name"],
         },
         {
@@ -30,7 +41,9 @@ const getPackages = async (req, res, next) => {
         },
       ],
     });
-    res.status(200).json(allPackages);
+
+    return res.status(200).json(allPackages);
+
   } catch (error) {
     res.status(404).json({
       msg: "There are no packages to show",
@@ -38,6 +51,7 @@ const getPackages = async (req, res, next) => {
     });
   }
 };
+
 
 const getPackageById = async (req, res, next) => {
   try {
@@ -143,7 +157,7 @@ const postPackage = async (req, res, next) => {
         name: activity,
       },
     });
-    console.log(activities);
+
     await newPackage.addActivities(activities);
 
     res.status(201).send("Package created successfully");

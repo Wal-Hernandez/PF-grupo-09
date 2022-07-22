@@ -69,6 +69,24 @@ const deletePlattform = async (id) => {
   }
 }
 
+const searchPlatform = async (id, terminal, address, location) => {
+  try {
+   const searchPlatform = await Plattform.findByPk(id)
+    if(searchPlatform) {
+     searchPlatform.terminal=terminal
+     searchPlatform.address=address
+     searchPlatform.location=location
+     console.log(searchPlatform)
+     const alica=await searchPlatform.save()
+     return {msg:"Plattform updated successfully"}
+    } else return {msg:"Plattform not found"}
+   } catch(err){
+     return {
+       msg: "Error getPlattforms(plattformController.js)",
+       error: err,
+     }
+ }
+}
 
 
- module.exports={getPlattforms,createPlattform,getPlattform, deletePlattform}
+ module.exports={getPlattforms,createPlattform,getPlattform, deletePlattform, searchPlatform}

@@ -1,3 +1,4 @@
+
 import {
     GET_PACKAGES
 } from '../actions/actionTypes';
@@ -7,6 +8,7 @@ const initialState = {
     showPackages: [],
     detail: [],
     isAdmin: null,
+
 };
 
 

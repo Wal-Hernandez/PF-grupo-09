@@ -2,7 +2,9 @@ import React from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import './servicesView.css'
-function Services() {
+import Productos from '../../components/Productos';
+export default function Services() {
+
   return (<>
     <div>
     <Navbar />
@@ -17,7 +19,7 @@ function Services() {
     <b>Filtrado de paquetes</b>
     </div>
     <div>
-    <b> Lista de paquetes</b>
+     <Productos/>
     </div>
     <div>
       Bot de ayuda
@@ -29,5 +31,3 @@ function Services() {
     </>
   )
 }
-
-export default Services

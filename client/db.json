@@ -1,0 +1,324 @@
+{
+  "packages": [
+    {
+      "id": 1,
+      "name": "Haymes",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "75904.11",
+      "discount": "0.5",
+      "hotel": {
+        "name": "Hotel Havens",
+        "location": ["1.65739", "1.73185"],
+        "stars": "4",
+        "phone": "2339500",
+        "price": "4097.82",
+        "pool": "true",
+        "wifi": "true",
+        "gym": "false",
+        "urlImage": "https://www.cronista.com/files/image/159/159758/5ff7d1a380650_950_534!.webp?s=9543337243d5a5e79db1442a37fc6e5c&d=1617250209&oe=jpg"
+        },
+      "city": {
+        "name": "Vladivostok",
+        "location": ["1.81508", "0.65984"]
+        },
+      "bus": {
+        "patent": "AAA185",
+        "seating": "51"
+        },
+      "activity": {
+        "name": "Ida",
+        "description": "LuciJinnyCodie",
+        "price": "3148.86"
+        }
+    },
+    {
+      "id": 2,
+      "name": "Beebe",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "34125.79",
+      "discount": "1.2",
+      "hotel": {
+        "name": "Hotel Fillbert",
+        "location": ["1.57072", "1.77259"],
+        "stars": "5",
+        "phone": "4518317",
+        "price": "9849.31",
+        "pool": "true",
+        "wifi": "false",
+        "gym": "true",
+        "urlImage": "https://media.ambito.com/p/9a8b70c572903b2fa1c27ef132347248/adjuntos/239/imagenes/039/559/0039559334/730x0/smart/hotel-mza1jpg.jpg"
+        },
+      "city": {
+        "name": "Yangon",
+        "location": ["1.84682", "0.57804"]
+        },
+      "bus": {
+        "patent": "AAA195",
+        "seating": "68"
+        },
+      "activity": {
+        "name": "Merci",
+        "description": "NikkiDrucieAgathe",
+        "price": "1794.35"
+        }
+    },
+    {
+      "id": 3,
+      "name": "Peg",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "35739.09",
+      "discount": "1.2",
+      "hotel": {
+        "name": "Hotel Karl",
+        "location": ["1.30085", "1.07603"],
+        "stars": "4",
+        "phone": "7609456",
+        "price": "5837.08",
+        "pool": "true",
+        "wifi": "false",
+        "gym": "false",
+        "urlImage": "https://media.ambito.com/p/166b30ab0640ac7f109e1e2de3d72367/adjuntos/239/imagenes/039/559/0039559315/730x0/smart/hotel-mza2jpg.jpg"
+        },
+      "city": {
+        "name": "Udon Thani",
+        "location": ["0.30327", "1.30881"]
+        },
+      "bus": {
+        "patent": "AAA658",
+        "seating": "56"
+        },
+      "activity": {
+        "name": "Marnia",
+        "description": "ElviraLannaNita",
+        "price": "1367.99"
+        }
+    },
+    {
+      "id": 4,
+      "name": "Vernier",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "58791",
+      "discount": "1.8",
+      "hotel": {
+        "name": "Hotel Brenn",
+        "location": ["0.52057", "0.38701"],
+        "stars": "4",
+        "phone": "9659789",
+        "price": "1985.25",
+        "pool": "true",
+        "wifi": "false",
+        "gym": "true",
+        "urlImage": "https://media.ambito.com/p/e061da35439656efc0c3891d78e66267/adjuntos/239/imagenes/039/559/0039559333/730x0/smart/hotel-mza3jpg.jpg"
+        },
+      "city": {
+        "name": "Zagreb",
+        "location": ["0.71337", "0.63631"]
+        },
+      "bus": {
+        "patent": "AAA462",
+        "seating": "63"
+        },
+      "activity": {
+        "name": "Dominga",
+        "description": "CarlyEmmeyKarly",
+        "price": "4481.91"
+        }
+    },
+    {
+      "id": 5,
+      "name": "Jobi",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "52788.62",
+      "discount": "1.2",
+      "hotel": {
+        "name": "Hotel Baudin",
+        "location": ["0.57968", "1.03974"],
+        "stars": "2",
+        "phone": "6565895",
+        "price": "9987.4",
+        "pool": "true",
+        "wifi": "false",
+        "gym": "false",
+        "urlImage": "https://www.turismocordoba.com.ar/villacarlospaz/img/listado/alojamientos.jpg"
+      },
+      "city": {
+        "name": "Linz",
+        "location": ["1.15691", "1.08065"]
+        },
+      "bus": {
+        "patent": "AAA567",
+        "seating": "60"
+        },
+      "activity": {
+        "name": "Ricky",
+        "description": "DoriceHarmoniaAmii",
+        "price": "4182.81"
+        }
+    },
+    {
+      "id": 6,
+      "name": "Erminia",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "42949.69",
+      "discount": "1.4",
+      "hotel": {
+        "name": "Hotel Fink",
+        "location": ["1.92836", "1.55975"],
+        "stars": "3",
+        "phone": "9489870",
+        "price": "2172.24",
+        "pool": "false",
+        "wifi": "true",
+        "gym": "false",
+        "urlImage": "https://manakelcarlospaz.com.ar/wp-content/uploads/2015/11/panorama-final-manakel-.jpg"
+        },
+      "city": {
+        "name": "Tampere",
+        "location": ["1.86559", "0.31254"]
+        },
+      "bus": {
+        "patent": "AAA834",
+        "seating": "54"
+        },
+      "activity": {
+        "name": "Aaren",
+        "description": "HarmoniaBelindaLolita",
+        "price": "4723.33"
+        }
+    },
+    {
+      "id": 7,
+      "name": "Sophronia",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "11472.08",
+      "discount": "1.4",
+      "hotel": {
+        "name": "Hotel Ries",
+        "location": ["1.97164", "0.31038"],
+        "stars": "4",
+        "phone": "3645896",
+        "price": "3482.9",
+        "pool": "true",
+        "wifi": "true",
+        "gym": "true",
+        "urlImage": "https://cdn.ostrovok.ru/t/1024x768/second/44/bd/44bd0a4a8a138d30c7cccae5ba6205e92b0c98d5.jpeg"
+        },
+      "city": {
+        "name": "Weno",
+        "location": ["1.76342", "0.16258"]
+        },
+      "bus": {
+        "patent": "AAA365",
+        "seating": "68"
+        },
+      "activity": {
+        "name": "Dacia",
+        "description": "HildegaardShandieTracey",
+        "price": "1764.72"
+        }
+    },
+    {
+      "id": 8,
+      "name": "Florina",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "50576.44",
+      "discount": "1.7",
+      "hotel": {
+        "name": "Hotel Daveta",
+        "location": ["1.95293", "0.6703"],
+        "stars": "5",
+        "phone": "3424266",
+        "price": "3566.63",
+        "pool": "false",
+        "wifi": "true",
+        "gym": "true",
+        "urlImage": "https://media-cdn.tripadvisor.com/media/photo-s/0a/09/ea/67/photo0jpg.jpg"
+        },
+      "city": {
+        "name": "Nouméa",
+        "location": ["0.9536", "1.06862"]
+        },
+      "bus": {
+        "patent": "AAA247",
+        "seating": "48"
+        },
+      "activity": {
+        "name": "Rosene",
+        "description": "AuroreGavrielleDi",
+        "price": "3934.47"
+        }
+    },
+    {
+      "id": 9,
+      "name": "Valerio",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "97361.99",
+      "discount": "1.6",
+      "hotel": {
+        "name": "Hotel Nerita",
+        "location": ["0.01259", "0.79874"],
+        "stars": "3",
+        "phone": "5130300",
+        "price": "9146.94",
+        "pool": "true",
+        "wifi": "true",
+        "gym": "false",
+        "urlImage": "https://cf.bstatic.com/xdata/images/hotel/270x200/232557166.jpg?k=ced2c798c3e7a3b0e241117c7da5c9c846d4fe31002b7bd1d53db01cf5a1ae7e&o="
+        },
+      "city": {
+        "name": "Adamstown",
+        "location": ["1.6111", "1.23387"]
+        },
+      "bus": {
+        "patent": "AAA103",
+        "seating": "60"
+        },
+      "activity": {
+        "name": "Etta",
+        "description": "JaneyHollieBrynna",
+        "price": "3452.1"
+        }
+    },
+    {
+      "id": 10,
+      "name": "Dominy",
+      "start_date": "2000-01-15",
+      "end_date": "2000-01-15",
+      "price": "61531.77",
+      "discount": "0.9",
+      "hotel": {
+        "name": "Hotel Manolo",
+        "location": ["0.49878", "1.44656"],
+        "stars": "2",
+        "phone": "2933668",
+        "price": "7932.28",
+        "pool": "true",
+        "wifi": "true",
+        "gym": "false",
+        "urlImage": "https://upload.wikimedia.org/wikipedia/commons/8/82/Marriott_Plaza_Hotel_Buenos_Aires%2C_Argentina_-_exterior.JPG"
+        },
+      "city": {
+        "name": "Malé",
+        "location": ["0.71264", "0.66332"]
+        },
+      "bus": {
+        "patent": "AAA808",
+        "seating": "45"
+        },
+      "activity": {
+        "name": "Dawn",
+        "description": "ArdeenGiustinaElise",
+        "price": "1646"
+        }
+    }
+  ]
+}

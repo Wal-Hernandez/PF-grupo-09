@@ -1,44 +1,71 @@
-const {Booking} = require('../db');
-module.exports={
-getAllBooking: async function(next){
-try{let reservations = await Booking.findAll(next)
+const {Booking,User,Package} = require('../db');
+
+const getAllBookings= async ()=>{
+try{
+  const reservations = await Booking.findAll(
+   {
+    include: [
+      { model: User },
+      { model: Package}
+    ]
+   } 
+  )
 
 return reservations
 }
-catch(error){next()}
+catch(err){
+  return {
+    msg:"Error getAllBookings(bookingController.js)",
+    error: err,
+  };
+ }
+}
 
+const getBooking= async (id)=>{
+  try{
+    const reservation = await Booking.findByPk(id,{
+      include: [
+        { model: User ,
+        attributes:['name', 'mail']},
+        { model: Package,
+        attributes:[]}
+      ]
+     } )
+  
+  return reservation
+  }
+  catch(err){
+    return {
+      msg:"Error getBooking(bookingController.js)",
+      error: err,
+    };
+  }
+}
 
-}, 
-getBookingByNumber: async function(id,next){
-    try{ let reserve = await Booking.findByPk(id)
-    return reserve;
-    
+  const createBooking = async (numberPeople,amount,packageId,userId) => {
+    try {
+  
+    const fecha=Date(Date.now());
+    console.log(fecha.toString())
+      const booking=await Booking.create(
+        {
+        dateTime: fecha,
+        numberPeople:numberPeople,
+        amount:amount,
+        status:'reserved',
+        packageId:packageId,
+        userId:userId
+        })
+      
+       return "booking created successfully"
+         
+        
+    } catch (err) {
+      return {
+        msg:"Error createBooking(bookingController.js)",
+        error: err,
+      };
     }
-    catch(error){next()}
+  };
 
-},
-AddBooking: async function(dateTime, numberPeople, amount,description){
-try{ const reserve = await Booking.create({dateTime:dateTime,numberPeople:Number(numberPeople),amount:Number(amount),
-description:description
-})
-
-return 'Booking successfully created'
-
-
-}
-catch(error){return `Rayooos ${error}`}
-},
-
-getDescriptionById: async function(id){
-    try{
-      const stat= await Booking.findByPk(Number(id))
-      return stat.description    
-         }
-     catch{ 
-   return {msg:'There is no description'}
-             }
-},
-
-
-
-}
+module.exports={getAllBookings,getBooking,createBooking}

@@ -4,30 +4,22 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "package",
+    "user",
     {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      start_date: {
+      surname: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      end_date: {
+      mail: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      price: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-      discount: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-      stock: {
-        type: DataTypes.INTEGER,
+      password: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },

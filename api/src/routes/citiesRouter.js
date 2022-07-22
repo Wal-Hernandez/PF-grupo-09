@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const { getCities, createCity } = require("../controllers/citiesControllers");
+const { getCities, createCity ,getCity} = require("../controllers/citiesControllers");
 
 router.get("/", async (req, res) => {
   try {
@@ -10,7 +10,15 @@ router.get("/", async (req, res) => {
     return res.status(400).json(err);
   }
 });
-
+router.get("/:id", async (req, res) => {
+  try {
+    const {id}=req.params
+    const city = await getCity(id);
+    return res.status(200).json(city);
+  } catch (error) {
+    return res.status(400).json(err);
+  }
+});
 router.post("/", async (req, res) => {
   const { name, location } = req.body;
 

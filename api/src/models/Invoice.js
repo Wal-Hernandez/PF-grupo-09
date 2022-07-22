@@ -12,8 +12,7 @@ module.exports = (sequelize) => {
       },
       confirmation: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defautValue: false,
+        allowNull: false
       },
     },
     {

@@ -1,5 +1,4 @@
 const { Package, Activity, Bus, Plattform, City, Hotel } = require("../db");
-const { filterPackage, sortPackage } = require('./packageFiltersController')
 const { Op } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
@@ -8,8 +7,10 @@ const getPackages = async (req, res, next) => {
 
     const destinationWhere = destination? {name: {[Op.iLike]: `%${destination}%`}} : {};
     const dateWhere = start && end ? {start_date: start, end_date: end} : {}
+    // const dateStart = start ? {start_date: start} : {}
+    // const dateEnd = end ? {end_date: end} : {}
     const priceOrder = price ? ['price', price.toUpperCase()] : ['price', 'NULLS FIRST']
-    const stockOrder = stock ? ['stock', stock.toUpperCase()] : []
+    const stockOrder = stock ? ['stock', stock.toUpperCase()] : ['stock', 'NULLS FIRST']
   
     const allPackages = await Package.findAll({
       order: [priceOrder, stockOrder],
@@ -41,14 +42,6 @@ const getPackages = async (req, res, next) => {
       ],
     });
 
-    // all = allPackages.getDataValues()
-    // console.log(all)
-    
-    // if(priceOrder) { return res.status(200).json(await sortPackage(priceOrder)) }
-    // if(destination && start && end){
-    //   return res.status(200).json(await filterPackage(destination, start, end, stock))
-    // }
-    // if(stock && !destination && !start && !end) { return res.status(200).json(await sortPackage(stock)) }
     return res.status(200).json(allPackages);
 
   } catch (error) {

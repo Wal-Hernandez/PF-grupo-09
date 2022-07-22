@@ -1,7 +1,7 @@
 
 import {
-    GET_OFFERS,
-    GET_PACKAGES
+    GET_PACKAGES,
+    GET_MAIN_PACKAGES
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -23,10 +23,10 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state,
                 packages: payload
             }
-        case GET_OFFERS:
+        case GET_MAIN_PACKAGES:
             return {
                 ...state,
-                showPackages: state.packages.slice(0,3)
+                showPackages: state.packages.slice(0,4) || "nada"
             }
         default:
             return state;

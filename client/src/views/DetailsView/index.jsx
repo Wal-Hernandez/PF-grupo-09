@@ -24,12 +24,12 @@ export default function DetailsView() {
       <div>
         <Navbar />
       </div>
-      {packageDetail ? (
+      <p>{packageDetail.hotel?.name }</p>
         <div className="detailsViewContainer">
           <div>
             <div>
               <img
-                src={packageDetail.hotel.urlImage}
+                src={packageDetail.hotel?.urlImage}
                 alt="Image not found"
                 width="300px"
                 height="300px"
@@ -44,16 +44,13 @@ export default function DetailsView() {
           </div>
           <div>
             <div>
-              Coordenadas: {packageDetail.hotel.location[0]} -{" "}
-              {packageDetail.hotel.location[1]}
+              Coordenadas: {packageDetail.hotel?.location[0]} -{" "}
+              {packageDetail.hotel?.location[1]}
             </div>
-            <div>Hotel: {packageDetail.hotel.name}</div>
-            <div>Actividad: {packageDetail.activity.name}</div>
+            <div>Hotel: {packageDetail.hotel?.name}</div>
+            <div>Actividad: {packageDetail.activity?.name}</div>
           </div>
         </div>
-      ) : (
-        <div>Loading...</div>
-      )}
       <div>
         <Footer />
       </div>

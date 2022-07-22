@@ -43,8 +43,13 @@ const getPackageById = async(req, res, next) => {
     try {
         const { id } = req.params;
         const packageById = id && (await Package.findByPk(Number(id), {
-            include: [
+            include: [{
+                    model: Activity,
 
+                    through: {
+                        attributes: [],
+                    }
+                },
                 {
                     model: Bus,
                     attributes: ["patent"],

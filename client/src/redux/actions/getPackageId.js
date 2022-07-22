@@ -7,7 +7,7 @@ function getPackageId() {
     return function (dispatch) {
         axios.get().then(res => {
             dispatch({
-                
+
             })
         }, err => {
             dispatch({

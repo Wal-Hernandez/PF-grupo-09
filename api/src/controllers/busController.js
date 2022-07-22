@@ -4,10 +4,9 @@ const { Op } = require("sequelize");
 /* ----------------------------------------GET BUS------------------------------------------- */
 
 const getBuses = async (req, res, next) => {
-  
   try {
-    const allBuses = await Bus.findAll()
-    res.status(200).json(allBuses)
+    const allBuses = await Bus.findAll();
+    res.status(200).json(allBuses);
   } catch (error) {
     res.status(404).json({
       msg: "There are no buses to show",

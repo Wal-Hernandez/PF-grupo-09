@@ -7,7 +7,7 @@ export default Offers= ()=>{
 
     const offers= useSelector(state=> state.offers);
     React.useEffect(()=>{dispatch(getOffers())},[dispatch,offers])
-let offers_daily= offers.slice(0,5);
+let offers_daily= offers.slice(0,5).map(a);
 return(
 <div>
 

@@ -3,7 +3,9 @@ import {
   GET_CLEAN,
   GET_PACKAGES,
   GET_MAIN_PACKAGES,
+  GET_HOTELS,
   GET_OFFERS
+
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -11,16 +13,24 @@ const initialState = {
   showPackages: [],
   detail: [],
   isAdmin: null,
-  offers: []
+  adminView: [],
+offers: []
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PACKAGES:
+      console.log(action.payload)
       return {
         ...state,
         packages: action.payload,
+        adminView: action.payload
       };
+      case GET_HOTELS:
+        return {
+          ...state,
+          adminView: action.payload
+        };
       case GET_MAIN_PACKAGES:
         return {
             ...state,

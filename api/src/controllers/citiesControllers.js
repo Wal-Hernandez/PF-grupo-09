@@ -1,4 +1,3 @@
-
 const { City } = require("../db");
 
 const getCities = async () => {
@@ -14,7 +13,7 @@ const getCities = async () => {
   }
 };
 
-const getCity=async(id)=>{
+const getCity = async (id) => {
   try {
     let city = await City.findByPk(id);
 
@@ -25,15 +24,20 @@ const getCity=async(id)=>{
       error: err,
     };
   }
-}
+};
 const createCity = async (name, location) => {
   try {
+    if (!name || !location) {
+      return "All fields are required";
+    }
+    if (typeof name !== "string") {
+      return "Only letters are allowed in the name field";
+    }
     const cities = await City.create({
       name,
       location,
     });
-
-    return "City created successfully";
+    return { msg: "City created successfully" };
   } catch (err) {
     return {
       msg: "Error createCity(citiesController.js)",
@@ -41,4 +45,53 @@ const createCity = async (name, location) => {
     };
   }
 };
-module.exports = { getCities, createCity,getCity };
+const deleteCitiesById = async (id) => {
+  try {
+    const deleteCity = await City.destroy({
+      where: { id: id },
+    });
+
+    if (a) {
+      return { msg: "The package has been deleted successfully", valor: true };
+    }
+    return { msg: "Id city not found" };
+  } catch (error) {
+    return {
+      msg: "Error deleteCityById(citiesController.js)",
+      error: error,
+    };
+  }
+};
+const updateCitiesById = async (id, name, location) => {
+  try {
+    if (!name || !location) {
+      return "All fields are required";
+    }
+    if (typeof name !== "string") {
+      return "Only letters are allowed in the name field";
+    }
+    const a = await City.update(
+      {
+        name,
+        location,
+      },
+      { where: { id: id } }
+    );
+    if (a[0]) {
+      return { msg: "The package has been update successfully", valor: true };
+    }
+    return { msg: "Id city not found" };
+  } catch (error) {
+    return {
+      msg: "Error updatePackageById(citiesController.js)",
+      error: error,
+    };
+  }
+};
+module.exports = {
+  getCities,
+  createCity,
+  getCity,
+  deleteCitiesById,
+  updateCitiesById,
+};

@@ -6,20 +6,21 @@ import HomeBody from "../../components/HomeBody";
 import Carousel from "../../components/Carousel";
 
 function HomeView() {
-  return (<>
+  return (
+    <>
       <div>
         <Navbar />
       </div>
       <div>
-        <Carousel/>
+        <Carousel />
       </div>
-    <div>
-    <HomeBody/>
-    </div>
+      <div>
+        <HomeBody />
+      </div>
       <div>
         <Footer />
       </div>
-      </>
+    </>
   );
 }
 

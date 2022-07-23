@@ -1,6 +1,12 @@
 const { Router } = require("express");
 const router = Router();
-const { getCities, createCity ,getCity} = require("../controllers/citiesControllers");
+const {
+  getCities,
+  createCity,
+  getCity,
+  deleteCitiesById,
+  updateCitiesById,
+} = require("../controllers/citiesControllers");
 
 router.get("/", async (req, res) => {
   try {
@@ -12,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 router.get("/:id", async (req, res) => {
   try {
-    const {id}=req.params
+    const { id } = req.params;
     const city = await getCity(id);
     return res.status(200).json(city);
   } catch (error) {
@@ -25,7 +31,27 @@ router.post("/", async (req, res) => {
   try {
     let create = await createCity(name, location);
 
-    return res.send("La ciudad fue creada con exito");
+    return res.send(create);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const city = await deleteCitiesById(id);
+    return res.status(200).json(city);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, location } = req.body;
+  try {
+    const city = await updateCitiesById(id, name, location);
+    return res.status(200).json(city);
   } catch (error) {
     return res.status(400).json(error);
   }

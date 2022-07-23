@@ -268,11 +268,11 @@ const getPackageById = async (req, res, next) => {
       error: error,
     });
   }
->>>>>>> 8cb3a79bfda2a775cdd9a4dd77d9be050e15aadb
+>>>>>>> 4f2a6b0d2a25f2846edea545fe4e90e069081514
 };
 
-const updatePackage = async(req, res) => {
-    const { id } = req.params;
+const postPackage = async (req, res, next) => {
+  try {
     const {
 <<<<<<< HEAD
 =======
@@ -425,7 +425,7 @@ const updatePackage = async (req, res) => {
     }
     const a = await Package.update(
       {
->>>>>>> 8cb3a79bfda2a775cdd9a4dd77d9be050e15aadb
+>>>>>>> 4f2a6b0d2a25f2846edea545fe4e90e069081514
         name,
         start_date,
         end_date,
@@ -480,13 +480,13 @@ const updatePackage = async (req, res) => {
       error: error,
     });
   }
->>>>>>> 8cb3a79bfda2a775cdd9a4dd77d9be050e15aadb
+>>>>>>> 4f2a6b0d2a25f2846edea545fe4e90e069081514
 };
 
 module.exports = {
-    getPackages,
-    getPackageById,
-    postPackage,
-    deletePackagesById,
-    updatePackage,
+  getPackages,
+  getPackageById,
+  postPackage,
+  deletePackagesById,
+  updatePackage,
 };

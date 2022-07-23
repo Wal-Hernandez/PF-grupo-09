@@ -44,7 +44,7 @@ let timeOut = null;
             }}
           >
             {index === current && (
-              <img src={slide.image} alt='travel image' className='image imgdog' />
+              <img src={slide.image}  alt='' className='image imgdog' />
             )}
           </div>
         );

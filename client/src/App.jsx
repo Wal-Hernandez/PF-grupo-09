@@ -11,8 +11,9 @@ import Login from './views/LoginView';
 import FAQ from './components/FAQ/FAQ.jsx'
 import LoginView from './views/LoginView';
 import AboutView from './views/AboutView';
-
-
+import {PutCityForm} from './views/AdminView/Forms/PutCityForm';
+import {EditForm} from './views/AdminView/Forms/EditForm'
+import {CreateForm} from './views/AdminView/Forms/CreateForm'
 function App() {
   return (
     <div className="App">
@@ -26,7 +27,14 @@ function App() {
       <Route path="/admin" element={<Admin/>} />
       <Route path ="/faq" element ={<FAQ/>}/>
       <Route path="/about" element={<AboutView/>} />
-
+      {/*<Route path="/admin/PutCityForm/:id" element ={<PutCityForm/>}/>*/}
+      <Route path="/admin/create" element ={<CreateForm/>}/>
+      <Route path="/admin/edit/buses/:id" element ={<EditForm/>}/>
+      <Route path="/admin/edit/activities/:id" element ={<EditForm/>}/>
+      <Route path="/admin/edit/packages/:id" element ={<EditForm/>}/>
+      <Route path="/admin/edit/hotels/:id" element ={<EditForm/>}/>
+      <Route path="/admin/edit/cities/:id" element ={<EditForm/>}/>
+      <Route path="/admin/edit/platforms/:id" element ={<EditForm/>}/>
 
     </Routes>
     </div>

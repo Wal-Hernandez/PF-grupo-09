@@ -53,59 +53,43 @@ const { Plattform } = require("../db");
   }
 };
 
-
-
-const deleteActivityById = async (id) => {
-  
+const deletePlattform = async (id) => {
   try {
-      const deleteActivity = await Activity.destroy({
-        where: { id: id },
-      });
-      if(deleteActivity){
-        return {
-        msg: "The activity has been removed successfully",
-        valor:true,
-      }
-    }
+        const buscarElemento = await Plattform.findByPk(id)
+        console.log(buscarElemento)      
+        if(buscarElemento) {
+          Plattform.destroy({where:{id:id}})
+          return {msg:"Platform removed successfully"}
+        } else {return {msg:"Platform not found"}}
+      } catch(err){
       return {
-       msg: "The activity cannot be removed because the id does not exist",     
-      }  
-  } catch (err) {
-    return{
-      msg: "Error createActivity(activityController.js)",
-      error: err,
-    }
+        msg: "Error getPlattforms(plattformController.js)",
+        error: err,
+      }
   }
-};
+}
 
-const updateActivity = async (id,name,description,price,cityId,) => {
+const putPlattform = async (id, terminal, address, location) => {
   try {
-    const activity = await Package.update(
-      {
-       name,
-       description,
-       price,
-       cityId,
-      },
-      { where: { id: id } }
-    );
-    if(activity[0])
-    return {
-      msg: "the activity was updated successfully",
-      valor:true,
-    }
-    return {
-      msg: "the activity to update was not found",
-    }
-
-  } catch (err) {
-    return{
-      msg: "Error updateActivity(activityController.js)",
-      error: err,
-    }
-  }
-};
+   const searchPlatform = await Plattform.findByPk(id)
+    if(searchPlatform) {
+     searchPlatform.terminal=terminal
+     searchPlatform.address=address
+     searchPlatform.location=location
+     console.log(searchPlatform)
+     await searchPlatform.save()
+     return {msg:"Plattform updated successfully"}
+    } else return {msg:"Plattform not found"}
+   } catch(err){
+     return {
+       msg: "Error getPlattforms(plattformController.js)",
+       error: err,
+     }
+ }
+}
 
 
- module.exports={getPlattforms,createPlattform,getPlattform, updateActivity, deleteActivityById}
+ module.exports={getPlattforms,createPlattform,getPlattform, deletePlattform, putPlattform}
+
+
 

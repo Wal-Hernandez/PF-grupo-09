@@ -3,7 +3,11 @@ import {
   GET_CLEAN,
   GET_PACKAGES,
   GET_MAIN_PACKAGES,
-  GET_HOTELS
+  GET_HOTELS,
+  GET_CITIES,
+  PUT_CITY,
+  GET_OFFERS
+
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -12,6 +16,7 @@ const initialState = {
   detail: [],
   isAdmin: null,
   adminView: [],
+  offers: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -24,6 +29,11 @@ export default function rootReducer(state = initialState, action) {
         adminView: action.payload
       };
       case GET_HOTELS:
+        return {
+          ...state,
+          adminView: action.payload
+        };
+        case GET_CITIES:
         return {
           ...state,
           adminView: action.payload
@@ -43,7 +53,16 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
       };
-      
+      case GET_OFFERS:
+
+      let resp = action.payload.map(a=>{return {origen:a.plattform.terminal,destino:a.city.name, precio:a.precio}})
+        return{
+...state,
+   offers: resp};
+
+      case PUT_CITY:
+        return state;
+
     default:
       return state;
   }

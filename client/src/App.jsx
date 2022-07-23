@@ -24,11 +24,7 @@ function App() {
       <Route path="/editBuy" element={<Buy/>} />
       <Route path="/services" element={<Services/>} />
       <Route path="/admin" element={<Admin/>} />
-
-
-
       <Route path ="/faq" element ={<FAQ/>}/>
-
       <Route path="/about" element={<AboutView/>} />
 
 

@@ -27,7 +27,7 @@ function App() {
       <Route path="/admin" element={<Admin/>} />
       <Route path ="/faq" element ={<FAQ/>}/>
       <Route path="/about" element={<AboutView/>} />
-      {/*<Route path="/admin/PutCityForm/:id" element ={<PutCityForm/>}/>*/}
+      <Route path="/admin/PutCityForm/:id" element ={<PutCityForm/>}/>
       <Route path="/admin/edit/:id" element ={<EditForm/>}/>
       <Route path="/admin/create" element ={<CreateForm/>}/>
     </Routes>

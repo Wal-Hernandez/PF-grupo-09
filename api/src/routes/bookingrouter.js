@@ -1,4 +1,4 @@
-const {createBooking,getAllBookings,getBooking} =require('../controllers/bookingController.js')
+const {createBooking,getAllBookings,getBooking,deleteBookingById,updateBooking} =require('../controllers/bookingController.js')
 const {Router}=require("express")
 const router=Router()
 
@@ -35,6 +35,40 @@ router.post("/",async (req,res)=>{
         return res.status(400).json(err);
     }
 })
+
+router.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+      const booking = await deleteBookingById(id);
+      return res.status(200).json(booking);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  });
+  router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const {dateTime,
+           numberPeople,
+           amount,
+           status,
+           packageId,
+           userId,
+          } = req.body;
+    try {
+      const booking = await updateBooking(
+        id,
+        dateTime,
+        numberPeople,
+        amount,
+        status,
+        packageId,
+        userId,
+      );
+      return res.status(200).json(booking);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  });
 
 
 module.exports=router;

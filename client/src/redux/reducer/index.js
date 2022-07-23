@@ -2,7 +2,8 @@ import {
   GET_PACKAGE_ID,
   GET_CLEAN,
   GET_PACKAGES,
-  GET_MAIN_PACKAGES
+  GET_MAIN_PACKAGES,
+  GET_OFFERS
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   showPackages: [],
   detail: [],
   isAdmin: null,
+  offers: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -34,7 +36,14 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
       };
-      
+      case GET_OFFERS:
+
+      let resp = action.payload.map(a=>{return {origen:a.plattform.terminal,destino:a.city.name, precio:a.precio}})
+        return{
+...state,
+   offers: resp};
+
+
     default:
       return state;
   }

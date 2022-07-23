@@ -4,6 +4,8 @@ import {
   GET_PACKAGES,
   GET_MAIN_PACKAGES,
   GET_HOTELS,
+  GET_CITIES,
+  PUT_CITY,
   GET_OFFERS
 
 } from "../actions/actionTypes";
@@ -14,7 +16,7 @@ const initialState = {
   detail: [],
   isAdmin: null,
   adminView: [],
-offers: []
+  offers: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -27,6 +29,11 @@ export default function rootReducer(state = initialState, action) {
         adminView: action.payload
       };
       case GET_HOTELS:
+        return {
+          ...state,
+          adminView: action.payload
+        };
+        case GET_CITIES:
         return {
           ...state,
           adminView: action.payload
@@ -53,6 +60,8 @@ export default function rootReducer(state = initialState, action) {
 ...state,
    offers: resp};
 
+      case PUT_CITY:
+        return state;
 
     default:
       return state;

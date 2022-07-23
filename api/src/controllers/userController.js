@@ -19,7 +19,7 @@ const getUsers = async () => {
 };
 const getUser = async (id) => {
   try {
-    let user = await User.findByPk(id,{
+    let user = await User.findByPk(id, {
       include: {
         model: TypeUser,
         attributes: ["description"],
@@ -36,6 +36,22 @@ const getUser = async (id) => {
 };
 const createUser = async (name, surname, mail, password, typeUserId) => {
   try {
+    if (!name || !surname || !mail || !password || !typeUserId) {
+      return "All fields are required";
+    }
+    if (typeof name !== "string") {
+      return "Only letters are allowed in the name field";
+    }
+    if (mail.includes(!"@")) {
+      return "The email must contain an @";
+    }
+    if (mail.includes(mail.length >= 6)) {
+      return "The email must be 6 or more characters";
+    }
+    if (mail.length >= 6) {
+      return "The password must be 6 or more characters";
+    }
+
     const UserCreate = await User.create({
       name,
       surname,
@@ -51,65 +67,76 @@ const createUser = async (name, surname, mail, password, typeUserId) => {
       error: err,
     };
   }
-}
+};
 
+const deleteUserById = async (id) => {
+  try {
+    const deleteUser = await User.destroy({
+      where: { id: id },
+    });
 
-  const deleteUserById = async (id) => {
-    try {
-      const deleteUser = await User.destroy({
-        where: { id: id },
-      });
-  
-      if (deleteUser) {
-        return { msg: "The User has been deleted successfully", valor: true };
-      }
-      return { msg: "Id User not found" };
-    } catch (error) {
-      return {
-        msg: "Error deleteUserById(userController.js)",
-        error: error,
-      };
+    if (deleteUser) {
+      return { msg: "The User has been deleted successfully", valor: true };
     }
-  };
-  const updateUserById = async ( id,name, surname, mail, password, typeUserId) => {
-    try {
-      if (!name || !surname||!mail||!password ||!typeUserId) {
-        return "All fields are required";
-      }
-      if (typeof name !== "string") {
-        return "Only letters are allowed in the name field";
-      }
-      if(mail.includes(!'@')){
-          return "The email must contain an @"
-      }
-      if(mail.includes(mail.length>=6)){
-        return "The email must be 6 or more characters"
-    }
-    if(mail.length>=6){
-      return "The password must be 6 or more characters"
+    return { msg: "Id User not found" };
+  } catch (error) {
+    return {
+      msg: "Error deleteUserById(userController.js)",
+      error: error,
+    };
   }
-     
-      const user = await User.update(
-        {
-          name,
-          surname, 
-          mail, 
-          password,
-          typeUserId
-        },
-        { where: { id: id } }
-      );
-      if (user[0]) {
-        return { msg: "The User has been update successfully", valor: true };
-      }
-      return { msg: "Id User not found" };
-    } catch (error) {
-      return {
-        msg: "Error updateUserById(userController.js)",
-        error: error,
-      };
+};
+const updateUserById = async (
+  id,
+  name,
+  surname,
+  mail,
+  password,
+  typeUserId
+) => {
+  try {
+    if (!name || !surname || !mail || !password || !typeUserId) {
+      return "All fields are required";
     }
-  };
+    if (typeof name !== "string") {
+      return "Only letters are allowed in the name field";
+    }
+    if (mail.includes(!"@")) {
+      return "The email must contain an @";
+    }
+    if (mail.includes(mail.length >= 6)) {
+      return "The email must be 6 or more characters";
+    }
+    if (mail.length >= 6) {
+      return "The password must be 6 or more characters";
+    }
 
+    const user = await User.update(
+      {
+        name,
+        surname,
+        mail,
+        password,
+        typeUserId,
+      },
+      { where: { id: id } }
+    );
+    if (user[0]) {
+      return { msg: "The User has been update successfully", valor: true };
+    }
+    return { msg: "Id User not found" };
+  } catch (error) {
+    return {
+      msg: "Error updateUserById(userController.js)",
+      error: error,
+    };
+  }
+};
 
-module.exports = { getUsers, createUser,getUser,updateUserById,deleteUserById };
+module.exports = {
+  getUsers,
+  createUser,
+  getUser,
+  updateUserById,
+  deleteUserById,
+};

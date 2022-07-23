@@ -7,19 +7,17 @@ import Carousel from "../../components/Carousel";
 
 function HomeView() {
   return (<>
-      <div>
-        <Navbar />
-      </div>
-      <div>
-        <Carousel/>
-      </div>
     <div>
-    <HomeBody/>
+      <Navbar />
     </div>
-      <div>
-        <Footer />
-      </div>
-      </>
+    <div>
+      <Carousel />
+      <HomeBody />
+    </div>
+    <div className="footerDiv">
+      <Footer />
+    </div>
+  </>
   );
 }
 

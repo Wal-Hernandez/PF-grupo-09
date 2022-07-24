@@ -10,6 +10,8 @@ import {
   GET_BUSES,
   PUT_BUS,
   PUT_HOTEL,
+  GET_PLATFORMS,
+  GET_ACTIVITIES
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -45,6 +47,17 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         adminView: action.payload,
       };
+      case GET_PLATFORMS:
+        return {
+          ...state,
+          adminView: action.payload,
+        };
+        case  GET_ACTIVITIES:
+          return {
+            ...state,
+            adminView: action.payload,
+          };
+       
     case GET_MAIN_PACKAGES:
       return {
         ...state,
@@ -79,6 +92,7 @@ export default function rootReducer(state = initialState, action) {
       return state;
       case PUT_HOTEL:
       return state;
+      
     default:
       return state;
   }

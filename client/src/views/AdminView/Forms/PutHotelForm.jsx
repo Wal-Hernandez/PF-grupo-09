@@ -5,17 +5,24 @@ import { putHotel} from '../../../redux/actions/putHotel';
 export const PutHotelForm = ()=>{
 const {id} =useParams()
 const dispatch =useDispatch()
-const [hotel, setHotel]= React.useState({name:'',location:[]});
-
-function TransformData(x){
-if(x.split(',').length===1) return x;
-return JSON.parse(x)
-
-}
+const [hotel, setHotel]= React.useState({name:'',location:[], phone:'',price:'',stars:0});
 console.log(hotel)
+function TransformData(x){
+
+  if(isNaN(x[0])) return x;
+  return x.split(',')
+  
+  }
 function handleChange(event) {
-    setHotel( {...hotel, [event.target.name]:TransformData(event.target.value)});}
+ if(event.target.name === "location"){
+    setHotel( {...hotel, [event.target.name]:TransformData(event.target.value)});
+  return
+ }
+ setHotel( {...hotel, [event.target.name]:event.target.value});}
    
+
+
+
     function handleSubmit(e) {
     e.preventDefault();// para que era esto?
   dispatch(putHotel(id,hotel))}
@@ -34,19 +41,14 @@ function handleChange(event) {
     
     
     <div className="div-form">
-    <label className="label-form"> Location1</label>
+    <label className="label-form"> Location</label>
    <input type="text" name='location' value={hotel['location']} 
     onChange={handleChange}/> 
     </div>
-    <div className="div-form">
-    <label className="label-form"> Location2</label>
-   <input type="text" name='location' value={hotel['location']} 
-    onChange={handleChange}/> 
-    </div>
-
+ 
     <div className="div-form">  
-    <label className="label-form"> Name:</label>
-        <input type="number" name='stars' value={hotel['stars']} 
+    <label className="label-form"> stars:</label>
+        <input type="stars" name='stars' value={hotel['stars']} 
     onChange={handleChange}/> 
     </div>
     

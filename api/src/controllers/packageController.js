@@ -214,13 +214,13 @@ const updatePackage = async (req, res) => {
     hotelId,
     stock,
   } = req.body;
+  console.log(req.body)
   try {
     if (
       !name ||
       !start_date ||
       !end_date ||
       !price ||
-      !discount ||
       !activity ||
       !busId ||
       !plattformId ||
@@ -255,7 +255,6 @@ const updatePackage = async (req, res) => {
         end_date,
         price,
         discount,
-        activity,
         busId,
         plattformId,
         cityId,
@@ -264,6 +263,16 @@ const updatePackage = async (req, res) => {
       },
       { where: { id: id } }
     );
+    const activities = await Activity.findAll({
+      where: {
+        name: activity,
+      },
+    });
+
+    const package = await Package.findByPk(id);
+    
+
+    await package.setActivities(activities);
 
     if (a[0]) {
       return res.status(201).json({

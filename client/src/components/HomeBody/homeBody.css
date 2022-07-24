@@ -1,33 +1,25 @@
-.example{
- background-color: red;
- width: 200px;
-margin-left: 45%;
+.homeViewContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 90vh;
 }
 
-.example2{
-    background-color: green;
-    width: 200px;
-   margin-left: 45%;
-   }
-
-
-   .homeViewContainer{
+.mainViewContainer {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 900px;
-    background-color: rgba(150, 6, 6, 0.733);
-   }
-
-   .mainViewContainer{
-    display: flex;
-    width: 100%;
+    width: 100vw;
     flex-wrap: wrap;
     justify-content: center;
-   }
+}
 
-   .mainViewContainer img{
- 
-    width: 600px;
+.div-key-card {
+    width: 20vw;
+    margin: 1vw;
+    min-width: 250px;
+}
 
-   }
+.ofertasContainer {
+    display: flex;
+    height: 10vh;
+}

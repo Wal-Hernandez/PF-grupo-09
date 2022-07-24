@@ -15,3 +15,4 @@ export const GET_CITIES  = 'GET_CITIES';
 export const GET_PLATFORMS  = 'GET_PLATFORMS';
 export const PUT_CITY= 'PUT_CITY';
 export const PUT_BUS= 'PUT_BUS';
+export const PUT_HOTEL= 'PUT_HOTEL';

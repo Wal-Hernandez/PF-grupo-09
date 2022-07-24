@@ -4,7 +4,8 @@ import axios from 'axios'
 export const putCity= (id,city) => {
     return async function(dispatch) {
         try {
-            let result = await axios.put(`http://localhost:3001/cities/:${id}`,city);
+            let result = await axios.put(`http://localhost:3001/cities/${id}`,city);
+            console.log(result.data)
             return dispatch({
                 type: PUT_CITY,
                 payload: result.data

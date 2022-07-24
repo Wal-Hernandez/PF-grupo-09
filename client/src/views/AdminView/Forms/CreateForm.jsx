@@ -1,36 +1,98 @@
 import React from "react";
 import { useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
-export const CreateForm = ()=>{
-const dispatch =useDispatch()
-// const [city, setCity]= React.useState({name:'',location: ''});
+function Ejemplo({lang}) {
+  if(lang===''){
+return(
+<div>
+Waiting for the Data
 
-// function handleChange(event) {
+</div>
+
+
+)
+
+
+  }
+
+
+  if (lang === 'Hotel') {
+    return (
+      <form>
+        <input key="lastName" type="text" placeholder="Vezetéknév" name="lastName"/>
+        <input key="firstName" type="text" placeholder="Keresztnév" name="firstName"/>
+        <input key="middleInitial" type="text" placeholder="KB" style={{width: 30}} name="middleInitial"/> 
+      </form>
+      )
+  }
+ if(lang === 'Plattform')
+
+
+  return (
+      <form>
+        <input key="firstName" type="text" placeholder="First Name" name="firstName"/> 
+        <input key="middleInitial" type="text" placeholder="MI" style={{width: 30}} name="middleInitial"/> 
+        <input key="lastName" type="text" placeholder="Last Name" name="lastName"/> 
+      </form>
+    );
+ if (lang === 'City')
+ return(
+  <div className="div">
+
+<form className='form'>
+
+
+<div className="div-form">  
+<label className="label-form"> Name:</label>
+  <input type="text" name='name'  
+/> 
+</div>
+
+
+<div className="div-form">
+<label className="label-form"> Location:</label>
+  <input type="text" name='location'  
+/> 
+</div>
+
+
+
+<button type ="submit" className="button-form"> Put City</button>
+<Link to ="/admin"> Volver</Link>
+  </form>
+ 
+
+
+
+
+  </div>
+)
+}
+
+
+
+export const CreateForm = ()=>{
+const models=['Hotel','Plattform','City'];
+
+const [lang, setLang] = React.useState('');
+const[boton, setButton] =React.useState(false)
+console.log(lang, boton)
+
+function handleChange(event) {
  
   
-//     setCity( {...city, [event.target.name]: event.target.value});
-// //     setErrors(validate({
-// //     ...perro,
-// //     [event.target.name]: event.target.value
-// //  })); //esto es para los errores-->toca prestar atencion a cada examen de validacion
-// // console.log(errors)   
-// }
-//    function handleSubmit(e) {
-//     e.preventDefault();// para que era esto?
-//   dispatch(putCity(id,city))
- 
-//   }
-
-
+  setLang( (event.target.value));
+  setButton(models.includes(lang)?true:false)
+}
 
     return (
         <div>
-      <input/>
+      <input value={lang}  onChange={handleChange}/>
     
-    <button>Go</button>
-    
+    <button onClick={()=>{setButton(models.includes(lang)?true:false)}}>Go</button>
+    {boton && models.includes(lang)?<Ejemplo lang={lang}/>: ''}
 
-
+    <Link to ="/admin"> Volver</Link>
 
         </div>
 )

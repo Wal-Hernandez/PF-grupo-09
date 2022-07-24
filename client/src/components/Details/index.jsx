@@ -9,6 +9,12 @@ export default function Details() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const packageDetail = useSelector((state) => state.detail);
+  const packageActivity = [];
+  packageDetail.activities?.map((e) => {
+    packageActivity.push(
+      <div>{e.name}</div>
+    )
+  })
 
   useEffect(() => {
     dispatch(getPackageId(id));
@@ -19,30 +25,32 @@ export default function Details() {
 
   return (
     <>
-      <div className="detailsContainer">
+      <div class="card">
         <div>
           <div>
             <img
+              class="card-img-top"
               src={packageDetail.hotel?.urlImage}
               alt="Image not found"
               width="300px"
               height="300px"
             />
           </div>
-          <div>Nombre: {packageDetail.name}</div>
+          <h5 class="card-title">Nombre: {packageDetail.name}</h5>
         </div>
         <div>
-          <div>Fecha salida: {packageDetail.start_date}</div>
-          <div>Fecha llegada: {packageDetail.end_date}</div>
-          <div>Resumen de lo que incluye: </div>
+          <p class="card-text">Fecha salida: {packageDetail.start_date}</p>
+          <p class="card-text">Fecha llegada: {packageDetail.end_date}</p>
+          <p class="card-text">Resumen de lo que incluye: </p>
         </div>
         <div>
-          <div>
+          <p class="card-text">
             Coordenadas: {packageDetail.hotel?.location[0]} -{" "}
             {packageDetail.hotel?.location[1]}
-          </div>
-          <div>Hotel: {packageDetail.hotel?.name}</div>
-          <div>Actividad: {packageDetail.activity?.name}</div>
+          </p>
+          <p class="card-text">Hotel: {packageDetail.hotel?.name}</p>
+          <p class="card-text">Actividad: {packageActivity}</p>
+          <p class="card-text">Precio: ${packageDetail.price}</p>
         </div>
       </div>
     </>

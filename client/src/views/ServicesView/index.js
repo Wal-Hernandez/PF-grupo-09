@@ -24,35 +24,32 @@ export default function Services() {
 
   return (<>
     <div>
-    <Navbar setCurrentPage={setCurrentPage} />
+      <Navbar setCurrentPage={setCurrentPage} />
     </div>
     <div className='servicesViewContainer'>
-    <div>
-   <b>Busqueda</b>
-    </div>
-    <div>calendario</div>
-    <div><b>Matching de busqueda</b></div>
-    <div>
-    <b>Filtrado de paquetes</b>
-    </div>
-    <div className='services-product-container'>
-    
-     <Productos currentPackages={currentPackages}/>
-     
-    </div>
-    <div>
-      Bot de ayuda
-    </div>
+      <div>
+        <b>Busqueda</b>
+      </div>
+      <div>calendario</div>
+      <div><b>Matching de busqueda</b></div>
+      <div>
+        <b>Filtrado de paquetes</b>
+      </div>
+      <div className='services-product-container'>
+
+        <Productos currentPackages={currentPackages} />
+
+      </div>
     </div>
     <div>
       <Paginado
-              currentPage={currentPage}
-              packagesPerPage={packagesPerPage}
-              packages={packages.length}
-              paginado={paginado}
-            />
-      <Footer/>
+        currentPage={currentPage}
+        packagesPerPage={packagesPerPage}
+        packages={packages.length}
+        paginado={paginado}
+      />
+      <Footer />
     </div>
-    </>
+  </>
   )
 }

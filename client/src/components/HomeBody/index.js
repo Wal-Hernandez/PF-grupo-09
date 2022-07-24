@@ -10,11 +10,13 @@ export default function HomeBody() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!packages.length) {
-      dispatch(getPackages()); dispatch(getMainPackages())
-    }
-
+    !packages.length ?
+      dispatch(getPackages())
+      : !showPackages.length ?
+        dispatch(getMainPackages())
+        : console.log("hecho")
   }, [dispatch, packages, showPackages]);
+
 
   return (<>
     <div className="homeViewContainer">
@@ -29,7 +31,7 @@ export default function HomeBody() {
               <Link to={`/details/${e.id}`}>
 
                 <div class="card">
-                  <div class="card-title">{e.name}</div>
+                  <h3 class="card-title">{e.name}</h3>
                   <img class="card-img-top" src={e.hotel.urlImage} alt="Card image cap" />
                 </div>
 

@@ -77,9 +77,9 @@ const deleteActivityById = async (id) => {
   }
 };
 
-const updateActivity = async (id,name,description,price,cityId,) => {
+const updateActivity = async (id,name,description,price,cityId) => {
   try {
-    const activity = await Package.update(
+    const activity = await Activity.update(
       {
        name,
        description,

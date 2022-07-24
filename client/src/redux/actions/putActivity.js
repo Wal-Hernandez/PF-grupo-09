@@ -1,13 +1,13 @@
-import { GET_PACKAGES } from './actionTypes'
+import { PUT_ACTIVITY } from './actionTypes'
 import axios from 'axios'
 
-export const getPackages = () => {
+export const putActivity= (id,hotel) => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/packages`);
+            let result = await axios.put(`http://localhost:3001/activities/${id}`,hotel);
             console.log(result.data)
             return dispatch({
-                type: GET_PACKAGES,
+                type: PUT_ACTIVITY,
                 payload: result.data
             })
 

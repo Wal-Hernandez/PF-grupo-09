@@ -1,10 +1,11 @@
-.detailsViewContainer{
+.detailsViewContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly   ;
- background-color: rgba(175, 0, 0, 0.795);
- width: 400px;
- height: 800px;
-margin-left: 40%;
+    justify-content: space-evenly;
+    background-color: rgba(175, 0, 0, 0.795);
+    width: 30vw;
+    height: 70vh;
+    margin-left: 35vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
-

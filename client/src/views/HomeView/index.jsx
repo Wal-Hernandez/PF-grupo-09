@@ -6,6 +6,7 @@ import HomeBody from "../../components/HomeBody";
 import Carousel from "../../components/Carousel";
 
 function HomeView() {
+
   return (<>
     <div>
       <Navbar />
@@ -18,6 +19,7 @@ function HomeView() {
       <Footer />
     </div>
   </>
+
   );
 }
 

@@ -1,13 +1,13 @@
-import { GET_PACKAGES } from './actionTypes'
+import { GET_BUSES } from './actionTypes'
 import axios from 'axios'
 
-export const getPackages = () => {
+export const getBuses= () => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/packages`);
-            console.log(result.data)
+            let result = await axios.get(`http://localhost:3001/buses`);
+            console.log(result)
             return dispatch({
-                type: GET_PACKAGES,
+                type: GET_BUSES,
                 payload: result.data
             })
 

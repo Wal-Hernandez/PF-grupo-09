@@ -2,14 +2,14 @@ a {
     margin: 1%
 }
 
-.navbarContainer {
-    background-color: gray;
-    display: flex;
-    flex-direction: row;
+.navbar-nav {
     width: 100vw;
+    margin: 1%;
+    display: flex;
+    justify-content: space-around;
 }
 
-.navbarContainer .navElement {
-    width: 30vw;
-    margin: 1%;
+.navbar-nav button {
+    height: 50px;
+    text-align: center;
 }

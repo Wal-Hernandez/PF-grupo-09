@@ -1,3 +1,22 @@
+.adminViewMainContainer{
+display: flex;
+flex-direction: row;
+background-color: blue;
+}
+
+.adminViewContainerRoutes{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    background: gray;
+    position: relative;
+    top: 25vh;
+    left: 25vw;
+    width: 15vw;
+}
+.adminViewContainerRoutes button{
+ width: 100px;
+}
 .adminViewContainer{
     display: flex;
     flex-direction: column;
@@ -8,6 +27,7 @@
     position: relative;
     left: 25vw;
     top: 25vh;
+
   
 }
 

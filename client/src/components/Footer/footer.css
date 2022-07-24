@@ -1,0 +1,11 @@
+.FooterContainer {
+    background-color: darkslategrey;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.FooterContainer .footerElement {
+    width: 30vw;
+    margin: 1%;
+}

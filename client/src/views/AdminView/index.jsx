@@ -47,6 +47,7 @@ function handlePlattform(e){
 function handleActivities(e){
   e.preventDefault();
   setModel(e.target.name)
+  console.log(model)
   dispatch(getActivities())
 }
 

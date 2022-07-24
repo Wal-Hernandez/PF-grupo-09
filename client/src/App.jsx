@@ -27,13 +27,13 @@ function App() {
       <Route path="/admin" element={<Admin/>} />
       <Route path ="/faq" element ={<FAQ/>}/>
       <Route path="/about" element={<AboutView/>} />
-      {/*<Route path="/admin/PutCityForm/:id" element ={<PutCityForm/>}/>*/}
+      <Route path="/admin/PutCityForm/:id" element ={<PutCityForm/>}/>
       <Route path="/admin/create" element ={<CreateForm/>}/>
       <Route path="/admin/edit/buses/:id" element ={<EditForm/>}/>
       <Route path="/admin/edit/activities/:id" element ={<EditForm/>}/>
       <Route path="/admin/edit/packages/:id" element ={<EditForm/>}/>
       <Route path="/admin/edit/hotels/:id" element ={<EditForm/>}/>
-      <Route path="/admin/edit/cities/:id" element ={<EditForm/>}/>
+      <Route path="/admin/edit/cities/:id" element ={<PutCityForm/>}/>
       <Route path="/admin/edit/platforms/:id" element ={<EditForm/>}/>
 
     </Routes>

@@ -8,11 +8,10 @@ const dispatch =useDispatch()
 const [city, setCity]= React.useState({name:'',location:[]});
 
 function TransformData(x){
-if(x.split(',').length===1) return x;
-return JSON.parse(x)
-
-}
-console.log(city)
+  if(isNaN(x[0])) return x;
+  return x.split(',')
+  
+  }
 function handleChange(event) {
  
   

@@ -12,7 +12,6 @@ busId: 0, cityId: 0,
 hotelId: 0, activity:[]});
 console.log(packages)
 function TransformData(x){
-  if(isNaN(x[0])) return x;
   return x.split(',')
   }
 

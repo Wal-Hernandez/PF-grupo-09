@@ -5,19 +5,23 @@ import { putHotel} from '../../../redux/actions/putHotel';
 export const PutHotelForm = ()=>{
 const {id} =useParams()
 const dispatch =useDispatch()
-const [hotel, setHotel]= React.useState({name:'',location:[], phone:'',price:'',stars:0});
+const [hotel, setHotel]= React.useState({name:'',location:[], phone:'',price:'',stars:0, pool: true,wifi: true,gym: true, urlImage: []});
 console.log(hotel)
 function TransformData(x){
-
   if(isNaN(x[0])) return x;
   return x.split(',')
-  
   }
+
 function handleChange(event) {
  if(event.target.name === "location"){
     setHotel( {...hotel, [event.target.name]:TransformData(event.target.value)});
   return
  }
+ if(event.target.name === "urlImage"){
+  setHotel( {...hotel, [event.target.name]:[(event.target.value)]});
+return
+}
+
  setHotel( {...hotel, [event.target.name]:event.target.value});}
    
 

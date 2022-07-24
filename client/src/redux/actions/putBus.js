@@ -1,13 +1,12 @@
-import { GET_BUSES } from './actionTypes'
+import { PUT_BUS } from './actionTypes'
 import axios from 'axios'
 
-export const getBuses= () => {
+export const putBus= (id,bus) => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/buses`);
-            console.log(result)
+            let result = await axios.put(`http://localhost:3001/buses/${id}`,bus);
             return dispatch({
-                type: GET_BUSES,
+                type: PUT_BUS,
                 payload: result.data
             })
 

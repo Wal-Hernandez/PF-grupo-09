@@ -68,4 +68,57 @@ const getBooking= async (id)=>{
     }
   };
 
-module.exports={getAllBookings,getBooking,createBooking}
+  const deleteBookingById = async (id) => {
+  
+    try {
+        const deleteBooking = await Booking.destroy({
+          where: { id: id },
+        });
+        if(deleteBooking){
+          return {
+          msg: "The booking has been removed successfully",
+          valor:true,
+        }
+      }
+        return {
+         msg: "The booking cannot be removed because the id does not exist",     
+        }  
+    } catch (err) {
+      return{
+        msg: "Error deleteBookingById(bookingController.js)",
+        error: err,
+      }
+    }
+  };
+  
+  const updateBooking = async (id,dateTime,numberPeople,amount,status,packageId,userId) => {
+    try {
+      const booking = await Booking.update(
+        {
+          dateTime: dateTime,
+          numberPeople:numberPeople,
+          amount:amount,
+          status:status,
+          packageId:packageId,
+          userId:userId
+        },
+        { where: { id: id } }
+      );
+      if(booking[0])
+      return {
+        msg: "the booking was updated successfully",
+        valor:true,
+      }
+      return {
+        msg: "the booking to update was not found",
+      }
+  
+    } catch (err) {
+      return{
+        msg: "Error updateBooking(bookingController.js)",
+        error: err,
+      }
+    }
+  };
+
+module.exports={getAllBookings,getBooking,createBooking,deleteBookingById,updateBooking}

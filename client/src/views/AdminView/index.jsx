@@ -4,6 +4,10 @@ import "./adminView.css";
 import { Link } from "react-router-dom";
 import { getPackages } from '../../redux/actions/getPackages';
 import { getCities} from '../../redux/actions/getCities';
+import { getBuses} from '../../redux/actions/getBuses';
+import { getHotels} from '../../redux/actions/getHotels';
+import { getPlatforms} from '../../redux/actions/getPlatforms';
+import { getActivities } from "../../redux/actions/getActivities";
 
 function Admin() {
   const[model, setModel]= React.useState('')
@@ -20,19 +24,44 @@ function Admin() {
      e.preventDefault();
      setModel(e.target.name)
      dispatch(getCities())
-
   }
+  function handleBus(e){
+    e.preventDefault();
+    setModel(e.target.name)
+    dispatch(getBuses())
+ }
 
+ function handleHotel(e){
+  e.preventDefault();
+  setModel(e.target.name)
+  dispatch(getHotels())
+}
+
+function handlePlattform(e){
+  e.preventDefault();
+  setModel(e.target.name)
+  dispatch(getPlatforms())
+}
+
+
+function handleActivities(e){
+  e.preventDefault();
+  setModel(e.target.name)
+  dispatch(getActivities())
+}
+
+   
+  
   return (
     <>
     <div className="adminViewMainContainer">
       <div className="adminViewContainerRoutes">
         <div><Link to='/admin/packages'><button onClick={handlePackage}>Paquetes</button></Link> </div>
-        <div><Link to='/admin/hotels'><button>Hoteles</button> </Link></div>
-        <div><Link to='/admin/buses'><button>Bus</button></Link></div>
-        <div><Link to='/admin/acitivies'><button>Activites</button></Link></div>
+        <div><Link to='/admin/hotels'><button name="hotels" onClick={handleHotel }>Hoteles</button> </Link></div>
+        <div><Link to='/admin/buses'><button name="buses" onClick={handleBus }>Bus</button></Link></div>
+        <div><Link to='/admin/acitivies'><button name="activities" onClick={handleActivities }>Activites</button></Link></div>
         <div><Link to='/admin/cities'><button name="cities" onClick={handleCity}>City</button></Link></div>
-        <div><Link to='/admin/platforms'><button>platforms</button></Link></div>
+        <div><Link to='/admin/platforms'><button name="platforms" onClick={handlePlattform }>platforms</button></Link></div>
       </div>
       <div className="adminViewContainer">
         <div className="adminPanelTitle">
@@ -48,7 +77,8 @@ function Admin() {
               <>
               <div className="adminPanelColumn">
                     <div className="text">
-                      <h1>{e.name}</h1>
+                      <h1>{e.name || e.patent || e.terminal}</h1>
+                      <h1>{e.seating }</h1>
                     </div>
                     <div className="btnEdit"><Link to={`/admin/edit/${model}/${e.id}`}>
                       <button>Edit</button></Link>

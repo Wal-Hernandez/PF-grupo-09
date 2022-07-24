@@ -1,21 +1,22 @@
 import React from "react";
 import { useDispatch} from "react-redux";
 import {Link, useParams} from "react-router-dom";
-import { putCity} from '../../../redux/actions/putCity';
-export const PutCityForm = ()=>{
+import { putBus} from '../../../redux/actions/putBus';
+export const PutBusForm = ()=>{
 const {id} =useParams()
 const dispatch =useDispatch()
-const [city, setCity]= React.useState({name:'',location:[]});
+const [bus, setBus]= React.useState({patent:'',seating:0});
 
-function TransformData(x){
-  if(isNaN(x[0])) return x;
-  return x.split(',')
-  
-  }
+/* function TransformData(x){
+if(x.split(',').length===1) return x;
+return JSON.parse(x)
+
+} */
+
 function handleChange(event) {
  
   
-    setCity( {...city, [event.target.name]:TransformData(event.target.value)});
+  setBus( {...bus, [event.target.name]:event.target.value});
 //     setErrors(validate({
 //     ...perro,
 //     [event.target.name]: event.target.value
@@ -24,7 +25,7 @@ function handleChange(event) {
 }
    function handleSubmit(e) {
     e.preventDefault();// para que era esto?
-  dispatch(putCity(id,city))
+  dispatch(putBus(id,bus))
  
   }
 
@@ -45,7 +46,7 @@ function handleChange(event) {
      {errors.name && (
           <p className="danger">{errors.name}</p>
         )} */}
-        <input type="text" name='name' value={city['name']} 
+        <input type="text" name='patent' value={bus['name']} 
     onChange={handleChange}/> 
     </div>
     
@@ -59,7 +60,7 @@ function handleChange(event) {
     {errors.temperaments && (
           <p className="danger">{errors.temperaments}</p>
         )} */}
-        <input type="text" name='location' value={city['location']} 
+        <input type="text" name='seating' value={bus['location']} 
     onChange={handleChange}/> 
     </div>
     

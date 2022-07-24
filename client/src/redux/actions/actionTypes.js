@@ -14,3 +14,4 @@ export const GET_ACTIVITIES  = 'GET_ACTIVITIES';
 export const GET_CITIES  = 'GET_CITIES';
 export const GET_PLATFORMS  = 'GET_PLATFORMS';
 export const PUT_CITY= 'PUT_CITY';
+export const PUT_BUS= 'PUT_BUS';

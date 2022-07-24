@@ -16,9 +16,8 @@ function Admin() {
   function handleCity(e){
      e.preventDefault();
      dispatch(getCities())
-
   }
-
+  
   return (
     <>
     <div className="adminViewMainContainer">

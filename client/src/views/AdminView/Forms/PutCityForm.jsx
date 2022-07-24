@@ -5,12 +5,18 @@ import { putCity} from '../../../redux/actions/putCity';
 export const PutCityForm = ()=>{
 const {id} =useParams()
 const dispatch =useDispatch()
-const [city, setCity]= React.useState({name:'',location: ''});
-console.log(id)
+const [city, setCity]= React.useState({name:'',location:[]});
+
+function TransformData(x){
+if(x.split(',').length===1) return x;
+return JSON.parse(x)
+
+}
+
 function handleChange(event) {
  
   
-    setCity( {...city, [event.target.name]: event.target.value});
+    setCity( {...city, [event.target.name]:TransformData(event.target.value)});
 //     setErrors(validate({
 //     ...perro,
 //     [event.target.name]: event.target.value

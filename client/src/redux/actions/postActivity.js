@@ -1,13 +1,13 @@
-import {POST_PACKAGE} from './actionTypes'
+import { POST_ACTIVITY } from './actionTypes'
 import axios from 'axios'
 
-export const postPackage = (packages) => {
+export const postActivity= (hotel) => {
     return async function(dispatch) {
         try {
-            let result = await axios.post(`http://localhost:3001/packages`,packages);
+            let result = await axios.post(`http://localhost:3001/activities`,hotel);
             console.log(result.data)
             return dispatch({
-                type: POST_PACKAGE,
+                type: POST_ACTIVITY,
                 payload: result.data
             })
 

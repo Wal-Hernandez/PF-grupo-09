@@ -38,6 +38,8 @@ function handleChange(event) {
     
      
      <div className="div-form">  
+
+    
     <label className="label-form"> patent:</label>
     {/* <input className={errors.name ? 'danger' : 'input-form'} 
     type="text" name='name' 
@@ -52,7 +54,9 @@ function handleChange(event) {
     
     
     <div className="div-form">
+
     <label className="label-form"> seating:</label>
+
     {/* <input className={errors.temperaments? 'danger': 'input-form'} 
     type="text" name='location'
     value={city['location']} 

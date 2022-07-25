@@ -13,9 +13,16 @@ export const GET_BUSES  = 'GET_BUSES';
 export const GET_CITIES  = 'GET_CITIES';
 export const GET_ACTIVITIES  = 'GET_ACTIVITIES';
 export const GET_PLATFORMS  = 'GET_PLATFORMS';
+export const POST_HOTEL = 'PUT_HOTEL';
+export const POST_PLATFORM = 'PUT_PLATFORM';
+export const POST_CITY= 'POST_CITY';
+export const POST_BUS= 'POST_BUS';
+export const POST_ACTIVITY= 'POST_ACTIVITY';
+export const POST_PACKAGE ='POST_PACKAGE'
 export const PUT_CITY = 'PUT_CITY';
 export const PUT_BUS = 'PUT_BUS';
 export const PUT_HOTEL = 'PUT_HOTEL';
 export const PUT_ACTIVITY = 'PUT_ACTIVITY';
 export const PUT_PLATFORM = 'PUT_PLATFORM';
 export const PUT_PACKAGE = 'PUT_PACKAGE';
+

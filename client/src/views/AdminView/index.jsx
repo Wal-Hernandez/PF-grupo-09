@@ -13,7 +13,7 @@ function Admin() {
   const[model, setModel]= React.useState('')
   const {adminView} = useSelector((state) => state)
   const dispatch = useDispatch();
-
+console.log(model);
   function handlePackage(e) {
     e.preventDefault();
 

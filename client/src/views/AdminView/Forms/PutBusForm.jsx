@@ -38,7 +38,7 @@ function handleChange(event) {
     
      
      <div className="div-form">  
-    <label className="label-form"> Name:</label>
+    <label className="label-form"> patent:</label>
     {/* <input className={errors.name ? 'danger' : 'input-form'} 
     type="text" name='name' 
     value={city['name']} 
@@ -52,7 +52,7 @@ function handleChange(event) {
     
     
     <div className="div-form">
-    <label className="label-form"> Location:</label>
+    <label className="label-form"> seating:</label>
     {/* <input className={errors.temperaments? 'danger': 'input-form'} 
     type="text" name='location'
     value={city['location']} 
@@ -60,7 +60,7 @@ function handleChange(event) {
     {errors.temperaments && (
           <p className="danger">{errors.temperaments}</p>
         )} */}
-        <input type="text" name='seating' value={bus['location']} 
+        <input type="text" name='seating' value={bus['seating']} 
     onChange={handleChange}/> 
     </div>
     
@@ -74,7 +74,7 @@ function handleChange(event) {
     // los errores estaran presentes (vacio). //Finalmente, el ! al inicio es para decir: 
     // Mientras No pase el tercer estado, desactivame esto
     
-    > Put City</button>
+    > Put Bus</button>
     <Link to ="/admin"> Volver</Link>
         </form>
        

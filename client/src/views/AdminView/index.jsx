@@ -47,6 +47,7 @@ function handlePlattform(e){
 function handleActivities(e){
   e.preventDefault();
   setModel(e.target.name)
+  console.log(model)
   dispatch(getActivities())
 }
 
@@ -56,7 +57,7 @@ function handleActivities(e){
     <>
     <div className="adminViewMainContainer">
       <div className="adminViewContainerRoutes">
-        <div><Link to='/admin/packages'><button onClick={handlePackage}>Paquetes</button></Link> </div>
+        <div><Link to='/admin/packages'><button  name="packages" onClick={handlePackage }>Paquetes</button></Link> </div>
         <div><Link to='/admin/hotels'><button name="hotels" onClick={handleHotel }>Hoteles</button> </Link></div>
         <div><Link to='/admin/buses'><button name="buses" onClick={handleBus }>Bus</button></Link></div>
         <div><Link to='/admin/acitivies'><button name="activities" onClick={handleActivities }>Activites</button></Link></div>

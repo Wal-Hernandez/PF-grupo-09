@@ -11,7 +11,11 @@ import {
   PUT_BUS,
   PUT_HOTEL,
   GET_PLATFORMS,
-  GET_ACTIVITIES
+  GET_ACTIVITIES,
+  PUT_ACTIVITY,
+  POST_ACTIVITY,
+  POST_BUS,
+  POST_CITY
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -92,7 +96,14 @@ export default function rootReducer(state = initialState, action) {
       return state;
       case PUT_HOTEL:
       return state;
-      
+      case PUT_ACTIVITY:
+      return state;
+      case POST_CITY:
+      return state;
+    case POST_BUS:
+      return state;
+      case POST_ACTIVITY:
+      return state;
     default:
       return state;
   }

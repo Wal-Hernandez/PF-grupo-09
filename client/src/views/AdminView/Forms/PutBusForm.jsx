@@ -38,21 +38,15 @@ function handleChange(event) {
     
      
      <div className="div-form">  
-    <label className="label-form"> Name:</label>
-    {/* <input className={errors.name ? 'danger' : 'input-form'} 
-    type="text" name='name' 
-    value={city['name']} 
-    onChange={handleChange}/>
-     {errors.name && (
-          <p className="danger">{errors.name}</p>
-        )} */}
+    <label className="label-form"> Patent:</label>
+    
         <input type="text" name='patent' value={bus['name']} 
     onChange={handleChange}/> 
     </div>
     
     
     <div className="div-form">
-    <label className="label-form"> Location:</label>
+    <label className="label-form"> Seating:</label>
     {/* <input className={errors.temperaments? 'danger': 'input-form'} 
     type="text" name='location'
     value={city['location']} 

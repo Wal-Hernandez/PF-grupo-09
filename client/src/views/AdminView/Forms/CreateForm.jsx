@@ -1,7 +1,55 @@
 import React from "react";
 import { useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
+import { postActivity} from '../../../redux/actions/postActivity';
+import { postCity} from '../../../redux/actions/postCity';
+import { postBus} from '../../../redux/actions/postBus';
+
 function Ejemplo({lang}) {
+  const dispatch = useDispatch();
+  const [city, setCity]= React.useState({name:'',location:[]});
+  const [bus, setBus]= React.useState({patent:'',seating:0});
+  const [activity, setactivity]= React.useState({name:'',description:'',price:'',cityId:0});
+  console.log(bus)
+function TransformData(x){
+  if(isNaN(x[0])) return x;
+  return x.split(',')
+  
+  }
+function handleChangeCity(event) {
+ 
+  
+    setCity( {...city, [event.target.name]:TransformData(event.target.value)});
+
+}
+   function handleSubmitCity(e) {
+    e.preventDefault();// para que era esto?
+  dispatch(postCity(city))
+ 
+  }
+  
+  function handleChangeBus(event) {
+ 
+  
+    setBus( {...bus, [event.target.name]:event.target.value});
+     
+  }
+  function handleSubmitBus(e) {
+    e.preventDefault();
+  dispatch(postBus(bus))
+ 
+  }
+
+  function handleChangeActivity(event) {
+    setactivity( {...activity, [event.target.name]:event.target.value});
+  }
+     
+      function handleSubmitActivity(e) {
+      e.preventDefault();
+    dispatch(postActivity(activity))}
+
+
+  
   if(lang===''){
 return(
 <div>
@@ -18,61 +66,175 @@ Waiting for the Data
 
   if (lang === 'Hotel') {
     return (
-      <form>
-        <input key="lastName" type="text" placeholder="Vezetéknév" name="lastName"/>
-        <input key="firstName" type="text" placeholder="Keresztnév" name="firstName"/>
-        <input key="middleInitial" type="text" placeholder="KB" style={{width: 30}} name="middleInitial"/> 
-      </form>
+      <form className='form'>
+    
+     
+     <div className="div-form">  
+    <label className="label-form"> Name:</label>
+        <input type="text" name='name' /> 
+    </div>
+    
+    
+    <div className="div-form">
+    <label className="label-form"> Location</label>
+   <input type="text" name='location' /> 
+    </div>
+ 
+    <div className="div-form">  
+    <label className="label-form"> stars:</label>
+        <input type="stars" name='stars'/> 
+    </div>
+    
+    <div className="div-form">
+    <label className="label-form"> phone:</label>
+   <input type="text" name='phone'/> 
+    </div>
+
+    <div className="div-form">
+    <label className="label-form"> price:</label>
+   <input type="text" name='price' /> 
+    </div>
+
+    <div className="div-form">
+    <label className="label-form"> urlImage:</label>
+   <input type="text" name='urlImage' /> 
+    </div>
+
+    <div className="div-form">
+    <label className="label-form"> cityId:</label>
+   <input type="number" name='cityId' /> 
+    </div>
+    <button type ="submit" className="button-form"
+    > Create Hotel</button>
+    
+        </form>
       )
   }
  if(lang === 'Plattform')
 
 
   return (
-      <form>
-        <input key="firstName" type="text" placeholder="First Name" name="firstName"/> 
-        <input key="middleInitial" type="text" placeholder="MI" style={{width: 30}} name="middleInitial"/> 
-        <input key="lastName" type="text" placeholder="Last Name" name="lastName"/> 
-      </form>
+    <form className='form'>
+    
+     
+    <div className="div-form">  
+   <label className="label-form"> Terminal:</label>
+       <input type="text" name='terminal'/> 
+   </div>
+   
+   
+   <div className="div-form">
+   <label className="label-form"> Adress</label>
+  <input type="text" name='adress'/> 
+   </div>
+
+   <div className="div-form">
+   <label className="label-form"> Price:</label>
+  <input type="text" name='price'/> 
+   </div>
+
+  
+   <button type ="submit" className="button-form"
+   > Create Plattform</button>
+       </form>
     );
  if (lang === 'City')
  return(
   <div className="div">
 
-<form className='form'>
+<form className='form' onSubmit={handleSubmitCity}>
 
 
 <div className="div-form">  
 <label className="label-form"> Name:</label>
-  <input type="text" name='name'  
-/> 
+  <input type="text" name='name' value={city['name']} 
+    onChange={handleChangeCity}/> 
 </div>
 
 
 <div className="div-form">
 <label className="label-form"> Location:</label>
-  <input type="text" name='location'  
+  <input type="text" name='location' value={city['location']} 
+    onChange={handleChangeCity} /> 
+</div>
+
+
+
+<button type ="submit" className="button-form"> Create City</button>
+  </form>
+  </div>
+)
+if (lang === 'Bus')
+return(
+<form className='form' onSubmit={handleSubmitBus}>
+    
+     
+<div className="div-form">  
+<label className="label-form"> Patent:</label>
+   <input type="text" name='patent' value={bus['patent']} 
+    onChange={handleChangeBus}
+/> 
+</div>
+
+
+<div className="div-form">
+<label className="label-form"> Seating:</label>
+
+   <input type="text" name='seating' value={bus['seating']} 
+    onChange={handleChangeBus}
 /> 
 </div>
 
 
 
-<button type ="submit" className="button-form"> Put City</button>
-<Link to ="/admin"> Volver</Link>
-  </form>
- 
+<button type ="submit" className="button-form"> Create Bus</button>
 
-
-
-
-  </div>
+   </form>
 )
+if (lang ==='Activity')
+return(
+  <form className='form' onSubmit={handleSubmitActivity}>
+    
+     
+  <div className="div-form">  
+ <label className="label-form"> Name:</label>
+     <input type="text" name='name' value={activity['name']} 
+    onChange={handleChangeActivity}/> 
+ </div>
+ 
+ 
+ <div className="div-form">
+ <label className="label-form"> description</label>
+<input type="text" name='description' value={activity['description']} 
+    onChange={handleChangeActivity}/> 
+ </div>
+
+ <div className="div-form">
+ <label className="label-form"> price:</label>
+<input type="text" name='price'  value={activity['price']} 
+    onChange={handleChangeActivity}/> 
+ </div>
+
+
+ <div className="div-form">
+ <label className="label-form"> cityId:</label>
+<input type="number" name='cityId' /> 
+ </div>
+ <button type ="submit" className="button-form"  value={activity['cityId']} 
+    onChange={handleChangeActivity}
+ > Create Activity</button>
+ 
+     </form> 
+
+)
+
+
 }
 
 
 
 export const CreateForm = ()=>{
-const models=['Hotel','Plattform','City'];
+const models=['Hotel','Plattform','City','Bus','Activity','Package'];
 
 const [lang, setLang] = React.useState('');
 const[boton, setButton] =React.useState(false)

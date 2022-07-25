@@ -12,6 +12,7 @@ import {
   PUT_HOTEL,
   GET_PLATFORMS,
   GET_ACTIVITIES,
+  DELETE_MODEL,
   PUT_ACTIVITY,
   POST_ACTIVITY,
   POST_BUS,
@@ -51,17 +52,17 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         adminView: action.payload,
       };
-      case GET_PLATFORMS:
-        return {
-          ...state,
-          adminView: action.payload,
-        };
-        case  GET_ACTIVITIES:
-          return {
-            ...state,
-            adminView: action.payload,
-          };
-       
+    case GET_PLATFORMS:
+      return {
+        ...state,
+        adminView: action.payload,
+      };
+    case GET_ACTIVITIES:
+      return {
+        ...state,
+        adminView: action.payload,
+      };
+
     case GET_MAIN_PACKAGES:
       return {
         ...state,
@@ -89,12 +90,13 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         offers: resp,
       };
-
     case PUT_CITY:
       return state;
     case PUT_BUS:
       return state;
-      case PUT_HOTEL:
+    case PUT_HOTEL:
+      return state;
+    case DELETE_MODEL:
       return state;
       case PUT_ACTIVITY:
       return state;

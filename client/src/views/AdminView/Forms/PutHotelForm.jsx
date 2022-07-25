@@ -34,13 +34,16 @@ export const PutHotelForm = () => {
       setHotel({ ...hotel, [event.target.name]: [event.target.value] });
       return;
     }
-    if (event.target.name === "gym" || event.target.name === "pool" || event.target.name === "wifi") {
-      if (event.target.value === 'true'){
+    if (
+      event.target.name === "gym" ||
+      event.target.name === "pool" ||
+      event.target.name === "wifi"
+    ) {
+      if (event.target.value === "true") {
         setHotel({ ...hotel, [event.target.name]: true });
       } else {
         setHotel({ ...hotel, [event.target.name]: false });
       }
-
       return;
     }
 
@@ -118,7 +121,9 @@ export const PutHotelForm = () => {
         <div className="div-form">
           <label className="label-form"> Gimnasio: </label>
           <select name="gym" onChange={handleChange}>
-            <option value="true" selected>Si</option>
+            <option value="true" selected>
+              Si
+            </option>
             <option value="false">No</option>
           </select>
         </div>
@@ -126,7 +131,9 @@ export const PutHotelForm = () => {
         <div className="div-form">
           <label className="label-form"> Pool: </label>
           <select name="pool" onChange={handleChange}>
-            <option value="true" selected>Si</option>
+            <option value="true" selected>
+              Si
+            </option>
             <option value="false">No</option>
           </select>
         </div>
@@ -134,7 +141,9 @@ export const PutHotelForm = () => {
         <div className="div-form">
           <label className="label-form"> Wifi: </label>
           <select name="wifi" onChange={handleChange}>
-            <option value="true" selected>Si</option>
+            <option value="true" selected>
+              Si
+            </option>
             <option value="false">No</option>
           </select>
         </div>

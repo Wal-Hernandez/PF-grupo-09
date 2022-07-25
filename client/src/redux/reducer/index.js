@@ -15,6 +15,11 @@ import {
   FILTER_BY_DESTINY,
   SORT_BY_PRICE,
   SORT_BY_STOCK
+  DELETE_MODEL,
+  PUT_ACTIVITY,
+  POST_ACTIVITY,
+  POST_BUS,
+  POST_CITY
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -52,17 +57,17 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         adminView: action.payload,
       };
-      case GET_PLATFORMS:
-        return {
-          ...state,
-          adminView: action.payload,
-        };
-        case  GET_ACTIVITIES:
-          return {
-            ...state,
-            adminView: action.payload,
-          };
-       
+    case GET_PLATFORMS:
+      return {
+        ...state,
+        adminView: action.payload,
+      };
+    case GET_ACTIVITIES:
+      return {
+        ...state,
+        adminView: action.payload,
+      };
+
     case GET_MAIN_PACKAGES:
       return {
         ...state,
@@ -90,6 +95,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         offers: resp,
       };
+
     case FILTER_BY_DESTINY:
       return{
         ...state,
@@ -105,14 +111,22 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         packages: action.payload
       }
-
     case PUT_CITY:
       return state;
     case PUT_BUS:
       return state;
-      case PUT_HOTEL:
+    case PUT_HOTEL:
       return state;
-      
+    case DELETE_MODEL:
+      return state;
+      case PUT_ACTIVITY:
+      return state;
+      case POST_CITY:
+      return state;
+    case POST_BUS:
+      return state;
+      case POST_ACTIVITY:
+      return state;
     default:
       return state;
   }

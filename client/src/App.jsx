@@ -18,6 +18,7 @@ import {PutActivityForm} from './views/AdminView/Forms/PutActivityForm';
 import {PutPlatformForm} from './views/AdminView/Forms/PutPlatformForm';
 import {PutPackageForm} from './views/AdminView/Forms/PutPackageForm'
 import {CreateForm} from './views/AdminView/Forms/CreateForm'
+
 function App() {
   return (
     <div className="App">
@@ -38,10 +39,7 @@ function App() {
       <Route path="/admin/edit/packages/:id" element ={<PutPackageForm/>}/>
       <Route path="/admin/edit/hotels/:id" element ={<PutHotelForm/>}/>
       <Route path="/admin/edit/cities/:id" element ={<PutCityForm/>}/>
-      <Route path="/admin/edit/platforms/:id" element ={<PutPlatformForm/>}/>
-
-
-      
+      <Route path="/admin/edit/plattforms/:id" element ={<PutPlatformForm/>}/>
     </Routes>
     </div>
   );

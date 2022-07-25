@@ -7,7 +7,6 @@ export const deleteModel = (id, model) => {
       let result = await axios.delete(`http://localhost:3001/${model}/${id}`);
       return dispatch({
         type: DELETE_MODEL,
-        payload: result.data,
       });
     } catch (err) {
       console.log(err);

@@ -1,14 +1,14 @@
-import { SORT_BY_PRICE } from "./actionTypes";
+import { SORT_BY_STOCK } from "./actionTypes";
 import axios from 'axios'
 
-export const sortByPrice = (price) => {
+export const sortByStock = (stock) => {
   return async (dispatch) => {
     try {
       let result = await axios.get(
-        `http://localhost:3001/packages?price=${price}`
+        `http://localhost:3001/packages?stock=${stock}`
       );
       return dispatch({
-        type: SORT_BY_PRICE,
+        type: SORT_BY_STOCK,
         payload: result.data,
       });
     } catch (error) {

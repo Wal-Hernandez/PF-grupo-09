@@ -98,7 +98,7 @@ function Admin() {
           </div>
           <div>
             <Link to="/admin/platforms">
-              <button name="platforms" onClick={handlePlattform}>
+              <button name="plattforms" onClick={handlePlattform}>
                 platforms
               </button>
             </Link>
@@ -111,15 +111,8 @@ function Admin() {
             <Link to ="/admin/create">
           <button>ADD</button></Link></div>
         </div>
-        <div className="adminViewContainer">
-          <div className="adminPanelTitle">
-            <div className="titleView">AdminView </div>
-            <div className="btnAdd">
-              <Link to="/admin/create">
-                <button>ADD</button>
-              </Link>
-            </div>
-          </div>
+
+       
           <div className="adminPanelContainer">
             {adminView.length ? (
               adminView.map((e) => {
@@ -149,7 +142,8 @@ function Admin() {
             )}
           </div>
         </div>
-      </div>
+        </div>
+    
     </>
   );
 }

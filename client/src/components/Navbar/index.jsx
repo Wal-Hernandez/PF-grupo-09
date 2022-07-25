@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './navbar.css'
 function Navbar() {
   return (
@@ -13,8 +13,9 @@ function Navbar() {
       <div className='navElement'>
         <Link to="/login">Login</Link>
       </div>
-      
+
     </div>
+
   )
 }
 

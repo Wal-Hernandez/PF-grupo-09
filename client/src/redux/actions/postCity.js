@@ -1,13 +1,13 @@
-import { GET_PACKAGES } from './actionTypes'
+import { POST_CITY } from './actionTypes'
 import axios from 'axios'
 
-export const getPackages = () => {
+export const postCity= (city) => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/packages`);
+            let result = await axios.post(`http://localhost:3001/cities/`,city);
             console.log(result.data)
             return dispatch({
-                type: GET_PACKAGES,
+                type: POST_CITY,
                 payload: result.data
             })
 

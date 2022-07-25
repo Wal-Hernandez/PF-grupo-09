@@ -1,20 +1,18 @@
-/* import {
-    POST_PACKAGE,
-} from './actionTypes'
+import {POST_PACKAGE} from './actionTypes'
+import axios from 'axios'
 
-function postPackage() {
-    return function (dispatch) {
-        axios.get().then(res => {
-            dispatch({
-            
+export const postPackage = (packages) => {
+    return async function(dispatch) {
+        try {
+            let result = await axios.post(`http://localhost:3001/packages`,packages);
+            console.log(result.data)
+            return dispatch({
+                type: POST_PACKAGE,
+                payload: result.data
             })
-        }, err => {
-            dispatch({
-             
-            })
-        });
-    
-    }
-    }
 
-    export default postPackage */
+        } catch (err) {
+            console.log(err)
+        }
+    };
+};

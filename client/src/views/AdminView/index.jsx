@@ -14,8 +14,12 @@ function Admin() {
   const [model, setModel] = React.useState("");
   const { adminView } = useSelector((state) => state);
   const dispatch = useDispatch();
+<<<<<<< HEAD
   const navigate = useNavigate();
 
+=======
+console.log(model);
+>>>>>>> f54c9e0feca2ecd94a20c1a8198bfb1f141af3fe
   function handlePackage(e) {
     e.preventDefault();
 
@@ -61,6 +65,7 @@ function Admin() {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
           <div>
@@ -105,6 +110,22 @@ function Admin() {
               </button>
             </Link>
           </div>
+=======
+    <div className="adminViewMainContainer">
+      <div className="adminViewContainerRoutes">
+        <div><Link to='/admin/packages'><button  name="packages" onClick={handlePackage }>Paquetes</button></Link> </div>
+        <div><Link to='/admin/hotels'><button name="hotels" onClick={handleHotel }>Hoteles</button> </Link></div>
+        <div><Link to='/admin/buses'><button name="buses" onClick={handleBus }>Bus</button></Link></div>
+        <div><Link to='/admin/acitivies'><button name="activities" onClick={handleActivities }>Activites</button></Link></div>
+        <div><Link to='/admin/cities'><button name="cities" onClick={handleCity}>City</button></Link></div>
+        <div><Link to='/admin/platforms'><button name="platforms" onClick={handlePlattform }>platforms</button></Link></div>
+      </div>
+      <div className="adminViewContainer">
+        <div className="adminPanelTitle">
+          <div className="titleView">AdminView </div><div className="btnAdd">
+            <Link to ="/admin/create">
+          <button>ADD</button></Link></div>
+>>>>>>> f54c9e0feca2ecd94a20c1a8198bfb1f141af3fe
         </div>
         <div className="adminViewContainer">
           <div className="adminPanelTitle">

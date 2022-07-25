@@ -1,13 +1,13 @@
-import { GET_PACKAGES } from './actionTypes'
+import {POST_PLATFORM} from './actionTypes'
 import axios from 'axios'
 
-export const getPackages = () => {
+export const postPlatform= (platform) => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/packages`);
+            let result = await axios.post(`http://localhost:3001/plattforms`,platform);
             console.log(result.data)
             return dispatch({
-                type: GET_PACKAGES,
+                type: POST_PLATFORM,
                 payload: result.data
             })
 

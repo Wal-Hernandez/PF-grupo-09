@@ -12,7 +12,14 @@ import {
   PUT_HOTEL,
   GET_PLATFORMS,
   GET_ACTIVITIES,
+<<<<<<< HEAD
   DELETE_MODEL,
+=======
+  PUT_ACTIVITY,
+  POST_ACTIVITY,
+  POST_BUS,
+  POST_CITY
+>>>>>>> f54c9e0feca2ecd94a20c1a8198bfb1f141af3fe
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -94,6 +101,17 @@ export default function rootReducer(state = initialState, action) {
       return state;
     case DELETE_MODEL:
       return state;
+<<<<<<< HEAD
+=======
+      case PUT_ACTIVITY:
+      return state;
+      case POST_CITY:
+      return state;
+    case POST_BUS:
+      return state;
+      case POST_ACTIVITY:
+      return state;
+>>>>>>> f54c9e0feca2ecd94a20c1a8198bfb1f141af3fe
     default:
       return state;
   }

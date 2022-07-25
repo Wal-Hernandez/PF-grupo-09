@@ -1,13 +1,12 @@
-import { GET_PACKAGES } from './actionTypes'
+import { POST_BUS } from './actionTypes'
 import axios from 'axios'
 
-export const getPackages = () => {
+export const postBus= (bus) => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/packages`);
-            console.log(result.data)
+            let result = await axios.post(`http://localhost:3001/buses`,bus);
             return dispatch({
-                type: GET_PACKAGES,
+                type: POST_BUS,
                 payload: result.data
             })
 

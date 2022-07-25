@@ -5,6 +5,7 @@ import './servicesView.css'
 import Productos from '../../components/Productos';
 import Paginado from '../../components/Paginado';
 import { useSelector } from 'react-redux';
+import Filters from '../../components/Filters';
 export default function Services() {
 
   const packages = useSelector((state) => state.packages)
@@ -33,7 +34,7 @@ export default function Services() {
       <div>calendario</div>
       <div><b>Matching de busqueda</b></div>
       <div>
-        <b>Filtrado de paquetes</b>
+        <b><Filters setCurrentPage={setCurrentPage}/></b>
       </div>
       <div className='services-product-container'>
 

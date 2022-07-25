@@ -4,12 +4,14 @@ import "./homeBody.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { getPackages } from '../../redux/actions/getPackages';
 import { getMainPackages } from '../../redux/actions/getMainPackages';
+import { getCities } from '../../redux/actions/getCities';
 
 export default function HomeBody() {
   const { packages, showPackages } = useSelector((state) => state)
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getCities())
     !packages.length ?
       dispatch(getPackages())
       : !showPackages.length ?

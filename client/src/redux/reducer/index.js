@@ -12,6 +12,9 @@ import {
   PUT_HOTEL,
   GET_PLATFORMS,
   GET_ACTIVITIES,
+  FILTER_BY_DESTINY,
+  SORT_BY_PRICE,
+  SORT_BY_STOCK
   DELETE_MODEL,
   PUT_ACTIVITY,
   POST_ACTIVITY,
@@ -26,6 +29,7 @@ const initialState = {
   isAdmin: null,
   adminView: [],
   offers: [],
+  cities: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -46,6 +50,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         adminView: action.payload,
+        cities: action.payload
       };
     case GET_BUSES:
       return {
@@ -90,6 +95,22 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         offers: resp,
       };
+
+    case FILTER_BY_DESTINY:
+      return{
+        ...state,
+        packages: action.payload
+      }
+    case SORT_BY_PRICE:
+      return{
+        ...state,
+        packages: action.payload
+      }
+    case SORT_BY_STOCK:
+      return{
+        ...state,
+        packages: action.payload
+      }
     case PUT_CITY:
       return state;
     case PUT_BUS:

@@ -11,11 +11,11 @@ export default function DetailsView() {
         <Navbar />
       </div>
       <div className="detailsViewContainer">
-        <div>
+        <div className="details-card-top">
           <Details />
         </div>
       </div>
-      <div>
+      <div className="footerDiv">
         <Footer />
       </div>
     </>

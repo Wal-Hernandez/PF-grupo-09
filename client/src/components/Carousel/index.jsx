@@ -1,14 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { DataImage } from './DataImages';
 import './carousel.css'
 
-const Carousel= ()=> {
+const Carousel = () => {
 
 
   const [current, setCurrent] = useState(0);
   const length = DataImage.length;
-  const  [autoPlay, setAutoPlay] = useState(true);
-let timeOut = null;
+  const [autoPlay, setAutoPlay] = useState(true);
+  let timeOut = null;
 
 
 
@@ -19,7 +19,7 @@ let timeOut = null;
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
-  React.useEffect(()=>{timeOut = autoPlay && setTimeout(()=>{nextSlide();},3000)})
+  React.useEffect(() => { timeOut = autoPlay && setTimeout(() => { nextSlide(); }, 3000) })
   if (!Array.isArray(DataImage) || DataImage.length <= 0) {
     return null;
   }
@@ -27,10 +27,14 @@ let timeOut = null;
 
 
   return (
-    <section className='slider' style={{height:'70vh', position:'absolute', width:'50%'}}>
-  
-      <button onClick={prevSlide} className='prev' > Prev</button>
-<button onClick={nextSlide} className='next' > Next</button>
+    <section className='slider' style={{ height: '70vh', position: 'absolute', width: '50%' }}>
+
+      <div className='prev' >
+        <button onClick={prevSlide} class="btn btn-outline-warning"> Prev</button>
+      </div>
+      <div className='next' >
+        <button onClick={nextSlide} class="btn btn-outline-warning"> Next</button>
+      </div>
       {DataImage.map((slide, index) => {
         return (
           <div
@@ -44,11 +48,13 @@ let timeOut = null;
             }}
           >
             {index === current && (
-              <img src={slide.image}  alt='' className='image imgdog' />
+              <img src={slide.image} alt='' className='image imgdog' />
             )}
           </div>
         );
       })}
+
+
     </section>
   );
 

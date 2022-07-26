@@ -18,6 +18,6 @@ function getOffers() {
             console.log(err)
         }
     };
-    }
-    
-    export default getOffers
+}
+
+export default getOffers

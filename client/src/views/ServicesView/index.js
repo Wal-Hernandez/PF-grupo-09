@@ -34,7 +34,16 @@ export default function Services() {
       <div>calendario</div>
       <div><b>Matching de busqueda</b></div>
       <div>
-        <b><Filters setCurrentPage={setCurrentPage}/></b>
+        <b><Filters setCurrentPage={setCurrentPage} /></b>
+
+      </div>
+      <div>
+        <Paginado
+          currentPage={currentPage}
+          packagesPerPage={packagesPerPage}
+          packages={packages.length}
+          paginado={paginado}
+        />
       </div>
       <div className='services-product-container'>
 
@@ -43,12 +52,7 @@ export default function Services() {
       </div>
     </div>
     <div>
-      <Paginado
-        currentPage={currentPage}
-        packagesPerPage={packagesPerPage}
-        packages={packages.length}
-        paginado={paginado}
-      />
+
       <Footer />
     </div>
   </>

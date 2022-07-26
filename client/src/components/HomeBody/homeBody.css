@@ -2,8 +2,9 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
 }
 
 .mainViewContainer {

@@ -1,13 +1,13 @@
-import {POST_PACKAGE} from './actionTypes'
+import {PUT_PACKAGE} from './actionTypes'
 import axios from 'axios'
 
-export const postPackage = (packages) => {
+export const putPackage = (id,platform) => {
     return async function(dispatch) {
         try {
-            let result = await axios.post(`http://localhost:3001/packages`,packages);
+            let result = await axios.put(`http://localhost:3001/packages/${id}`,platform);
             console.log(result.data)
             return dispatch({
-                type: POST_PACKAGE,
+                type: PUT_PACKAGE,
                 payload: result.data
             })
 

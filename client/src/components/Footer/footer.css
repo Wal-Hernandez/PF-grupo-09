@@ -3,6 +3,10 @@
     display: flex;
     flex-direction: row;
     width: 100vw;
+    position: absolute;
+    height: 30vh;
+    bottom: 0;
+    top: 75vh;
 }
 
 .FooterContainer .footerElement {

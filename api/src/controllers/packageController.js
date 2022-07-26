@@ -8,18 +8,26 @@ const getPackages = async (req, res, next) => {
     const destinationWhere = destination
       ? { name: { [Op.iLike]: `%${destination}%` } }
       : {};
-    const dateWhere = start && end ? { start_date: start, end_date: end } : {};
-    // const dateStart = start ? {start_date: start} : {}
-    // const dateEnd = end ? {end_date: end} : {}
-    const priceOrder = price
-      ? ["price", price.toUpperCase()]
-      : ["price", "NULLS FIRST"];
-    const stockOrder = stock
-      ? ["stock", stock.toUpperCase()]
-      : ["stock", "NULLS FIRST"];
+      // let { start, end } = dateWhere
+      // if (start) {
+      //   start = start_date
+      // }
+      // if (end) {
+      //   end = end_date
+      // }
+    const dateWhere = start && end ? { start_date: start, end_date: end } : start ? {start_date: start} : end ? {end_date: end} : {}
+    
+    let order = []
+    if(stock){
+      order = ["stock", stock.toUpperCase()]
+    } else if(price){
+      order = ["price", price.toUpperCase()]
+    }else{
+      order = ["stock", "NULLS FIRST"]
+    }
 
     const allPackages = await Package.findAll({
-      order: [priceOrder, stockOrder],
+      order: [order],
       where: dateWhere,
       include: [
         {
@@ -214,13 +222,13 @@ const updatePackage = async (req, res) => {
     hotelId,
     stock,
   } = req.body;
+  console.log(req.body)
   try {
     if (
       !name ||
       !start_date ||
       !end_date ||
       !price ||
-      !discount ||
       !activity ||
       !busId ||
       !plattformId ||
@@ -255,7 +263,6 @@ const updatePackage = async (req, res) => {
         end_date,
         price,
         discount,
-        activity,
         busId,
         plattformId,
         cityId,
@@ -264,6 +271,16 @@ const updatePackage = async (req, res) => {
       },
       { where: { id: id } }
     );
+    const activities = await Activity.findAll({
+      where: {
+        name: activity,
+      },
+    });
+
+    const package = await Package.findByPk(id);
+    
+
+    await package.setActivities(activities);
 
     if (a[0]) {
       return res.status(201).json({

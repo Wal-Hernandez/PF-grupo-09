@@ -5,8 +5,8 @@ import { putPlatform} from '../../../redux/actions/putPlatform';
 export const PutPlatformForm = ()=>{
 const {id} =useParams()
 const dispatch =useDispatch()
-const [platform, setPlatform]= React.useState({terminal:'',adress:'',location:''});
-
+const [platform, setPlatform]= React.useState({terminal:'',address:'',location:[]});
+console.log(platform)
 function TransformData(x){
   if(isNaN(x[0])) return x;
   return x.split(',')
@@ -36,20 +36,20 @@ function handleChange(event) {
     
     
     <div className="div-form">
-    <label className="label-form"> adress</label>
-   <input type="text" name='adress' value={platform['adress']} 
+    <label className="label-form"> address</label>
+   <input type="text" name='address' value={platform['address']} 
     onChange={handleChange}/> 
     </div>
  
     <div className="div-form">
-    <label className="label-form"> price:</label>
-   <input type="text" name='price' value={platform['price']} 
+    <label className="label-form"> location:</label>
+   <input type="text" name='location' value={platform['location']} 
     onChange={handleChange}/> 
     </div>
 
    
     <button type ="submit" className="button-form"
-    > Put City</button>
+    > Put Platform</button>
     <Link to ="/admin"> Volver</Link>
         </form>
         </div>

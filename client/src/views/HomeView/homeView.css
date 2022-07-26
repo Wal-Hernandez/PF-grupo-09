@@ -1,8 +1,7 @@
 .footerDiv {
     position: absolute;
-    bottom: 0;
 }
 
-*>a {
+* a {
     text-decoration: none;
 }

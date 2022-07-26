@@ -1,3 +1,7 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .homeViewContainer {
     display: flex;
     justify-content: center;
@@ -10,6 +14,8 @@
 .mainViewContainer {
     display: flex;
     width: 100vw;
+    height: 60vh;
+    margin-bottom: 10vh;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -23,4 +29,9 @@
 .ofertasContainer {
     display: flex;
     height: 10vh;
+}
+
+.btn-sm {
+    background-color: rgb(240, 200, 8);
+    color: rgb(50, 50, 50);
 }

@@ -1,17 +1,15 @@
-.prev {
+.prev .btn-outline-warning {
     position: absolute;
     height: 5vh;
     width: 5vw;
-    background-color: red;
     z-index: 1;
     left: 40%;
 }
 
-.next {
+.next .btn-outline-warning {
     position: absolute;
     height: 5vh;
     width: 5vw;
-    background-color: red;
     z-index: 1;
     left: 150%
 }
@@ -24,5 +22,5 @@
 }
 
 .slider {
-    top: 10vh;
+    top: 12vh;
 }

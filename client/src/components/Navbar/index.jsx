@@ -6,17 +6,17 @@ function Navbar() {
     <div class="navbar navbar-expand-lg navbar-light bg-light">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <button>
+          <button class='btn btn-warning btn-sm'>
             <Link to="/">Volver al home</Link>
           </button>
         </li>
         <li class="nav-item active">
-          <button>
+          <button class='btn btn-warning btn-sm'>
             <Link to="/services">Paquetes</Link>
           </button>
         </li>
         <li class="nav-item active">
-          <button>
+          <button class='btn btn-warning btn-sm'>
             <Link to="/login">Login</Link>
           </button>
         </li>

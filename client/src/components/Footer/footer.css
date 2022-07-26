@@ -1,12 +1,12 @@
 .FooterContainer {
-    background-color: darkslategrey;
+    background-color: rgba(105, 105, 105, 0.8);
     display: flex;
     flex-direction: row;
     width: 100vw;
     position: absolute;
     height: 30vh;
     bottom: 0;
-    top: 75vh;
+    top: auto;
 }
 
 .FooterContainer .footerElement {

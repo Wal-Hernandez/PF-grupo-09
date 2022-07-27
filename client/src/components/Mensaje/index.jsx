@@ -31,29 +31,32 @@
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import styles from './Mensaje.module.css'
 
 function Mensaje() {
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label ><h3>Dejanos tu mensaje</h3></Form.Label>
-        <Form.Control type="email" placeholder="Correo Electronico" />
-        <Form.Text className="text-muted">
-        dejanos tu correo para responderte a la brevedad
-        </Form.Text>
-      </Form.Group>
+    <div className={styles.Conteiner}>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label ><h3>Dejanos tu mensaje</h3></Form.Label>
+          <Form.Control type="email" placeholder="Correo Electronico" />
+          <Form.Text className="text-muted">
+          dejanos tu correo para responderte a la brevedad
+          </Form.Text>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <div class="form-outline">
-        <textarea class="form-control" id="textAreaExample1" rows="4"></textarea>
-        <label class="form-label" for="textAreaExample">Mensaje</label>
-        </div>
-      </Form.Group>
-      
-      <Button variant="primary" type="submit">
-        Enviar Consulta
-      </Button>
-    </Form>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <div class="form-outline">
+          <textarea class="form-control" id="textAreaExample1" rows="4"></textarea>
+          <label class="form-label" for="textAreaExample">Mensaje</label>
+          </div>
+        </Form.Group>
+        
+        <Button variant="primary" type="submit">
+          Enviar Consulta
+        </Button>
+      </Form>
+    </div>
   );
 }
 

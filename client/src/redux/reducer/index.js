@@ -22,6 +22,8 @@ import {
     POST_CITY
 } from "../actions/actionTypes";
 
+import {TYPES} from "../actions/shoppingActions"
+
 const initialState = {
     packages: [],
     showPackages: [],
@@ -29,7 +31,16 @@ const initialState = {
     isAdmin: null,
     adminView: [],
     offers: [],
-    cities: []
+    cities: [],
+    products: [
+        {id:1,name:"Producto1", price:100},
+        {id:2,name:"Producto2", price:200},
+        {id:3,name:"Producto3", price:300},
+        {id:4,name:"Producto4", price:400},
+        {id:5,name:"Producto5", price:500},
+        {id:6,name:"Producto6", price:600},
+    ],
+    cart:[],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -127,6 +138,57 @@ export default function rootReducer(state = initialState, action) {
             return state;
         case POST_ACTIVITY:
             return state;
+        case TYPES.ADD_TO_CART:{
+            let newItem=state.products.find(product => product.id === action.payload)
+         
+            let itemInCart = state.cart.find(item => item.id ===newItem.id)
+            //console.log(action.payload)
+            //console.log(state.products[action.payload].totalProducto)
+            //let totalaPagar=0
+
+
+            return itemInCart 
+                ? {
+                    ...state,
+                    cart:state.cart.map(item => item.id===newItem.id ?
+                    {...item, quantity:item.quantity +1} : item),
+                   
+                }
+                : {
+                    ...state,
+                    cart:[...state.cart, {...newItem, quantity: 1}],
+                }
+
+            }
+
+
+        case TYPES.REMOVE_ONE_FROM_CART:{
+            let itemToDelete = state.cart.find(item => item.id === action.payload);
+            return itemToDelete.quantity>1 ? 
+            {
+                ...state,
+                cart: state.cart.map((item) =>
+                    item.id===action.payload ? 
+                    {...item, quantity:item.quantity-1}: item
+                )
+            }:{
+                ...state,
+                cart:state.cart.filter(item => item.id!== action.payload)
+            }
+
+        }
+        case TYPES.REMOVE_ALL_FROM_CART:{
+            return {
+                ...state,
+                cart:state.cart.filter(item => item.id!== action.payload)
+            }
+        }
+        case TYPES.CLEAR_CART:{
+            return {
+                ...state,
+                cart:[]
+            }
+        }
         default:
             return state;
     }

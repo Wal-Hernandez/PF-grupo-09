@@ -1,0 +1,5 @@
+.nav-pag>.ul {
+    display: flex;
+    flex-direction: row;
+    width: 33vw;
+}

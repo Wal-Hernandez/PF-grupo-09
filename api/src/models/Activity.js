@@ -9,15 +9,22 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-    description: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      image:{
+        type:DataTypes.STRING
       },
 
       price: {
         type: DataTypes.DECIMAL,
         allowNull: false,
       },
+
+      score: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER), 
+        
+      },
+    comments:{
+      type:DataTypes.ARRAY(DataTypes.STRING)
+    }
   
   },{timestamps:false});
 };

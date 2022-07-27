@@ -2,6 +2,8 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+
+
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
@@ -30,7 +32,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { City,Bus,Activity,Plattform,Hotel,Invoice,Package,Booking,StatusBooking,User,TypeUser} = sequelize.models;
+
+const { City,Business,Activity,Plattform,Hotel,Invoice,Package,Cart,StatusCart,User,TypeUser,CartDetail} = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -47,22 +50,15 @@ Hotel.belongsTo(City);
 TypeUser.hasMany(User);
 User.belongsTo(TypeUser);
 
-// relationship Booking and Invoice
+// relationship Cart and Invoice
 
-Booking.hasOne(Invoice);
-Invoice.belongsTo(Booking);
+Cart.hasOne(Invoice);
+Invoice.belongsTo(Cart);
 
-// relationship Booking and StatusBooking
-StatusBooking.hasMany(Booking);
-Booking.belongsTo(StatusBooking);
+// relationship Package and Cart
+Package.hasMany(CartDetail);
+CartDetail.belongsTo(Package);
 
-// relationship Package and Booking
-Package.hasMany(Booking);
-Booking.belongsTo(Package);
-
-// relationship User and Booking
-User.hasMany(Booking);
-Booking.belongsTo(User);
 
 // relationship Plattform and Package
 Plattform.hasMany(Package);
@@ -72,9 +68,9 @@ Package.belongsTo(Plattform);
 Activity.belongsToMany(Package,{through:"package_activity",timestamps:false});
 Package.belongsToMany(Activity,{through:"package_activity",timestamps:false});
 
-// relationship Bus and Package 
-Bus.hasMany(Package);
-Package.belongsTo(Bus);
+// relationship Business and Package 
+Business.hasMany(Package);
+Package.belongsTo(Business);
 
 // relationship City and Package 
 City.hasMany(Package);
@@ -83,6 +79,11 @@ Package.belongsTo(City);
 // relationship Hotel and Package 
 Hotel.hasMany(Package);
 Package.belongsTo(Hotel);
+
+// relationship statusCart and Cart
+StatusCart.hasMany(Cart);
+Cart.belongsTo(StatusCart);
+
 
 
 module.exports = {

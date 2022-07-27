@@ -25,4 +25,8 @@ module.exports = (sequelize) => {
     },
     { timestamps: false }
   );
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 050aafa2a80400a31517993be018edbeffd50a7e

@@ -1,0 +1,26 @@
+.prev .btn-outline-warning {
+    position: absolute;
+    height: 5vh;
+    width: 5vw;
+    z-index: 1;
+    left: 40%;
+}
+
+.next .btn-outline-warning {
+    position: absolute;
+    height: 5vh;
+    width: 5vw;
+    z-index: 1;
+    left: 150%
+}
+
+.imgdog {
+    position: absolute;
+    height: 20%;
+    width: 100%;
+    left: 50%;
+}
+
+.slider {
+    top: 12vh;
+}

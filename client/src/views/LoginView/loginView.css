@@ -1,0 +1,10 @@
+.servicesViewContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+ background-color: rgba(175, 0, 0, 0.795);
+ width: 400px;
+ height: 600px;
+margin-left: 40%;
+}
+

@@ -7,6 +7,7 @@ import { getMainPackages } from '../../redux/actions/getMainPackages';
 import { getCities } from '../../redux/actions/getCities';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import {rootReducer, initialState} from '../../redux/reducer'
+import Total from '../Total/Total';
 
 export default function HomeBody() {
   const { packages, showPackages } = useSelector((state) => state)
@@ -27,7 +28,7 @@ export default function HomeBody() {
   return (<>
     <div className="homeViewContainer">
     <ShoppingCart />
-
+    <Total />
       <div className='ofertasContainer'>
         <h1>Ofertas</h1>
       </div>

@@ -17,7 +17,7 @@ function Navbar() {
         </li>
         <li class="nav-item active">
           <button>
-            <Link to="/login">Login</Link>
+            <Link to="/login2">Login</Link>
           </button>
         </li>
       </ul>

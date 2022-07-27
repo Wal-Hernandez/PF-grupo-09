@@ -3,22 +3,28 @@ import { Link } from 'react-router-dom'
 import './navbar.css'
 function Navbar() {
   return (
-    <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar navbar-expand-lg">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <button class='btn btn-warning btn-sm'>
-            <Link to="/">Volver al home</Link>
-          </button>
+          <Link to="/">
+            <button class='btn btn-sm'>
+              Volver al home
+            </button>
+          </Link>
         </li>
         <li class="nav-item active">
-          <button class='btn btn-warning btn-sm'>
-            <Link to="/services">Paquetes</Link>
-          </button>
+          <Link to="/services">
+            <button class='btn btn-sm'>
+              Paquetes
+            </button>
+          </Link>
         </li>
         <li class="nav-item active">
-          <button class='btn btn-warning btn-sm'>
-            <Link to="/login">Login</Link>
-          </button>
+          <Link to="/login">
+            <button class='btn btn-sm'>
+              Login
+            </button>
+          </Link>
         </li>
       </ul>
     </div>

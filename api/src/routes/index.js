@@ -2,11 +2,11 @@ const { Router } = require("express");
 
 const City = require("./citiesRouter");
 const Hotel = require("./hotelsRouter");
-const Invoice=require("./invoiceRouter")
+
 const Business=require("./businessRouter")
 const Activity=require("./activityRouter")
 const Plattform=require("./plattformRouter")
-const Booking=require("./bookingrouter");
+
 const Package = require('./packageRouter')
 
 const User = require("./userRouter");

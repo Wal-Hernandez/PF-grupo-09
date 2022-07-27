@@ -1,5 +1,6 @@
-import { useAuth } from "../../context/AuthContext";
-
+import { useAuth } from "../../context/context";
+import Admin from "../../views/AdminView";
+import Home from "../../views/HomeView";
 export function Home2() {
   const { logout, user } = useAuth();
 
@@ -23,6 +24,7 @@ export function Home2() {
           logout
         </button>
       </div>
+      {/* {userlog.rol === "admin" ? <Admin /> : <Home />}  */}
     </div>
   );
 }

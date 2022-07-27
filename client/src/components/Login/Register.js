@@ -1,20 +1,18 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/context";
 import { Alert } from "./Alert";
-import { postUser } from "../../redux/actions/postUser";
 export function Register() {
   const { signup } = useAuth();
 
-  const dispatch = useDispatch();
   const [user, setUser] = useState({
     name: "",
     surname: "",
     mail: "",
     password: "",
+    rol: "client",
   });
-
+  console.log(user);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -22,10 +20,7 @@ export function Register() {
     e.preventDefault();
     setError("");
     try {
-      await signup(user.mail, user.password, user.displayName);
-      let userDb = { ...user };
-      console.log(userDb);
-      dispatch(postUser(userDb));
+      await signup(user.mail, user.password, user.rol, user.name, user.surname);
       navigate("/");
     } catch (error) {
       setError(error.message);
@@ -68,7 +63,6 @@ export function Register() {
             placeholder=""
           />
         </div>
-
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -98,28 +92,20 @@ export function Register() {
             placeholder="*************"
           />
         </div>
-        {/* <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-           Confirm Password
-          </label>
-          <input
-            type="password"
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="*************"
-          />
-        </div> */}
-
+        {/* <label>
+          Role:
+          <select id="rol" onChange={(e) => setUser({ ...user, rol: e.target.value })}>
+            <option value="admin">Admin</option>
+            <option value="client">Client</option>
+          </select>
+        </label> */}
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
           Register
         </button>
       </form>
       <p className="my-4 text-sm flex justify-between px-3">
         Already have an Account?
-        <Link to="/login2" className="text-blue-700 hover:text-blue-900">
+        <Link to="/log" className="text-blue-700 hover:text-blue-900">
           Login
         </Link>
       </p>

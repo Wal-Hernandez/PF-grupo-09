@@ -13,4 +13,19 @@ a {
 .navbar-nav button {
     height: 50px;
     text-align: center;
+    background-color: rgb(240, 200, 10);
+    transition: transform .2s ease-in-out;
+    font-weight: 500;
+}
+
+.navbar-nav button:hover {
+    background-color: rgb(255, 213, 0);
+    border: solid 2px silver;
+    color: rgb(20, 100, 120);
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+
+.navbar-expand-lg {
+    background-color: rgb(20, 100, 120);
 }

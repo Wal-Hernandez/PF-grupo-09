@@ -1,17 +1,33 @@
-.prev .btn-outline-warning {
+.prev .btn {
     position: absolute;
+    background-color: rgb(240, 200, 10);
+    border: solid 3px rgb(20, 100, 120);
     height: 5vh;
     width: 5vw;
     z-index: 1;
     left: 40%;
 }
 
-.next .btn-outline-warning {
+.prev .btn:hover {
+    background-color: rgb(255, 213, 0);
+    border: solid 2px silver;
+    color: rgb(20, 100, 120);
+}
+
+.next .btn {
     position: absolute;
+    background-color: rgb(240, 200, 10);
+    border: solid 3px rgb(20, 100, 120);
     height: 5vh;
     width: 5vw;
     z-index: 1;
-    left: 150%
+    left: 150%;
+}
+
+.next .btn:hover {
+    background-color: rgb(255, 213, 0);
+    border: solid 2px silver;
+    color: rgb(20, 100, 120);
 }
 
 .imgdog {

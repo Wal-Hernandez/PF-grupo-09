@@ -30,10 +30,10 @@ const Carousel = () => {
     <section className='slider' style={{ height: '70vh', position: 'absolute', width: '50%' }}>
 
       <div className='prev' >
-        <button onClick={prevSlide} class="btn btn-outline-warning"> Prev</button>
+        <button onClick={prevSlide} class="btn"> Prev </button>
       </div>
       <div className='next' >
-        <button onClick={nextSlide} class="btn btn-outline-warning"> Next</button>
+        <button onClick={nextSlide} class="btn"> Next</button>
       </div>
       {DataImage.map((slide, index) => {
         return (

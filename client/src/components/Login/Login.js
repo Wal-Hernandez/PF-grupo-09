@@ -8,11 +8,7 @@ export function Login() {
   const [user, setUser] = useState({
     mail: "",
     password: "",
-<<<<<<< HEAD
-    // rol: ""
-=======
     rol: "",
->>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
   });
   const { login, loginWithGoogle, resetPassword } = useAuth();
   const [error, setError] = useState("");
@@ -23,15 +19,9 @@ export function Login() {
     setError("");
     try {
       await login(user.mail, user.password);
-<<<<<<< HEAD
-      // if(user.rol==='admin')navigate("/admin")
-      // else{navigate("/home2")};
-      navigate("/home2");
-=======
       user.mail === "productowner@henry.com"
         ? navigate("/admin")
         : navigate("/");
->>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
     } catch (error) {
       setError(error.message);
     }
@@ -100,17 +90,7 @@ export function Login() {
             placeholder="*************"
           />
         </div>
-<<<<<<< HEAD
-        {/* <label>
-          Role:
-          <select id="rol" onChange={(e) => setUser({ ...user, rol: e.target.value })}>
-            <option value="admin">Admin</option>
-            <option value="client">Client</option>
-          </select>
-        </label> */}
-=======
 
->>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

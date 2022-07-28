@@ -35,62 +35,19 @@ import { auth } from './Firebase/firebase-config';
 import {firestore} from "./context/context"
 
 function App() {
-<<<<<<< HEAD
-  const [userlog, setUser] = React.useState(null);
-
-  async function getRol(uid) {
-    const docuRef = doc(firestore, `usuarios/${uid}`);
-    const docuCifrada = await getDoc(docuRef);
-    const infoFinal = docuCifrada.data().rol;
-    const infoFinal2 = docuCifrada.data().nombre;
-    return [infoFinal,infoFinal2];
-  }
-
-  function setUserWithFirebaseAndRol(usuarioFirebase) {
-    getRol(usuarioFirebase.uid).then((rol) => {
-      const userData = {
-        uid: usuarioFirebase.uid,
-        email: usuarioFirebase.email,
-        rol: rol[0],
-        nombre:rol[1]
-      };
-      setUser(userData);
-      console.log("userData fianl", userData);
-    });
-  }
-
-  onAuthStateChanged(auth, (usuarioFirebase) => {
-    if (usuarioFirebase) {
-      //funcion final
-
-      if (!userlog) {
-        setUserWithFirebaseAndRol(usuarioFirebase);
-      }
-    } else {
-      setUser(null);
-    }
-  });
-  
-=======
->>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
 
 
   return (
     <div className="App">
      <AuthProvider>
      <Routes>
-      <Route path ="/home2" element ={<ProtectedRouted><Home2 userlog={userlog}/></ProtectedRouted>}/>
        <Route path="/" element={<Home/>} />
        {/* <Route path="/login" element={<LoginView/>}/> */}
        <Route path="/details/:id" element={<Details/>} />
        <Route path="/buy" element={<EditBuy/>} />
        <Route path="/editBuy" element={<Buy/>} />
        <Route path="/services" element={<Services/>} />
-<<<<<<< HEAD
-       {/* <Route path="/admin" element={<ProtectedRouted><Admin/></ProtectedRouted>} /> */}
-=======
        <Route path="/admin" element={<ProtectedRoutedAdmin><Admin/></ProtectedRoutedAdmin>} />
->>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
        <Route path ="/faq" element ={<FAQ/>}/>
        <Route path="/about" element={<AboutView/>} />
        <Route path="/admin/PutCityForm/:id" element ={<PutCityForm/>}/>
@@ -102,13 +59,8 @@ function App() {
        <Route path="/admin/edit/cities/:id" element ={<PutCityForm/>}/>
        <Route path="/admin/edit/plattforms/:id" element ={<PutPlatformForm/>}/>
        <Route path ="/reg" element ={<Register/>}/>
-<<<<<<< HEAD
-       <Route path ="/log" element ={<Login/>}/>
-       
-=======
        <Route path ="/login" element ={<Login/>}/>
        <Route path ="/home2" element ={<ProtectedRouted><Home2 /></ProtectedRouted>}/>
->>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
      </Routes>
      </AuthProvider>
     
@@ -117,3 +69,4 @@ function App() {
   );
 }
 export default App;
+

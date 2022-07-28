@@ -24,6 +24,7 @@ import{Home2} from './components/Login/Home2'
 import{Register} from './components/Login/Register'
 import{Login} from './components/Login/Login'
 import { ProtectedRouted } from "./components/Login/ProtectedRouted";
+import { ProtectedRoutedAdmin } from './components/Login/ProtectedRouteAdmin';
 
 import { AuthProvider } from "./context/context";
 
@@ -34,6 +35,7 @@ import { auth } from './Firebase/firebase-config';
 import {firestore} from "./context/context"
 
 function App() {
+<<<<<<< HEAD
   const [userlog, setUser] = React.useState(null);
 
   async function getRol(uid) {
@@ -69,6 +71,8 @@ function App() {
     }
   });
   
+=======
+>>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
 
 
   return (
@@ -77,12 +81,16 @@ function App() {
      <Routes>
       <Route path ="/home2" element ={<ProtectedRouted><Home2 userlog={userlog}/></ProtectedRouted>}/>
        <Route path="/" element={<Home/>} />
-       <Route path="/login" element={<LoginView/>}/>
+       {/* <Route path="/login" element={<LoginView/>}/> */}
        <Route path="/details/:id" element={<Details/>} />
        <Route path="/buy" element={<EditBuy/>} />
        <Route path="/editBuy" element={<Buy/>} />
        <Route path="/services" element={<Services/>} />
+<<<<<<< HEAD
        {/* <Route path="/admin" element={<ProtectedRouted><Admin/></ProtectedRouted>} /> */}
+=======
+       <Route path="/admin" element={<ProtectedRoutedAdmin><Admin/></ProtectedRoutedAdmin>} />
+>>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
        <Route path ="/faq" element ={<FAQ/>}/>
        <Route path="/about" element={<AboutView/>} />
        <Route path="/admin/PutCityForm/:id" element ={<PutCityForm/>}/>
@@ -94,8 +102,13 @@ function App() {
        <Route path="/admin/edit/cities/:id" element ={<PutCityForm/>}/>
        <Route path="/admin/edit/plattforms/:id" element ={<PutPlatformForm/>}/>
        <Route path ="/reg" element ={<Register/>}/>
+<<<<<<< HEAD
        <Route path ="/log" element ={<Login/>}/>
        
+=======
+       <Route path ="/login" element ={<Login/>}/>
+       <Route path ="/home2" element ={<ProtectedRouted><Home2 /></ProtectedRouted>}/>
+>>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
      </Routes>
      </AuthProvider>
     

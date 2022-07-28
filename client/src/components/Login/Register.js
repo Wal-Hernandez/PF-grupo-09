@@ -2,26 +2,34 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/context";
 import { Alert } from "./Alert";
+import { useDispatch } from "react-redux";
+import { postUser } from "../../redux/actions/postUser";
 export function Register() {
   const { signup } = useAuth();
+  const dispatch = useDispatch();
 
   const [user, setUser] = useState({
-    name:"",
-    surname:"",
+    name: "",
+    surname: "",
     mail: "",
+    rol: "client",
     password: "",
-    rol:"client"
   });
-console.log(user);
+
+  console.log(user);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
     try {
       await signup(user.mail, user.password, user.rol, user.name, user.surname);
-     navigate('/home2')
+      let userDb = { ...user };
+      console.log(userDb);
+      dispatch(postUser(userDb));
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -35,7 +43,7 @@ console.log(user);
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
       >
-  <div className="mb-4">
+        <div className="mb-4">
           <label
             htmlFor="name"
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -63,7 +71,7 @@ console.log(user);
             placeholder=""
           />
         </div>
-      <div className="mb-4">
+        <div className="mb-4">
           <label
             htmlFor="email"
             className="block text-gray-700 text-sm font-bold mb-2"

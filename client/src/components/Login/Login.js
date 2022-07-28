@@ -2,25 +2,36 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/context";
 import { Alert } from "./Alert";
+import Admin from "../../views/AdminView/index";
 
 export function Login() {
   const [user, setUser] = useState({
     mail: "",
     password: "",
+<<<<<<< HEAD
     // rol: ""
+=======
+    rol: "",
+>>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
   });
   const { login, loginWithGoogle, resetPassword } = useAuth();
   const [error, setError] = useState("");
   const navigate = useNavigate();
-console.log(user);
+  console.log(user);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       await login(user.mail, user.password);
+<<<<<<< HEAD
       // if(user.rol==='admin')navigate("/admin")
       // else{navigate("/home2")};
       navigate("/home2");
+=======
+      user.mail === "productowner@henry.com"
+        ? navigate("/admin")
+        : navigate("/");
+>>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
     } catch (error) {
       setError(error.message);
     }
@@ -32,7 +43,7 @@ console.log(user);
   const handleGoogleSignin = async () => {
     try {
       await loginWithGoogle();
-      navigate("/home2");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -43,7 +54,7 @@ console.log(user);
     if (!user.mail) return setError("Write an email to reset password");
     try {
       await resetPassword(user.mail);
-      setError('We sent you an email. Check your inbox')
+      setError("We sent you an email. Check your inbox");
     } catch (error) {
       setError(error.message);
     }
@@ -89,6 +100,7 @@ console.log(user);
             placeholder="*************"
           />
         </div>
+<<<<<<< HEAD
         {/* <label>
           Role:
           <select id="rol" onChange={(e) => setUser({ ...user, rol: e.target.value })}>
@@ -96,6 +108,9 @@ console.log(user);
             <option value="client">Client</option>
           </select>
         </label> */}
+=======
+
+>>>>>>> 5a67c1c270c993553e012c9efb0cdb2a3cd1f350
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

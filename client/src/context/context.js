@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
 } from "firebase/auth";
+
 import { auth, app } from "../Firebase/firebase-config";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 const authContext = createContext();
@@ -31,7 +32,7 @@ export function AuthProvider({ children }) {
     ).then((usuarioFirebase) => {
       return usuarioFirebase;
     });
-    console.log(Info.user.uid);
+
     const docuRef = doc(firestore, `usuarios/${Info.user.uid}`); //esto es para escribir y ubicar en una BD
     setDoc(docuRef, {
       correo: email,
@@ -45,6 +46,13 @@ export function AuthProvider({ children }) {
     const docuRef = doc(firestore, `usuarios/${uid}`);
     const docuCifrada = await getDoc(docuRef);
     const infoFinal = docuCifrada.data().rol;
+    return infoFinal;
+  }
+  async function getName(uid) {
+    // obtener rol
+    const docuRef = doc(firestore, `usuarios/${uid}`);
+    const docuCifrada = await getDoc(docuRef);
+    const infoFinal = docuCifrada.data().nombre;
     return infoFinal;
   }
 

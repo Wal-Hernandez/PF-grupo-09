@@ -3,7 +3,8 @@ import { useAuth } from "../../context/context";
 
 export function ProtectedRouted({ children }) {
   const { user, loading } = useAuth();
-  console.log("aca user", user);
+
+  if (loading) return <h1>Loading</h1>;
 
   if (!user) return <Navigate to="/log" />;
 

@@ -19,7 +19,9 @@ export function Login() {
     setError("");
     try {
       await login(user.mail, user.password);
-      user.mail === "productowner@henry.com" ? <Admin /> : navigate("/");
+      user.mail === "productowner@henry.com"
+        ? navigate("/admin")
+        : navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -31,7 +33,7 @@ export function Login() {
   const handleGoogleSignin = async () => {
     try {
       await loginWithGoogle();
-      navigate("/home2");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }

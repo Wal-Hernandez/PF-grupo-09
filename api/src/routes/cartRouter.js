@@ -4,6 +4,7 @@ const {
 } = require("../controllers/cartControllers");
 const router = Router();
 
+
 router.get("/:id", async (req, res) => {
   try {
     const {id}=req.params
@@ -14,6 +15,7 @@ router.get("/:id", async (req, res) => {
     return res.status(400).json(err);
   }
 });
+
 
 router.post("/:id", async (req, res) => {
   try {

@@ -8,10 +8,10 @@ const Activity=require("./activityRouter")
 const Plattform=require("./plattformRouter")
 
 const Package = require('./packageRouter')
-const cartDetailControllers = require("./cartDetailRouter");
+const cartDetail = require("./cartDetailRouter");
 const User = require("./userRouter");
 const TypeUser = require("./typeUserRouter");
-
+const Cart = require("./cartRouter")
 
 const router = Router();
 
@@ -25,7 +25,7 @@ router.use('/plattforms',Plattform)
 router.use('/packages', Package)
 router.use("/users", User);
 router.use("/typeusers", TypeUser);
-router.use("/cartDetail", cartDetailControllers);
-
+router.use("/cartDetails", cartDetail);
+router.use("/carts", Cart);
 
 module.exports = router;

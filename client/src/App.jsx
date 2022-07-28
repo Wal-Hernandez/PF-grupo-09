@@ -34,8 +34,6 @@ import { auth } from './Firebase/firebase-config';
 import {firestore} from "./context/context"
 
 function App() {
- 
-  
 
 
   return (

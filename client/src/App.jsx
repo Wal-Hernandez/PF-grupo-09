@@ -29,7 +29,7 @@ import { AuthProvider } from "./context/context";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { auth } from './Firebase/firebase-config';
+import { auth } from './firebase/firebase-config';
 
 import {firestore} from "./context/context"
 

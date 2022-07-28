@@ -3,15 +3,15 @@ import styles from './Total.module.css'
 import { useSelector } from 'react-redux';
 
 export default function Total({data}) {
-    const { cart } = useSelector((state) => state)
+    let myCarttext=localStorage.getItem("myCart")
+    let myCartparsed=JSON.parse(myCarttext)
     let totalaPagar=0
-    cart.map((el) => {
+    myCartparsed.map((el) => {
         totalaPagar=totalaPagar+el.price*el.quantity
     })
-
     return(
         <div className={styles.totalDivStyle}>
-            <p>Total:{totalaPagar}</p>
+            <p>Total a pagar: ${totalaPagar}.00</p>
         </div> 
     )
 }

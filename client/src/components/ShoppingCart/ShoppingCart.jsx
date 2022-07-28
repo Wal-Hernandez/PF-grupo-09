@@ -15,12 +15,10 @@ export default function ShoppingCart() {
 
 
     const addToCart = (id) =>{
-        console.log(id)
-        dispatch({type:TYPES.ADD_TO_CART, payload:id})
-    
+        dispatch({type:TYPES.ADD_TO_CART, payload:id})    
     }
+
     const delFromCart = (id, all = false) => {
-        console.log(id,all)
         if(all){
             dispatch({type:TYPES.REMOVE_ALL_FROM_CART, payload:id})
         } else {
@@ -28,6 +26,9 @@ export default function ShoppingCart() {
         }
     }
     const clearCart=() => {dispatch({type:TYPES.CLEAR_CART})}
+    let myCarttext=localStorage.getItem("myCart")
+    let myCartparsed=JSON.parse(myCarttext)
+    console.log(myCartparsed)
 
     return(
         <div className={styles.soppingCartContainer}>
@@ -45,7 +46,7 @@ export default function ShoppingCart() {
             <div className={styles.CartItemStyle}> 
                 <article>    
                         {
-                            cart.map((item,index) => <CartItem key={index.id} data={item} delFromCart={delFromCart}/>)
+                            myCartparsed.map((item,index) => <CartItem key={index.id} data={item} delFromCart={delFromCart}/>)
                         }
                 </article> 
             </div> 

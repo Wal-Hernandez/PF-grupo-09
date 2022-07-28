@@ -1,7 +1,8 @@
+import React from "react";
 import { useAuth } from "../../context/context";
 import Admin from "../../views/AdminView";
 import Home from "../../views/HomeView";
-export function Home2() {
+export function Home2({userlog}) {
   const { logout, user } = useAuth();
 
   console.log(user);
@@ -12,11 +13,12 @@ export function Home2() {
       console.error(error.message);
     }
   };
-
+console.log(userlog)
   return (
     <div className="w-full max-w-xs m-auto text-black">
+      
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <p className="text-xl mb-4">welcome {user.displayName || user.email}</p>
+        <p className="text-xl mb-4">welcome {userlog? userlog.nombre || userlog.name : user.displayName || user.email}</p>
         <button
           className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
           onClick={handleLogout}
@@ -24,7 +26,7 @@ export function Home2() {
           logout
         </button>
       </div>
-       {/* {userlog.rol === "admin" ? <Admin /> : <Home />}  */}
+       {userlog && userlog.rol === "admin" ? <Admin /> : <Home />} 
     </div>
   );
 }

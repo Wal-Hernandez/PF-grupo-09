@@ -21,7 +21,7 @@ console.log(user);
     setError("");
     try {
       await signup(user.mail, user.password, user.rol, user.name, user.surname);
-     navigate('/')
+     navigate('/home2')
     } catch (error) {
       setError(error.message);
     }

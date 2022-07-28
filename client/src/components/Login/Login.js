@@ -7,7 +7,7 @@ export function Login() {
   const [user, setUser] = useState({
     mail: "",
     password: "",
-    rol: ""
+    // rol: ""
   });
   const { login, loginWithGoogle, resetPassword } = useAuth();
   const [error, setError] = useState("");
@@ -18,8 +18,9 @@ console.log(user);
     setError("");
     try {
       await login(user.mail, user.password);
-      if(user.rol==='admin')navigate("/admin")
-      else{navigate("/home2")};
+      // if(user.rol==='admin')navigate("/admin")
+      // else{navigate("/home2")};
+      navigate("/home2");
     } catch (error) {
       setError(error.message);
     }
@@ -88,13 +89,13 @@ console.log(user);
             placeholder="*************"
           />
         </div>
-        <label>
+        {/* <label>
           Role:
           <select id="rol" onChange={(e) => setUser({ ...user, rol: e.target.value })}>
             <option value="admin">Admin</option>
             <option value="client">Client</option>
           </select>
-        </label>
+        </label> */}
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

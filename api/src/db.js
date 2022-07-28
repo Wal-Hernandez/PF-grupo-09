@@ -83,7 +83,6 @@ Package.belongsTo(Hotel);
 StatusCart.hasMany(Cart);
 Cart.belongsTo(StatusCart);
 
-// relationship statusCart and Cart
 Cart.hasMany(CartDetail);
 CartDetail.belongsTo(Cart);
 

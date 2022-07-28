@@ -20,7 +20,7 @@ router.get("/:id",async(req,res)=>{
          const {id}=req.params
          console.log(id)
          const activities=await getActivitiesFromCity(id)
-        // console.log(activities) ver las actividades de una ciudad
+        // console.log(activities)   ver las actividades de una ciudad
          return res.status(200).json(activities)
     } catch (err) {
        return res.status(400).json(err);

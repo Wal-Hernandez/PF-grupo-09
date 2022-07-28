@@ -1,20 +1,36 @@
-const { Package,Cart,CartDetail} = require("../db");
+const { Package,Cart,CartDetail,Hotel,City, Activity,User,Business, Plattform} = require("../db");
 
 
 const getCart = async (id) => {
   try {
     let  cart= await Cart.findAll({   // REVISAR RELACIONES DE INCLUDE
       where:{id:id},
-
-      include: [{
+include:[{
+  model: User,
+ 
+},
+{
+  model: CartDetail,
+  include:{
+    model:Package,
+    include:[{model:Hotel,},{ model:City},{model:Activity},{model: Business},{model:Plattform}]
+  }
+}]/* ,
+    include: [{
         model: CartDetail,
         where: {
           cartId: id    
         },
         include: [{
-            model: Package,               
+            model: Package,
+            include: [{
+              model: Hotel,
+              model: City, 
+              model: Activity,                
+          }]               
         }]
-    }]
+    }
+  ] */
     });
 
     return cart;

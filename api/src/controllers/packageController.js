@@ -1,4 +1,4 @@
-const { Package, Activity,Bussines, Plattform, City, Hotel } = require("../db");
+const { Package, Activity,Business, Plattform, City, Hotel } = require("../db");
 const { Op } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
@@ -32,12 +32,12 @@ const getPackages = async (req, res, next) => {
       include: [
         {
           model: Activity,
-          through: {
+      /*     through: {
             attributes: [],
-          },
+          }, */
         },
         {
-          model: Bussines,
+          model: Business,
           
         },
         {
@@ -46,8 +46,8 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: City,
-          where: destinationWhere,
-          attributes: ["name"],
+      /*     where: destinationWhere,
+          attributes: ["name"], */
         },
         {
           model: Hotel,

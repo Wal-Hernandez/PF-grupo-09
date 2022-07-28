@@ -50,7 +50,9 @@ Hotel.belongsTo(City);
 TypeUser.hasMany(User);
 User.belongsTo(TypeUser);
 
-// relationship Cart and Invoice
+// relationship Cart and User
+User.hasMany(Cart);
+Cart.belongsTo(User);
 
 // relationship Package and Cart
 Package.hasMany(CartDetail);

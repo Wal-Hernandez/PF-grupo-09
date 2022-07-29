@@ -9,7 +9,7 @@ import styles from './ShoppingCart.module.css'
 
 export default function ShoppingCart() {
     const products = useSelector ((state) => state.products)
-    const cart = useSelector ((state) => state.cart)
+    let cart = useSelector ((state) => state.cart)
 
     const dispatch = useDispatch();
 
@@ -17,7 +17,6 @@ export default function ShoppingCart() {
     const addToCart = (id) =>{
         console.log(id)
         dispatch({type:TYPES.ADD_TO_CART, payload:id})
-
     }
     const delFromCart = (id, all = false) => {
         console.log(id,all)

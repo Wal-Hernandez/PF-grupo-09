@@ -147,20 +147,15 @@ export default function rootReducer(state = initialState, action) {
                 itemInCart = state.cart.find(item => item.id ===newItem.id)
                 
                 if(!localStorage.getItem("myCart")){
-                    console.log("el carrito NO tiene nada, por lo que se crea ahora")
-                    if(itemInCart) {
-                        cart = state.cart.map(item => item.id===newItem.id ?
-                            {...item, quantity:item.quantity +1} : item)
-                    } else {
-                        cart= [...state.cart, {...newItem, quantity: 1}]
-                    }
+                    console.log("el carrito NO existe, por lo que se crea ahora")
+                    cart= [...state.cart, {...newItem, quantity: 1}]                    
                     cartJSON= JSON.stringify(cart)
                     localStorage.setItem("myCart", cartJSON) 
                 } else {
-                    console.log("el carrito tiene algo")
+                    console.log("el carrito existe y tiene algo")
                     let myCarttext=localStorage.getItem("myCart")
                     let myCartparsed=JSON.parse(myCarttext)
-                    let itemInCart = myCartparsed.find(item => item.id ===newItem.id)
+                    itemInCart = myCartparsed.find(item => item.id ===newItem.id)
                     if(itemInCart) {
                         cart = myCartparsed.map(item => item.id===newItem.id ?
                             {...item, quantity:item.quantity +1} : item)
@@ -171,18 +166,7 @@ export default function rootReducer(state = initialState, action) {
                     localStorage.setItem("myCart", cartJSON)                      
                 }
     
-                return itemInCart 
-                    ? {
-                        ...state,
-                        cart:state.cart.map(item => item.id===newItem.id ?
-                        {...item, quantity:item.quantity +1} : item),
-    
-                    }
-                    : {
-                        ...state,
-                        cart:[...state.cart, {...newItem, quantity: 1}],
-                    }
-    
+                return {...state} 
                 }
     
     

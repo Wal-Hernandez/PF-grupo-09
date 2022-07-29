@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.css'
 import { useAuth } from "../../context/context";
-
+import logo from "../../images/Buspack.png"
 import { getAuth } from "firebase/auth";
 
 function Navbar({userlog}) {
@@ -34,30 +34,39 @@ if (user) {
 
   
   return (
-    <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar navbar-expand-lg">
+       <div>
+            <img src={logo} alt="Buspack" class="logo-buspack"/>
+        </div>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <button>
-            <Link to="/">Volver al home</Link>
-          </button>
+          <Link to="/">
+            <button class='btn btn-sm'>
+              Volver al home
+            </button>
+          </Link>
         </li>
         <li class="nav-item active">
-          <button>
-            <Link to="/services">Paquetes</Link>
-          </button>
+          <Link to="/services">
+            <button class='btn btn-sm'>
+              Paquetes
+            </button>
+          </Link>
         </li>
         <li class="nav-item active">
-          {userlog? <div>
-            <h1>{userlog.nombre +" "+ userlog.apellido}</h1>
+          {userlog? <div class="userlog-container">
+            <h5>{userlog.nombre +" "+ userlog.apellido}</h5>
             <button
-          className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
+          class='btn btn-sm'
           onClick={handleLogout}
         >
           Logout
         </button>
-          </div>: <button>
-            <Link to="/login">Login</Link>
-          </button>}
+          </div>: <Link to="/login">
+            <button class='btn btn-sm'>
+              Login
+            </button>
+          </Link>}
          
         </li>
       </ul>

@@ -45,18 +45,18 @@ function Filters(props) {
   return (
     <div>
         <select defaultValue="" onChange={handleSortByPrice}>
-            <option value="" disabled>Ordenar</option>
-            <option label={'Menor precio'} value="asc">Ascending</option>
-            <option label={'Mayor precio'} value="desc">Descending</option>
+            <option value="" disabled>Ordenar por precio</option>
+            <option label={'Menor precio'} value="asc"></option>
+            <option label={'Mayor precio'} value="desc"></option>
         </select>
         <select defaultValue="" onChange={handleSortByStock}>
-            <option value="" disabled>Sort by stock</option>
-            <option label={'Menor stock'} value="asc">Ascending</option>
-            <option label={'Mayor stock'} value="desc">Descending</option>
+            <option value="" disabled>Ordenar por stock</option>
+            <option label={'Menor stock'} value="asc"></option>
+            <option label={'Mayor stock'} value="desc"></option>
         </select>
         <select defaultValue="" onChange={handleCities}>
-            <option value="" disabled>Filter by destination city</option>
-            <option value="">Show all</option>
+            <option value="" disabled>Filtrar por ciudad de destino</option>
+            <option value="">Mostrar todo</option>
             {cities.map((e, index) => (
                 <option key={index}>{e.name}</option>
             ))}

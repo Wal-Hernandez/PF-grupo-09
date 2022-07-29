@@ -14,7 +14,6 @@ export default function HomeBody() {
   const dispatch = useDispatch();
 	const CartProducts = useSelector ((state) => state) 
  // const {products, cart} = state  
-
   useEffect(() => {
     dispatch(getCities())
     !packages.length ? 
@@ -23,8 +22,6 @@ export default function HomeBody() {
         dispatch(getMainPackages())
         : console.log("hecho")
   }, [dispatch, packages, showPackages]);
-
-
   return (<>
     <div className="homeViewContainer">
     <ShoppingCart />
@@ -32,12 +29,7 @@ export default function HomeBody() {
       <div className='ofertasContainer'>
         <h1>Ofertas</h1>
       </div>
-
-
-
       <div className='mainViewContainer'>
-
-
         {showPackages.length ? (showPackages.map(e => {
           return (
             <div key={e.id} className='div-key-card'>
@@ -48,12 +40,10 @@ export default function HomeBody() {
                   <p class="card-text">${e.price}</p>
                   <p class="card-text">{e.hotel?.name}</p>
                 </div>
-
               </Link>
             </div>
           )
         })) : (<div> loading</div>)}
-
         <div>
           <Link to='/services'>
             <button class='btn btn-sm'>
@@ -61,12 +51,8 @@ export default function HomeBody() {
             </button>
           </Link>
         </div>
-
       </div>
-
     </div>
   </>
   )
-
 }
-

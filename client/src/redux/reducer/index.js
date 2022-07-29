@@ -138,69 +138,89 @@ export default function rootReducer(state = initialState, action) {
             return state;
         case POST_ACTIVITY:
             return state;
-        case TYPES.ADD_TO_CART:{
-
-            let myCarttext=localStorage.getItem("myCart")
-            let myCartparsed=JSON.parse(myCarttext)
-            let newItem=state.products.find(product => product.id === action.payload)    
-
-            let itemInCart = myCartparsed.find(item => item.id ===newItem.id)
-            
-            let cart
-            if(itemInCart) {
-                cart = myCartparsed.map(item => item.id===newItem.id ?
-                    {...item, quantity:item.quantity +1} : item)
-            } else {
-                cart= [...myCartparsed, {...newItem, quantity: 1}]
+            case TYPES.ADD_TO_CART:{
+                let cart
+                let cartJSON
+                let newItem
+                let itemInCart 
+                newItem=state.products.find(product => product.id === action.payload)    
+                itemInCart = state.cart.find(item => item.id ===newItem.id)
+                
+                if(!localStorage.getItem("myCart")){
+                    console.log("el carrito NO tiene nada, por lo que se crea ahora")
+                    if(itemInCart) {
+                        cart = state.cart.map(item => item.id===newItem.id ?
+                            {...item, quantity:item.quantity +1} : item)
+                    } else {
+                        cart= [...state.cart, {...newItem, quantity: 1}]
+                    }
+                    cartJSON= JSON.stringify(cart)
+                    localStorage.setItem("myCart", cartJSON) 
+                } else {
+                    console.log("el carrito tiene algo")
+                    let myCarttext=localStorage.getItem("myCart")
+                    let myCartparsed=JSON.parse(myCarttext)
+                    let itemInCart = myCartparsed.find(item => item.id ===newItem.id)
+                    if(itemInCart) {
+                        cart = myCartparsed.map(item => item.id===newItem.id ?
+                            {...item, quantity:item.quantity +1} : item)
+                    } else {
+                        cart= [...myCartparsed, {...newItem, quantity: 1}]
+                    }
+                    let cartJSON= JSON.stringify(cart)
+                    localStorage.setItem("myCart", cartJSON)                      
+                }
+    
+                return itemInCart 
+                    ? {
+                        ...state,
+                        cart:state.cart.map(item => item.id===newItem.id ?
+                        {...item, quantity:item.quantity +1} : item),
+    
+                    }
+                    : {
+                        ...state,
+                        cart:[...state.cart, {...newItem, quantity: 1}],
+                    }
+    
+                }
+    
+    
+            case TYPES.REMOVE_ONE_FROM_CART:{
+                let myCarttext=localStorage.getItem("myCart")
+                let myCartparsed=JSON.parse(myCarttext)
+    
+                let itemToDelete = myCartparsed.find(item => item.id === action.payload);
+                let cart
+                if (itemToDelete.quantity>1){
+                    cart = myCartparsed.map((item) =>
+                    item.id===action.payload ? 
+                    {...item, quantity:item.quantity-1}: item
+                )
+                } else {
+                    cart=myCartparsed.filter(item => item.id!== action.payload)
+                }
+                let cartJSON= JSON.stringify(cart)
+                localStorage.setItem("myCart", cartJSON) 
+                return {...state}
             }
-            let cartJSON= JSON.stringify(cart)
-            localStorage.setItem("myCart", cartJSON) 
-
-
-            return {...state} 
-
+            case TYPES.REMOVE_ALL_FROM_CART:{
+                let myCarttext=localStorage.getItem("myCart")
+                let myCartparsed=JSON.parse(myCarttext)
+    
+                let cart=myCartparsed.filter(item => item.id!== action.payload)
+                let cartJSON= JSON.stringify(cart)
+                localStorage.setItem("myCart", cartJSON) 
+                return {...state}
             }
-
-
-        case TYPES.REMOVE_ONE_FROM_CART:{
-            let myCarttext=localStorage.getItem("myCart")
-            let myCartparsed=JSON.parse(myCarttext)
-
-            let itemToDelete = myCartparsed.find(item => item.id === action.payload);
-            let cart
-            if (itemToDelete.quantity>1){
-                cart = myCartparsed.map((item) =>
-                item.id===action.payload ? 
-                {...item, quantity:item.quantity-1}: item
-            )
-            } else {
-                cart=myCartparsed.filter(item => item.id!== action.payload)
+            case TYPES.CLEAR_CART:{
+                let cart=[]
+                let cartJSON= JSON.stringify(cart)
+                localStorage.setItem("myCart", cartJSON) 
+                return {
+                    ...state,
+                }
             }
-            let cartJSON= JSON.stringify(cart)
-            localStorage.setItem("myCart", cartJSON) 
-
-
-            return {...state}
-
-        }
-        case TYPES.REMOVE_ALL_FROM_CART:{
-            let myCarttext=localStorage.getItem("myCart")
-            let myCartparsed=JSON.parse(myCarttext)
-
-            let cart=myCartparsed.filter(item => item.id!== action.payload)
-            let cartJSON= JSON.stringify(cart)
-            localStorage.setItem("myCart", cartJSON) 
-            return {...state}
-        }
-        case TYPES.CLEAR_CART:{
-            let cart=[]
-            let cartJSON= JSON.stringify(cart)
-            localStorage.setItem("myCart", cartJSON) 
-            return {
-                ...state,
-                cart:[]
-            }
-        }
         default:
             return state;
     }

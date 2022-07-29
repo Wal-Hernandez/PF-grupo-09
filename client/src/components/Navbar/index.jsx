@@ -34,23 +34,27 @@ if (user) {
 
   
   return (
-    <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar navbar-expand-lg">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <button>
-            <Link to="/">Volver al home</Link>
-          </button>
+          <Link to="/">
+            <button class='btn btn-sm'>
+              Volver al home
+            </button>
+          </Link>
         </li>
         <li class="nav-item active">
-          <button>
-            <Link to="/services">Paquetes</Link>
-          </button>
+          <Link to="/services">
+            <button class='btn btn-sm'>
+              Paquetes
+            </button>
+          </Link>
         </li>
         <li class="nav-item active">
           {userlog? <div>
             <h1>{userlog.nombre +" "+ userlog.apellido}</h1>
             <button
-          className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
+          class='btn btn-sm'
           onClick={handleLogout}
         >
           Logout

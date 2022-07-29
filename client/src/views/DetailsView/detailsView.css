@@ -2,10 +2,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: rgba(175, 0, 0, 0.795);
-    width: 30vw;
-    height: 70vh;
-    margin-left: 35vw;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    position: relative;
+    width: 35vw;
+    height: 65vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0vh;
+    margin-bottom: 20vh;
+}
+
+.footerDiv {
+    position: absolute;
+    margin-top: 10vh;
+}
+
+.details-card-top {
+    position: absolute;
+    top: 2vh;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }

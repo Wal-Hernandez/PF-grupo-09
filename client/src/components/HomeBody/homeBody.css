@@ -1,3 +1,7 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .homeViewContainer {
     display: flex;
     justify-content: center;
@@ -10,6 +14,8 @@
 .mainViewContainer {
     display: flex;
     width: 100vw;
+    height: 60vh;
+    margin-bottom: 10vh;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -18,9 +24,38 @@
     width: 20vw;
     margin: 1vw;
     min-width: 250px;
+    transition: transform .2s;
+}
+
+.div-key-card:hover {
+    transform: scale(1.05);
+}
+
+.div-key-card a {
+    text-decoration: none;
+    color: black;
+}
+
+.div-key-card a:hover {
+    color: rgb(240, 200, 10, 0.8);
+    text-shadow: 0px 0px 1px rgb(50, 50, 50);
 }
 
 .ofertasContainer {
     display: flex;
     height: 10vh;
+}
+
+.btn-sm {
+    background-color: rgb(240, 200, 10, 0.85);
+    color: rgb(50, 50, 50);
+    border: solid 2px rgb(50, 50, 50);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.btn-sm:hover {
+    background-color: rgb(240, 200, 10);
+    color: rgb(50, 50, 50);
+    box-shadow: 0px 0px 5px 1px rgb(20, 100, 120);
+    transition: box-shadow 0.2s ease-in-out;
 }

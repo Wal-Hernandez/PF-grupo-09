@@ -28,19 +28,17 @@ export default function Services({ userlog }) {
         <Navbar setCurrentPage={setCurrentPage} userlog={userlog} />
       </div>
       <div className="servicesViewContainer">
-        <div>
+        <div className="services-view-top">
           <b>Busqueda</b>
-        </div>
-        <div>calendario</div>
-        <div>
           <b>Matching de busqueda</b>
+          <div>calendario</div>
         </div>
         <div>
           <b>
             <Filters setCurrentPage={setCurrentPage} />
           </b>
         </div>
-        <div>
+        <div className="services-paginado-container">
           <Paginado
             currentPage={currentPage}
             packagesPerPage={packagesPerPage}
@@ -52,7 +50,7 @@ export default function Services({ userlog }) {
           <Productos currentPackages={currentPackages} />
         </div>
       </div>
-      <div>
+      <div className="services-footer-container">
         <Footer />
       </div>
     </>

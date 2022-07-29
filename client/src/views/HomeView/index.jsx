@@ -5,11 +5,11 @@ import "./homeView.css";
 import HomeBody from "../../components/HomeBody";
 import Carousel from "../../components/Carousel";
 
-function HomeView() {
+function HomeView({userlog}) {
 
   return (<>
     <div>
-      <Navbar />
+      <Navbar userlog={userlog} />
     </div>
     <div>
       <Carousel />

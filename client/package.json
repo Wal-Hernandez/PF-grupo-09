@@ -20,6 +20,8 @@
 
         "bootstrap": "^5.2.0",
 
+        "firebase": "^9.9.1",
+
         "json-server": "^0.17.0",
 
         "react": "^17.0.1",

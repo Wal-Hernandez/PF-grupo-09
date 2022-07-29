@@ -3,7 +3,7 @@ export const GET_PACKAGES = "GET_PACKAGES";
 export const GET_PACKAGE_ID = "GET_PACKAGE_ID";
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const FILTER_BY_DESTINY = "FILTER_BY_DESTINY";
-export const FILTER_BY_DATE_START = "FILTER_BY_DATE_START";
+export const FILTER_BY_DATE = "FILTER_BY_DATE";
 export const FILTER_BY_DATE_RETURN = "FILTER_BY_DATE_RETURN";
 export const SORT_BY_PRICE = "SORT_BY_PRICE";
 export const SORT_BY_STOCK = 'SORT_BY_STOCK';
@@ -28,4 +28,3 @@ export const PUT_ACTIVITY = "PUT_ACTIVITY";
 export const PUT_PLATFORM = "PUT_PLATFORM";
 export const PUT_PACKAGE = 'PUT_PACKAGE';
 export const DELETE_MODEL = "DELETE_MODEL";
-

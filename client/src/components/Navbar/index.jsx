@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.css'
 import { useAuth } from "../../context/context";
-
+import logo from "../../images/Buspack.png"
 import { getAuth } from "firebase/auth";
 
 function Navbar({userlog}) {
@@ -35,6 +35,9 @@ if (user) {
   
   return (
     <div class="navbar navbar-expand-lg">
+       <div>
+            <img src={logo} alt="Buspack" class="logo-buspack"/>
+        </div>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <Link to="/">
@@ -51,17 +54,19 @@ if (user) {
           </Link>
         </li>
         <li class="nav-item active">
-          {userlog? <div>
-            <h1>{userlog.nombre +" "+ userlog.apellido}</h1>
+          {userlog? <div class="userlog-container">
+            <h5>{userlog.nombre +" "+ userlog.apellido}</h5>
             <button
           class='btn btn-sm'
           onClick={handleLogout}
         >
           Logout
         </button>
-          </div>: <button>
-            <Link to="/login">Login</Link>
-          </button>}
+          </div>: <Link to="/login">
+            <button class='btn btn-sm'>
+              Login
+            </button>
+          </Link>}
          
         </li>
       </ul>

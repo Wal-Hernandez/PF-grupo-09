@@ -138,7 +138,7 @@ Waiting for the Data
   }
 
 
-  if (lang === 'Hotel') {
+  if (lang === 'hotels') {
     return (
       <form className='form' onSubmit={handleSubmitHotel}>
     
@@ -212,7 +212,7 @@ Waiting for the Data
         </form>
       )
   }
- if(lang === 'Plattform')
+ if(lang === 'plattforms')
 
 
   return (
@@ -243,7 +243,7 @@ Waiting for the Data
    > Create Plattform</button>
        </form>
     );
- if (lang === 'City')
+ if (lang === 'cities')
  return(
   <div className="div">
 
@@ -269,7 +269,7 @@ Waiting for the Data
   </form>
   </div>
 )
-if (lang === 'Bus')
+if (lang === 'buses')
 return(
 <form className='form' onSubmit={handleSubmitBus}>
     
@@ -296,7 +296,7 @@ return(
 
    </form>
 )
-if (lang ==='Activity')
+if (lang ==='activities')
 return(
   <form className='form' onSubmit={handleSubmitActivity}>
     
@@ -332,7 +332,7 @@ return(
      </form> 
 
 )
-if (lang==='Package')
+if (lang==='packages')
 return (
   <div className="div">
 
@@ -423,29 +423,29 @@ onChange={handleChange}/>
 
 
 
-export const CreateForm = ()=>{
-const models=['Hotel','Plattform','City','Bus','Activity','Package'];
-
-const [lang, setLang] = React.useState('');
+export const CreateForm = ({word})=>{
+const models=['Hotel','Plattform','City','Bus','Activity','packages'];
+console.log(word)
+const [lang, setLang] = React.useState(word);
 const[boton, setButton] =React.useState(false)
 console.log(lang, boton)
 
-function handleChange(event) {
+// function handleChange(event) {
  
   
-  setLang( (event.target.value));
-  setButton(models.includes(lang)?true:false)
-}
+//   setLang( (event.target.value));
+//   setButton(models.includes(lang)?true:false)
+// }
 
     return (
         <div>
-      <input value={lang}  onChange={handleChange}/>
+      {/* <input value={lang}  onChange={handleChange}/>
     
     <button onClick={()=>{setButton(models.includes(lang)?true:false)}}>Go</button>
     {boton && models.includes(lang)?<Ejemplo lang={lang}/>: ''}
 
-    <Link to ="/admin"> Volver</Link>
-
+    <Link to ="/admin"> Volver</Link> */}
+<Ejemplo lang={word}/>
         </div>
 )
 

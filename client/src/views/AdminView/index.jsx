@@ -9,42 +9,55 @@ import { getHotels } from "../../redux/actions/getHotels";
 import { getPlatforms } from "../../redux/actions/getPlatforms";
 import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
-
+import { CreateForm } from "./Forms/CreateForm";
 function Admin() {
   const [model, setModel] = React.useState("");
+  const [add,setAdd] = React.useState(false);
+  console.log(add)
   const { adminView } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function handlePackage(e) {
     e.preventDefault();
+     setAdd(add=>false);
     setModel(e.target.name);
     dispatch(getPackages());
+    
   }
   function handleCity(e) {
     e.preventDefault();
+    setAdd(add=>false);
     setModel(e.target.name);
     dispatch(getCities());
+    
   }
   function handleBus(e) {
     e.preventDefault();
+    setAdd(add=>false);
     setModel(e.target.name);
     dispatch(getBuses());
+    
   }
 
   function handleHotel(e) {
     e.preventDefault();
+    setAdd(add=>false);
     setModel(e.target.name);
     dispatch(getHotels());
+    
   }
 
   function handlePlattform(e) {
     e.preventDefault();
+    setAdd(add=>false);
     setModel(e.target.name);
     dispatch(getPlatforms());
+    
   }
 
   function handleActivities(e) {
     e.preventDefault();
+    setAdd(add=>false);
     setModel(e.target.name);
     console.log(model);
     dispatch(getActivities());
@@ -56,6 +69,7 @@ function Admin() {
     if (resp) dispatch(deleteModel(e.target.value, model));
     navigate("/admin");
   }
+let setCreate =() =>{ setAdd(add => !add) }
 
   return (
     <>
@@ -108,13 +122,13 @@ function Admin() {
       <div className="adminViewContainer">
         <div className="adminPanelTitle">
           <div className="titleView">AdminView </div><div className="btnAdd">
-            <Link to ="/admin/create">
-          <button>ADD</button></Link></div>
+            
+          <button onClick={setCreate} >ADD</button></div>
         </div>
 
        
           <div className="adminPanelContainer">
-            {adminView.length ? (
+            {add? <div> <CreateForm word={model}/></div>:adminView.length ? (
               adminView.map((e) => {
                 return (
                   <>
@@ -140,6 +154,7 @@ function Admin() {
             ) : (
               <div>Loading..</div>
             )}
+            {/* {add? <div> <CreateForm/></div>: <p>holis</p>} */}
           </div>
         </div>
         </div>

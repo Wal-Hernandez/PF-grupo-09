@@ -1,16 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.css'
-
-import { getAuth } from "firebase/auth";
-
-function Navbar() {
+import { useAuth } from "../../context/context";
 
 
-  const auth = getAuth();
-  const user = auth.currentUser;
+function Navbar({userlog}) {
+
 
   
+
+  const { logout, user } = useAuth();
+
+  console.log(user);
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
 
 
@@ -29,7 +37,15 @@ function Navbar() {
           </button>
         </li>
         <li class="nav-item active">
-          {user? <h1>{user.displayName}</h1>: <button>
+          {userlog? <div>
+            <h1>{userlog.nombre +" "+ userlog.apellido}</h1>
+            <button
+          className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
+          onClick={handleLogout}
+        >
+          logout
+        </button>
+          </div>: <button>
             <Link to="/login">Login</Link>
           </button>}
          

@@ -23,7 +23,13 @@ export function Login() {
         ? navigate("/admin")
         : navigate("/");
     } catch (error) {
-      setError(error.message);
+      console.log(error.code);
+      if (error.code === "auth/user-not-found") {
+        setError("Usuario o contraseña incorrectos");
+      }
+      if (error.code === "auth/wrong-password") {
+        setError("Contraseña incorrecta");
+      }
     }
   };
 
@@ -41,10 +47,11 @@ export function Login() {
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
-    if (!user.mail) return setError("Write an email to reset password");
+    if (!user.mail)
+      return setError("Escribe tu mail para resetear tu contrsaeña");
     try {
       await resetPassword(user.mail);
-      setError("We sent you an email. Check your inbox");
+      setError("Te enviamos un mail para recuperar tu contraseña");
     } catch (error) {
       setError(error.message);
     }
@@ -93,31 +100,25 @@ export function Login() {
 
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Sign In
           </button>
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#!"
-            onClick={handleResetPassword}
-          >
+          <a href="#!" onClick={handleResetPassword}>
             Forgot Password?
           </a>
         </div>
       </form>
-      <button
+      {/* <button
         onClick={handleGoogleSignin}
         className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
       >
         Google login
-      </button>
-      <p className="my-4 text-sm flex justify-between px-3">
+      </button> */}
+      <p>
         Don't have an account?
-        <Link to="/reg" className="text-blue-700 hover:text-blue-900">
-          Register
-        </Link>
+        <Link to="/reg">Register</Link>
       </p>
     </div>
   );

@@ -9,6 +9,7 @@ import { getHotels } from "../../redux/actions/getHotels";
 import { getPlatforms } from "../../redux/actions/getPlatforms";
 import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
+import { useAuth } from "../../context/context";
 
 function Admin() {
   const [model, setModel] = React.useState("");
@@ -56,9 +57,24 @@ function Admin() {
     if (resp) dispatch(deleteModel(e.target.value, model));
     navigate("/admin");
   }
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <>
+    <div>
+      <button
+          className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
+          onClick={handleLogout}>
+          logout
+        </button></div>
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
           <div>

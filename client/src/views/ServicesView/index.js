@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import Navbar from '../../components/Navbar'
-import Footer from '../../components/Footer'
-import './servicesView.css'
-import Productos from '../../components/Productos';
-import Paginado from '../../components/Paginado';
-import { useSelector } from 'react-redux';
-import Filters from '../../components/Filters';
-export default function Services() {
-
-  const packages = useSelector((state) => state.packages)
+import React, { useState } from "react";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import "./servicesView.css";
+import Productos from "../../components/Productos";
+import Paginado from "../../components/Paginado";
+import { useSelector } from "react-redux";
+import Filters from "../../components/Filters";
+export default function Services({ userlog }) {
+  const packages = useSelector((state) => state.packages);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [packagesPerPage /*setPackagesPerPage*/] = useState(3); //10 productos por pagina
@@ -23,38 +22,39 @@ export default function Services() {
     setCurrentPage(pageNumber);
   };
 
-  return (<>
-    <div>
-      <Navbar setCurrentPage={setCurrentPage} />
-    </div>
-    <div className='servicesViewContainer'>
+  return (
+    <>
       <div>
-        <b>Busqueda</b>
+        <Navbar setCurrentPage={setCurrentPage} userlog={userlog} />
       </div>
-      <div>calendario</div>
-      <div><b>Matching de busqueda</b></div>
+      <div className="servicesViewContainer">
+        <div>
+          <b>Busqueda</b>
+        </div>
+        <div>calendario</div>
+        <div>
+          <b>Matching de busqueda</b>
+        </div>
+        <div>
+          <b>
+            <Filters setCurrentPage={setCurrentPage} />
+          </b>
+        </div>
+        <div>
+          <Paginado
+            currentPage={currentPage}
+            packagesPerPage={packagesPerPage}
+            packages={packages.length}
+            paginado={paginado}
+          />
+        </div>
+        <div className="services-product-container">
+          <Productos currentPackages={currentPackages} />
+        </div>
+      </div>
       <div>
-        <b><Filters setCurrentPage={setCurrentPage} /></b>
-
+        <Footer />
       </div>
-      <div>
-        <Paginado
-          currentPage={currentPage}
-          packagesPerPage={packagesPerPage}
-          packages={packages.length}
-          paginado={paginado}
-        />
-      </div>
-      <div className='services-product-container'>
-
-        <Productos currentPackages={currentPackages} />
-
-      </div>
-    </div>
-    <div>
-
-      <Footer />
-    </div>
-  </>
-  )
+    </>
+  );
 }

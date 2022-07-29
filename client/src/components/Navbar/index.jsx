@@ -3,15 +3,25 @@ import { Link } from 'react-router-dom'
 import './navbar.css'
 import { useAuth } from "../../context/context";
 
+import { getAuth } from "firebase/auth";
 
 function Navbar({userlog}) {
 
 
-  
 
-  const { logout, user } = useAuth();
+const auth = getAuth();
+const user = auth.currentUser;
 
-  console.log(user);
+if (user) {
+  // User is signed in, see docs for a list of available properties
+  // https://firebase.google.com/docs/reference/js/firebase.User
+  // ...
+} else {
+  // No user is signed in.
+}
+
+  const { logout } = useAuth();
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -43,7 +53,7 @@ function Navbar({userlog}) {
           className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
           onClick={handleLogout}
         >
-          logout
+          Logout
         </button>
           </div>: <button>
             <Link to="/login">Login</Link>

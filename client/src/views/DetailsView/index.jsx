@@ -4,11 +4,11 @@ import Navbar from "../../components/Navbar";
 import Details from "../../components/Details";
 import "./detailsView.css";
 
-export default function DetailsView() {
+export default function DetailsView({userlog}) {
   return (
     <>
       <div>
-        <Navbar />
+        <Navbar userlog={userlog}/>
       </div>
       <div className="detailsViewContainer">
         <div>

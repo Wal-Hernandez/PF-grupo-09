@@ -63,6 +63,35 @@ let setCreate =() =>{ setAdd(add => !add) }
     setEdit((edit) => !edit);
   };
 console.log(adminView)
+const [pageCurrent,setPagC] = React.useState(1);
+
+let itemsPerPage=8;
+function setPagination(event) {// necesitamos una funcion para ir alterando las cosas
+  setPagC(
+    pageCurrent => Number(event.target.id)
+  )
+
+};
+let indiceFinal = pageCurrent * itemsPerPage;
+  let indiceInicial = indiceFinal - itemsPerPage;
+
+  let pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(adminView.length/ itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }// el ceil es para aproximar por exceso, asi nos aseguramos de no excluir razas
+  // cuando su cantidad sea distinta de 0 modulo 8( cuando no sea divisible)
+  let numerosRenderizados = pageNumbers.map(number => {
+   return (//Pues aqui mostramos los numeros. Deberiamos usar botones
+     <button
+       key={number}
+       id={number}
+       onClick={setPagination}
+     >
+       {number}
+     </button>
+   );
+ });
+
 
   return (
     <>
@@ -154,12 +183,13 @@ console.log(adminView)
                        </div>
                      </>
                         );
-                      })
+                      }).slice(indiceInicial, indiceFinal)
+                      
                     ) 
                   : (
               <div>Loading..</div>
                 ))}
-            {/* {add? <div> <CreateForm/></div>: <p>holis</p>} */}
+            {adminView.length && !add?  numerosRenderizados: ''}
           </div>
         </div>
       </div>

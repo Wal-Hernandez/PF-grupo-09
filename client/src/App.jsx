@@ -19,6 +19,7 @@ import {PutPackageForm} from './views/AdminView/Forms/PutPackageForm'
 import {CreateForm} from './views/AdminView/Forms/CreateForm';
 import{Alert} from './components/Login/Login'
 import{Login} from './components/Login/Login'
+import {Register} from './components/Login/Register'
 import { ProtectedRouted } from "./components/Login/ProtectedRouted";
 import { ProtectedRoutedAdmin } from './components/Login/ProtectedRouteAdmin';
 

@@ -35,7 +35,7 @@ export default function HomeBody() {
                       <h3 class="card-title">{e.name}</h3>
                       <img
                         class="card-img-top"
-                        src={e.hotel.urlImage}
+                        src={e.hotel?.urlImage}
                         alt="Card image cap"
                       />
                       <p class="card-text">${e.price}</p>
@@ -49,7 +49,6 @@ export default function HomeBody() {
             <div> loading</div>
           )}
         </div>
-
         <div class="btn-pack">
           <Link to="/services">
             <button class="btn btn-sm">
@@ -57,6 +56,7 @@ export default function HomeBody() {
             </button>
           </Link>
         </div>
+
       </div>
     </>
   );

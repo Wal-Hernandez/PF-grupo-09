@@ -16,12 +16,9 @@
 .mainViewContainer {
     display: flex;
     width: 100vw;
-    height: 60vh;
-    margin-bottom: 10vh;
-    margin-top: 200px;
     flex-wrap: wrap;
     justify-content: center;
-
+    height: 20vh;
 }
 
 .div-key-card {

@@ -14,10 +14,11 @@
     object-fit: cover;
 
 }
-.carousel-control-prev {
-    margin-left: 20%;
-}
-.carousel-control-next{
-    margin-right: 20%;
+
+.imgdog {
+    position: absolute;
+    max-height: 200px;
+    width: 100%;
+    left: 50%;
 }
 

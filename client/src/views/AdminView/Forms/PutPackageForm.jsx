@@ -8,7 +8,7 @@ const dispatch =useDispatch()
 const [packages, setPackages]= React.useState({start_date:'',end_date:'',name:'', 
 price:1, discount:1, 
 stock: 1, plattformId: 0, 
-busId: 0, cityId: 0, 
+businessId: 0, cityId: 0, 
 hotelId: 0, activity:[]});
 console.log(packages)
 function TransformData(x){
@@ -80,8 +80,8 @@ function handleChange(event) {
 
 
     <div className="div-form">
-    <label className="label-form"> busId:</label>
-   <input type="number" name='busId' value={packages['busId']} 
+    <label className="label-form"> businessId:</label>
+   <input type="number" name='businessId' value={packages['businessId']} 
     onChange={handleChange}/> 
     </div>
 

@@ -19,11 +19,11 @@ function Admin() {
   const { adminView } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-
+  console.log(id)
   function dispatchByName(name){
       if(name === "hotels") dispatch(getHotels());
       else if(name === "packages")dispatch(getPackages());
-      else if(name === "buses")dispatch(getBuses());
+      else if(name === "business")dispatch(getBuses());
       else if(name === "activities")dispatch(getActivities());
       else if(name === "cities")dispatch(getCities());
       else if(name === "plattforms")dispatch(getPlatforms());
@@ -40,7 +40,7 @@ function Admin() {
   async function handleDelete (e) {
     let resp = window.confirm("Confirmar acción.");
     if (resp){ await dispatch(deleteModel(e.target.value, model));
-      console.log(model);} 
+    } 
     dispatchByName(model);
   }
 let setCreate =() =>{ setAdd(add => !add) }
@@ -58,7 +58,7 @@ let setCreate =() =>{ setAdd(add => !add) }
     setId(id)
     setEdit((edit) => !edit);
   };
-console.log(adminView)
+
   return (
     <>
     <div>
@@ -80,7 +80,7 @@ console.log(adminView)
               </button>{" "}
           </div>
           <div>
-              <button name="buses" onClick={handleSelect}>
+              <button name="business" onClick={handleSelect}>
                 Bus
               </button>
           </div>

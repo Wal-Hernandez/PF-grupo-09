@@ -5,18 +5,18 @@ import { putHotel } from "../../../redux/actions/putHotel";
 export const PutHotelForm = ({id}) => {
   const dispatch = useDispatch();
   const [hotel, setHotel] = React.useState({
-    name: "",
-    location: [],
-    phone: "",
-    price: "",
-    stars: 0,
-    pool: true,
-    wifi: true,
-    gym: true,
-    urlImage: [],
-    score: 0,
-    comments: "",
-    cityId: 0
+    name: "", 
+    location: [], 
+    stars: 0, 
+    phone: "", 
+    price: "", 
+    pool: true, 
+    wifi: true, 
+    gym: true, 
+    urlImage: [], 
+    cityId: 0, 
+    score: 0, 
+    comments: ""
   });
   console.log(hotel);
   function TransformData(x) {
@@ -129,8 +129,9 @@ export const PutHotelForm = ({id}) => {
 
         <div className="div-form">
           <label className="label-form"> Gimnasio: </label>
-          <select name="gym" onChange={handleChange}>
-            <option value="true" selected>
+          <select name="gym" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">
               Si
             </option>
             <option value="false">No</option>
@@ -139,8 +140,9 @@ export const PutHotelForm = ({id}) => {
 
         <div className="div-form">
           <label className="label-form"> Pool: </label>
-          <select name="pool" onChange={handleChange}>
-            <option value="true" selected>
+          <select name="pool" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">
               Si
             </option>
             <option value="false">No</option>
@@ -149,8 +151,9 @@ export const PutHotelForm = ({id}) => {
 
         <div className="div-form">
           <label className="label-form"> Wifi: </label>
-          <select name="wifi" onChange={handleChange}>
-            <option value="true" selected>
+          <select name="wifi" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">
               Si
             </option>
             <option value="false">No</option>

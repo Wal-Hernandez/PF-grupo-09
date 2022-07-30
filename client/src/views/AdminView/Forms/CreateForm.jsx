@@ -21,7 +21,7 @@ function Ejemplo({ lang }) {
     image: "",
     price: "",
     cityId: 0,
-    score: [],
+    score: 0,
     comments: []
   });
   const [packages, setPackages] = React.useState({
@@ -72,6 +72,21 @@ function Ejemplo({ lang }) {
   }
 
   function handleChangeBus(event) {
+    if(event.target.name === "score"){
+      setBus({
+        ...bus,
+        [event.target.name]: TransformData(event.target.value),
+      });
+      return;
+    }
+    if(event.target.name === "comments"){
+      setBus({
+        ...bus,
+        [event.target.name]: TransformData2(event.target.value),
+      });
+      return;
+    }
+
     setBus({ ...bus, [event.target.name]: event.target.value });
   }
   function handleSubmitBus(e) {
@@ -212,7 +227,7 @@ function Ejemplo({ lang }) {
         <div className="div-form">
           <label className="label-form"> stars:</label>
           <input
-            type="stars"
+            type="number"
             name="stars"
             value={hotel["stars"]}
             onChange={handleChangeHotel}
@@ -324,7 +339,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Adress</label>
+          <label className="label-form"> Address</label>
           <input
             type="text"
             name="address"
@@ -414,16 +429,16 @@ function Ejemplo({ lang }) {
         <div className="div-form">
           <label className="label-form"> Score:</label>
           <input
-            type="text"
+            type="number"
             name="score"
             value={bus["score"]}
             onChange={handleChangeBus}
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> Comments:</label>
+          <label className="label-form"> Comments: </label>
           <input
-            type="text"
+            type="textarea"
             name="comments"
             value={bus["comments"]}
             onChange={handleChangeBus}
@@ -462,7 +477,7 @@ function Ejemplo({ lang }) {
         <div className="div-form">
           <label className="label-form"> price:</label>
           <input
-            type="text"
+            type="number"
             name="price"
             value={activity["price"]}
             onChange={handleChangeActivity}

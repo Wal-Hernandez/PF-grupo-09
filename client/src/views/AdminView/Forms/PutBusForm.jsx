@@ -2,15 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { putBus } from "../../../redux/actions/putBus";
-export const PutBusForm = () => {
-  const { id } = useParams();
+export const PutBusForm = ({id}) => {
+ 
   const dispatch = useDispatch();
   const [bus, setBus] = React.useState({ 
     name: "", 
     phone: "",
     email: "",
-    score: [],
-    comments: [] 
+    score: 0,
+    comments: "" 
   });
 
   /* function TransformData(x){
@@ -19,7 +19,23 @@ return JSON.parse(x)
 
 } */
 
+  function TransformData(x) {
+    if (isNaN(x[0])) return x;
+    return x.split(",");
+  }
+
   function handleChange(event) {
+    if (event.target.name === "comments" ) {
+      setBus({ ...bus, [event.target.name]: [event.target.value] });
+      return;
+    }
+    if(event.target.name === "score"){
+      setBus({
+        ...bus,
+        [event.target.name]: TransformData(event.target.value),
+      });
+      return;
+    }
     setBus({ ...bus, [event.target.name]: event.target.value });
     //     setErrors(validate({
     //     ...perro,
@@ -80,7 +96,7 @@ return JSON.parse(x)
         <div className="div-form">
           <label className="label-form"> Score:</label>
           <input
-            type="text"
+            type="number"
             name="score"
             value={bus["score"]}
             onChange={handleChange}
@@ -106,7 +122,7 @@ return JSON.parse(x)
           // Mientras No pase el tercer estado, desactivame esto
         >
           {" "}
-          Put Bus
+          Put Business
         </button>
         <Link to="/admin"> Volver</Link>
       </form>

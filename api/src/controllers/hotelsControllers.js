@@ -45,20 +45,23 @@ const createHotel = async (
   wifi,
   gym,
   urlImage,
-  cityId
+  cityId,
+  score,
+  comments
 ) => {
   try {
-    if (
-      !name ||
-      !location ||
-      !stars ||
-      !phone ||
-      !price ||
-      !urlImage ||
-      !cityId
-    ) {
-      return "All fields are required";
-    }
+    // if (
+    //   !name ||
+    //   !location ||
+    //   !stars ||
+    //   !phone ||
+    //   !price ||
+    //   !urlImage ||
+    //   !cityId ||
+    //   !score
+    // ) {
+    //   return "All fields are required";
+    // }
     if (typeof name !== "string") {
       return "Only letters are allowed in the name field";
     }
@@ -73,12 +76,14 @@ const createHotel = async (
       gym,
       urlImage,
       cityId,
+      score,
+      comments
     });
 
     return "Hotel created successfully";
   } catch (err) {
     return {
-      msg: "Error createPlattform(plattformController.js)",
+      msg: "Error createhotel(hotelController.js)",
       error: err,
     };
   }

@@ -48,6 +48,13 @@ export const PutHotelForm = ({id}) => {
       }
       return;
     }
+    if(event.target.name === "score"){
+      setHotel({
+        ...hotel,
+        [event.target.name]: TransformData(event.target.value),
+      });
+      return;
+    }
 
     setHotel({ ...hotel, [event.target.name]: event.target.value });
   }

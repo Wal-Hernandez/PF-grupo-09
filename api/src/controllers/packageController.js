@@ -73,7 +73,7 @@ const getPackageById = async (req, res, next) => {
           }
         },
         {
-          model: Bussines,
+          model: Business,
          
         },
         {

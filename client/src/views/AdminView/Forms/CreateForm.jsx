@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { postActivity } from "../../../redux/actions/postActivity";
 import { postCity } from "../../../redux/actions/postCity";
 import { postBus } from "../../../redux/actions/postBus";
@@ -17,11 +16,13 @@ function Ejemplo({ lang }) {
     score: [],
     comments: [] 
   });
-  const [activity, setactivity] = React.useState({
+  const [activity, setActivity] = React.useState({
     name: "",
-    description: "",
+    image: "",
     price: "",
     cityId: 0,
+    score: [],
+    comments: []
   });
   const [packages, setPackages] = React.useState({
     start_date: "",
@@ -79,7 +80,21 @@ function Ejemplo({ lang }) {
   }
 
   function handleChangeActivity(event) {
-    setactivity({ ...activity, [event.target.name]: event.target.value });
+    setActivity({ ...activity, [event.target.name]: event.target.value });
+    if(event.target.name === "score"){
+      setActivity({
+        ...activity,
+        [event.target.name]: TransformData(event.target.value),
+      });
+      return;
+    }
+    if(event.target.name === "comments"){
+      setActivity({
+        ...activity,
+        [event.target.name]: TransformData2(event.target.value),
+      });
+      return;
+    }
   }
 
   function handleSubmitActivity(e) {
@@ -144,17 +159,17 @@ function Ejemplo({ lang }) {
 
       return;
     }
-    if(event.target.value === "score"){
+    if(event.target.name === "score"){
       setHotel({
         ...hotel,
         [event.target.name]: TransformData(event.target.value),
       });
       return;
     }
-    if(event.target.value === "comments"){
+    if(event.target.name === "comments"){
       setHotel({
         ...hotel,
-        [event.target.name]: TransformData(event.target.value),
+        [event.target.name]: TransformData2(event.target.value),
       });
       return;
     }
@@ -435,11 +450,11 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> description</label>
+          <label className="label-form"> image</label>
           <input
             type="text"
-            name="description"
-            value={activity["description"]}
+            name="image"
+            value={activity["image"]}
             onChange={handleChangeActivity}
           />
         </div>
@@ -453,10 +468,28 @@ function Ejemplo({ lang }) {
             onChange={handleChangeActivity}
           />
         </div>
+        <div className="div-form">
+          <label className="label-form"> score:</label>
+          <input
+            type="text"
+            name="score"
+            value={activity["score"]}
+            onChange={handleChangeActivity}
+          />
+        </div>
+        <div className="div-form">
+          <label className="label-form"> comments:</label>
+          <input
+            type="text"
+            name="comments"
+            value={activity["comments"]}
+            onChange={handleChangeActivity}
+          />
+        </div>
 
         <div className="div-form">
           <label className="label-form"> cityId:</label>
-          <input type="number" name="cityId" />
+          <input type="number" name="cityId" onChange={handleChangeActivity}/>
         </div>
         <button
           type="submit"

@@ -8,7 +8,7 @@ import Buy from './views/BuyView';
 import Services from './views/ServicesView';
 import Admin from './views/AdminView';
 import FAQ from './components/FAQ/FAQ.jsx'
-import LoginView from './views/LoginView';
+
 import AboutView from './views/AboutView';  
 import{Alert} from './components/Login/Login'
 
@@ -69,15 +69,14 @@ function App() {
     <div className="App">
        <AuthProvider>
     <Routes>
-      <Route path="/" element={<Home/>} />
-      <Route path="/login" element={<LoginView/>}/>
-      <Route path="/details/:id" element={<Details/>} />
-      <Route path="/buy" element={<EditBuy/>} />
-      <Route path="/editBuy" element={<Buy/>} />
-      <Route path="/services" element={<Services/>} />
-      <Route path="/admin" element={<Admin/>} />
-      <Route path ="/faq" element ={<FAQ/>}/>
-      <Route path="/about" element={<AboutView/>} />
+      <Route path="/" element={<Home userlog={userlog}/>} />
+      <Route path="/details/:id" element={<Details userlog={userlog}/>} />
+      <Route path="/buy" element={<EditBuy userlog={userlog}/>} />
+      <Route path="/editBuy" element={<Buy userlog={userlog}/>} />
+      <Route path="/services" element={<Services userlog={userlog}/>} />
+      <Route path="/admin" element={<ProtectedRoutedAdmin><Admin userlog={userlog}/></ProtectedRoutedAdmin>} />
+      <Route path ="/faq" element ={<FAQ userlog={userlog}/>}/>
+      <Route path="/about" element={<AboutView userlog={userlog}/>} />
       <Route path ="/reg" element ={<Register/>}/>
        <Route path ="/login" element ={<Login/>}/>
       

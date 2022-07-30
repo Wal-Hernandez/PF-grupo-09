@@ -10,6 +10,7 @@ import { getPlatforms } from "../../redux/actions/getPlatforms";
 import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
+import { useAuth } from "../../context/context";
 import { EditForm } from "./Forms/EditForm";
 function Admin() {
   const [model, setModel] = React.useState("");
@@ -43,9 +44,15 @@ function Admin() {
       console.log(model);} 
     dispatchByName(model);
   }
-  
-  let setCreate = () => {
-    setAdd((add) => !add);
+let setCreate =() =>{ setAdd(add => !add) }
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   let setUpdate = (id) => {
@@ -55,6 +62,12 @@ function Admin() {
 console.log(adminView)
   return (
     <>
+    <div>
+      <button
+          className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
+          onClick={handleLogout}>
+          logout
+        </button></div>
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
           <div>

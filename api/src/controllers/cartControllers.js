@@ -3,8 +3,9 @@ const { Package,Cart,CartDetail,Hotel,City, Activity,User,Business, Plattform} =
 
 const getCart = async (id) => {
   try {
-    let  cart= await Cart.findOne({   // REVISAR RELACIONES DE INCLUDE
-      where:{id:id},
+    let  cart= await Cart.findAll({   // REVISAR RELACIONES DE INCLUDE
+      where:{id:id,
+             statusCartId:1},
 include:[{
   model: User,
  

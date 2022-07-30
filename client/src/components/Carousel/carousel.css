@@ -1,28 +1,23 @@
-.prev {
-    position: absolute;
-    height: 5vh;
-    width: 5vw;
-    background-color: red;
-    z-index: 1;
-    left: 40%;
+
+.carousel-inner{
+    height: 60vh;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    border-radius: 5px;
+
+    
+}
+.d-block{
+    object-fit: cover;
+
+}
+.carousel-control-prev {
+    margin-left: 20%;
+}
+.carousel-control-next{
+    margin-right: 20%;
 }
 
-.next {
-    position: absolute;
-    height: 5vh;
-    width: 5vw;
-    background-color: red;
-    z-index: 1;
-    left: 150%
-}
-
-.imgdog {
-    position: absolute;
-    height: 20%;
-    width: 100%;
-    left: 50%;
-}
-
-.slider {
-    top: 10vh;
-}

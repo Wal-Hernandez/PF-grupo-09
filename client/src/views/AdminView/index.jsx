@@ -10,6 +10,11 @@ import { getPlatforms } from "../../redux/actions/getPlatforms";
 import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
+<<<<<<< HEAD
+=======
+import { useAuth } from "../../context/context";
+
+>>>>>>> a839202e997e0e79244cdff078ba0997516b9d73
 function Admin() {
   const [model, setModel] = React.useState("");
   const [add,setAdd] = React.useState(false);
@@ -70,9 +75,27 @@ function Admin() {
     navigate("/admin");
   }
 let setCreate =() =>{ setAdd(add => !add) }
+<<<<<<< HEAD
+=======
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+>>>>>>> a839202e997e0e79244cdff078ba0997516b9d73
 
   return (
     <>
+    <div>
+      <button
+          className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
+          onClick={handleLogout}>
+          logout
+        </button></div>
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
           <div>

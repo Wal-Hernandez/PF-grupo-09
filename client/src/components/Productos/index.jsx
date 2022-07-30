@@ -14,6 +14,7 @@ export default function Productos(props) {
         return (
           <div key={e.id} className="package-item">
             <Link to={"/details/" + e.id}>
+              <img class="card-img-top" src={e.hotel.urlImage} alt="Card image cap" />
               <div>Nombre paquete: {e.name}</div>
               <div>Fecha de salida: {e.start_date}</div>
               <div>Fecha de llegada: {e.end_date}</div>

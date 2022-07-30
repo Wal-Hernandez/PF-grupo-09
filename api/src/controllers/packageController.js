@@ -1,4 +1,4 @@
-const { Package, Activity, Bus, Plattform, City, Hotel } = require("../db");
+const { Package, Activity,Business, Plattform, City, Hotel } = require("../db");
 const { Op } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
@@ -32,12 +32,12 @@ const getPackages = async (req, res, next) => {
       include: [
         {
           model: Activity,
-          through: {
+      /*     through: {
             attributes: [],
-          },
+          }, */
         },
         {
-          model: Bus,
+          model: Business,
           
         },
         {
@@ -46,8 +46,8 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: City,
-          where: destinationWhere,
-          attributes: ["name"],
+      /*     where: destinationWhere,
+          attributes: ["name"], */
         },
         {
           model: Hotel,
@@ -80,7 +80,7 @@ const getPackageById = async (req, res, next) => {
           }
         },
         {
-          model: Bus,
+          model: Bussines,
          
         },
         {
@@ -115,7 +115,7 @@ const postPackage = async (req, res, next) => {
       price,
       discount,
       activity,
-      busId,
+      businessId,
       plattformId,
       cityId,
       hotelId,
@@ -128,7 +128,7 @@ const postPackage = async (req, res, next) => {
       !price ||
       !discount ||
       !activity ||
-      !busId ||
+      !businessId ||
       !plattformId ||
       !cityId ||
       !hotelId ||
@@ -139,7 +139,7 @@ const postPackage = async (req, res, next) => {
       });
     }
     if (
-      busId < 1 ||
+      businessId < 1 ||
       plattformId < 1 ||
       cityId < 1 ||
       hotelId < 1 ||
@@ -160,7 +160,7 @@ const postPackage = async (req, res, next) => {
       end_date,
       price,
       discount,
-      busId,
+      businessId,
       plattformId,
       cityId,
       hotelId,
@@ -216,7 +216,7 @@ const updatePackage = async (req, res) => {
     price,
     discount,
     activity,
-    busId,
+    businessId,
     plattformId,
     cityId,
     hotelId,
@@ -230,7 +230,7 @@ const updatePackage = async (req, res) => {
       !end_date ||
       !price ||
       !activity ||
-      !busId ||
+      !businessId ||
       !plattformId ||
       !cityId ||
       !hotelId ||
@@ -241,7 +241,7 @@ const updatePackage = async (req, res) => {
       });
     }
     if (
-      busId < 1 ||
+      businessId < 1 ||
       plattformId < 1 ||
       cityId < 1 ||
       hotelId < 1 ||
@@ -263,7 +263,7 @@ const updatePackage = async (req, res) => {
         end_date,
         price,
         discount,
-        busId,
+        businessId,
         plattformId,
         cityId,
         hotelId,

@@ -7,7 +7,6 @@ import EditBuy from './views/EditBuyView';
 import Buy from './views/BuyView';
 import Services from './views/ServicesView';
 import Admin from './views/AdminView';
-//import Login from './views/LoginView';
 import FAQ from './components/FAQ/FAQ.jsx'
 import LoginView from './views/LoginView';
 import AboutView from './views/AboutView';
@@ -18,9 +17,12 @@ import {PutActivityForm} from './views/AdminView/Forms/PutActivityForm';
 import {PutPlatformForm} from './views/AdminView/Forms/PutPlatformForm';
 import {PutPackageForm} from './views/AdminView/Forms/PutPackageForm'
 import {CreateForm} from './views/AdminView/Forms/CreateForm';
-//import{Login} from './components/Login/Login'
 import{Alert} from './components/Login/Login'
+<<<<<<< HEAD
 //import{Home2} from './components/Login/Home2'
+=======
+
+>>>>>>> a839202e997e0e79244cdff078ba0997516b9d73
 import{Register} from './components/Login/Register'
 import{Login} from './components/Login/Login'
 import { ProtectedRouted } from "./components/Login/ProtectedRouted";
@@ -79,13 +81,13 @@ function App() {
      <AuthProvider>
      <Routes>
        <Route path="/" element={<Home userlog={userlog}/>} />
-       <Route path="/details/:id" element={<Details/>} />
-       <Route path="/buy" element={<EditBuy/>} />
-       <Route path="/editBuy" element={<Buy/>} />
-       <Route path="/services" element={<Services/>} />
+       <Route path="/details/:id" element={<Details userlog={userlog}/>} />
+       <Route path="/buy" element={<EditBuy userlog={userlog}/>} />
+       <Route path="/editBuy" element={<Buy userlog={userlog}/>} />
+       <Route path="/services" element={<Services userlog={userlog}/>} />
        <Route path="/admin" element={<ProtectedRoutedAdmin><Admin userlog={userlog} /></ProtectedRoutedAdmin>} />
-       <Route path ="/faq" element ={<FAQ/>}/>
-       <Route path="/about" element={<AboutView/>} />
+       <Route path ="/faq" element ={<FAQ userlog={userlog}/>}/>
+       <Route path="/about" element={<AboutView userlog={userlog}/>} />
        <Route path="/admin/PutCityForm/:id" element ={<ProtectedRoutedAdmin><PutCityForm/></ProtectedRoutedAdmin>}/>
        <Route path="/admin/create" element ={<ProtectedRoutedAdmin><CreateForm/></ProtectedRoutedAdmin>}/>
        <Route path="/admin/edit/buses/:id" element ={<ProtectedRoutedAdmin><PutBusForm/></ProtectedRoutedAdmin>}/>

@@ -8,19 +8,25 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <div className='FooterContainer'>
-      <div className='footerElement'>
-        <Link to="/about">Acerca de nosotros</Link>
+      <div className='footer-container-top'>
+        <div className='footerElement'>
+          <Link to="/about">
+            <button class="btn btn-dark">Acerca de nosotros</button>
+          </Link>
+        </div>
+        <form>
+          <div className='footerElement'>
+            <Mensaje />
+          </div>
+        </form>
+        <div className='footerElement'>
+          <Contacto />
+        </div>
       </div>
-      <form>
-      <div className='footerElement'>
-        <Mensaje/>
-      </div>
-      </form>
-      <div className='footerElement'>
-        <Contacto/>
-      </div>
-      <div>
-<NavLink to ="/faq"> Preguntas Frecuentes</NavLink>
+      <div className='footer-container-bottom'>
+        <NavLink to="/faq">
+          <button className='btn btn-dark'>Preguntas Frecuentes</button>
+        </NavLink>
 
       </div>
     </div>

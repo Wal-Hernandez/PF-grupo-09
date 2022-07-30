@@ -27,7 +27,7 @@ const Carousel = () => {
 
 
   return (
-    <section className='slider' style={{ height: '70vh', position: 'absolute', width: '50%' }}>
+    <section className='slider' style={{ position: 'absolute', width: '50%' }}>
 
       <div className='prev' >
         <button onClick={prevSlide} class="btn"> Prev </button>

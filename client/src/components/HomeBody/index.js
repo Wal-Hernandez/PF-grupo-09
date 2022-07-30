@@ -44,14 +44,13 @@ export default function HomeBody() {
           )
         })) : (<div> loading</div>)}
 
-        <div>
-          <Link to='/services'>
-            <button class='btn btn-sm'>
-              <h3>Ver todos los paquetes</h3>
-            </button>
-          </Link>
-        </div>
-
+      </div>
+      <div>
+        <Link to='/services'>
+          <button class='btn btn-sm'>
+            <h3>Ver todos los paquetes</h3>
+          </button>
+        </Link>
       </div>
     </div>
   </>

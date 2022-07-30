@@ -10,10 +10,9 @@ import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
-<<<<<<< HEAD
-=======
+
 import { EditForm } from "./Forms/EditForm";
->>>>>>> 62e64d97854d94e77fe543fffacb28838c111c58
+
 function Admin() {
   const [model, setModel] = React.useState("");
   const [add, setAdd] = React.useState(false);
@@ -58,15 +57,13 @@ let setCreate =() =>{ setAdd(add => !add) }
     }
   };
 
-<<<<<<< HEAD
 
-=======
   let setUpdate = (id) => {
     setId(id)
     setEdit((edit) => !edit);
   };
 console.log(adminView)
->>>>>>> 62e64d97854d94e77fe543fffacb28838c111c58
+
   return (
     <>
     <div>

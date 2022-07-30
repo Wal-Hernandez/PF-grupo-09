@@ -4,6 +4,7 @@ import { useAuth } from "../../context/context";
 import { Alert } from "./Alert";
 import { useDispatch } from "react-redux";
 import { postUser } from "../../redux/actions/postUser";
+import { loadCart } from "../../redux/actions/loadCart";
 export function Register() {
   const { signup } = useAuth();
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export function Register() {
       await signup(user.mail, user.password, user.rol, user.name, user.surname);
       let userDb = { ...user };
       console.log(userDb);
-      dispatch(postUser(userDb));
+       dispatch(postUser(userDb));
       navigate("/");
     } catch (error) {
       console.log(error.code);

@@ -3,8 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/context";
 import { Alert } from "./Alert";
 import Admin from "../../views/AdminView/index";
+import { useDispatch } from "react-redux";
+import { loadCart } from "../../redux/actions/loadCart";
 
 export function Login() {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     mail: "",
     password: "",
@@ -19,9 +22,15 @@ export function Login() {
     setError("");
     try {
       await login(user.mail, user.password);
-      user.mail === "productowner@henry.com"
-        ? navigate("/admin")
-        : navigate("/");
+      if(user.mail === "productowner@henry.com")
+        { navigate("/admin")}
+        else{ 
+          dispatch(loadCart(user.mail));
+          navigate("/");  
+        }
+        
+          
+        
     } catch (error) {
       console.log(error.code);
       if (error.code === "auth/user-not-found") {

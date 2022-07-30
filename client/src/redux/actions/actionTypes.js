@@ -30,3 +30,5 @@ export const DELETE_MODEL = "DELETE_MODEL";
 
 export const POST_USER = "POST_USER";
 
+export const LOAD_CART = "LOAD_CART";
+

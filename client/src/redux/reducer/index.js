@@ -21,7 +21,9 @@ import {
     POST_BUS,
     POST_CITY,
     FILTER_BY_DATE,
-    CLEAR_FILTERS
+    CLEAR_FILTERS,
+    LOAD_CART,
+    POST_USER
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -31,7 +33,8 @@ const initialState = {
     isAdmin: null,
     adminView: [],
     offers: [],
-    cities: []
+    cities: [],
+    cart:{}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -118,6 +121,16 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 packages: action.payload
             }
+        case LOAD_CART:
+            return {
+                ...state,
+                cart: action.payload
+            } 
+        case POST_USER:
+            return{ ...state,
+                cart:action.payload
+            }
+            ;
         case PUT_CITY:
             return state;
         case PUT_BUS:

@@ -10,11 +10,7 @@ import { getPlatforms } from "../../redux/actions/getPlatforms";
 import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
-<<<<<<< HEAD
-=======
 import { useAuth } from "../../context/context";
-
->>>>>>> a839202e997e0e79244cdff078ba0997516b9d73
 function Admin() {
   const [model, setModel] = React.useState("");
   const [add,setAdd] = React.useState(false);
@@ -75,8 +71,7 @@ function Admin() {
     navigate("/admin");
   }
 let setCreate =() =>{ setAdd(add => !add) }
-<<<<<<< HEAD
-=======
+
   const { logout } = useAuth();
 
   const handleLogout = async () => {
@@ -86,7 +81,7 @@ let setCreate =() =>{ setAdd(add => !add) }
       console.error(error.message);
     }
   };
->>>>>>> a839202e997e0e79244cdff078ba0997516b9d73
+
 
   return (
     <>

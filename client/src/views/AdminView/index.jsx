@@ -91,7 +91,7 @@ let setCreate =() =>{ setAdd(add => !add) }
           </div>
           <div>
             <Link to="/admin/buses">
-              <button name="buses" onClick={handleBus}>
+              <button name="business" onClick={handleBus}>
                 Bus
               </button>
             </Link>

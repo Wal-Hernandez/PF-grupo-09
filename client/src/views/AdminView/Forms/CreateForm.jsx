@@ -10,7 +10,13 @@ import { postHotel } from "../../../redux/actions/postHotel";
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
   const [city, setCity] = React.useState({ name: "", location: [] });
-  const [bus, setBus] = React.useState({ patent: "", seating: 0 });
+  const [bus, setBus] = React.useState({ 
+    name: "", 
+    phone: "",
+    email: "",
+    score: [],
+    comments: [] 
+  });
   const [activity, setactivity] = React.useState({
     name: "",
     description: "",
@@ -45,6 +51,8 @@ function Ejemplo({ lang }) {
     wifi: true,
     gym: true,
     urlImage: [],
+    score: [],
+    comments: []
   });
 
   function TransformData(x) {
@@ -134,6 +142,20 @@ function Ejemplo({ lang }) {
         setHotel({ ...hotel, [event.target.name]: false });
       }
 
+      return;
+    }
+    if(event.target.value === "score"){
+      setHotel({
+        ...hotel,
+        [event.target.name]: TransformData(event.target.value),
+      });
+      return;
+    }
+    if(event.target.value === "comments"){
+      setHotel({
+        ...hotel,
+        [event.target.name]: TransformData(event.target.value),
+      });
       return;
     }
 
@@ -248,6 +270,24 @@ function Ejemplo({ lang }) {
             onChange={handleChangeHotel}
           />
         </div>
+        <div className="div-form">
+          <label className="label-form"> score:</label>
+          <input
+            type="number"
+            name="score"
+            value={hotel["score"]}
+            onChange={handleChangeHotel}
+          />
+        </div>
+        <div className="div-form">
+          <label className="label-form"> comments: </label>
+          <input
+            type="textarea"
+            name="comments"
+            value={hotel["comments"]}
+            onChange={handleChangeHotel}
+          />
+        </div>
         <button type="submit" className="button-form">
           {" "}
           Create Hotel
@@ -329,22 +369,48 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmitBus}>
         <div className="div-form">
-          <label className="label-form"> Patent:</label>
+          <label className="label-form"> Name:</label>
           <input
             type="text"
-            name="patent"
-            value={bus["patent"]}
+            name="name"
+            value={bus["name"]}
             onChange={handleChangeBus}
           />
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Seating:</label>
-
+          <label className="label-form"> Phone:</label>
           <input
             type="text"
-            name="seating"
-            value={bus["seating"]}
+            name="phone"
+            value={bus["phone"]}
+            onChange={handleChangeBus}
+          />
+        </div>
+        <div className="div-form">
+          <label className="label-form"> Email:</label>
+          <input
+            type="text"
+            name="email"
+            value={bus["email"]}
+            onChange={handleChangeBus}
+          />
+        </div>
+        <div className="div-form">
+          <label className="label-form"> Score:</label>
+          <input
+            type="text"
+            name="score"
+            value={bus["score"]}
+            onChange={handleChangeBus}
+          />
+        </div>
+        <div className="div-form">
+          <label className="label-form"> Comments:</label>
+          <input
+            type="text"
+            name="comments"
+            value={bus["comments"]}
             onChange={handleChangeBus}
           />
         </div>
@@ -517,11 +583,7 @@ function Ejemplo({ lang }) {
             />
           </div>
 
-          <button type="submit" className="button-form">
-            {" "}
-            Put Platform
-          </button>
-          <Link to="/admin"> Volver</Link>
+          <button type="submit" className="button-form">Create Package</button>
         </form>
       </div>
     );

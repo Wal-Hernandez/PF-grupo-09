@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import s from "./FAQ.module.css"
-export default function FAQ(){
+export default function FAQ({userlog}){
 
 
 
@@ -10,7 +10,7 @@ export default function FAQ(){
 return(
 <div>
 <div>
-        <Navbar />
+        <Navbar userlog={userlog} />
       </div>
       <div className={s.FAQContainer}>
 <h1>Preguntas Frecuentes</h1>

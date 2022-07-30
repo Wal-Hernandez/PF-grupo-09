@@ -4,27 +4,26 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('activity', {
+  sequelize.define('business', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      image:{
-        type:DataTypes.STRING
-      },
-
-      price: {
-        type: DataTypes.DECIMAL,
+      phone: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
-
-      score: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER), 
-        
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+    score: {                                
+        type: DataTypes.ARRAY(DataTypes.INTEGER),  
       },
     comments:{
       type:DataTypes.ARRAY(DataTypes.STRING)
     }
+    
   
   },{timestamps:false});
 };

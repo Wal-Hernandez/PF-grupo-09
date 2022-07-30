@@ -27,41 +27,29 @@ const Carousel = () => {
 
 
   return (
-    <section className='slider' style={{ position: 'absolute', width: '50%' }}>
-
-      <div className='prev' >
-        <button onClick={prevSlide} class="btn"> Prev </button>
-      </div>
-      <div className='next' >
-        <button onClick={nextSlide} class="btn"> Next</button>
-      </div>
-      {DataImage.map((slide, index) => {
-        return (
-          <div
-            className={index === current ? 'slide active' : 'slide'}
-            key={index} onMouseEnter={() => {
-              setAutoPlay(false);
-              clearTimeout(timeOut);
-            }}
-            onMouseLeave={() => {
-              setAutoPlay(true);
-            }}
-          >
-            {index === current && (
-              <img src={slide.image} alt='' className='image imgdog' />
-            )}
-          </div>
-        );
-      })}
-
-
+    <section className='slider' >
+<div>
+  <h2>Ofertas</h2>
+</div>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+  {DataImage.map((e)=>{ return ( <div class="carousel-item active">
+  <img src={e.image} class="d-block w-100" alt="..."/>
+</div>)
+ })
+    }
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
     </section>
   );
-
-
-
-
-
 }
 
 export default Carousel

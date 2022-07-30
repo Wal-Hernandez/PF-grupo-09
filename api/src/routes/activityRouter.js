@@ -31,8 +31,8 @@ router.get("/:id",async(req,res)=>{
 router.post("/",async (req,res)=>{
     try {
         console.log(req.body)
-        const{ name,description,price,cityId}=req.body
-        let activity=await createActivity(name,description,price,cityId)
+        const{ name,image,price,score, comments, cityId}=req.body
+        let activity=await createActivity(name,image,price,score, comments,cityId)
         return res.status(201).json(activity)
     } catch (err) {
         return res.status(400).json(err);
@@ -51,10 +51,10 @@ router.delete("/:id", async (req, res) => {
 
   router.put("/:id", async (req, res) => {
     const { id } = req.params;
-    const{name,description,price,cityId}=req.body
+    const{name,image,price,score,comments, cityId}=req.body
 
     try {
-      const activityUpdate = await updateActivity(id,name,description,price,cityId);
+      const activityUpdate = await updateActivity(id,name,image,price,score,comments, cityId);
       return res.status(200).json(activityUpdate);
     } catch (error) {
       return res.status(400).json(error);

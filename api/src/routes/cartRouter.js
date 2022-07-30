@@ -5,10 +5,11 @@ const {
 const router = Router();
 
 
-router.get("/:id", async (req, res) => {
+router.get("/:mail", async (req, res) => {
   try {
-    const {id}=req.params
-    const cart= await getCart(id);
+    const {mail}=req.params
+    console.log(mail)
+    const cart= await getCart(mail);
     
     return res.status(200).json(cart);
   } catch (err) {
@@ -17,11 +18,12 @@ router.get("/:id", async (req, res) => {
 });
 
 
-router.post("/:id", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const {id}=req.params
-    const {userId} = req.body;
-    let cart = await createCart( id,userId);
+   
+    const {mail} = req.body;
+    console.log(mail)
+    let cart = await createCart( mail);
     return res.status(201).json(cart);
   } catch (err) {
     return res.status(400).json(err);

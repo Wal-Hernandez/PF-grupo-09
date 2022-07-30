@@ -13,7 +13,7 @@ function Ejemplo({ lang,id }) {
   if (lang === "hotels")return (<PutHotelForm id = {id}/>);
   if (lang === "plattforms") return (<PutPlatformForm  id = {id}/>);
   if (lang === "cities") return (<PutCityForm  id = {id}/>);
-  if (lang === "buses") return (<PutBusForm  id = {id}/>);
+  if (lang === "business") return (<PutBusForm  id = {id}/>);
   if (lang === "activities") return (<PutActivityForm  id = {id}/>);
   if (lang === "packages") return (<PutPackageForm  id = {id}/>);
 }

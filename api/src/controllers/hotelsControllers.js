@@ -45,20 +45,23 @@ const createHotel = async (
   wifi,
   gym,
   urlImage,
-  cityId
+  cityId,
+  score,
+  comments
 ) => {
   try {
-    if (
-      !name ||
-      !location ||
-      !stars ||
-      !phone ||
-      !price ||
-      !urlImage ||
-      !cityId
-    ) {
-      return "All fields are required";
-    }
+    // if (
+    //   !name ||
+    //   !location ||
+    //   !stars ||
+    //   !phone ||
+    //   !price ||
+    //   !urlImage ||
+    //   !cityId ||
+    //   !score
+    // ) {
+    //   return "All fields are required";
+    // }
     if (typeof name !== "string") {
       return "Only letters are allowed in the name field";
     }
@@ -73,12 +76,14 @@ const createHotel = async (
       gym,
       urlImage,
       cityId,
+      score,
+      comments
     });
 
     return "Hotel created successfully";
   } catch (err) {
     return {
-      msg: "Error createPlattform(plattformController.js)",
+      msg: "Error createhotel(hotelController.js)",
       error: err,
     };
   }
@@ -100,55 +105,22 @@ const deleteHotelById = async (id) => {
     };
   }
 };
-const updateHotelById = async (
-  id,
-  name,
-  location,
-  stars,
-  phone,
-  price,
-  pool,
-  wifi,
-  gym,
-  urlImage,
-  cityId,
-  comments,
-  score
-) => {
+const updateHotelById = async (id, name, location, stars, phone, price, pool, wifi, gym, urlImage, cityId, score, comments) => {
   try {
-    if (
-      !name ||
-      !location ||
-      !stars ||
-      !phone ||
-      !price ||
-      !urlImage ||
-      !cityId
-    ) {
-      return "All fields are required";
-    }
+    // if (!name || !location || !stars || !phone || !price || !urlImage || !cityId) {
+    //   return "All fields are required";
+    // }
     if (typeof name !== "string") {
       return "Only letters are allowed in the name field";
     }
     const a = await Hotel.update(
       {
-        name,
-        location,
-        stars,
-        phone,
-        price,
-        pool,
-        wifi,
-        gym,
-        urlImage,
-        cityId,
-        comments,
-        score
+        name, location, stars, phone, price, pool, wifi, gym, urlImage, cityId, score, comments
       },
       { where: { id: id } }
     );
     if (a[0]) {
-      return { msg: "The hotel has been update successfully", valor: true };
+      return { msg: "The hotel has been updated successfully", valor: true };
     }
     return { msg: "Id hotel not found" };
   } catch (error) {

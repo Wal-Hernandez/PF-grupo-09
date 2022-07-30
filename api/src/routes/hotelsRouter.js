@@ -41,20 +41,11 @@ router.post("/", async (req, res) => {
       gym,
       urlImage,
       cityId,
+      score,
+      comments
     } = req.body;
-    let hotel = await createHotel(
-      name,
-      location,
-      stars,
-      phone,
-      price,
-      pool,
-      wifi,
-      gym,
-      urlImage,
-      cityId
-    );
-    return res.status(201).json(hotel);
+    const hotels = await createHotel(name,location,stars,phone,price,pool,wifi,gym,urlImage,cityId,score,comments)
+    return res.status(201).json(hotels);
   } catch (err) {
     return res.status(400).json(err);
   }
@@ -81,6 +72,8 @@ router.put("/:id", async (req, res) => {
     gym,
     urlImage,
     cityId,
+    score,
+    comments
   } = req.body;
   try {
     const hotel = await updateHotelById(
@@ -94,7 +87,9 @@ router.put("/:id", async (req, res) => {
       wifi,
       gym,
       urlImage,
-      cityId
+      cityId,
+      score, 
+      comments
     );
     return res.status(200).json(hotel);
   } catch (error) {

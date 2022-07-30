@@ -111,7 +111,9 @@ const updateHotelById = async (
   wifi,
   gym,
   urlImage,
-  cityId
+  cityId,
+  comments,
+  score
 ) => {
   try {
     if (
@@ -140,6 +142,8 @@ const updateHotelById = async (
         gym,
         urlImage,
         cityId,
+        comments,
+        score
       },
       { where: { id: id } }
     );

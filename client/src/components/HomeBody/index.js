@@ -34,7 +34,7 @@ export default function HomeBody() {
 
                 <div class="card">
                   <h3 class="card-title">{e.name}</h3>
-                  <img class="card-img-top" src={e.hotel.urlImage} alt="Card image cap" />
+                  <img class="card-img-top" src={e.hotel?.urlImage} alt="Card image cap" />
                   <p class="card-text">${e.price}</p>
                   <p class="card-text">{e.hotel?.name}</p>
                 </div>

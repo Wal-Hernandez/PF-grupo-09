@@ -18,12 +18,6 @@ import {PutPlatformForm} from './views/AdminView/Forms/PutPlatformForm';
 import {PutPackageForm} from './views/AdminView/Forms/PutPackageForm'
 import {CreateForm} from './views/AdminView/Forms/CreateForm';
 import{Alert} from './components/Login/Login'
-<<<<<<< HEAD
-//import{Home2} from './components/Login/Home2'
-=======
-
->>>>>>> a839202e997e0e79244cdff078ba0997516b9d73
-import{Register} from './components/Login/Register'
 import{Login} from './components/Login/Login'
 import { ProtectedRouted } from "./components/Login/ProtectedRouted";
 import { ProtectedRoutedAdmin } from './components/Login/ProtectedRouteAdmin';

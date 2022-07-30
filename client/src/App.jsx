@@ -20,7 +20,7 @@ import {PutPackageForm} from './views/AdminView/Forms/PutPackageForm'
 import {CreateForm} from './views/AdminView/Forms/CreateForm';
 //import{Login} from './components/Login/Login'
 import{Alert} from './components/Login/Login'
-import{Home2} from './components/Login/Home2'
+//import{Home2} from './components/Login/Home2'
 import{Register} from './components/Login/Register'
 import{Login} from './components/Login/Login'
 import { ProtectedRouted } from "./components/Login/ProtectedRouted";

@@ -3,9 +3,9 @@ import React from 'react'
 function Contacto() {
   return (
     <div>
-      <h3>Contactos</h3>
-      <h4>Email</h4>
-      <h4>Teléfono</h4>
+      <h5>Contactos</h5>
+      <h5>Email</h5>
+      <h5>Teléfono</h5>
     </div>
   )
 }

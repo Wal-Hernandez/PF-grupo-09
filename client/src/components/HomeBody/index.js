@@ -49,7 +49,6 @@ export default function HomeBody() {
             <div> loading</div>
           )}
         </div>
-
         <div class="btn-pack">
           <Link to="/services">
             <button class="btn btn-sm">
@@ -57,6 +56,7 @@ export default function HomeBody() {
             </button>
           </Link>
         </div>
+
       </div>
     </>
   );

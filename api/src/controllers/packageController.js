@@ -1,5 +1,5 @@
 const { Package, Activity,Business, Plattform, City, Hotel } = require("../db");
-const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
   try {
@@ -8,14 +8,7 @@ const getPackages = async (req, res, next) => {
     const destinationWhere = destination
       ? { name: { [Op.iLike]: `%${destination}%` } }
       : {};
-      // let { start, end } = dateWhere
-      // if (start) {
-      //   start = start_date
-      // }
-      // if (end) {
-      //   end = end_date
-      // }
-    const dateWhere = start && end ? { start_date: start, end_date: end } : start ? {start_date: start} : end ? {end_date: end} : {}
+    const dateWhere = start && end ? { [Op.and]: [Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start), Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end)] } : start ? Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start) : end ? Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end) : {}
     
     let order = []
     if(stock){
@@ -46,8 +39,8 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: City,
-      /*     where: destinationWhere,
-          attributes: ["name"], */
+          where: destinationWhere,
+      /*    attributes: ["name"], */
         },
         {
           model: Hotel,

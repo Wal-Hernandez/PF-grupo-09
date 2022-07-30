@@ -2,8 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { putHotel } from "../../../redux/actions/putHotel";
-export const PutHotelForm = () => {
-  const { id } = useParams();
+export const PutHotelForm = ({id}) => {
   const dispatch = useDispatch();
   const [hotel, setHotel] = React.useState({
     name: "",
@@ -15,6 +14,9 @@ export const PutHotelForm = () => {
     wifi: true,
     gym: true,
     urlImage: [],
+    score: 0,
+    comments: "",
+    cityId: 0
   });
   console.log(hotel);
   function TransformData(x) {
@@ -30,7 +32,7 @@ export const PutHotelForm = () => {
       });
       return;
     }
-    if (event.target.name === "urlImage") {
+    if (event.target.name === "urlImage" || event.target.name === "comments" ) {
       setHotel({ ...hotel, [event.target.name]: [event.target.value] });
       return;
     }
@@ -81,7 +83,7 @@ export const PutHotelForm = () => {
         <div className="div-form">
           <label className="label-form"> stars:</label>
           <input
-            type="stars"
+            type="number"
             name="stars"
             value={hotel["stars"]}
             onChange={handleChange}
@@ -146,6 +148,36 @@ export const PutHotelForm = () => {
             </option>
             <option value="false">No</option>
           </select>
+        </div>
+
+        <div className="div-form">
+          <label className="label-form"> Score:</label>
+          <input
+            type="number"
+            name="score"
+            value={hotel["score"]}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="div-form">
+          <label className="label-form"> comments:</label>
+          <input
+            type="text"
+            name="comments"
+            value={hotel["comments"]}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="div-form">
+          <label className="label-form"> cityId:</label>
+          <input
+            type="number"
+            name="cityId"
+            value={hotel["cityId"]}
+            onChange={handleChange}
+          />
         </div>
 
         <button type="submit" className="button-form">

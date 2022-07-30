@@ -28,9 +28,7 @@ const Carousel = () => {
 
   return (
     <section className='slider' >
-<div>
-  <h2>Ofertas</h2>
-</div>
+
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
   {DataImage.map((e)=>{ return ( <div class="carousel-item active">
@@ -49,13 +47,9 @@ const Carousel = () => {
   </button>
 </div>
 
+
     </section>
   );
-
-
-
-
-
 }
 
 export default Carousel

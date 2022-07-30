@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./adminView.css";
-import { Link, useNavigate } from "react-router-dom";
 import { getPackages } from "../../redux/actions/getPackages";
 import { getCities } from "../../redux/actions/getCities";
 import { getBuses } from "../../redux/actions/getBuses";
@@ -11,64 +10,41 @@ import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
+<<<<<<< HEAD
+=======
+import { EditForm } from "./Forms/EditForm";
+>>>>>>> 62e64d97854d94e77fe543fffacb28838c111c58
 function Admin() {
   const [model, setModel] = React.useState("");
-  const [add,setAdd] = React.useState(false);
-  console.log(add)
+  const [add, setAdd] = React.useState(false);
+  const [edit, setEdit] = React.useState(false);
+  const [id, setId] = React.useState(0);
   const { adminView } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  function handlePackage(e) {
+
+
+  function dispatchByName(name){
+      if(name === "hotels") dispatch(getHotels());
+      else if(name === "packages")dispatch(getPackages());
+      else if(name === "buses")dispatch(getBuses());
+      else if(name === "activities")dispatch(getActivities());
+      else if(name === "cities")dispatch(getCities());
+      else if(name === "plattforms")dispatch(getPlatforms());
+  };
+
+  function handleSelect(e) {
     e.preventDefault();
-     setAdd(add=>false);
+    setAdd((add) => false);
+    setEdit((edit) => false);
     setModel(e.target.name);
-    dispatch(getPackages());
-    
-  }
-  function handleCity(e) {
-    e.preventDefault();
-    setAdd(add=>false);
-    setModel(e.target.name);
-    dispatch(getCities());
-    
-  }
-  function handleBus(e) {
-    e.preventDefault();
-    setAdd(add=>false);
-    setModel(e.target.name);
-    dispatch(getBuses());
-    
+    dispatchByName(e.target.name)
   }
 
-  function handleHotel(e) {
-    e.preventDefault();
-    setAdd(add=>false);
-    setModel(e.target.name);
-    dispatch(getHotels());
-    
-  }
-
-  function handlePlattform(e) {
-    e.preventDefault();
-    setAdd(add=>false);
-    setModel(e.target.name);
-    dispatch(getPlatforms());
-    
-  }
-
-  function handleActivities(e) {
-    e.preventDefault();
-    setAdd(add=>false);
-    setModel(e.target.name);
-    console.log(model);
-    dispatch(getActivities());
-  }
-
-  function handleDelete(e) {
-    setModel(e.target.name);
+  async function handleDelete (e) {
     let resp = window.confirm("Confirmar acción.");
-    if (resp) dispatch(deleteModel(e.target.value, model));
-    navigate("/admin");
+    if (resp){ await dispatch(deleteModel(e.target.value, model));
+      console.log(model);} 
+    dispatchByName(model);
   }
 let setCreate =() =>{ setAdd(add => !add) }
 
@@ -82,7 +58,15 @@ let setCreate =() =>{ setAdd(add => !add) }
     }
   };
 
+<<<<<<< HEAD
 
+=======
+  let setUpdate = (id) => {
+    setId(id)
+    setEdit((edit) => !edit);
+  };
+console.log(adminView)
+>>>>>>> 62e64d97854d94e77fe543fffacb28838c111c58
   return (
     <>
     <div>
@@ -94,89 +78,94 @@ let setCreate =() =>{ setAdd(add => !add) }
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
           <div>
-            <Link to="/admin/packages">
-              <button name="packages" onClick={handlePackage}>
+              <button name="packages" onClick={handleSelect}>
                 Paquetes
               </button>
-            </Link>{" "}
           </div>
-          <div>
-            <Link to="/admin/hotels">
-              <button name="hotels" onClick={handleHotel}>
+          <div>        
+              <button name="hotels" onClick={handleSelect}>
                 Hoteles
               </button>{" "}
-            </Link>
           </div>
           <div>
-            <Link to="/admin/buses">
-              <button name="buses" onClick={handleBus}>
+              <button name="buses" onClick={handleSelect}>
                 Bus
               </button>
-            </Link>
           </div>
           <div>
-            <Link to="/admin/acitivies">
-              <button name="activities" onClick={handleActivities}>
+              <button name="activities" onClick={handleSelect}>
                 Activites
               </button>
-            </Link>
           </div>
           <div>
-            <Link to="/admin/cities">
-              <button name="cities" onClick={handleCity}>
+              <button name="cities" onClick={handleSelect}>
                 City
               </button>
-            </Link>
           </div>
           <div>
-            <Link to="/admin/platforms">
-              <button name="plattforms" onClick={handlePlattform}>
+              <button name="plattforms" onClick={handleSelect}>
                 platforms
-              </button>
-            </Link>
+              </button>     
           </div>
-      </div>
-      
-      <div className="adminViewContainer">
-        <div className="adminPanelTitle">
-          <div className="titleView">AdminView </div><div className="btnAdd">
-            
-          <button onClick={setCreate} >ADD</button></div>
         </div>
 
-       
+        <div className="adminViewContainer">
+          <div className="adminPanelTitle">
+            <div className="titleView">AdminView </div>
+            <div className="btnAdd">
+              <button onClick={setCreate}>ADD</button>
+            </div>
+          </div>
+
           <div className="adminPanelContainer">
-            {add? <div> <CreateForm word={model}/></div>:adminView.length ? (
-              adminView.map((e) => {
-                return (
-                  <>
-                    <div className="adminPanelColumn">
-                      <div className="text">
-                        <h1>{e.name || e.patent || e.terminal}</h1>
-                        <h1>{e.seating}</h1>
-                      </div>
-                      <div className="btnEdit">
-                        <Link to={`/admin/edit/${model}/${e.id}`}>
-                          <button>Edit</button>
-                        </Link>
-                      </div>
-                      <div className="btnDel">
-                        <button value={e.id} onClick={handleDelete}>
-                          X
-                        </button>
-                      </div>
-                    </div>
-                  </>
-                );
-              })
-            ) : (
+            {}
+            {add 
+            ? (
+              <div>
+                {" "}
+                <CreateForm word={model} />
+              </div>
+            ) 
+            : edit 
+              ? (
+                <div>
+                {" "}
+                <EditForm word={model} id={id}/>
+              </div>
+                )
+              :(adminView.length 
+                 ? (
+                  adminView.map((pack) => {
+                       return (
+                       <>
+                        <div className="adminPanelColumn">
+                         <div className="text">
+                           <h1>{pack.name || pack.patent || pack.terminal}</h1>
+                           
+                          </div>
+                          <div className="btnEdit">
+                           {/*  <Link to={`/admin/edit/${model}/${e.id}`}>
+                            
+                            </Link> */}
+                             <button onClick={() => {setUpdate(pack.id)}}>Edit</button>
+                          </div>
+                          <div className="btnDel">
+                            <button value={pack.id} onClick={handleDelete}>
+                              X
+                            </button>
+                          </div>
+                       </div>
+                     </>
+                        );
+                      })
+                    ) 
+                  : (
               <div>Loading..</div>
-            )}
+                ))}
             {/* {add? <div> <CreateForm/></div>: <p>holis</p>} */}
           </div>
         </div>
-        </div>
-    
+      </div>
     </>
   );
 }

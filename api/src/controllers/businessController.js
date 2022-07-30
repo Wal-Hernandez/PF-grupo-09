@@ -44,11 +44,11 @@ const getBusinessById = async (req, res, next) => {
 /* ----------------------------------------POST BUS------------------------------------------- */
 
 const postBusiness = async (req, res, next) => {
-  const { name, phone,email } = req.body;
+  const { name, phone,email, score, comments } = req.body;
 
   try {
     await Business.create({
-      name, phone,email
+      name, phone,email, score, comments
     });
     res.status(201).send("Success");
   } catch (error) {
@@ -88,14 +88,14 @@ const deleteBusinessById = async (req, res) => {
 
 const updateBusinessById = async (req, res) => {
   const { id } = req.params;
-  const {name, phone,email} = req.body;
+  const {name, phone,email, score, comments} = req.body;
   try {
     if (!name||!phone||!email) {
       return res.status(404).json({
         msg: "All fields are required",
       });
     }
-    const businessUpdate = await Business.update({ name, phone,email}, { where: { id: id } });
+    const businessUpdate = await Business.update({ name, phone,email, score, comments}, { where: { id: id } });
   
     if (businessUpdate[0]) {
       return res.status(201).json({

@@ -18,10 +18,10 @@ function Filters(props) {
         let startShortDate = ''
         let endShortDate = ''
         if(props.startDate !== ''){
-            return startShortDate = props.startDate?.toISOString().substring(0,10)
+            return startShortDate = props.startDate?.toISOString()
         }
         if(props.endDate !== ''){
-            return endShortDate = props.endDate?.toISOString().substring(0,10)
+            return endShortDate = props.endDate?.toISOString()
         }
         dispatch(sortByPrice(e.target.value, props.city, startShortDate , endShortDate))
         props.setPrice(e.target.value)
@@ -31,10 +31,10 @@ function Filters(props) {
         let startShortDate = ''
         let endShortDate = ''
         if(props.startDate !== ''){
-            return startShortDate = props.startDate?.toISOString().substring(0,10)
+            return startShortDate = props.startDate?.toISOString()
         }
         if(props.endDate !== ''){
-            return endShortDate = props.endDate?.toISOString().substring(0,10)
+            return endShortDate = props.endDate?.toISOString()
         }
         dispatch(sortByStock(e.target.value, props.city, startShortDate, endShortDate))
         props.setStock(e.target.value)

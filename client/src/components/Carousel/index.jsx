@@ -50,11 +50,6 @@ const Carousel = () => {
 
     </section>
   );
-
-
-
-
-
 }
 
 export default Carousel

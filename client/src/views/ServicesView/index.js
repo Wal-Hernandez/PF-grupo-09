@@ -6,6 +6,7 @@ import Productos from "../../components/Productos";
 import Paginado from "../../components/Paginado";
 import { useSelector } from "react-redux";
 import Filters from "../../components/Filters";
+import SearchAndFilters from '../../components/Search&Filters';
 export default function Services({ userlog }) {
   const packages = useSelector((state) => state.packages);
 

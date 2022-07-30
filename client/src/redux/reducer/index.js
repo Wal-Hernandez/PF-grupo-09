@@ -19,7 +19,9 @@ import {
     PUT_ACTIVITY,
     POST_ACTIVITY,
     POST_BUS,
-    POST_CITY
+    POST_CITY,
+    FILTER_BY_DATE,
+    CLEAR_FILTERS
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -97,6 +99,11 @@ export default function rootReducer(state = initialState, action) {
             };
 
         case FILTER_BY_DESTINY:
+            return {
+                ...state,
+                packages: action.payload
+            }
+        case FILTER_BY_DATE:
             return {
                 ...state,
                 packages: action.payload

@@ -2,43 +2,28 @@ const { Router } = require("express");
 
 const City = require("./citiesRouter");
 const Hotel = require("./hotelsRouter");
-const Invoice=require("./invoiceRouter")
-const Buses = require('./busRouter')
+const Business=require("./businessRouter")
 const Activity=require("./activityRouter")
 const Plattform=require("./plattformRouter")
-const Booking=require("./bookingrouter");
 const Package = require('./packageRouter')
-
+const CartDetail = require("./cartDetailRouter");
 const User = require("./userRouter");
 const TypeUser = require("./typeUserRouter");
+const Cart = require("./cartRouter")
 
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.use('/buses', Buses)
+router.use('/business', Business)
 router.use('/activities',Activity)
 router.use("/cities", City);
 router.use("/hotels", Hotel);
 router.use('/plattforms',Plattform)
-router.use('/booking',Booking);
-router.use('/invoices',Invoice)
-router.use('/packages', Package)
-
-
-
-
-router.use('/buses', Buses)
-router.use('/activities',Activity)
-router.use("/cities", City);
-router.use("/hotels", Hotel);
-router.use('/plattforms',Plattform)
-router.use('/bookings',Booking);
-router.use('/invoices',Invoice)
 router.use('/packages', Package)
 router.use("/users", User);
 router.use("/typeusers", TypeUser);
-
-
+router.use("cartdetails/", CartDetail);
+router.use("/carts", Cart);
 
 module.exports = router;

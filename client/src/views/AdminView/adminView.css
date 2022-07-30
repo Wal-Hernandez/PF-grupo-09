@@ -9,9 +9,8 @@ background-color: blue;
     flex-direction: column;
     justify-content:space-evenly;
     background: gray;
-    position: relative;
-    top: 25vh;
-    left: 25vw;
+
+
     width: 15vw;
 }
 .adminViewContainerRoutes button{
@@ -24,10 +23,7 @@ background-color: blue;
     justify-content:flex-start;
     height: 50vh;
     width: 50vw;
-    position: relative;
-    left: 25vw;
-    top: 25vh;
-
+  
   
 }
 
@@ -36,38 +32,38 @@ background-color: blue;
     flex-direction: column;
 }
 .adminPanelTitle{
-    position: relative;
+   
     padding-bottom: 5vh;
 }
 
 .titleView{
-    position: absolute;
+   
     left: 0;
 }
 
 .btnAdd{
-    position: absolute;
+   
     right: 0;
 }
 
 .adminPanelColumn{
 border: solid 2px black;
 width: 100%;
-position: relative;
+
 height: 10vh;
 }
 
 .adminPanelColumn > .text{
-    position: absolute;
-    left: 0;
+  
+   
 }
 
 .btnEdit{
-    position: absolute;
-    right: 10vw ;
+ 
+ 
 }
 
 .btnDel{
-    position: absolute;
-    right: 0;
+
+    
 }

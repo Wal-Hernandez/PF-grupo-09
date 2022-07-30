@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./adminView.css";
-import { useNavigate } from "react-router-dom";
 import { getPackages } from "../../redux/actions/getPackages";
 import { getCities } from "../../redux/actions/getCities";
 import { getBuses } from "../../redux/actions/getBuses";
@@ -19,7 +18,7 @@ function Admin() {
   const [id, setId] = React.useState(0);
   const { adminView } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
 
   function dispatchByName(name){
       if(name === "hotels") dispatch(getHotels());

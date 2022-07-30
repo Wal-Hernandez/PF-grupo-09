@@ -74,6 +74,7 @@ function App() {
 
   return (
     <div className="App">
+
      <AuthProvider>
      <Routes>
        <Route path="/" element={<Home userlog={userlog}/>} />
@@ -97,8 +98,7 @@ function App() {
       
      </Routes>
      </AuthProvider>
-    
-    
+
     </div>
   );
 }

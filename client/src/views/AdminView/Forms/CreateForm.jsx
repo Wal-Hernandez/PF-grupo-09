@@ -365,7 +365,7 @@ function Ejemplo({ lang }) {
         </form>
       </div>
     );
-  if (lang === "buses")
+  if (lang === "business")
     return (
       <form className="form" onSubmit={handleSubmitBus}>
         <div className="div-form">
@@ -590,7 +590,7 @@ function Ejemplo({ lang }) {
 }
 
 export const CreateForm = ({ word }) => {
-  const models = ["Hotel", "Plattform", "City", "Bus", "Activity", "packages"];
+  const models = ["Hotel", "Plattform", "City", "Business", "Activity", "packages"];
   console.log(word);
   const [lang, setLang] = React.useState(word);
   const [boton, setButton] = React.useState(false);

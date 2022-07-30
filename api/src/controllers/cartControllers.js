@@ -1,10 +1,23 @@
 const { Package,Cart,CartDetail,Hotel,City, Activity,User,Business, Plattform} = require("../db");
 
 
-const getCart = async (id) => {
+const getCart = async (mail) => {
   try {
+    //busco el usuario que coincida con el mail que recibo
+    let user=await User.findAll({ where: { mail: mail } })
+   
+    if (!mail) {
+      return "All fields are required";
+    }
+    let userJson=JSON.parse(JSON.stringify(user));
+    console.log(userJson)
+    //obtengo solo el id de ese usuario
+    let id=userJson[0]['id']
+    console.log(id)
+
+
     let  cart= await Cart.findAll({   // REVISAR RELACIONES DE INCLUDE
-      where:{id:id,
+      where:{userId:id,
              statusCartId:1},
 include:[{
   model: User,
@@ -16,23 +29,9 @@ include:[{
     model:Package,
     include:[{model:Hotel,},{ model:City},{model:Activity},{model: Business},{model:Plattform}]
   }
-}]/* ,
-    include: [{
-        model: CartDetail,
-        where: {
-          cartId: id    
-        },
-        include: [{
-            model: Package,
-            include: [{
-              model: Hotel,
-              model: City, 
-              model: Activity,                
-          }]               
-        }]
-    }
-  ] */
-    });
+}
+]
+  });
 
     return cart;
   } catch (err) {
@@ -44,18 +43,23 @@ include:[{
 };
 
 
-const createCart = async (
-    
-    userId,
-   
+const createCart = async (   
+    mail
 ) => {
   try {
-    if (!userId) {
+    console.log("CREATECART: mail:",mail)
+    if (!mail) {
       return "All fields are required";
     }
-  
+    let user=await User.findAll({ where: { mail: mail } })
+   
+    let userJson=JSON.parse(JSON.stringify(user));
+    // console.log(userJson)
+    let id=userJson[0]['id']
+    // console.log(id)
+
     const cart = await Cart.create({
-        userId:userId,
+        userId:id,
         statusCartId:1
     });
   

@@ -1,4 +1,4 @@
-const { User, TypeUser } = require("../db");
+const { User } = require("../db");
 
 const getUsers = async () => {
   try {
@@ -42,7 +42,7 @@ const createUser = async (name, surname, mail, rol) => {
       mail,
       rol,
     });
-
+     
     return "Usercreated successfully";
   } catch (err) {
     return {

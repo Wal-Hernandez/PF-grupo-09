@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../../images/Buspack.png"
 function Login() {
     const [input, setInput] = useState({
         name:"",
@@ -31,7 +32,20 @@ function Login() {
   }, [input]); 
   return (
     <>
-      <div>LoginView</div>
+      <div className="container">
+
+        <div className="row">
+            <div className="col">
+
+            </div>
+            <div className="col">
+               <div className="text-end">
+                  <img src={logo} width="48" alt="logo"></img>
+               </div>
+            </div>
+        </div>
+      </div>
+        <div>LoginView</div>
       <form>
         <div>
           <label>Name*</label>
@@ -70,6 +84,8 @@ function Login() {
           </button>
         </div>
       </form>
+     
+      
     </>
   );
 }

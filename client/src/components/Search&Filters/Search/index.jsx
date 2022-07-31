@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-date-picker";
 import { useDispatch } from "react-redux";
 import { filterByDate } from "../../../redux/actions/filterByDateStart";
+import { getPackages } from "../../../redux/actions/getPackages";
 
 function Search({startDate, setStartDate, endDate, setEndDate}) {
 
@@ -31,8 +32,8 @@ function Search({startDate, setStartDate, endDate, setEndDate}) {
   const handleDates = ()=>{
     setValues({
       ...values,
-      start_date: startDate !== '' ? startDate?.toISOString().substring(0, 10) : new Date(),
-      end_date: endDate !== '' ? endDate?.toISOString().substring(0, 10) : new Date()
+      start_date: startDate !== '' ? startDate?.toISOString() : new Date(),
+      end_date: endDate !== '' ? endDate?.toISOString() : new Date()
     })
   }
 
@@ -51,6 +52,7 @@ function Search({startDate, setStartDate, endDate, setEndDate}) {
       destination: ''
     })
     setMatchingResults([])
+    dispatch(getPackages())
   }
 
 

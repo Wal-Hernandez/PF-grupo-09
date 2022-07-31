@@ -35,15 +35,17 @@ const getActivitiesFromCity = async (idCity) => {
   }
 };
 
-const createActivity = async (name, description, price, cityId) => {
+const createActivity = async (name, image, price, score, comments, cityId) => {
   try {
    // const city = await City.findAll({where: { id: cityId }})
-    const activity=await Activity.create(
-      {name:name,
-       description:description,
-       price:price,
-       cityId:cityId
-      })
+    const activity = await Activity.create({
+      name: name,
+      image: image,
+      price: price,
+      score: score,
+      comments: comments,
+      cityId: cityId,
+    });
    // activity.addCity(city)
     return "Activity created successfully"
   } catch (err) {
@@ -77,13 +79,15 @@ const deleteActivityById = async (id) => {
   }
 };
 
-const updateActivity = async (id,name,description,price,cityId) => {
+const updateActivity = async (id,name,image,price, score, comments, cityId) => {
   try {
     const activity = await Activity.update(
       {
        name,
-       description,
-       price,
+       image,
+       price, 
+       score, 
+       comments, 
        cityId,
       },
       { where: { id: id } }

@@ -1,24 +1,24 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+
 import { putHotel } from "../../../redux/actions/putHotel";
-export const PutHotelForm = ({id}) => {
+export const PutHotelForm = ({pack}) => {
   const dispatch = useDispatch();
   const [hotel, setHotel] = React.useState({
-    name: "",
-    location: [],
-    phone: "",
-    price: "",
-    stars: 0,
-    pool: true,
-    wifi: true,
-    gym: true,
-    urlImage: [],
-    score: 0,
-    comments: "",
-    cityId: 0
+    name: pack.name, 
+    location: pack.location, 
+    stars: pack.stars, 
+    phone: pack.phone, 
+    price: pack.price, 
+    pool: pack.pool, 
+    wifi: pack.wifi, 
+    gym: pack.gym, 
+    urlImage: pack.urlImage, 
+    cityId: pack.cityId, 
+    score: pack.score, 
+    comments: pack.comments
   });
-  console.log(hotel);
+  console.log(pack.id);
   function TransformData(x) {
     if (isNaN(x[0])) return x;
     return x.split(",");
@@ -48,13 +48,20 @@ export const PutHotelForm = ({id}) => {
       }
       return;
     }
+    if(event.target.name === "score"){
+      setHotel({
+        ...hotel,
+        [event.target.name]: TransformData(event.target.value),
+      });
+      return;
+    }
 
     setHotel({ ...hotel, [event.target.name]: event.target.value });
   }
 
   function handleSubmit(e) {
     e.preventDefault(); // para que era esto?
-    dispatch(putHotel(id, hotel));
+  dispatch(putHotel(pack.id, hotel)); 
   }
 
   return (
@@ -122,8 +129,9 @@ export const PutHotelForm = ({id}) => {
 
         <div className="div-form">
           <label className="label-form"> Gimnasio: </label>
-          <select name="gym" onChange={handleChange}>
-            <option value="true" selected>
+          <select name="gym" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">
               Si
             </option>
             <option value="false">No</option>
@@ -132,8 +140,9 @@ export const PutHotelForm = ({id}) => {
 
         <div className="div-form">
           <label className="label-form"> Pool: </label>
-          <select name="pool" onChange={handleChange}>
-            <option value="true" selected>
+          <select name="pool" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">
               Si
             </option>
             <option value="false">No</option>
@@ -142,33 +151,16 @@ export const PutHotelForm = ({id}) => {
 
         <div className="div-form">
           <label className="label-form"> Wifi: </label>
-          <select name="wifi" onChange={handleChange}>
-            <option value="true" selected>
+          <select name="wifi" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">
               Si
             </option>
             <option value="false">No</option>
           </select>
         </div>
 
-        <div className="div-form">
-          <label className="label-form"> Score:</label>
-          <input
-            type="number"
-            name="score"
-            value={hotel["score"]}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="div-form">
-          <label className="label-form"> comments:</label>
-          <input
-            type="text"
-            name="comments"
-            value={hotel["comments"]}
-            onChange={handleChange}
-          />
-        </div>
+    
 
         <div className="div-form">
           <label className="label-form"> cityId:</label>
@@ -184,7 +176,7 @@ export const PutHotelForm = ({id}) => {
           {" "}
           Put City
         </button>
-        <Link to="/admin"> Volver</Link>
+   
       </form>
     </div>
   );

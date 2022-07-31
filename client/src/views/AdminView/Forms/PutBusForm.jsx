@@ -1,16 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
 import { putBus } from "../../../redux/actions/putBus";
-export const PutBusForm = () => {
-  const { id } = useParams();
+export const PutBusForm = ({pack}) => {
+ 
   const dispatch = useDispatch();
   const [bus, setBus] = React.useState({ 
-    name: "", 
-    phone: "",
-    email: "",
-    score: [],
-    comments: [] 
+    name: pack.name, 
+    phone: pack.phone,
+    email: pack.email,
+    score: pack.score,
+    comments: pack.comments 
   });
 
   /* function TransformData(x){
@@ -19,7 +18,23 @@ return JSON.parse(x)
 
 } */
 
+  function TransformData(x) {
+    if (isNaN(x[0])) return x;
+    return x.split(",");
+  }
+
   function handleChange(event) {
+    if (event.target.name === "comments" ) {
+      setBus({ ...bus, [event.target.name]: [event.target.value] });
+      return;
+    }
+    if(event.target.name === "score"){
+      setBus({
+        ...bus,
+        [event.target.name]: TransformData(event.target.value),
+      });
+      return;
+    }
     setBus({ ...bus, [event.target.name]: event.target.value });
     //     setErrors(validate({
     //     ...perro,
@@ -29,7 +44,7 @@ return JSON.parse(x)
   }
   function handleSubmit(e) {
     e.preventDefault(); // para que era esto?
-    dispatch(putBus(id, bus));
+    dispatch(putBus(pack.id, bus));
   }
 
   return (
@@ -77,24 +92,8 @@ return JSON.parse(x)
             onChange={handleChange}
           />
         </div>
-        <div className="div-form">
-          <label className="label-form"> Score:</label>
-          <input
-            type="text"
-            name="score"
-            value={bus["score"]}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="div-form">
-          <label className="label-form"> Comments:</label>
-          <input
-            type="text"
-            name="comments"
-            value={bus["comments"]}
-            onChange={handleChange}
-          />
-        </div>
+    
+      
         <button
           type="submit"
           className="button-form"
@@ -106,9 +105,9 @@ return JSON.parse(x)
           // Mientras No pase el tercer estado, desactivame esto
         >
           {" "}
-          Put Bus
+          Put Business
         </button>
-        <Link to="/admin"> Volver</Link>
+     
       </form>
     </div>
   );

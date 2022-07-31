@@ -41,6 +41,9 @@ function Footer() {
             <a href="mailto:info@puntoviajes.com.ar" target="_blank" class="fa fa-envelope"></a>
     
         </div>
+        <div>
+            <Link to ="/faq" class="preguntas"> Preguntas Frecuentes</Link>
+        </div>
 
     </div>
     

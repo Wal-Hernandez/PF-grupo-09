@@ -36,16 +36,11 @@ if (user) {
   return (
     <div class="navbar navbar-expand-lg">
        <div>
+        <Link to="/">
             <img src={logo} alt="Buspack" class="logo-buspack"/>
+        </Link>
         </div>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <Link to="/">
-            <button class='btn btn-sm'>
-              Volver al home
-            </button>
-          </Link>
-        </li>
         <li class="nav-item active">
           <Link to="/services">
             <button class='btn btn-sm'>

@@ -11,9 +11,8 @@ import FAQ from './components/FAQ/FAQ.jsx'
 
 import AboutView from './views/AboutView';  
 import{Alert} from './components/Login/Login'
-
-import{Register} from './components/Login/Register'
 import{Login} from './components/Login/Login'
+import {Register} from './components/Login/Register'
 import { ProtectedRouted } from "./components/Login/ProtectedRouted";
 import { ProtectedRoutedAdmin } from './components/Login/ProtectedRouteAdmin';
 

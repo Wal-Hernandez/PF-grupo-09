@@ -125,8 +125,8 @@ export function Login() {
       >
         Google login
       </button> */}
-      <p>
-        Don't have an account?
+
+<p className="my-4 text-sm flex justify-between px-3">
         <Link to="/reg">Register</Link>
       </p>
     </div>

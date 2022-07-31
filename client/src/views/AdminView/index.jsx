@@ -10,7 +10,9 @@ import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
+
 import { EditForm } from "./Forms/EditForm";
+
 function Admin() {
   const [model, setModel] = React.useState("");
   const [add, setAdd] = React.useState(false);
@@ -34,6 +36,7 @@ function Admin() {
     setEdit((edit) => false);
     setModel(e.target.name);
     dispatchByName(e.target.name)
+    setPagC(()=>1)
   }
 
   async function handleDelete (e) {
@@ -43,6 +46,7 @@ function Admin() {
     dispatchByName(model);
   }
 let setCreate =() =>{ setAdd(add => !add) }
+
   const { logout } = useAuth();
 
   const handleLogout = async () => {
@@ -53,11 +57,79 @@ let setCreate =() =>{ setAdd(add => !add) }
     }
   };
 
+
   let setUpdate = (packs) => {
     setPack(packs)
     setEdit((edit) => !edit);
   };
+console.log(adminView)
+//Paginado Normal
+const [pageCurrent,setPagC] = React.useState(1);
+
+let itemsPerPage=5;
+function setPagination(event) {
+  setPagC(
+    pageCurrent => Number(event.target.id)
+  )
+
+};
+let indiceFinal = pageCurrent * itemsPerPage;
+  let indiceInicial = indiceFinal - itemsPerPage;
+
+  let pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(adminView.length/ itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  let numerosRenderizados = pageNumbers.map(number => {
+   return (
+     <button
+       key={number}
+       id={number}
+       onClick={setPagination}
+      style={number === pageCurrent?{backgroundColor:'#80dae6'}:{backgroundColor:'#8bffe7'}}
+     >
+       {number}
+     </button>
+   );
+ });
+
+//Prev y Next
+const[paginado, setPaginado] = React.useState(0);
+
+let pageLimit =10;/// porque si, vamos de 10 en 10 
+//Definamos dos funciones mas, prev y next
+function prevPage(){
+  setPagC(
+    pageCurrent =>{
+      if(pageCurrent>1){
+        return pageCurrent-1;
+      } return 1;
+
+    }
+  );
+  setPaginado( paginado =>{if (pageCurrent>1){
+ return Math.floor((pageCurrent-2) / pageLimit)
+  } return 0;
+ }   
+ )
+  
+};
+function nextPage(){
+  setPagC(
+    pageCurrent =>{if(pageCurrent<pageNumbers.length){
+      return pageCurrent+1
+    }
+      return pageNumbers.length; 
+     }
+  )
+  setPaginado( paginado => Math.floor((pageCurrent) / pageLimit))
+};
+let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(pageLimit*(paginado+1)));
+
+
+
   console.log(adminView)
+
   return (
     <>
     <div>
@@ -106,6 +178,7 @@ let setCreate =() =>{ setAdd(add => !add) }
             <div className="btnAdd">
               <button onClick={setCreate}>ADD</button>
             </div>
+            {adminView.length && !add && !edit? <p>Page {pageCurrent}/{pageNumbers.length} from {adminView.length} results</p>: ''}
           </div>
 
           <div className="adminPanelContainer">
@@ -146,12 +219,15 @@ let setCreate =() =>{ setAdd(add => !add) }
                        </div>
                   
                         );
-                      })
+                      }).slice(indiceInicial, indiceFinal)
+                      
                     ) 
                   : (
               <div>Loading..</div>
                 ))}
-            {/* {add? <div> <CreateForm/></div>: <p>holis</p>} */}
+            {adminView.length && !add && !edit? <div>{pageCurrent>1?<span onClick={prevPage} className='flecha izquierda'></span>:''} 
+            {sliceOfnumerosRederizados} 
+            {pageCurrent<pageNumbers.length?<span onClick={nextPage} className='flecha derecha'></span>:''}</div>: ''}
           </div>
         </div>
       </div>

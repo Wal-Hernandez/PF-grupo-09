@@ -2,16 +2,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { putActivity } from "../../../redux/actions/putActivity";
-export const PutActivityForm = ({id}) => {
+export const PutActivityForm = ({ pack}) => {
   
   const dispatch = useDispatch();
   const [activity, setActivity] = React.useState({
-    name: "",
-    description: "",
-    price: "",
-    score: 0,
-    comments: "",
-    cityId: 0,
+    name: pack.name,
+    image: pack.image,
+    price: pack.price,
+    score: pack.score,
+    comments: pack.comments,
+    cityId: pack.cityId,
   });
   function handleChange(event) {
     if (event.target.name === "comments" || event.target.name === "score") {
@@ -23,7 +23,7 @@ export const PutActivityForm = ({id}) => {
 
   function handleSubmit(e) {
     e.preventDefault(); // para que era esto?
-    dispatch(putActivity(id, activity));
+    dispatch(putActivity(pack.id, activity));
   }
 
   return (
@@ -59,26 +59,8 @@ export const PutActivityForm = ({id}) => {
           />
         </div>
 
-        <div className="div-form">
-          <label className="label-form"> score:</label>
-          <input
-            type="number"
-            name="score"
-            value={activity["score"]}
-            onChange={handleChange}
-          />
-        </div>
         
-        <div className="div-form">
-          <label className="label-form"> comments:</label>
-          <input
-            type="text"
-            name="comments"
-            value={activity["comments"]}
-            onChange={handleChange}
-          />
-        </div>
-
+     
         <div className="div-form">
           <label className="label-form"> cityId:</label>
           <input

@@ -2,21 +2,21 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { putPackage } from "../../../redux/actions/putPackage";
-export const PutPackageForm = ({id}) => {
+export const PutPackageForm = ({pack}) => {
 
   const dispatch = useDispatch();
   const [packages, setPackages] = React.useState({
-    start_date: "",
-    end_date: "",
-    name: "",
-    price: 1,
-    discount: 1,
-    stock: 1,
-    plattformId: 0,
-    businessId: 0,
-    cityId: 0,
-    hotelId: 0,
-    activity: [],
+    start_date: pack.start_date,
+    end_date: pack.end_date,
+    name: pack.name,
+    price: pack.price,
+    discount: pack.discount,
+    stock: pack.stock,
+    plattformId: pack.plattformId,
+    businessId: pack.businessId,
+    cityId:pack.cityId,
+    hotelId: pack.hotelId,
+    activity: []
   });
   console.log(packages);
   function TransformData(x) {
@@ -36,7 +36,7 @@ export const PutPackageForm = ({id}) => {
 
   function handleSubmit(e) {
     e.preventDefault(); // para que era esto?
-    dispatch(putPackage(id, packages));
+    dispatch(putPackage(pack.id, packages));
   }
 
   return (

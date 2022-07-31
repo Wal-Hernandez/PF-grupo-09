@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+
 import { putHotel } from "../../../redux/actions/putHotel";
 export const PutHotelForm = ({pack}) => {
   const dispatch = useDispatch();
@@ -176,7 +176,7 @@ export const PutHotelForm = ({pack}) => {
           {" "}
           Put City
         </button>
-        <Link to="/admin"> Volver</Link>
+   
       </form>
     </div>
   );

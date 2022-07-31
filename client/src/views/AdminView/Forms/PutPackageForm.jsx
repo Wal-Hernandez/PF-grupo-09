@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+
 import { putPackage } from "../../../redux/actions/putPackage";
 export const PutPackageForm = ({pack}) => {
 
@@ -156,7 +156,7 @@ export const PutPackageForm = ({pack}) => {
           {" "}
           Put Package
         </button>
-        <Link to="/admin"> Volver</Link>
+
       </form>
     </div>
   );

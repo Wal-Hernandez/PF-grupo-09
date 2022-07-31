@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+
 import { putPlatform } from "../../../redux/actions/putPlatform";
 export const PutPlatformForm = ({pack}) => {
   
@@ -65,7 +65,7 @@ export const PutPlatformForm = ({pack}) => {
           {" "}
           Put Platform
         </button>
-        <Link to="/admin"> Volver</Link>
+    
       </form>
     </div>
   );

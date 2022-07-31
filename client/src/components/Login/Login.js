@@ -5,9 +5,12 @@ import { Alert } from "./Alert";
 import Admin from "../../views/AdminView/index";
 import { useDispatch } from "react-redux";
 import { loadCart } from "../../redux/actions/loadCart";
+import "../../views/LoginView/loginView.css";
+
+import logo from "../../images/Buspack.png" //imagen logo
+
 import { app } from "../../Firebase/firebase-config";
 import {  doc, getDoc,getFirestore } from "firebase/firestore";
-
 export function Login() {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -87,68 +90,101 @@ export function Login() {
   };
 
   return (
-    <div className="w-full max-w-xs m-auto">
-      {error && <Alert message={error} />}
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      >
-        <div className="mb-4">
-          <label
-            htmlFor="mail"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Email
-          </label>
-          <input
-            type="mail"
-            name="mail"
-            id="mail"
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="youremail@company.tld"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="*************"
-          />
-        </div>
+   
+    <div className="container w-75 bg-white mt-5 rounded">
 
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Sign In
-          </button>
-          <a href="#!" onClick={handleResetPassword}>
-            Forgot Password?
-          </a>
+    <div className="row align-items-stretch ">
+        <div className="col fotoLogin d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+          <div className="py-5"></div>
+          <div className="text-center">
+          <h3 className="fw-bold  text-white">Estas listo para comenzar la aventura?</h3>
+          </div>
         </div>
-      </form>
-      <button
+        <div className="col bg-white p-5 rounded-end">
+           <div className="text-end">
+              <img className="rounded" src={logo} width="60" alt="logo"></img>
+           </div>
+           <h2 className="fw-bold text-center py-5">Bienvenido</h2> 
+               {/*/ Login */}
+               {error && <Alert message={error} />}
+             <form  onSubmit={handleSubmit}>
+                  
+                <div className="mb-4">
+                <label
+                 htmlFor="mail"
+                 className="form-label block text-gray-700 text-sm font-bold mb-2"
+                 >
+                Correo Electronico
+                </label>
+                <input
+                  type="mail"
+                  name="mail"
+                  id="mail"
+                  onChange={handleChange}
+                  className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="youremail@company.tld"
+                />
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="password"
+                    className="form-label block text-gray-700 text-sm font-bold mb-2"
+                  >
+                    Contraseña
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    onChange={handleChange}
+                    className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="*************"
+                  />
+                </div>
+                <div className="d-grid">
+                  <button
+                  className="btn btn-primary hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                  >
+                  Iniciar sesión
+                  </button>
+                </div>
+                <div className="my-3">
+                <span>
+                    <a 
+                      href="#!" 
+                      onClick={handleResetPassword}>
+                      ¿Olvidaste tu contraseña?
+                    </a>
+                 </span>
+                 </div>
+                 <div className="mb-4 ">
+                  <p>
+                  ¿No tienes una cuenta?
+                  <Link to="/reg">
+                  <button
+                  className="btn btn-warning hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                  >
+                  Registrarte
+                  </button>
+                  </Link>
+                  </p>
+                 </div>
+                 <button
         onClick={handleGoogleSignin}
         className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
       >
         Google login
-      </button>
+      </button> 
+                
+             </form>
+        </div>
+ </div>
+ </div>
+  
+   
 
-<p className="my-4 text-sm flex justify-between px-3">
-        <Link to="/reg">Register</Link>
-      </p>
-    </div>
   );
 }

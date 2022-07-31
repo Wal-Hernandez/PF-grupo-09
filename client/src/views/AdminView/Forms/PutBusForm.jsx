@@ -1,16 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
 import { putBus } from "../../../redux/actions/putBus";
-export const PutBusForm = ({id}) => {
+export const PutBusForm = ({pack}) => {
  
   const dispatch = useDispatch();
   const [bus, setBus] = React.useState({ 
-    name: "", 
-    phone: "",
-    email: "",
-    score: 0,
-    comments: "" 
+    name: pack.name, 
+    phone: pack.phone,
+    email: pack.email,
+    score: pack.score,
+    comments: pack.comments 
   });
 
   /* function TransformData(x){
@@ -45,7 +44,7 @@ return JSON.parse(x)
   }
   function handleSubmit(e) {
     e.preventDefault(); // para que era esto?
-    dispatch(putBus(id, bus));
+    dispatch(putBus(pack.id, bus));
   }
 
   return (
@@ -93,24 +92,8 @@ return JSON.parse(x)
             onChange={handleChange}
           />
         </div>
-        <div className="div-form">
-          <label className="label-form"> Score:</label>
-          <input
-            type="number"
-            name="score"
-            value={bus["score"]}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="div-form">
-          <label className="label-form"> Comments:</label>
-          <input
-            type="text"
-            name="comments"
-            value={bus["comments"]}
-            onChange={handleChange}
-          />
-        </div>
+    
+      
         <button
           type="submit"
           className="button-form"
@@ -124,7 +107,7 @@ return JSON.parse(x)
           {" "}
           Put Business
         </button>
-        <Link to="/admin"> Volver</Link>
+     
       </form>
     </div>
   );

@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+
 import { putCity } from "../../../redux/actions/putCity";
-export const PutCityForm = ({ id }) => {
+export const PutCityForm = ({ pack }) => {
   const dispatch = useDispatch();
-  const [city, setCity] = React.useState({ name: "", location: [] });
+  const [city, setCity] = React.useState({ name: pack.name, location: pack.location });
 
   function TransformData(x) {
     if (isNaN(x[0])) return x;
@@ -23,7 +23,7 @@ export const PutCityForm = ({ id }) => {
   }
   function handleSubmit(e) {
     e.preventDefault(); // para que era esto?
-    dispatch(putCity(id, city));
+    dispatch(putCity(pack.id, city));
   }
 
   return (
@@ -76,7 +76,7 @@ export const PutCityForm = ({ id }) => {
           {" "}
           Put City
         </button>
-        <Link to="/admin"> Volver</Link>
+
       </form>
     </div>
   );

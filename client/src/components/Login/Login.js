@@ -75,7 +75,7 @@ export function Login() {
     <div className="container w-75 bg-primary mt-5 rounded">
 
     <div className="row">
-        <div className="col fotoLogin d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+        <div className="col fotoLogin s-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
           <div className="py-5"></div>
           <div className="text-center">
           <h3 className="fw-bold  text-white">Estas listo para comenzar la aventura?</h3>
@@ -88,8 +88,8 @@ export function Login() {
            <h2 className="fw-bold text-center py-5">Bienvenido</h2> 
                {/*/ Login */}
                {error && <Alert message={error} />}
-             <form>
-                 
+             <form  onSubmit={handleSubmit}>
+                  
                 <div className="mb-4">
                 <label
                  htmlFor="mail"
@@ -166,6 +166,7 @@ export function Login() {
         Google login
       </button> */}
       </div>
-    
+    //___________________________________________________________
+ 
   );
 }

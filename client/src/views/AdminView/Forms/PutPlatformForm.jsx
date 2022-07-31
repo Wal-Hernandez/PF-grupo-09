@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { putPlatform } from "../../../redux/actions/putPlatform";
-export const PutPlatformForm = ({id}) => {
+export const PutPlatformForm = ({pack}) => {
   
   const dispatch = useDispatch();
   const [platform, setPlatform] = React.useState({
-    terminal: "",
-    address: "",
-    location: [],
+    terminal: pack.terminal,
+    address: pack.address,
+    location: pack.location,
   });
   console.log(platform);
   function TransformData(x) {
@@ -25,7 +25,7 @@ export const PutPlatformForm = ({id}) => {
 
   function handleSubmit(e) {
     e.preventDefault(); // para que era esto?
-    dispatch(putPlatform(id, platform));
+    dispatch(putPlatform(pack.id, platform));
   }
 
   return (

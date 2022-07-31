@@ -2,23 +2,23 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { putHotel } from "../../../redux/actions/putHotel";
-export const PutHotelForm = ({id}) => {
+export const PutHotelForm = ({pack}) => {
   const dispatch = useDispatch();
   const [hotel, setHotel] = React.useState({
-    name: "", 
-    location: [], 
-    stars: 0, 
-    phone: "", 
-    price: "", 
-    pool: true, 
-    wifi: true, 
-    gym: true, 
-    urlImage: [], 
-    cityId: 0, 
-    score: 0, 
-    comments: ""
+    name: pack.name, 
+    location: pack.location, 
+    stars: pack.stars, 
+    phone: pack.phone, 
+    price: pack.price, 
+    pool: pack.pool, 
+    wifi: pack.wifi, 
+    gym: pack.gym, 
+    urlImage: pack.urlImage, 
+    cityId: pack.cityId, 
+    score: pack.score, 
+    comments: pack.comments
   });
-  console.log(hotel);
+  console.log(pack.id);
   function TransformData(x) {
     if (isNaN(x[0])) return x;
     return x.split(",");
@@ -61,7 +61,7 @@ export const PutHotelForm = ({id}) => {
 
   function handleSubmit(e) {
     e.preventDefault(); // para que era esto?
-    dispatch(putHotel(id, hotel));
+  dispatch(putHotel(pack.id, hotel)); 
   }
 
   return (
@@ -160,25 +160,7 @@ export const PutHotelForm = ({id}) => {
           </select>
         </div>
 
-        <div className="div-form">
-          <label className="label-form"> Score:</label>
-          <input
-            type="number"
-            name="score"
-            value={hotel["score"]}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="div-form">
-          <label className="label-form"> comments:</label>
-          <input
-            type="text"
-            name="comments"
-            value={hotel["comments"]}
-            onChange={handleChange}
-          />
-        </div>
+    
 
         <div className="div-form">
           <label className="label-form"> cityId:</label>

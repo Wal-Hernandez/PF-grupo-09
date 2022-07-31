@@ -15,11 +15,10 @@ function Admin() {
   const [model, setModel] = React.useState("");
   const [add, setAdd] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
-  const [id, setId] = React.useState(0);
+  const [pack, setPack] = React.useState({});
   const { adminView } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  console.log(id)
   function dispatchByName(name){
       if(name === "hotels") dispatch(getHotels());
       else if(name === "packages")dispatch(getPackages());
@@ -54,11 +53,11 @@ let setCreate =() =>{ setAdd(add => !add) }
     }
   };
 
-  let setUpdate = (id) => {
-    setId(id)
+  let setUpdate = (packs) => {
+    setPack(packs)
     setEdit((edit) => !edit);
   };
-
+  console.log(adminView)
   return (
     <>
     <div>
@@ -122,32 +121,30 @@ let setCreate =() =>{ setAdd(add => !add) }
               ? (
                 <div>
                 {" "}
-                <EditForm word={model} id={id}/>
+                <EditForm word={model} pack={pack}/>
               </div>
                 )
               :(adminView.length 
                  ? (
-                  adminView.map((pack) => {
+                  adminView.map((packs) => {
                        return (
-                       <>
-                        <div className="adminPanelColumn">
+                     
+                        <div className="adminPanelColumn" key={packs.id}>
                          <div className="text">
-                           <h1>{pack.name || pack.patent || pack.terminal}</h1>
+                           <h1>{packs.name || packs.patent || packs.terminal}</h1>
                            
                           </div>
                           <div className="btnEdit">
-                           {/*  <Link to={`/admin/edit/${model}/${e.id}`}>
-                            
-                            </Link> */}
-                             <button onClick={() => {setUpdate(pack.id)}}>Edit</button>
+
+                             <button onClick={() => {setUpdate(packs)}}>Edit</button>
                           </div>
                           <div className="btnDel">
-                            <button value={pack.id} onClick={handleDelete}>
+                            <button value={packs.id} onClick={handleDelete}>
                               X
                             </button>
                           </div>
                        </div>
-                     </>
+                  
                         );
                       })
                     ) 

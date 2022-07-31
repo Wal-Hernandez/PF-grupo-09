@@ -8,21 +8,21 @@ import {PutHotelForm} from "./PutHotelForm"
 import {PutCityForm} from "./PutCityForm"
 import {PutPlatformForm} from "./PutPlatformForm"
 
-function Ejemplo({ lang,id }) {
+function Ejemplo({ lang,pack }) {
   if (lang === "") return <div>Waiting for the Data</div>;
-  if (lang === "hotels")return (<PutHotelForm id = {id}/>);
-  if (lang === "plattforms") return (<PutPlatformForm  id = {id}/>);
-  if (lang === "cities") return (<PutCityForm  id = {id}/>);
-  if (lang === "business") return (<PutBusForm  id = {id}/>);
-  if (lang === "activities") return (<PutActivityForm  id = {id}/>);
-  if (lang === "packages") return (<PutPackageForm  id = {id}/>);
+  if (lang === "hotels")return (<PutHotelForm pack = {pack}/>);
+  if (lang === "plattforms") return (<PutPlatformForm  pack = {pack}/>);
+  if (lang === "cities") return (<PutCityForm  pack = {pack}/>);
+  if (lang === "business") return (<PutBusForm  pack = {pack}/>);
+  if (lang === "activities") return (<PutActivityForm  pack = {pack}/>);
+  if (lang === "packages") return (<PutPackageForm  pack = {pack}/>);
 }
 
-export const EditForm = ({ word,id }) => {
-
+export const EditForm = ({word,pack} ) => {
+  console.log(pack)
   return (
     <div>
-      <Ejemplo lang={word} id={id}/>
+      <Ejemplo lang={word} pack={pack}/>
     </div>
   );
 };

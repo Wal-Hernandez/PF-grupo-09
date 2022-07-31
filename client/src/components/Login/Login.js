@@ -5,6 +5,8 @@ import { Alert } from "./Alert";
 import Admin from "../../views/AdminView/index";
 import { useDispatch } from "react-redux";
 import { loadCart } from "../../redux/actions/loadCart";
+import { app } from "../../Firebase/firebase-config";
+import {  doc, getDoc,getFirestore } from "firebase/firestore";
 
 export function Login() {
   const dispatch = useDispatch();
@@ -13,7 +15,8 @@ export function Login() {
     password: "",
     rol: "",
   });
-  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const firestore = getFirestore(app);
+  const { login, loginWithGoogle, resetPassword} = useAuth();
   const [error, setError] = useState("");
   const navigate = useNavigate();
   console.log(user);
@@ -45,10 +48,27 @@ export function Login() {
   const handleChange = ({ target: { value, name } }) =>
     setUser({ ...user, [name]: value });
 
+
+    const getRol= async(uid) => {
+      // obtener rol
+      const docuRef = doc(firestore, `usuarios/${uid}`);
+      const docuCifrada = await getDoc(docuRef);
+      const infoFinal = docuCifrada.data().rol;
+      return infoFinal;
+    }
+
   const handleGoogleSignin = async () => {
     try {
-      await loginWithGoogle();
-      navigate("/");
+      await loginWithGoogle()
+      .then(a=> a.user.uid)
+      .then(r=> getRol(r))
+      .then(r=>{if (!r){alert("Registrate,Boloo")}
+    else{ if (r==='client') navigate('/')
+    else{navigate('/admin')}
+  
+    
+    }})
+      
     } catch (error) {
       setError(error.message);
     }
@@ -119,12 +139,12 @@ export function Login() {
           </a>
         </div>
       </form>
-      {/* <button
+      <button
         onClick={handleGoogleSignin}
         className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
       >
         Google login
-      </button> */}
+      </button>
 
 <p className="my-4 text-sm flex justify-between px-3">
         <Link to="/reg">Register</Link>

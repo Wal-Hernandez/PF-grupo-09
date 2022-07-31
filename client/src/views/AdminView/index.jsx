@@ -62,6 +62,11 @@ let setCreate =() =>{ setAdd(add => !add) }
     setPack(packs)
     setEdit((edit) => !edit);
   };
+  
+  let handleReset = () => {
+    setPack(false)
+    setEdit(false);
+  };
 console.log(adminView)
 //Paginado Normal
 const [pageCurrent,setPagC] = React.useState(1);
@@ -188,6 +193,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
               <div>
                 {" "}
                 <CreateForm word={model} />
+                <button  onClick={handleReset}>Volver</button>
               </div>
             ) 
             : edit 
@@ -195,6 +201,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                 <div>
                 {" "}
                 <EditForm word={model} pack={pack}/>
+                <button  onClick={handleReset}>Volver</button>
               </div>
                 )
               :(adminView.length 

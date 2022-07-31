@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+
 import { putCity } from "../../../redux/actions/putCity";
 export const PutCityForm = ({ pack }) => {
   const dispatch = useDispatch();
@@ -76,7 +76,7 @@ export const PutCityForm = ({ pack }) => {
           {" "}
           Put City
         </button>
-        <Link to="/admin"> Volver</Link>
+
       </form>
     </div>
   );

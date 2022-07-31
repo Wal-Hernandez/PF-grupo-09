@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
 import { putActivity } from "../../../redux/actions/putActivity";
 export const PutActivityForm = ({ pack}) => {
   
@@ -74,7 +73,7 @@ export const PutActivityForm = ({ pack}) => {
           {" "}
           Put Activity
         </button>
-        <Link to="/admin"> Volver</Link>
+
       </form>
     </div>
   );

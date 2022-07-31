@@ -10,20 +10,21 @@ import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
+
 import { EditForm } from "./Forms/EditForm";
+
 function Admin() {
   const [model, setModel] = React.useState("");
   const [add, setAdd] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
-  const [id, setId] = React.useState(0);
+  const [pack, setPack] = React.useState({});
   const { adminView } = useSelector((state) => state);
   const dispatch = useDispatch();
-
 
   function dispatchByName(name){
       if(name === "hotels") dispatch(getHotels());
       else if(name === "packages")dispatch(getPackages());
-      else if(name === "buses")dispatch(getBuses());
+      else if(name === "business")dispatch(getBuses());
       else if(name === "activities")dispatch(getActivities());
       else if(name === "cities")dispatch(getCities());
       else if(name === "plattforms")dispatch(getPlatforms());
@@ -35,15 +36,17 @@ function Admin() {
     setEdit((edit) => false);
     setModel(e.target.name);
     dispatchByName(e.target.name)
+    setPagC(()=>1)
   }
 
   async function handleDelete (e) {
     let resp = window.confirm("Confirmar acción.");
     if (resp){ await dispatch(deleteModel(e.target.value, model));
-      console.log(model);} 
+    } 
     dispatchByName(model);
   }
 let setCreate =() =>{ setAdd(add => !add) }
+
   const { logout } = useAuth();
 
   const handleLogout = async () => {
@@ -54,11 +57,84 @@ let setCreate =() =>{ setAdd(add => !add) }
     }
   };
 
-  let setUpdate = (id) => {
-    setId(id)
+
+  let setUpdate = (packs) => {
+    setPack(packs)
     setEdit((edit) => !edit);
   };
+  
+  let handleReset = () => {
+    setPack(false)
+    setEdit(false);
+  };
 console.log(adminView)
+//Paginado Normal
+const [pageCurrent,setPagC] = React.useState(1);
+
+let itemsPerPage=5;
+function setPagination(event) {
+  setPagC(
+    pageCurrent => Number(event.target.id)
+  )
+
+};
+let indiceFinal = pageCurrent * itemsPerPage;
+  let indiceInicial = indiceFinal - itemsPerPage;
+
+  let pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(adminView.length/ itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  let numerosRenderizados = pageNumbers.map(number => {
+   return (
+     <button
+       key={number}
+       id={number}
+       onClick={setPagination}
+      style={number === pageCurrent?{backgroundColor:'#80dae6'}:{backgroundColor:'#8bffe7'}}
+     >
+       {number}
+     </button>
+   );
+ });
+
+//Prev y Next
+const[paginado, setPaginado] = React.useState(0);
+
+let pageLimit =10;/// porque si, vamos de 10 en 10 
+//Definamos dos funciones mas, prev y next
+function prevPage(){
+  setPagC(
+    pageCurrent =>{
+      if(pageCurrent>1){
+        return pageCurrent-1;
+      } return 1;
+
+    }
+  );
+  setPaginado( paginado =>{if (pageCurrent>1){
+ return Math.floor((pageCurrent-2) / pageLimit)
+  } return 0;
+ }   
+ )
+  
+};
+function nextPage(){
+  setPagC(
+    pageCurrent =>{if(pageCurrent<pageNumbers.length){
+      return pageCurrent+1
+    }
+      return pageNumbers.length; 
+     }
+  )
+  setPaginado( paginado => Math.floor((pageCurrent) / pageLimit))
+};
+let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(pageLimit*(paginado+1)));
+
+
+
+  console.log(adminView)
+
   return (
     <>
     <div>
@@ -80,7 +156,7 @@ console.log(adminView)
               </button>{" "}
           </div>
           <div>
-              <button name="buses" onClick={handleSelect}>
+              <button name="business" onClick={handleSelect}>
                 Bus
               </button>
           </div>
@@ -107,6 +183,7 @@ console.log(adminView)
             <div className="btnAdd">
               <button onClick={setCreate}>ADD</button>
             </div>
+            {adminView.length && !add && !edit? <p>Page {pageCurrent}/{pageNumbers.length} from {adminView.length} results</p>: ''}
           </div>
 
           <div className="adminPanelContainer">
@@ -116,45 +193,48 @@ console.log(adminView)
               <div>
                 {" "}
                 <CreateForm word={model} />
+                <button  onClick={handleReset}>Volver</button>
               </div>
             ) 
             : edit 
               ? (
                 <div>
                 {" "}
-                <EditForm word={model} id={id}/>
+                <EditForm word={model} pack={pack}/>
+                <button  onClick={handleReset}>Volver</button>
               </div>
                 )
               :(adminView.length 
                  ? (
-                  adminView.map((pack) => {
+                  adminView.map((packs) => {
                        return (
-                       <>
-                        <div className="adminPanelColumn">
+                     
+                        <div className="adminPanelColumn" key={packs.id}>
                          <div className="text">
-                           <h1>{pack.name || pack.patent || pack.terminal}</h1>
+                           <h1>{packs.name || packs.patent || packs.terminal}</h1>
                            
                           </div>
                           <div className="btnEdit">
-                           {/*  <Link to={`/admin/edit/${model}/${e.id}`}>
-                            
-                            </Link> */}
-                             <button onClick={() => {setUpdate(pack.id)}}>Edit</button>
+
+                             <button onClick={() => {setUpdate(packs)}}>Edit</button>
                           </div>
                           <div className="btnDel">
-                            <button value={pack.id} onClick={handleDelete}>
+                            <button value={packs.id} onClick={handleDelete}>
                               X
                             </button>
                           </div>
                        </div>
-                     </>
+                  
                         );
-                      })
+                      }).slice(indiceInicial, indiceFinal)
+                      
                     ) 
                   : (
               <div>Loading..</div>
                 ))}
-            {/* {add? <div> <CreateForm/></div>: <p>holis</p>} */}
+            {adminView.length && !add && !edit? <div>{pageCurrent>1?<span onClick={prevPage} className='flecha izquierda'></span>:''} 
+            {sliceOfnumerosRederizados} 
+            {pageCurrent<pageNumbers.length?<span onClick={nextPage} className='flecha derecha'></span>:''}</div>: ''}
           </div>
         </div>
       </div>

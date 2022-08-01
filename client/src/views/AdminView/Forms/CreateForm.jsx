@@ -6,6 +6,10 @@ import { postBus } from "../../../redux/actions/postBus";
 import { postPackage } from "../../../redux/actions/postPackage";
 import { postPlatform } from "../../../redux/actions/postPlattform";
 import { postHotel } from "../../../redux/actions/postHotel";
+import { useForm } from "react-hook-form";
+
+
+
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
   const [city, setCity] = React.useState({ name: "", location: [] });
@@ -132,7 +136,7 @@ function Ejemplo({ lang }) {
     setPackages({ ...packages, [event.target.name]: event.target.value });
   }
 
-  function handleSubmit(e) {
+  function handleSubmitPackage(e) {
     e.preventDefault(); // para que era esto?
     dispatch(postPackage(packages));
   }
@@ -520,7 +524,7 @@ function Ejemplo({ lang }) {
   if (lang === "packages")
     return (
       <div className="div">
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmitPackage}>
           <div className="div-form">
             <label className="label-form"> name:</label>
             <input

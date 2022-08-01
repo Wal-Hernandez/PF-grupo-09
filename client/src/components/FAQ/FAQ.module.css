@@ -1,33 +1,6 @@
-.FAQContainer{
+.FAQContainer {
     display: flex;
     flex-direction: column;
-   
-    height: 900px;
-    background-color: rgba(150, 6, 6, 0.733);
+    height: 80vh;
     position: relative;
-   }
-.summary{
-display: flex;
-flex-direction:column;
-position: absolute;
-height: 2%;
-
 }
-
-
-
-.detail{
-    display: flex;
-    flex-direction:column;
-    position: relative;
-    height: 9%;
-    }
-    
- .h3detail{ position:absolute;
-top:30%;
-
-}
- .pdetail{position: absolute;
-top:60%;
-height: 15%;}
- 

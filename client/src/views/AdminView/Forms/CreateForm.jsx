@@ -9,12 +9,12 @@ import { postHotel } from "../../../redux/actions/postHotel";
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
   const [city, setCity] = React.useState({ name: "", location: [] });
-  const [bus, setBus] = React.useState({ 
-    name: "", 
+  const [bus, setBus] = React.useState({
+    name: "",
     phone: "",
     email: "",
     score: [],
-    comments: [] 
+    comments: []
   });
   const [activity, setActivity] = React.useState({
     name: "",

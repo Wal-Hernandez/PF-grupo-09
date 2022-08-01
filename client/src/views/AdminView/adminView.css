@@ -1,28 +1,70 @@
 .adminViewMainContainer{
 display: flex;
 flex-direction: row;
-background-color: blue;
+
+
 }
+.btnn button {
+    border: none;
+    background-color: #004AAD;
+    font-size: 17px;
+    font-weight: 450;
+    color: antiquewhite;
+}
+.btnn button:hover {
+    font-weight: 600;
+}
+.logout img {
+    width: 90px;
+    height: 90px;
+}
+.logout{
+
+    margin-top: 1px;
+    border-bottom: 2px solid #FFDE59;
+
+}
+.btn-logout{
+    border: none;
+    background-color: #004AAD;
+    color: antiquewhite;
+    font-weight: 500;
+    border-left: 1px solid rgba(0, 0, 0, 0.192);
+    padding-left: 10px;
+}
+.btn-logout:hover{
+    color: #FFDE59;
+}
+
+
 
 .adminViewContainerRoutes{
+    background: #004AAD;
     display: flex;
     flex-direction: column;
-    justify-content:space-evenly;
-    background: gray;
+    gap: 0px;
+    
+    height: 100vh;
+    width: 20vw;
+    margin: 0px;
+    padding: 0px;
+}
+.btns{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    height: 100vh;
+}
 
 
-    width: 15vw;
-}
-.adminViewContainerRoutes button{
- width: 100px;
-}
+
 .adminViewContainer{
     display: flex;
     flex-direction: column;
-    background-color: #CC6666;
+
     justify-content:flex-start;
-    height: 50vh;
-    width: 50vw;
+    height: 100vh;
+    width: 100vw;
   
   
 }
@@ -30,27 +72,79 @@ background-color: blue;
 .adminPanelContainer{
     display: flex;
     flex-direction: column;
+    height: 100vh;
+
 }
 .adminPanelTitle{
+
    
-    padding-bottom: 5vh;
+    padding-bottom: 2vh;
 }
 
-.titleView{
-   
-    left: 0;
+.btnDel button{
+    border: none;
+    background-color:#004AAD;
+    color:antiquewhite
+}
+.btnDel button:hover{
+    color: #FFDE59;
 }
 
-.btnAdd{
-   
-    right: 0;
+.btnEdit button{
+    border: none;
+    background-color:#004AAD;
+    color: antiquewhite;
 }
+.btnEdit button:hover{
+    color: #FFDE59;
+}
+
+.btnAdd button{
+    border: none;
+
+    background-color:#004AAD;
+    color: antiquewhite;
+    border-radius: 50%;
+    padding-top: 5px;
+}
+.btnAdd button:hover{
+    color: #FFDE59;
+}
+.btnAdd span{
+    font-size: 30px;
+    font-weight: 550;
+}
+.btnAdd {
+    margin-top: 10px;
+}
+.btns-admin{
+    display: flex;
+    align-items:flex-start;
+
+    margin-bottom: 40px;
+    background-color: #004AAD;
+}
+
 
 .adminPanelColumn{
-border: solid 2px black;
-width: 100%;
+display: flex;
+justify-content:space-between;
+align-items: center;
+width: 45%;
+margin: 0 auto;
+height: 13vh;
+margin-top: 10px;
+border-radius: 3px;
+border-top:5px solid #FFDE59;
+background-color: #004AAD;
+box-shadow: -3px 3px 25px -1px rgba(0,0,0,0.58);
+}
+.adminPanelColumn h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: antiquewhite;
+  padding-left: 20px;
 
-height: 10vh;
 }
 
 .flecha	{
@@ -59,8 +153,11 @@ height: 10vh;
 	width: 15px;
 	height: 15px;
 	margin: 15px;
-	border-top: cadetblue solid 7.5px;
-	border-right: cadetblue solid 7.5px;
+	border-top: rgb(0, 0, 0) solid 7.5px;
+	border-right: rgb(0, 0, 0) solid 7.5px;
+}
+.flecha:hover{
+    cursor: pointer;
 }
 .flecha.derecha {
 	transform: rotate(45deg);
@@ -70,17 +167,64 @@ height: 10vh;
 	transform: rotate(225deg);
 }
 
-.adminPanelColumn > .text{
-  
-   
+.btn-pag{
+    border: none;
+    background-color: #00000000;
+    color: #004AAD;
+    height: 23px;
+    border-radius: 2px;
+    font-weight: 550;
 }
+.pag {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40%;
+    margin: 0 auto;
 
-.btnEdit{
- 
- 
 }
-
-.btnDel{
-
-    
+.pag-info{
+    font-size: 17px;
+    font-weight: 500;
+}
+.form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.div-form{
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+}
+.div-form label{
+    font-size: 14px;
+    font-weight: 600;
+}
+.div-form input{
+    border: none;
+    border-radius: 3px;
+}
+.form-container{
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 1px solid red; */
+}
+.button-form{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: none;
+    font-size: 17px;
+    font-weight: 600;
+    background-color: #004AAD;
+    color: antiquewhite;
+    border-radius: 4px;
+    padding: 6px;
+}
+.c{
+    border: 1px solid red;
 }

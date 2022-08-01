@@ -57,7 +57,7 @@ export default function HomeBody() {
           {showPackages.length ? (
             showPackages.map((e) => {
               return (
-                <div class="col-12 col-md-6 col-lg-4" key={e.id}>
+                <div class="col-sm-12 col-md-6 col-lg-3" key={e.id}>
                   <Link to={`/details/${e.id}`}>
                     <div class="card">
                       <img
@@ -97,7 +97,6 @@ export default function HomeBody() {
             </button>
           </Link>
         </div>
-
       </div>
     </>
   );

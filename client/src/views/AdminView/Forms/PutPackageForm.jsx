@@ -43,7 +43,7 @@ export const PutPackageForm = ({pack}) => {
     <div className="div">
       <form className="form" onSubmit={handleSubmit}>
         <div className="div-form">
-          <label className="label-form"> name:</label>
+          <label className="label-form"> Name</label>
           <input
             type="text"
             name="name"
@@ -53,7 +53,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> start_date</label>
+          <label className="label-form"> Start_date</label>
           <input
             type="text"
             name="start_date"
@@ -63,7 +63,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> end_date:</label>
+          <label className="label-form"> End_date</label>
           <input
             type="text"
             name="end_date"
@@ -73,7 +73,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> price:</label>
+          <label className="label-form"> Price</label>
           <input
             type="number"
             name="price"
@@ -83,7 +83,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> discount:</label>
+          <label className="label-form"> Discount</label>
           <input
             type="number"
             name="discount"
@@ -93,7 +93,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> stock:</label>
+          <label className="label-form"> Stock</label>
           <input
             type="number"
             name="stock"
@@ -103,7 +103,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> plattformId:</label>
+          <label className="label-form"> PlattformId</label>
           <input
             type="number"
             name="plattformId"
@@ -113,7 +113,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> businessId:</label>
+          <label className="label-form"> Business Id</label>
           <input
             type="number"
             name="businessId"
@@ -123,7 +123,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> cityId:</label>
+          <label className="label-form"> City Id</label>
           <input
             type="number"
             name="cityId"
@@ -133,7 +133,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> hotelId:</label>
+          <label className="label-form"> Hotel Id</label>
           <input
             type="number"
             name="hotelId"
@@ -143,7 +143,7 @@ export const PutPackageForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> activity:</label>
+          <label className="label-form"> Activity</label>
           <input
             type="text"
             name="activity"

@@ -23,6 +23,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth } from './Firebase/firebase-config';
 
 import {firestore} from "./context/context"
+import ShoppingCart from  './components/ShoppingCart/ShoppingCart'
 
 function App() {
   const [userlog, setUser] = React.useState(null);
@@ -79,7 +80,8 @@ function App() {
       <Route path ="/faq" element ={<FAQ userlog={userlog}/>}/>
       <Route path="/about" element={<AboutView userlog={userlog}/>} />
       <Route path ="/reg" element ={<Register/>}/>
-       <Route path ="/login" element ={<Login />}/>
+       <Route path ="/login" element ={<Login/>}/>
+       <Route path ="/shoppingcart" element ={<ShoppingCart/>}/>
       
 
     </Routes>

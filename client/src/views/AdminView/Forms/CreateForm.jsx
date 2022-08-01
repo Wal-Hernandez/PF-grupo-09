@@ -10,12 +10,12 @@ import { postHotel } from "../../../redux/actions/postHotel";
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
   const [city, setCity] = React.useState({ name: "", location: [] });
-  const [bus, setBus] = React.useState({ 
-    name: "", 
+  const [bus, setBus] = React.useState({
+    name: "",
     phone: "",
     email: "",
     score: [],
-    comments: [] 
+    comments: []
   });
   const [activity, setactivity] = React.useState({
     name: "",
@@ -144,14 +144,14 @@ function Ejemplo({ lang }) {
 
       return;
     }
-    if(event.target.value === "score"){
+    if (event.target.value === "score") {
       setHotel({
         ...hotel,
         [event.target.name]: TransformData(event.target.value),
       });
       return;
     }
-    if(event.target.value === "comments"){
+    if (event.target.value === "comments") {
       setHotel({
         ...hotel,
         [event.target.name]: TransformData(event.target.value),

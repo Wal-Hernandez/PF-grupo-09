@@ -57,13 +57,13 @@ export default function HomeBody() {
           {showPackages.length ? (
             showPackages.map((e) => {
               return (
-                <div class="col-12 col-md-6 col-lg-4" key={e.id}>
+                <div class="col-sm-12 col-md-6 col-lg-3" key={e.id}>
                   <Link to={`/details/${e.id}`}>
                     <div class="card">
                       <img
                         class="card-img-top"
                         src={e.hotel.urlImage}
-                        alt="Card image cap"
+                        alt="Card  cap"
                       />
                       <div class="card-body ">
                         <h5 class="card-title card-main c-name ">{e.name}</h5>

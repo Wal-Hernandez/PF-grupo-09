@@ -28,25 +28,36 @@ function Filters({ setCurrentPage }) {
 
 
     return (
-        <div className='select-container'>
-            <select class="form-select" defaultValue="" onChange={handleSortByPrice}>
-                <option value="" disabled>Sort by price</option>
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
-            </select>
-            <select class="form-select" defaultValue="" onChange={handleSortByStock}>
-                <option value="" disabled>Sort by stock</option>
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
-            </select>
-            <select class="form-select" defaultValue="" onChange={handleCities}>
+        <div className='container'>
+            <div className='row'>
+                <div className='col-sm-12 col-md-6 col-lg-4'>
+                 <select class="form-select" defaultValue="" onChange={handleSortByPrice}>
+                    <option value="" disabled>Sort by price</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                 </select>
+                </div>
+                <div className='col-sm-12 col-md-6 col-lg-4'>
+                <select class="form-select" defaultValue="" onChange={handleSortByStock}>
+                    <option value="" disabled>Sort by stock</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+                </div>
+                <div className='col-sm-12 col-md-6 col-lg-4'>
+                <select class="form-select" defaultValue="" onChange={handleCities}>
                 <option value="" disabled>Filter by destination city</option>
                 <option value="">Show all</option>
                 {cities.map((e, index) => (
                     <option key={index}>{e.name}</option>
                 ))}
-            </select>
-        </div>
+               </select>
+                </div>
+          
+            
+           
+            </div>
+       </div> 
     )
 }
 

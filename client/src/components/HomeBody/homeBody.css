@@ -7,7 +7,7 @@
 }
 .card {
     border-radius: 0px 0px 26px 0px;
-   
+   height: 500px;
     transition: all .3s;
 }
 .c-name{

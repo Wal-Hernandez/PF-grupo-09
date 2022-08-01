@@ -10,6 +10,7 @@ import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
+import Logo from "../../images/Buspack.png"
 
 import { EditForm } from "./Forms/EditForm";
 
@@ -91,7 +92,8 @@ let indiceFinal = pageCurrent * itemsPerPage;
        key={number}
        id={number}
        onClick={setPagination}
-      style={number === pageCurrent?{backgroundColor:'#80dae6'}:{backgroundColor:'#8bffe7'}}
+       style={number === pageCurrent?{backgroundColor:'#FFDE59'}:{backgroundColor:'#00000000'}}
+       className="btn-pag"
      >
        {number}
      </button>
@@ -133,57 +135,65 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
 
 
 
-  console.log(adminView)
+  console.log("hola",adminView)
 
   return (
     <>
-    <div>
-      <button
-          className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black"
-          onClick={handleLogout}>
-          logout
-        </button></div>
+
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
-          <div>
+       <div className="logout">
+        <img src={Logo}alt="buspack" />
+        <button
+          className="btn-logout"
+          onClick={handleLogout}>
+          Logout
+        </button>
+        </div>
+        <div className="btns">
+          <div className="btn-pack btnn">
               <button name="packages" onClick={handleSelect}>
                 Paquetes
               </button>
-          </div>
-          <div>        
+          </div  >
+          <div className="btn-hotels btnn">        
               <button name="hotels" onClick={handleSelect}>
                 Hoteles
               </button>{" "}
           </div>
-          <div>
+          <div className="btn-business btnn">
               <button name="business" onClick={handleSelect}>
                 Bus
               </button>
           </div>
-          <div>
+          <div className="btn-activities btnn">
               <button name="activities" onClick={handleSelect}>
                 Activites
               </button>
           </div>
-          <div>
+          <div className="btn-cites btnn">
               <button name="cities" onClick={handleSelect}>
                 City
               </button>
           </div>
-          <div>
+          <div className="btn-plattforms btnn">
               <button name="plattforms" onClick={handleSelect}>
-                platforms
+                Platforms
               </button>     
+          </div>
           </div>
         </div>
 
         <div className="adminViewContainer">
           <div className="adminPanelTitle">
-            <div className="titleView">AdminView </div>
             <div className="btnAdd">
-              <button onClick={setCreate}>ADD</button>
+              <button onClick={setCreate}>
+                <span class="material-symbols-outlined">
+                add
+                </span>
+              </button>
             </div>
-            {adminView.length && !add && !edit? <p>Page {pageCurrent}/{pageNumbers.length} from {adminView.length} results</p>: ''}
+            {adminView.length && !add && !edit? <p className="pag-info">{adminView.length} results</p>: ''}
           </div>
 
           <div className="adminPanelContainer">
@@ -212,16 +222,22 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                         <div className="adminPanelColumn" key={packs.id}>
                          <div className="text">
                            <h1>{packs.name || packs.patent || packs.terminal}</h1>
-                           
                           </div>
+                          <div className="btns-admin">
                           <div className="btnEdit">
-
-                             <button onClick={() => {setUpdate(packs)}}>Edit</button>
+                            <button onClick={() => {setUpdate(packs)}}>
+                              <span class="material-symbols-outlined">
+                              edit
+                              </span>
+                            </button>
                           </div>
                           <div className="btnDel">
                             <button value={packs.id} onClick={handleDelete}>
-                              X
+                            <span class="material-symbols-outlined">
+                              delete
+                            </span>
                             </button>
+                          </div>
                           </div>
                        </div>
                   
@@ -232,7 +248,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                   : (
               <div>Loading..</div>
                 ))}
-            {adminView.length && !add && !edit? <div>{pageCurrent>1?<span onClick={prevPage} className='flecha izquierda'></span>:''} 
+            {adminView.length && !add && !edit? <div className="pag">{pageCurrent>1?<span onClick={prevPage} className='flecha izquierda'></span>:''} 
             {sliceOfnumerosRederizados} 
             {pageCurrent<pageNumbers.length?<span onClick={nextPage} className='flecha derecha'></span>:''}</div>: ''}
           </div>

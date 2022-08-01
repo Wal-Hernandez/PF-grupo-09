@@ -97,7 +97,6 @@ export default function HomeBody() {
             </button>
           </Link>
         </div>
-
       </div>
     </>
   );

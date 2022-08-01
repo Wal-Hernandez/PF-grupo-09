@@ -32,7 +32,9 @@
     border-top:3px solid rgb(37, 36, 36) ;
 
     }
-    
+    .red-social{
+        margin-bottom: 50px;
+    }
     .footer-img__container img{
         width: 100px;
         margin-top: 15px;
@@ -87,7 +89,7 @@
         margin-top: 15px;
     }
     .sucursales a:hover{
-        color: #EF233C;
+        color: #FFDE59;
     }
     .telefonos h2 {
         color: #F2E1E1;
@@ -116,3 +118,13 @@
             padding-top: 10px;
         }
     }
+
+.preguntas{
+    color: #F2E1E1 ;
+    
+    font-size: 18px;
+    font-weight: 600;
+}
+.preguntas:hover{
+    color: #FFDE59;
+}

@@ -189,7 +189,6 @@ export const PutHotelForm = ({ pack }) => {
           />
           {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
-
         <div className="div-form">
           <label className="label-form"> Imagen: </label>
           <input
@@ -207,7 +206,7 @@ export const PutHotelForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Gimnasio: </label>
+          <label className="label-form"> Gimnasio </label>
           <select name="gym" onChange={handleChange} defaultValue="">
             <option value="">-</option>
             <option value="true">Si</option>
@@ -216,7 +215,7 @@ export const PutHotelForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Pool: </label>
+          <label className="label-form"> Pool </label>
           <select name="pool" onChange={handleChange} defaultValue="">
             <option value="">-</option>
             <option value="true">Si</option>
@@ -225,7 +224,7 @@ export const PutHotelForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Wifi: </label>
+          <label className="label-form"> Wifi </label>
           <select name="wifi" onChange={handleChange} defaultValue="">
             <option value="">-</option>
             <option value="true">Si</option>
@@ -251,7 +250,7 @@ export const PutHotelForm = ({ pack }) => {
 
         <button type="submit" className="button-form">
           {" "}
-          Put City
+          Put Hotel
         </button>
       </form>
     </div>

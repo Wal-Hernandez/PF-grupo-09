@@ -73,6 +73,7 @@ return JSON.parse(x)
       <form className="form" onSubmit={handleSubmit(handleSubmitBus)}>
       <div className="div-form">
           <label className="label-form"> Nombre de la empresa: </label>
+
           <input
             type="text"
             name="name"

@@ -259,7 +259,9 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitHotel)}>
         <div className="div-form">
+
           <label className="label-form"> Nombre: </label>
+
           <input
             type="text"
             name="name"
@@ -307,7 +309,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Telefono: </label>
+
           <input
             type="number"
             name="phone"
@@ -323,7 +327,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Precio: </label>
+
           <input
             type="text"
             name="price"
@@ -339,7 +345,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Imagen: </label>
+
           <input
             type="text"
             name="urlImage"
@@ -355,7 +363,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Gimnasio: </label>
+          <label className="label-form"> Gimnasio </label>
           <select name="gym" onChange={handleChangeHotel}>
             <option value="true" selected>
               Si
@@ -364,7 +372,7 @@ function Ejemplo({ lang }) {
           </select>
         </div>
         <div className="div-form">
-          <label className="label-form"> Pool: </label>
+          <label className="label-form"> Pool </label>
           <select name="pool" onChange={handleChangeHotel}>
             <option value="true" selected>
               Si
@@ -373,7 +381,7 @@ function Ejemplo({ lang }) {
           </select>
         </div>
         <div className="div-form">
-          <label className="label-form"> Wifi: </label>
+          <label className="label-form"> Wifi </label>
           <select name="wifi" onChange={handleChangeHotel}>
             <option value="true" selected>
               Si
@@ -383,7 +391,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Id ciudad: </label>
+
           <input
             type="number"
             name="cityId"
@@ -399,7 +409,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Puntaje: </label>
+
           <input
             type="number"
             name="score"
@@ -415,7 +427,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Comentarios: </label>
+
           <input
             type="textarea"
             name="comments"
@@ -450,7 +464,9 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitPlatform)}>
         <div className="div-form">
+
           <label className="label-form"> Terminal: </label>
+
           <input
             type="text"
             name="terminal"
@@ -482,7 +498,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Ubicación: </label>
+
           <input
             type="number"
             name="location"
@@ -519,7 +537,9 @@ function Ejemplo({ lang }) {
       <div className="div">
         <form className="form" onSubmit={handleSubmit(handleSubmitCity)}>
           <div className="div-form">
+
             <label className="label-form"> Nombre: </label>
+
             <input
               type="text"
               name="name"
@@ -535,7 +555,9 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
+
             <label className="label-form"> Ubicación: </label>
+
             <input
               type="text"
               name="location"
@@ -577,7 +599,9 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitBus)}>
         <div className="div-form">
+
           <label className="label-form"> Nombre: </label>
+
           <input
             type="text"
             name="name"
@@ -592,7 +616,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Telefono: </label>
+
           <input
             type="text"
             name="phone"
@@ -607,7 +633,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Email: </label>
+
           <input
             type="text"
             name="email"
@@ -622,7 +650,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Puntaje: </label>
+
           <input
             type="number"
             name="score"
@@ -631,7 +661,9 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
+
           <label className="label-form"> Comentarios: </label>
+
           <input
             type="textarea"
             name="comments"
@@ -673,7 +705,9 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitActivity)}>
         <div className="div-form">
+
           <label className="label-form"> Nombre: </label>
+
           <input
             type="text"
             name="name"
@@ -688,7 +722,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Imagen: </label>
+
           <input
             type="text"
             name="image"
@@ -703,7 +739,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Precio: </label>
+
           <input
             type="number"
             name="price"
@@ -717,7 +755,9 @@ function Ejemplo({ lang }) {
           {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
         <div className="div-form">
+
           <label className="label-form"> Puntaje: </label>
+
           <input
             type="text"
             name="score"
@@ -726,7 +766,9 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
+
           <label className="label-form"> Comentarios: </label>
+
           <input
             type="text"
             name="comments"
@@ -736,6 +778,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+
           <label className="label-form"> Id ciudad: </label>
           <input type="number" 
           name="cityId" 
@@ -746,6 +789,7 @@ function Ejemplo({ lang }) {
             }}
           />
           {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+
         </div>
 
         <button
@@ -807,10 +851,12 @@ function Ejemplo({ lang }) {
     });
 
     return (
+
       <div className="div">
         <form className="form" onSubmit={handleSubmit(handleSubmitPackage)}>
           <div className="div-form">
             <label className="label-form"> Nombre: </label>
+
             <input
               type="text"
               name="name"
@@ -826,6 +872,7 @@ function Ejemplo({ lang }) {
 
           <div className="div-form">
             <label className="label-form"> Fecha de inicio: </label>
+
             <input
               type="text"
               name="start_date"
@@ -841,6 +888,7 @@ function Ejemplo({ lang }) {
 
           <div className="div-form">
             <label className="label-form"> Fecha de finalización: </label>
+
             <input
               type="text"
               name="end_date"
@@ -855,7 +903,9 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
+
             <label className="label-form"> Precio: </label>
+
             <input
               type="number"
               name="price"
@@ -870,7 +920,9 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
+
             <label className="label-form"> Descuento: </label>
+
             <input
               type="number"
               name="discount"
@@ -886,6 +938,7 @@ function Ejemplo({ lang }) {
 
           <div className="div-form">
             <label className="label-form"> Stock: </label>
+
             <input
               type="number"
               name="stock"
@@ -898,9 +951,12 @@ function Ejemplo({ lang }) {
           />
           {errors?.stock && <span>{errors?.stock?.message}</span>}
           </div>
-
+          
+   
           <div className="div-form">
+
             <label className="label-form"> Id plataforma: </label>
+
             <input
               type="number"
               name="plattformId"
@@ -915,7 +971,9 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
+
             <label className="label-form"> Id transporte: </label>
+
             <input
               type="number"
               name="businessId"
@@ -931,6 +989,7 @@ function Ejemplo({ lang }) {
 
           <div className="div-form">
             <label className="label-form"> Id ciudad: </label>
+
             <input
               type="number"
               name="cityId"
@@ -946,6 +1005,7 @@ function Ejemplo({ lang }) {
 
           <div className="div-form">
             <label className="label-form"> Id hotel: </label>
+
             <input
               type="number"
               name="hotelId"
@@ -968,9 +1028,10 @@ function Ejemplo({ lang }) {
               onChange={handleChange}
             />
           </div>
+        
 
-          <button type="submit" className="button-form">Create Package</button>
         </form>
+        <button type="submit" className="button-form">Crear Paquete</button>
       </div>
     );
   }
@@ -1001,3 +1062,103 @@ export const CreateForm = ({ word }) => {
     </div>
   );
 };
+
+{/* <form onSubmit={handleSubmit}>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Name</label>
+      <input class="form-control" type="text"
+              name="name"
+              value={packages["name"]}
+              onChange={handleChange} id="inputEmail4" placeholder="Nombre"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Fecha de inicio</label>
+      <input type="text"
+              name="start_date"
+              value={packages["start_date"]}
+              onChange={handleChange}class="form-control" id="inputPassword4" placeholder="Fecha"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Fecha de finalizacion</label>
+    <input type="text"
+              name="end_date"
+              value={packages["end_date"]}
+              onChange={handleChange} class="form-control" id="inputAddress" placeholder="Fecha"/>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Precio</label>
+    <input  type="number"
+              name="price"
+              value={packages["price"]}
+              onChange={handleChange} class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Descuento</label>
+      <input   type="number"
+              name="discount"
+              value={packages["discount"]}
+              onChange={handleChange} class="form-control" id="inputCity"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Stock</label>
+      <input   type="number"
+              name="stock"
+              value={packages["stock"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip"> Platform Id</label>
+      <input  type="number"
+              name="plattformId"
+              value={packages["plattformId"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Bus Id</label>
+      <input   type="number"
+              name="businessId"
+              value={packages["businessId"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">City Id</label>
+      <input  type="number"
+              name="cityId"
+              value={packages["cityId"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Hotel Id</label>
+      <input  type="number"
+              name="hotelId"
+              value={packages["hotelId"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Activity</label>
+      <input   type="text"
+              name="activity"
+              value={packages["activity"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+  </div>
+  {/* <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div> */}
+//   <button type="submit" class="btn btn-primary">Create Package</button>
+// </form> */}

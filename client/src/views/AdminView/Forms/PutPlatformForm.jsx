@@ -29,7 +29,7 @@ export const PutPlatformForm = ({pack}) => {
   }
 
   function handleSubmitPlatform() {
-    //e.preventDefault(); // para que era esto?
+    //e.preventDefault();
     dispatch(putPlatform(pack.id, platform));
   }
 

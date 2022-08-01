@@ -30,7 +30,7 @@ export const PutActivityForm = ({ pack}) => {
   }
 
   function handleSubmitActivity() {
-    //e.preventDefault(); // para que era esto?
+    //e.preventDefault(); 
     dispatch(putActivity(pack.id, activity));
   }
 

@@ -10,7 +10,8 @@ function SearchAndFilters({ setCurrentPage }) {
   const [endDate, setEndDate] = useState("");
 
   return (
-    <div>
+    <div className="container w-75 mt-5">
+      <div className="row mt-5">
       <Search
         setCurrentPage={setCurrentPage}
         startDate={startDate}
@@ -18,6 +19,8 @@ function SearchAndFilters({ setCurrentPage }) {
         endDate={endDate}
         setEndDate={setEndDate}
       />
+      </div>
+       <div className="row">
       <Filters
         setCurrentPage={setCurrentPage}
         price={priceOrder}
@@ -29,6 +32,7 @@ function SearchAndFilters({ setCurrentPage }) {
         setStock={setStockOrder}
         setCity={setCity}
       />
+      </div>
     </div>
   );
 }

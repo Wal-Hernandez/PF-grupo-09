@@ -30,7 +30,7 @@ export const PutCityForm = ({ pack }) => {
     <div className="div">
       <form className="form" onSubmit={handleSubmit}>
         <div className="div-form">
-          <label className="label-form"> Name:</label>
+          <label className="label-form"> Name</label>
           {/* <input className={errors.name ? 'danger' : 'input-form'} 
     type="text" name='name' 
     value={city['name']} 
@@ -47,7 +47,7 @@ export const PutCityForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Location:</label>
+          <label className="label-form"> Location</label>
           {/* <input className={errors.temperaments? 'danger': 'input-form'} 
     type="text" name='location'
     value={city['location']} 

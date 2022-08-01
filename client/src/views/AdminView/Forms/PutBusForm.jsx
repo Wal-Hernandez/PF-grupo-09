@@ -51,7 +51,7 @@ return JSON.parse(x)
     <div className="div">
       <form className="form" onSubmit={handleSubmit}>
       <div className="div-form">
-          <label className="label-form"> Name:</label>
+          <label className="label-form"> Name</label>
           <input
             type="text"
             name="name"
@@ -68,7 +68,7 @@ return JSON.parse(x)
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Phone:</label>
+          <label className="label-form"> Phone</label>
           {/* <input className={errors.temperaments? 'danger': 'input-form'} 
     type="text" name='location'
     value={city['location']} 
@@ -84,7 +84,7 @@ return JSON.parse(x)
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> Email:</label>
+          <label className="label-form"> Email</label>
           <input
             type="text"
             name="email"

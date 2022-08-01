@@ -56,8 +56,9 @@ export function Login() {
       // obtener rol
       const docuRef = doc(firestore, `usuarios/${uid}`);
       const docuCifrada = await getDoc(docuRef);
-      const infoFinal = docuCifrada.data().rol;
-      return infoFinal;
+      if(docuCifrada.data()){const infoFinal = docuCifrada.data().rol;
+      return infoFinal;}
+      else{return 4}
     }
 
   const handleGoogleSignin = async () => {
@@ -65,7 +66,7 @@ export function Login() {
       await loginWithGoogle()
       .then(a=> a.user.uid)
       .then(r=> getRol(r))
-      .then(r=>{if (!r){alert("Registrate,Boloo")}
+      .then(r=>{if (typeof r ==='number'){alert("Registrate,Boloo")}
     else{ if (r==='client') navigate('/')
     else{navigate('/admin')}
   
@@ -74,6 +75,7 @@ export function Login() {
       
     } catch (error) {
       setError(error.message);
+      console.log(error)
     }
   };
 

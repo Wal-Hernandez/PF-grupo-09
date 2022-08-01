@@ -35,12 +35,12 @@ function App() {
     const infoFinal3 = docuCifrada.data().apellido;
     const infoFinal4 = docuCifrada.data().mail;
     return [infoFinal,infoFinal2,infoFinal3,infoFinal4];}
-    else{ alert('Registrate, Boloo!')}
+    else{ return 4}
   }
 
   function setUserWithFirebaseAndRol(usuarioFirebase) {
     getRol(usuarioFirebase.uid).then((rol) => {
-      if(rol){
+      if(typeof rol !== 'number'){
       const userData = {
         uid: usuarioFirebase.uid,
         email: usuarioFirebase.email,
@@ -51,7 +51,7 @@ function App() {
       };
       setUser(userData);
       console.log("userData fianl", userData);
-    }else{ alert('Que Pelotudo, Registrate')}});
+    }else{ return 8}});
   }
 
   onAuthStateChanged(auth, (usuarioFirebase) => {

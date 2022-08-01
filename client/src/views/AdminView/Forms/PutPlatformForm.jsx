@@ -32,7 +32,7 @@ export const PutPlatformForm = ({pack}) => {
     <div className="div">
       <form className="form" onSubmit={handleSubmit}>
         <div className="div-form">
-          <label className="label-form"> terminal:</label>
+          <label className="label-form"> Terminal</label>
           <input
             type="text"
             name="terminal"
@@ -42,7 +42,7 @@ export const PutPlatformForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> address</label>
+          <label className="label-form"> Address</label>
           <input
             type="text"
             name="address"
@@ -52,7 +52,7 @@ export const PutPlatformForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> location:</label>
+          <label className="label-form"> Location</label>
           <input
             type="text"
             name="location"

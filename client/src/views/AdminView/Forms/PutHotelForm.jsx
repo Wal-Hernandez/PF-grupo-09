@@ -68,7 +68,7 @@ export const PutHotelForm = ({pack}) => {
     <div className="div">
       <form className="form" onSubmit={handleSubmit}>
         <div className="div-form">
-          <label className="label-form"> Name:</label>
+          <label className="label-form"> Name</label>
           <input
             type="text"
             name="name"
@@ -88,7 +88,7 @@ export const PutHotelForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> stars:</label>
+          <label className="label-form"> Stars</label>
           <input
             type="number"
             name="stars"
@@ -98,7 +98,7 @@ export const PutHotelForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> phone:</label>
+          <label className="label-form"> Phone</label>
           <input
             type="text"
             name="phone"
@@ -108,7 +108,7 @@ export const PutHotelForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> price:</label>
+          <label className="label-form"> Price</label>
           <input
             type="text"
             name="price"
@@ -118,7 +118,7 @@ export const PutHotelForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> urlImage:</label>
+          <label className="label-form"> UrlImage:</label>
           <input
             type="text"
             name="urlImage"
@@ -128,7 +128,7 @@ export const PutHotelForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Gimnasio: </label>
+          <label className="label-form"> Gimnasio </label>
           <select name="gym" onChange={handleChange} defaultValue="">
             <option value="">-</option>
             <option value="true">
@@ -139,7 +139,7 @@ export const PutHotelForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Pool: </label>
+          <label className="label-form"> Pool </label>
           <select name="pool" onChange={handleChange} defaultValue="">
             <option value="">-</option>
             <option value="true">
@@ -150,7 +150,7 @@ export const PutHotelForm = ({pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Wifi: </label>
+          <label className="label-form"> Wifi </label>
           <select name="wifi" onChange={handleChange} defaultValue="">
             <option value="">-</option>
             <option value="true">
@@ -163,7 +163,7 @@ export const PutHotelForm = ({pack}) => {
     
 
         <div className="div-form">
-          <label className="label-form"> cityId:</label>
+          <label className="label-form"> City Id</label>
           <input
             type="number"
             name="cityId"
@@ -174,7 +174,7 @@ export const PutHotelForm = ({pack}) => {
 
         <button type="submit" className="button-form">
           {" "}
-          Put City
+          Put Hotel
         </button>
    
       </form>

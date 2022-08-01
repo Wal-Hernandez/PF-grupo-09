@@ -205,7 +205,7 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmitHotel}>
         <div className="div-form">
-          <label className="label-form"> Name:</label>
+          <label className="label-form"> Name</label>
           <input
             type="text"
             name="name"
@@ -225,7 +225,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> stars:</label>
+          <label className="label-form"> Stars</label>
           <input
             type="number"
             name="stars"
@@ -235,7 +235,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> phone:</label>
+          <label className="label-form"> Phone</label>
           <input
             type="text"
             name="phone"
@@ -245,7 +245,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> price:</label>
+          <label className="label-form"> Price</label>
           <input
             type="text"
             name="price"
@@ -255,7 +255,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> urlImage:</label>
+          <label className="label-form"> UrlImage</label>
           <input
             type="text"
             name="urlImage"
@@ -264,7 +264,7 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> Gimnasio: </label>
+          <label className="label-form"> Gimnasio </label>
           <select name="gym" onChange={handleChangeHotel}>
             <option value="true" selected>
               Si
@@ -273,7 +273,7 @@ function Ejemplo({ lang }) {
           </select>
         </div>
         <div className="div-form">
-          <label className="label-form"> Pool: </label>
+          <label className="label-form"> Pool </label>
           <select name="pool" onChange={handleChangeHotel}>
             <option value="true" selected>
               Si
@@ -282,7 +282,7 @@ function Ejemplo({ lang }) {
           </select>
         </div>
         <div className="div-form">
-          <label className="label-form"> Wifi: </label>
+          <label className="label-form"> Wifi </label>
           <select name="wifi" onChange={handleChangeHotel}>
             <option value="true" selected>
               Si
@@ -292,7 +292,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> cityId:</label>
+          <label className="label-form"> CityId</label>
           <input
             type="number"
             name="cityId"
@@ -301,7 +301,7 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> score:</label>
+          <label className="label-form"> Score</label>
           <input
             type="number"
             name="score"
@@ -310,7 +310,7 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> comments: </label>
+          <label className="label-form"> Comments </label>
           <input
             type="textarea"
             name="comments"
@@ -329,7 +329,7 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmitPlatform}>
         <div className="div-form">
-          <label className="label-form"> Terminal:</label>
+          <label className="label-form"> Terminal</label>
           <input
             type="text"
             name="terminal"
@@ -349,7 +349,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Location:</label>
+          <label className="label-form"> Location</label>
           <input
             type="text"
             name="location"
@@ -369,7 +369,7 @@ function Ejemplo({ lang }) {
       <div className="div">
         <form className="form" onSubmit={handleSubmitCity}>
           <div className="div-form">
-            <label className="label-form"> Name:</label>
+            <label className="label-form"> Name</label>
             <input
               type="text"
               name="name"
@@ -379,7 +379,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> Location:</label>
+            <label className="label-form"> Location</label>
             <input
               type="text"
               name="location"
@@ -399,7 +399,7 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmitBus}>
         <div className="div-form">
-          <label className="label-form"> Name:</label>
+          <label className="label-form"> Name</label>
           <input
             type="text"
             name="name"
@@ -409,7 +409,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Phone:</label>
+          <label className="label-form"> Phone</label>
           <input
             type="text"
             name="phone"
@@ -418,7 +418,7 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> Email:</label>
+          <label className="label-form"> Email</label>
           <input
             type="text"
             name="email"
@@ -427,7 +427,7 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> Score:</label>
+          <label className="label-form"> Score</label>
           <input
             type="number"
             name="score"
@@ -436,7 +436,7 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> Comments: </label>
+          <label className="label-form"> Comments </label>
           <input
             type="textarea"
             name="comments"
@@ -455,7 +455,7 @@ function Ejemplo({ lang }) {
     return (
       <form className="form" onSubmit={handleSubmitActivity}>
         <div className="div-form">
-          <label className="label-form"> Name:</label>
+          <label className="label-form"> Name</label>
           <input
             type="text"
             name="name"
@@ -465,7 +465,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> image</label>
+          <label className="label-form"> Image</label>
           <input
             type="text"
             name="image"
@@ -475,7 +475,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> price:</label>
+          <label className="label-form"> Price</label>
           <input
             type="number"
             name="price"
@@ -484,7 +484,7 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> score:</label>
+          <label className="label-form"> Score</label>
           <input
             type="text"
             name="score"
@@ -493,7 +493,7 @@ function Ejemplo({ lang }) {
           />
         </div>
         <div className="div-form">
-          <label className="label-form"> comments:</label>
+          <label className="label-form"> Comments</label>
           <input
             type="text"
             name="comments"
@@ -503,7 +503,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> cityId:</label>
+          <label className="label-form"> CityId</label>
           <input type="number" name="cityId" onChange={handleChangeActivity}/>
         </div>
         <button
@@ -519,10 +519,10 @@ function Ejemplo({ lang }) {
     );
   if (lang === "packages")
     return (
-      <div className="div">
+      <div className="form-container">
         <form className="form" onSubmit={handleSubmit}>
           <div className="div-form">
-            <label className="label-form"> name:</label>
+            <label className="label-form"> Name</label>
             <input
               type="text"
               name="name"
@@ -532,7 +532,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> start_date</label>
+            <label className="label-form"> Start_date</label>
             <input
               type="text"
               name="start_date"
@@ -542,7 +542,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> end_date:</label>
+            <label className="label-form"> End_date</label>
             <input
               type="text"
               name="end_date"
@@ -552,7 +552,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> price:</label>
+            <label className="label-form"> Price</label>
             <input
               type="number"
               name="price"
@@ -562,7 +562,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> discount:</label>
+            <label className="label-form"> Discount</label>
             <input
               type="number"
               name="discount"
@@ -572,7 +572,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> stock:</label>
+            <label className="label-form"> Stock</label>
             <input
               type="number"
               name="stock"
@@ -580,9 +580,10 @@ function Ejemplo({ lang }) {
               onChange={handleChange}
             />
           </div>
-
+          
+   
           <div className="div-form">
-            <label className="label-form"> plattformId:</label>
+            <label className="label-form"> Plattform Id</label>
             <input
               type="number"
               name="plattformId"
@@ -592,7 +593,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> busId:</label>
+            <label className="label-form"> Bus Id</label>
             <input
               type="number"
               name="businessId"
@@ -602,7 +603,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> cityId:</label>
+            <label className="label-form"> City Id</label>
             <input
               type="number"
               name="cityId"
@@ -612,7 +613,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> hotelId:</label>
+            <label className="label-form"> Hotel Id</label>
             <input
               type="number"
               name="hotelId"
@@ -622,7 +623,7 @@ function Ejemplo({ lang }) {
           </div>
 
           <div className="div-form">
-            <label className="label-form"> activity:</label>
+            <label className="label-form"> Activity</label>
             <input
               type="text"
               name="activity"
@@ -630,9 +631,10 @@ function Ejemplo({ lang }) {
               onChange={handleChange}
             />
           </div>
+        
 
-          <button type="submit" className="button-form">Create Package</button>
         </form>
+        <button type="submit" className="button-form">Crear Paquete</button>
       </div>
     );
 }
@@ -662,3 +664,103 @@ export const CreateForm = ({ word }) => {
     </div>
   );
 };
+
+{/* <form onSubmit={handleSubmit}>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Name</label>
+      <input class="form-control" type="text"
+              name="name"
+              value={packages["name"]}
+              onChange={handleChange} id="inputEmail4" placeholder="Nombre"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Fecha de inicio</label>
+      <input type="text"
+              name="start_date"
+              value={packages["start_date"]}
+              onChange={handleChange}class="form-control" id="inputPassword4" placeholder="Fecha"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Fecha de finalizacion</label>
+    <input type="text"
+              name="end_date"
+              value={packages["end_date"]}
+              onChange={handleChange} class="form-control" id="inputAddress" placeholder="Fecha"/>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Precio</label>
+    <input  type="number"
+              name="price"
+              value={packages["price"]}
+              onChange={handleChange} class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"/>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Descuento</label>
+      <input   type="number"
+              name="discount"
+              value={packages["discount"]}
+              onChange={handleChange} class="form-control" id="inputCity"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Stock</label>
+      <input   type="number"
+              name="stock"
+              value={packages["stock"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip"> Platform Id</label>
+      <input  type="number"
+              name="plattformId"
+              value={packages["plattformId"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Bus Id</label>
+      <input   type="number"
+              name="businessId"
+              value={packages["businessId"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">City Id</label>
+      <input  type="number"
+              name="cityId"
+              value={packages["cityId"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Hotel Id</label>
+      <input  type="number"
+              name="hotelId"
+              value={packages["hotelId"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Activity</label>
+      <input   type="text"
+              name="activity"
+              value={packages["activity"]}
+              onChange={handleChange} class="form-control" id="inputZip"/>
+    </div>
+  </div>
+  {/* <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div> */}
+//   <button type="submit" class="btn btn-primary">Create Package</button>
+// </form> */}

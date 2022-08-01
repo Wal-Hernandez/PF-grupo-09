@@ -29,7 +29,7 @@ export const PutActivityForm = ({ pack}) => {
     <div className="div">
       <form className="form" onSubmit={handleSubmit}>
         <div className="div-form">
-          <label className="label-form"> Name:</label>
+          <label className="label-form"> Name</label>
           <input
             type="text"
             name="name"
@@ -39,7 +39,7 @@ export const PutActivityForm = ({ pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> image</label>
+          <label className="label-form"> Image</label>
           <input
             type="text"
             name="image"
@@ -49,7 +49,7 @@ export const PutActivityForm = ({ pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> price:</label>
+          <label className="label-form"> Price</label>
           <input
             type="number"
             name="price"
@@ -61,7 +61,7 @@ export const PutActivityForm = ({ pack}) => {
         
      
         <div className="div-form">
-          <label className="label-form"> cityId:</label>
+          <label className="label-form"> CityId</label>
           <input
             type="number"
             name="cityId"

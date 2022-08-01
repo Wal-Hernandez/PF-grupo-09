@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
@@ -8,8 +8,6 @@ export const PutHotelForm = ({ pack }) => {
   const {
     register,
     handleSubmit,
-    watch,
-    reset,
     formState: { errors },
   } = useForm();
   const [hotel, setHotel] = React.useState({

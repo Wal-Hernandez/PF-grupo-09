@@ -30,15 +30,17 @@ function App() {
   async function getRol(uid) {
     const docuRef = doc(firestore, `usuarios/${uid}`);
     const docuCifrada = await getDoc(docuRef);
-    const infoFinal = docuCifrada.data().rol;
+    if(docuCifrada.data()){const infoFinal = docuCifrada.data().rol;
     const infoFinal2 = docuCifrada.data().nombre;
     const infoFinal3 = docuCifrada.data().apellido;
     const infoFinal4 = docuCifrada.data().mail;
-    return [infoFinal,infoFinal2,infoFinal3,infoFinal4];
+    return [infoFinal,infoFinal2,infoFinal3,infoFinal4];}
+    else{ return 4}
   }
 
   function setUserWithFirebaseAndRol(usuarioFirebase) {
     getRol(usuarioFirebase.uid).then((rol) => {
+      if(typeof rol !== 'number'){
       const userData = {
         uid: usuarioFirebase.uid,
         email: usuarioFirebase.email,
@@ -49,14 +51,14 @@ function App() {
       };
       setUser(userData);
       console.log("userData fianl", userData);
-    });
+    }else{ return 8}});
   }
 
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       //funcion final
 
-      if (!userlog) {
+      if (!userlog) {  
         setUserWithFirebaseAndRol(usuarioFirebase);
       }
     } else {
@@ -77,7 +79,7 @@ function App() {
       <Route path ="/faq" element ={<FAQ userlog={userlog}/>}/>
       <Route path="/about" element={<AboutView userlog={userlog}/>} />
       <Route path ="/reg" element ={<Register/>}/>
-       <Route path ="/login" element ={<Login/>}/>
+       <Route path ="/login" element ={<Login />}/>
       
 
     </Routes>
@@ -86,3 +88,4 @@ function App() {
   );
 }
 export default App;
+

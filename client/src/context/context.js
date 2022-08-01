@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
       apellido: surname,
     });
   };
-  async function getRol(uid) {
+  const getRol= async(uid) => {
     // obtener rol
     const docuRef = doc(firestore, `usuarios/${uid}`);
     const docuCifrada = await getDoc(docuRef);

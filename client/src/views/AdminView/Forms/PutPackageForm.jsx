@@ -255,6 +255,7 @@ export const PutPackageForm = ({ pack }) => {
             type="text"
             name="activity"
             value={packages["activity"]}
+            placeholder="Ingrese una actividad."
             onChange={handleChange}
           />
         </div>

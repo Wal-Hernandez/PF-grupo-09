@@ -89,6 +89,43 @@ export function Login() {
     }
   };
 
+  const CartNotLoggedinToLoggedin = () => {
+    console.log("holaaaaaaaaaaaaaaaaaaaaaaa")
+    if(localStorage.getItem("myCartNotLoggedin")){
+        console.log("entro a myCartNotLoggedin")
+        let myCarttextNotLoggedin
+        let myCartparsedNotLoggedin=[]
+        let myCarttextLoggedin
+        let myCartparsedLoggedin=[]
+        let found
+        if(!localStorage.getItem("myCartLoggedin")) {
+          localStorage.setItem("myCartLoggedin", "[]")
+        } else {
+          myCarttextLoggedin = localStorage.getItem("myCartLoggedin")
+          myCartparsedLoggedin= JSON.parse(myCarttextLoggedin) 
+        }
+        myCarttextNotLoggedin = localStorage.getItem("myCartNotLoggedin")
+        myCartparsedNotLoggedin= JSON.parse(myCarttextNotLoggedin)    
+ 
+        for (let i=0; i<myCartparsedNotLoggedin.length; i++){    
+          found=false
+          for(let j=0; j<myCartparsedLoggedin.length; j++) {
+                  if(myCartparsedNotLoggedin[i].id===myCartparsedLoggedin[j].id){
+                    myCartparsedLoggedin.quantity=myCartparsedLoggedin.quantity+myCartparsedNotLoggedin.quantity
+                    found=true
+                  }
+            }
+            if (found===false) {
+              myCartparsedLoggedin=[...myCartparsedLoggedin, {id:myCartparsedNotLoggedin[i].id,quantity:myCartparsedNotLoggedin[i].quantity}]
+            }
+          }
+          let cartJSONNotLoggedin= JSON.stringify(myCartparsedLoggedin)
+          localStorage.setItem("myCartLoggedin", cartJSONNotLoggedin) 
+          localStorage.setItem("myCartNotLoggedin", "[]")
+        }
+  }
+
+
   return (
 
     <div className="container w-75 bg-white mt-5 rounded">
@@ -142,7 +179,7 @@ export function Login() {
               />
             </div>
             <div className="d-grid">
-              <button
+              <button onClick={CartNotLoggedinToLoggedin}
                 className="btn btn-primary hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >

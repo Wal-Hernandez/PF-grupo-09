@@ -1,9 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-
+import { useForm } from "react-hook-form";
 import { putCity } from "../../../redux/actions/putCity";
 export const PutCityForm = ({ pack }) => {
   const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [city, setCity] = React.useState({ name: pack.name, location: pack.location });
 
   function TransformData(x) {
@@ -21,16 +26,24 @@ export const PutCityForm = ({ pack }) => {
     //  })); //esto es para los errores-->toca prestar atencion a cada examen de validacion
     // console.log(errors)
   }
-  function handleSubmit(e) {
-    e.preventDefault(); // para que era esto?
+  function handleSubmitCity() {
+    //e.preventDefault(); // para que era esto?
     dispatch(putCity(pack.id, city));
   }
 
+  const name = register("name", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const location = register("location", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
   return (
     <div className="div">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit(handleSubmitCity)}>
         <div className="div-form">
-          <label className="label-form"> Name</label>
+          <label className="label-form"> Nombre: </label>
           {/* <input className={errors.name ? 'danger' : 'input-form'} 
     type="text" name='name' 
     value={city['name']} 
@@ -42,12 +55,18 @@ export const PutCityForm = ({ pack }) => {
             type="text"
             name="name"
             value={city["name"]}
-            onChange={handleChange}
+            placeholder="Ingrese el nombre de la ciudad."
+            {...name}
+            onChange={(e) => {
+              name.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.name && <span>{errors?.name?.message}</span>}
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Location</label>
+          <label className="label-form"> Ubicación: </label>
           {/* <input className={errors.temperaments? 'danger': 'input-form'} 
     type="text" name='location'
     value={city['location']} 
@@ -56,11 +75,17 @@ export const PutCityForm = ({ pack }) => {
           <p className="danger">{errors.temperaments}</p>
         )} */}
           <input
-            type="text"
+            type="number"
             name="location"
             value={city["location"]}
-            onChange={handleChange}
+            placeholder="Ingrese una ubicación."
+            {...location}
+            onChange={(e) => {
+              location.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.location && <span>{errors?.location?.message}</span>}
         </div>
 
         <button

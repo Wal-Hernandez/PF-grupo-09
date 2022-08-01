@@ -1,24 +1,32 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 
 import { putHotel } from "../../../redux/actions/putHotel";
-export const PutHotelForm = ({pack}) => {
+export const PutHotelForm = ({ pack }) => {
   const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [hotel, setHotel] = React.useState({
-    name: pack.name, 
-    location: pack.location, 
-    stars: pack.stars, 
-    phone: pack.phone, 
-    price: pack.price, 
-    pool: pack.pool, 
-    wifi: pack.wifi, 
-    gym: pack.gym, 
-    urlImage: pack.urlImage, 
-    cityId: pack.cityId, 
-    score: pack.score, 
-    comments: pack.comments
+    name: pack.name,
+    location: pack.location,
+    stars: pack.stars,
+    phone: pack.phone,
+    price: pack.price,
+    pool: pack.pool,
+    wifi: pack.wifi,
+    gym: pack.gym,
+    urlImage: pack.urlImage,
+    cityId: pack.cityId,
+    score: pack.score,
+    comments: pack.comments,
   });
   console.log(pack.id);
+  const expRegUrl =
+    /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
   function TransformData(x) {
     if (isNaN(x[0])) return x;
     return x.split(",");
@@ -32,7 +40,7 @@ export const PutHotelForm = ({pack}) => {
       });
       return;
     }
-    if (event.target.name === "urlImage" || event.target.name === "comments" ) {
+    if (event.target.name === "urlImage" || event.target.name === "comments") {
       setHotel({ ...hotel, [event.target.name]: [event.target.value] });
       return;
     }
@@ -48,7 +56,7 @@ export const PutHotelForm = ({pack}) => {
       }
       return;
     }
-    if(event.target.name === "score"){
+    if (event.target.name === "score") {
       setHotel({
         ...hotel,
         [event.target.name]: TransformData(event.target.value),
@@ -57,83 +65,151 @@ export const PutHotelForm = ({pack}) => {
     }
 
     setHotel({ ...hotel, [event.target.name]: event.target.value });
+    console.log(hotel);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault(); // para que era esto?
-  dispatch(putHotel(pack.id, hotel)); 
+  function handleSubmitHotel(e) {
+    //e.preventDefault(); // para que era esto?
+    dispatch(putHotel(pack.id, hotel));
+    //e.target.reset()
   }
+
+  const name = register("name", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const location = register("location", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const stars = register("stars", {
+    required: { value: true, message: "REQUERIDO" },
+    min: { value: 1, message: "Minimo 1 estrella" },
+    max: { value: 5, message: "Maximo 5 estrellas" },
+  });
+
+  const phone = register("phone", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const price = register("price", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const urlImage = register("urlImage", {
+    pattern: {
+      value: expRegUrl,
+      message: "Url no valida",
+    },
+  });
+
+  const cityId = register("cityId", {
+    required: { value: true, message: "REQUERIDO" },
+  });
 
   return (
     <div className="div">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit(handleSubmitHotel)}>
         <div className="div-form">
-          <label className="label-form"> Name</label>
+          <label className="label-form"> Nombre: </label>
           <input
             type="text"
             name="name"
             value={hotel["name"]}
-            onChange={handleChange}
+            placeholder="Ingrese el nombre del hotel."
+            {...name}
+            onChange={(e) => {
+              name.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.name && <span>{errors?.name?.message}</span>}
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Location</label>
+          <label className="label-form"> Ubicacion: </label>
           <input
             type="text"
             name="location"
             value={hotel["location"]}
-            onChange={handleChange}
+            placeholder="Ingrese la ubicacion del hotel (coordenadas)."
+            {...location}
+            onChange={(e) => {
+              location.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.location && <span>{errors?.location?.message}</span>}
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Stars</label>
+          <label className="label-form"> Estrellas: </label>
           <input
             type="number"
             name="stars"
             value={hotel["stars"]}
-            onChange={handleChange}
+            placeholder="Cantidad de estrellas del hotel."
+            {...stars}
+            onChange={(e) => {
+              stars.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.stars && <span>{errors?.stars?.message}</span>}
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Phone</label>
+          <label className="label-form"> Telefono: </label>
           <input
-            type="text"
+            type="number"
             name="phone"
             value={hotel["phone"]}
-            onChange={handleChange}
+            placeholder="Telefono del hotel."
+            {...phone}
+            onChange={(e) => {
+              phone.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.phone && <span>{errors?.phone?.message}</span>}
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Price</label>
+          <label className="label-form"> Precio: </label>
           <input
-            type="text"
+            type="number"
             name="price"
             value={hotel["price"]}
-            onChange={handleChange}
+            placeholder="Ingrese el precio del hotel."
+            {...price}
+            onChange={(e) => {
+              price.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
-
         <div className="div-form">
-          <label className="label-form"> UrlImage:</label>
+          <label className="label-form"> Imagen: </label>
           <input
             type="text"
             name="urlImage"
             value={hotel["urlImage"]}
-            onChange={handleChange}
+            placeholder="Ingrese una URL."
+            {...urlImage}
+            onChange={(e) => {
+              urlImage.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.urlImage && <span>{errors?.urlImage?.message}</span>}
         </div>
 
         <div className="div-form">
           <label className="label-form"> Gimnasio </label>
           <select name="gym" onChange={handleChange} defaultValue="">
             <option value="">-</option>
-            <option value="true">
-              Si
-            </option>
+            <option value="true">Si</option>
             <option value="false">No</option>
           </select>
         </div>
@@ -142,9 +218,7 @@ export const PutHotelForm = ({pack}) => {
           <label className="label-form"> Pool </label>
           <select name="pool" onChange={handleChange} defaultValue="">
             <option value="">-</option>
-            <option value="true">
-              Si
-            </option>
+            <option value="true">Si</option>
             <option value="false">No</option>
           </select>
         </div>
@@ -153,30 +227,31 @@ export const PutHotelForm = ({pack}) => {
           <label className="label-form"> Wifi </label>
           <select name="wifi" onChange={handleChange} defaultValue="">
             <option value="">-</option>
-            <option value="true">
-              Si
-            </option>
+            <option value="true">Si</option>
             <option value="false">No</option>
           </select>
         </div>
 
-    
-
         <div className="div-form">
-          <label className="label-form"> City Id</label>
+          <label className="label-form"> Id Ciudad: </label>
           <input
             type="number"
             name="cityId"
             value={hotel["cityId"]}
-            onChange={handleChange}
+            placeholder="Ingrese el Id de la ciudad."
+            {...cityId}
+            onChange={(e) => {
+              cityId.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
         </div>
 
         <button type="submit" className="button-form">
           {" "}
           Put Hotel
         </button>
-   
       </form>
     </div>
   );

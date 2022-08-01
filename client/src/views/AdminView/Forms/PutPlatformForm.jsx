@@ -1,10 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-
+import { useForm } from "react-hook-form";
 import { putPlatform } from "../../../redux/actions/putPlatform";
 export const PutPlatformForm = ({pack}) => {
   
   const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [platform, setPlatform] = React.useState({
     terminal: pack.terminal,
     address: pack.address,
@@ -23,42 +28,71 @@ export const PutPlatformForm = ({pack}) => {
     });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault(); // para que era esto?
+  function handleSubmitPlatform() {
+    //e.preventDefault();
     dispatch(putPlatform(pack.id, platform));
   }
 
+  const terminal = register("terminal", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const address = register("address", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const location = register("location", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
   return (
     <div className="div">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit(handleSubmitPlatform)}>
         <div className="div-form">
-          <label className="label-form"> Terminal</label>
+          <label className="label-form"> Terminal: </label>
           <input
             type="text"
             name="terminal"
             value={platform["terminal"]}
-            onChange={handleChange}
+            placeholder="Ingrese una terminal."
+            {...terminal}
+            onChange={(e) => {
+              terminal.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.terminal && <span>{errors?.terminal?.message}</span>}
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Address</label>
+          <label className="label-form"> Dirección: </label>
           <input
             type="text"
             name="address"
             value={platform["address"]}
-            onChange={handleChange}
+            placeholder="Ingrese una dirección."
+            {...address}
+            onChange={(e) => {
+              address.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.address && <span>{errors?.address?.message}</span>}
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Location</label>
+          <label className="label-form"> Ubicación: </label>
           <input
-            type="text"
+            type="number"
             name="location"
             value={platform["location"]}
-            onChange={handleChange}
+            {...location}
+            onChange={(e) => {
+              location.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.location && <span>{errors?.location?.message}</span>}
         </div>
 
         <button type="submit" className="button-form">

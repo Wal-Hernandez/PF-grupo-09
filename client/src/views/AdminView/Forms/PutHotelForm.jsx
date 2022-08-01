@@ -27,7 +27,8 @@ export const PutHotelForm = ({ pack }) => {
     comments: pack.comments,
   });
   console.log(pack.id);
-  const expRegUrl = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
+  const expRegUrl =
+    /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
   function TransformData(x) {
     if (isNaN(x[0])) return x;
     return x.split(",");
@@ -109,154 +110,152 @@ export const PutHotelForm = ({ pack }) => {
   });
 
   return (
-    <Fragment>
-      <div className="div">
-        <form className="form" onSubmit={handleSubmit(handleSubmitHotel)}>
-          <div className="div-form">
-            <label className="label-form"> Nombre: </label>
-            <input
-              type="text"
-              name="name"
-              value={hotel["name"]}
-              placeholder="Ingrese el nombre del hotel."
-              {...name}
-              onChange={(e) => {
-                name.onChange(e);
-                handleChange(e);
-              }}
-            />
-            {errors?.name && <span>{errors?.name?.message}</span>}
-          </div>
+    <div className="div">
+      <form className="form" onSubmit={handleSubmit(handleSubmitHotel)}>
+        <div className="div-form">
+          <label className="label-form"> Nombre: </label>
+          <input
+            type="text"
+            name="name"
+            value={hotel["name"]}
+            placeholder="Ingrese el nombre del hotel."
+            {...name}
+            onChange={(e) => {
+              name.onChange(e);
+              handleChange(e);
+            }}
+          />
+          {errors?.name && <span>{errors?.name?.message}</span>}
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Ubicacion: </label>
-            <input
-              type="text"
-              name="location"
-              value={hotel["location"]}
-              placeholder="Ingrese la ubicacion del hotel (coordenadas)."
-              {...location}
-              onChange={(e) => {
-                location.onChange(e);
-                handleChange(e);
-              }}
-            />
-            {errors?.location && <span>{errors?.location?.message}</span>}
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Ubicacion: </label>
+          <input
+            type="text"
+            name="location"
+            value={hotel["location"]}
+            placeholder="Ingrese la ubicacion del hotel (coordenadas)."
+            {...location}
+            onChange={(e) => {
+              location.onChange(e);
+              handleChange(e);
+            }}
+          />
+          {errors?.location && <span>{errors?.location?.message}</span>}
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Estrellas: </label>
-            <input
-              type="number"
-              name="stars"
-              value={hotel["stars"]}
-              placeholder="Cantidad de estrellas del hotel."
-              {...stars}
-              onChange={(e) => {
-                stars.onChange(e);
-                handleChange(e);
-              }}
-            />
-            {errors?.stars && <span>{errors?.stars?.message}</span>}
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Estrellas: </label>
+          <input
+            type="number"
+            name="stars"
+            value={hotel["stars"]}
+            placeholder="Cantidad de estrellas del hotel."
+            {...stars}
+            onChange={(e) => {
+              stars.onChange(e);
+              handleChange(e);
+            }}
+          />
+          {errors?.stars && <span>{errors?.stars?.message}</span>}
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Telefono: </label>
-            <input
-              type="number"
-              name="phone"
-              value={hotel["phone"]}
-              placeholder="Telefono del hotel."
-              {...phone}
-              onChange={(e) => {
-                phone.onChange(e);
-                handleChange(e);
-              }}
-            />
-            {errors?.phone && <span>{errors?.phone?.message}</span>}
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Telefono: </label>
+          <input
+            type="number"
+            name="phone"
+            value={hotel["phone"]}
+            placeholder="Telefono del hotel."
+            {...phone}
+            onChange={(e) => {
+              phone.onChange(e);
+              handleChange(e);
+            }}
+          />
+          {errors?.phone && <span>{errors?.phone?.message}</span>}
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Precio: </label>
-            <input
-              type="number"
-              name="price"
-              value={hotel["price"]}
-              placeholder="Ingrese el precio del hotel."
-              {...price}
-              onChange={(e) => {
-                price.onChange(e);
-                handleChange(e);
-              }}
-            />
-            {errors?.price && <span>{errors?.price?.message}</span>}
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Precio: </label>
+          <input
+            type="number"
+            name="price"
+            value={hotel["price"]}
+            placeholder="Ingrese el precio del hotel."
+            {...price}
+            onChange={(e) => {
+              price.onChange(e);
+              handleChange(e);
+            }}
+          />
+          {errors?.price && <span>{errors?.price?.message}</span>}
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Imagen: </label>
-            <input
-              type="text"
-              name="urlImage"
-              value={hotel["urlImage"]}
-              placeholder="Ingrese una URL."
-              {...urlImage}
-              onChange={(e) => {
-                urlImage.onChange(e);
-                handleChange(e);
-              }}
-            />
-            {errors?.urlImage && <span>{errors?.urlImage?.message}</span>}
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Imagen: </label>
+          <input
+            type="text"
+            name="urlImage"
+            value={hotel["urlImage"]}
+            placeholder="Ingrese una URL."
+            {...urlImage}
+            onChange={(e) => {
+              urlImage.onChange(e);
+              handleChange(e);
+            }}
+          />
+          {errors?.urlImage && <span>{errors?.urlImage?.message}</span>}
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Gimnasio: </label>
-            <select name="gym" onChange={handleChange} defaultValue="">
-              <option value="">-</option>
-              <option value="true">Si</option>
-              <option value="false">No</option>
-            </select>
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Gimnasio: </label>
+          <select name="gym" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">Si</option>
+            <option value="false">No</option>
+          </select>
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Pool: </label>
-            <select name="pool" onChange={handleChange} defaultValue="">
-              <option value="">-</option>
-              <option value="true">Si</option>
-              <option value="false">No</option>
-            </select>
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Pool: </label>
+          <select name="pool" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">Si</option>
+            <option value="false">No</option>
+          </select>
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Wifi: </label>
-            <select name="wifi" onChange={handleChange} defaultValue="">
-              <option value="">-</option>
-              <option value="true">Si</option>
-              <option value="false">No</option>
-            </select>
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Wifi: </label>
+          <select name="wifi" onChange={handleChange} defaultValue="">
+            <option value="">-</option>
+            <option value="true">Si</option>
+            <option value="false">No</option>
+          </select>
+        </div>
 
-          <div className="div-form">
-            <label className="label-form"> Id Ciudad: </label>
-            <input
-              type="number"
-              name="cityId"
-              value={hotel["cityId"]}
-              placeholder="Ingrese el Id de la ciudad."
-              {...cityId}
-              onChange={(e) => {
-                cityId.onChange(e);
-                handleChange(e);
-              }}
-            />
-            {errors?.cityId && <span>{errors?.cityId?.message}</span>}
-          </div>
+        <div className="div-form">
+          <label className="label-form"> Id Ciudad: </label>
+          <input
+            type="number"
+            name="cityId"
+            value={hotel["cityId"]}
+            placeholder="Ingrese el Id de la ciudad."
+            {...cityId}
+            onChange={(e) => {
+              cityId.onChange(e);
+              handleChange(e);
+            }}
+          />
+          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+        </div>
 
-          <button type="submit" className="button-form">
-            {" "}
-            Put City
-          </button>
-        </form>
-      </div>
-    </Fragment>
+        <button type="submit" className="button-form">
+          {" "}
+          Put City
+        </button>
+      </form>
+    </div>
   );
 };

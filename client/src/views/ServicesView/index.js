@@ -24,14 +24,18 @@ export default function Services({ userlog }) {
 
   return (
     <>
-      <div>
+     
         <Navbar setCurrentPage={setCurrentPage} userlog={userlog} />
-      </div>
-      <div className="servicesViewContainer">
-        <div className="services-view-top">
-          <SearchAndFilters setCurrentPage={setCurrentPage}/>
+      <div className="container">
+      <div className="row align-items-center justify-content-center">
+        <div className="row align-items-center">
+          <div className="col-sm-1 col-md-2 col-lg-3"></div>
+          <div className="col-sm-10 col-md-8 col-lg-6">
+            <SearchAndFilters setCurrentPage={setCurrentPage}/>
+          </div>
+          <div className="col-sm-1 col-md-2 col-lg-3"></div>
         </div>
-        <div className="services-paginado-container">
+        <div className="row">
           <Paginado
             currentPage={currentPage}
             packagesPerPage={packagesPerPage}
@@ -39,13 +43,14 @@ export default function Services({ userlog }) {
             paginado={paginado}
           />
         </div>
-        <div className="services-product-container">
-          <Productos currentPackages={currentPackages} />
-        </div>
-      </div>
-      <div className="services-footer-container">
-        <Footer />
-      </div>
+            <div className="row">
+              <Productos currentPackages={currentPackages} />
+            </div>
+          </div>
+          <div className="row">
+            <Footer />
+          </div>
+     </div>
     </>
   );
 }

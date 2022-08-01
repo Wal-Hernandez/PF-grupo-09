@@ -38,7 +38,7 @@ export const PutActivityForm = ({ pack}) => {
           />
         </div>
 
-        <div className="div-form">
+        <div className="">
           <label className="label-form"> Image</label>
           <input
             type="text"
@@ -48,7 +48,7 @@ export const PutActivityForm = ({ pack}) => {
           />
         </div>
 
-        <div className="div-form">
+        <div className="">
           <label className="label-form"> Price</label>
           <input
             type="number"

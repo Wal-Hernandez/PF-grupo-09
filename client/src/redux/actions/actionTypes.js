@@ -32,3 +32,5 @@ export const POST_USER = "POST_USER";
 
 export const LOAD_CART = "LOAD_CART";
 
+export const SEND_MAIL ="SEND_MAIL";
+

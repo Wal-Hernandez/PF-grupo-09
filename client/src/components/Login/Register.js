@@ -10,7 +10,7 @@ import { postUser } from "../../redux/actions/postUser";
 import "../../views/LoginView/loginView.css";
 //logo
 import logo from "../../images/Buspack.png" //imagen logo
-import enviarMail from "../../emailer/emailer";
+import { sendMail } from "../../redux/actions/sendMail";
 export function Register() {
   const { signup } = useAuth();
   const dispatch = useDispatch();
@@ -53,8 +53,8 @@ export function Register() {
       let userDb = { ...user };
       console.log(userDb);
        dispatch(postUser(userDb));
-        await enviarMail(user.mail);
-      navigate("/");
+      dispatch(sendMail(userDb));
+       navigate("/");
     } catch (error) {
       console.log(error.code);
       if (error.code === "auth/invalid-email") {

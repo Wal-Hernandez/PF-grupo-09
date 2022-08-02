@@ -232,11 +232,12 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                             </button>
                           </div>
                           <div className="btnDel">
-                            <button value={packs.id} onClick={handleDelete}>
                             <span class="material-symbols-outlined">
-                              delete
+                            <button value={packs.id} onClick={handleDelete}>
+                            
+                              delete</button>
                             </span>
-                            </button>
+                            
                           </div>
                           </div>
                        </div>

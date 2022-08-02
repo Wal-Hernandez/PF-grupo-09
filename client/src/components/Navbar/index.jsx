@@ -41,6 +41,9 @@ if (user) {
         </Link>
         </div>
       <ul class="navbar-nav mr-auto">
+      <Link to="/shoppingcart">
+          <h1>Ir al carrito</h1>
+        </Link>
         <li class="nav-item active">
           <Link to="/services">
             <button class='btn btn-sm'>

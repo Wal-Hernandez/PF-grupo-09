@@ -5,7 +5,7 @@ export const filterByDate = (destination, start, end) => {
   return async (dispatch) => {
     try {
       let result = await axios.get(
-        `http://localhost:3001/packages?destination=${destination}&start=${start}&end=${end}`
+        `http://localhost:3001/packages?destination=${destination}&start=${start}`
       );
       return dispatch({
         type: FILTER_BY_DATE,

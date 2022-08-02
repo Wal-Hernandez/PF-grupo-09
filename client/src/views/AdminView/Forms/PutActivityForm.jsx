@@ -109,8 +109,8 @@ export const PutActivityForm = ({ pack}) => {
         </div>
 
         <div>
-          <select name="cityId" defaultValue="#" onChange={handleChange}>
-            <option key="keycity" value="#" disabled>Ciudad</option>
+          <select name="cityId" defaultValue="" onChange={handleChange}>
+            <option key="keycity" value="" disabled>Ciudad</option>
             {adminView.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}

@@ -233,19 +233,14 @@ export const PutHotelForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Id Ciudad: </label>
-          <input
-            type="number"
-            name="cityId"
-            value={hotel["cityId"]}
-            placeholder="Ingrese el Id de la ciudad."
-            {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+          <select name="cityId" defaultValue="" onChange={handleChange}>
+            <option key="keycity" value="" disabled>Ciudad</option>
+            {adminView.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <button type="submit" className="button-form">

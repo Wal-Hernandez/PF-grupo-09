@@ -13,7 +13,10 @@ function Search({startDate, setStartDate}) {
     passengers: 0
   });
 
-  const [matchingResults, setMatchingResults] = useState([]);
+  const [matchingResults, setMatchingResults] = useState({
+    destination: '',
+    date: ''
+  });
 
   const handleDestination = (e)=>{
     setValues({
@@ -39,7 +42,7 @@ function Search({startDate, setStartDate}) {
     const {destination, start_date} = values
     e.preventDefault()
     dispatch(filterByDate(destination, start_date))
-    setMatchingResults([destination.toUpperCase(), new Date(start_date).toDateString()])
+    setMatchingResults({destination: destination.toUpperCase(), date: startDate && new Date(start_date).toDateString()})
   }
   const handleClear = (e)=>{
     e.preventDefault()
@@ -48,7 +51,10 @@ function Search({startDate, setStartDate}) {
       ...values,
       destination: ''
     })
-    setMatchingResults([])
+    setMatchingResults({
+      destination: '',
+      date: ''
+    })
     dispatch(getPackages())
   }
 
@@ -106,7 +112,7 @@ function Search({startDate, setStartDate}) {
     
            </div>
            <div className="col col-sm-12 col-md-6 col-lg-6">
-          <h3>{matchingResults[0]} ↪ {matchingResults[1]}</h3>
+          {matchingResults.destination && matchingResults.date ? <h3>{matchingResults.destination} ↪ { matchingResults.date } </h3> : matchingResults.destination.length ? <h3>{ matchingResults.destination }</h3>: matchingResults.date.length ? <h3>{ matchingResults.date }</h3> : ''}
           </div>
         </div>
     </div>

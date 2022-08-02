@@ -133,7 +133,7 @@ function Ejemplo({ lang }) {
     return x.split(",");
   }
 
-  function handleChange(event) {
+  function handleChangePackages(event) {
     if (event.target.name === "activity") {
       setPackages({
         ...packages,
@@ -144,8 +144,9 @@ function Ejemplo({ lang }) {
     setPackages({ ...packages, [event.target.name]: event.target.value });
   }
 
-  function handleSubmitPackage() {
-    //e.preventDefault(); // para que era esto?
+  function handleSubmitPackage(e) {
+    console.log('handleSubmitPackage')
+    e.preventDefault(); // para que era esto?
     dispatch(postPackage(packages));
   }
 
@@ -253,7 +254,7 @@ function Ejemplo({ lang }) {
 
     const score = register("score", {
       required: { value: true, message: "REQUERIDO" },
-      min: { value: 1, message: "Minimo 1 punto" },
+      min: { value: 0, message: "Minimo 0" },
     });
 
     return (
@@ -417,13 +418,13 @@ function Ejemplo({ lang }) {
             name="score"
             value={hotel["score"]}
             placeholder="Ingrese un puntaje."
-            {...cityId}
+            {...score}
             onChange={(e) => {
-              cityId.onChange(e);
+              score.onChange(e);
               handleChangeHotel(e);
             }}
           />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+          {errors?.score && <span>{errors?.score?.message}</span>}
         </div>
 
         <div className="div-form">
@@ -502,7 +503,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Ubicación: </label>
 
           <input
-            type="number"
+            type="text"
             name="location"
             value={platform["location"]}
             placeholder="Ingrese las coordenadas."
@@ -529,7 +530,7 @@ function Ejemplo({ lang }) {
       required: { value: true, message: "REQUERIDO" },
     });
   
-    const location = register("address", {
+    const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
     });
 
@@ -596,6 +597,11 @@ function Ejemplo({ lang }) {
       pattern: { value: expRegEmail, message: "Email invalido" }
     });
 
+    const score = register("score", {
+      required: { value: true, message: "REQUERIDO" },
+      min: {value: 0, message: "Minimo 0"}
+    });
+
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitBus)}>
         <div className="div-form">
@@ -657,8 +663,13 @@ function Ejemplo({ lang }) {
             type="number"
             name="score"
             value={bus["score"]}
-            onChange={handleChangeBus}
+            {...score}
+              onChange={(e) => {
+                score.onChange(e);
+                handleChangeBus(e);
+            }}
           />
+          {errors?.score && <span>{errors?.score?.message}</span>}
         </div>
         <div className="div-form">
 
@@ -807,7 +818,7 @@ function Ejemplo({ lang }) {
 
   if (lang === "packages"){
 
-    const name = register("name", {
+    /* const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
     });
   
@@ -850,10 +861,14 @@ function Ejemplo({ lang }) {
       required: { value: true, message: "REQUERIDO" },
     });
 
+    const activity = register('activity', {
+      required: { value: true, message: "REQUERIDO" },
+    }) */
+
     return (
 
       <div className="div">
-        <form className="form" onSubmit={handleSubmit(handleSubmitPackage)}>
+        <form className="form" onSubmit={handleSubmitPackage}>
           <div className="div-form">
             <label className="label-form"> Nombre: </label>
 
@@ -861,11 +876,12 @@ function Ejemplo({ lang }) {
               type="text"
               name="name"
               value={packages["name"]}
-              {...name}
-            onChange={(e) => {
-              name.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...name}
+              onChange={(e) => {
+                name.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.name && <span>{errors?.name?.message}</span>}
           </div>
@@ -877,11 +893,13 @@ function Ejemplo({ lang }) {
               type="text"
               name="start_date"
               value={packages["start_date"]}
-              {...start_date}
-            onChange={(e) => {
-              start_date.onChange(e);
-              handleChange(e);
-            }}
+              placeholder="Ingrese fecha inicio."
+              onChange={handleChangePackages}
+              /* {...start_date}
+              onChange={(e) => {
+                start_date.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.start_date && <span>{errors?.start_date?.message}</span>}
           </div>
@@ -893,11 +911,12 @@ function Ejemplo({ lang }) {
               type="text"
               name="end_date"
               value={packages["end_date"]}
-              {...end_date}
-            onChange={(e) => {
-              end_date.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...end_date}
+              onChange={(e) => {
+                end_date.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.end_date && <span>{errors?.end_date?.message}</span>}
           </div>
@@ -910,11 +929,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="price"
               value={packages["price"]}
-              {...price}
-            onChange={(e) => {
-              price.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...price}
+              onChange={(e) => {
+                price.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.price && <span>{errors?.price?.message}</span>}
           </div>
@@ -927,11 +947,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="discount"
               value={packages["discount"]}
-              {...discount}
-            onChange={(e) => {
-              discount.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...discount}
+              onChange={(e) => {
+                discount.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.discount && <span>{errors?.discount?.message}</span>}
           </div>
@@ -943,11 +964,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="stock"
               value={packages["stock"]}
-              {...stock}
-            onChange={(e) => {
-              stock.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...stock}
+              onChange={(e) => {
+                stock.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.stock && <span>{errors?.stock?.message}</span>}
           </div>
@@ -961,11 +983,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="plattformId"
               value={packages["plattformId"]}
-              {...plattformId}
-            onChange={(e) => {
-              plattformId.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...plattformId}
+              onChange={(e) => {
+                plattformId.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.plattformId && <span>{errors?.plattformId?.message}</span>}
           </div>
@@ -978,11 +1001,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="businessId"
               value={packages["businessId"]}
-              {...businessId}
-            onChange={(e) => {
-              businessId.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...businessId}
+              onChange={(e) => {
+                businessId.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.businessId && <span>{errors?.businessId?.message}</span>}
           </div>
@@ -994,11 +1018,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="cityId"
               value={packages["cityId"]}
-              {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...cityId}
+              onChange={(e) => {
+                cityId.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.cityId && <span>{errors?.cityId?.message}</span>}
           </div>
@@ -1010,11 +1035,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="hotelId"
               value={packages["hotelId"]}
-              {...hotelId}
-            onChange={(e) => {
-              hotelId.onChange(e);
-              handleChange(e);
-            }}
+              onChange={handleChangePackages}
+              /* {...hotelId}
+              onChange={(e) => {
+                hotelId.onChange(e);
+                handleChangePackages(e);
+            }} */
           />
           {errors?.hotelId && <span>{errors?.hotelId?.message}</span>}
           </div>
@@ -1025,8 +1051,14 @@ function Ejemplo({ lang }) {
               type="text"
               name="activity"
               value={packages["activity"]}
-              onChange={handleChange}
-            />
+              onChange={handleChangePackages}
+              /* {...activity}
+              onChange={(e) => {
+                activity.onChange(e);
+                handleChangePackages(e);
+            }} */
+          />
+          {errors?.activity && <span>{errors?.activity?.message}</span>}
           </div>
         
 

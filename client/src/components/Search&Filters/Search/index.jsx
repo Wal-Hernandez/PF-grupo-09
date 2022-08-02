@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import DatePicker from "react-date-picker";
 import { useDispatch } from "react-redux";
-import { filterByDate } from "../../../redux/actions/filterByDateStart";
+import { filterByDate } from "../../../redux/actions/filterByDate&Dest";
 import { getPackages } from "../../../redux/actions/getPackages";
 
-function Search({startDate, setStartDate, endDate, setEndDate}) {
+function Search({startDate, setStartDate}) {
 
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     destination: '',
     start_date: startDate,
-    end_date: endDate,
     passengers: 0
   });
 
-  const [matchingResults, setMatchingResults] = useState([]);
+  const [matchingResults, setMatchingResults] = useState({
+    destination: '',
+    date: ''
+  });
 
   const handleDestination = (e)=>{
     setValues({
@@ -29,29 +31,30 @@ function Search({startDate, setStartDate, endDate, setEndDate}) {
     })
   }
 
-  const handleDates = ()=>{
+  const handleDates = () => {
     setValues({
       ...values,
-      start_date: startDate !== '' ? startDate?.toISOString() : new Date(),
-      end_date: endDate !== '' ? endDate?.toISOString() : new Date()
-    })
-  }
+      start_date: startDate ? startDate?.toISOString() : '',
+    });
+  };
 
   const handleSearch = (e)=>{
-    const {destination, start_date, end_date} = values
+    const {destination, start_date} = values
     e.preventDefault()
-    dispatch(filterByDate(destination, start_date, end_date))
-    setMatchingResults([destination.toUpperCase(), new Date(start_date).toDateString(), new Date(end_date).toDateString()])
+    dispatch(filterByDate(destination, start_date))
+    setMatchingResults({destination: destination.toUpperCase(), date: startDate && new Date(start_date).toDateString()})
   }
   const handleClear = (e)=>{
     e.preventDefault()
     setStartDate('')
-    setEndDate('')
     setValues({
       ...values,
       destination: ''
     })
-    setMatchingResults([])
+    setMatchingResults({
+      destination: '',
+      date: ''
+    })
     dispatch(getPackages())
   }
 
@@ -81,7 +84,7 @@ function Search({startDate, setStartDate, endDate, setEndDate}) {
             <DatePicker
               onChange={setStartDate}
               onBlur={handleDates}
-              value={startDate || ""}
+              value={startDate === null ? '' : startDate}
               dayPlaceholder={"DD"}
               monthPlaceholder={"MM"}
               yearPlaceholder={"YYYY"}
@@ -109,13 +112,11 @@ function Search({startDate, setStartDate, endDate, setEndDate}) {
     
            </div>
            <div className="col col-sm-12 col-md-6 col-lg-6">
-          <h3>{matchingResults[0]}</h3>
-          <h3>{matchingResults[1]} ↪ {matchingResults[2]}</h3>
+          {matchingResults.destination && matchingResults.date ? <h3>{matchingResults.destination} ↪ { matchingResults.date } </h3> : matchingResults.destination.length ? <h3>{ matchingResults.destination }</h3>: matchingResults.date.length ? <h3>{ matchingResults.date }</h3> : ''}
           </div>
         </div>
     </div>
-  
-</div>
+  </div>
   
   );
 }

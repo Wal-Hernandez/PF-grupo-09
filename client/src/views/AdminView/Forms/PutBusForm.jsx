@@ -1,9 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 import { putBus } from "../../../redux/actions/putBus";
 export const PutBusForm = ({pack}) => {
  
   const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [bus, setBus] = React.useState({ 
     name: pack.name, 
     phone: pack.phone,
@@ -11,6 +17,8 @@ export const PutBusForm = ({pack}) => {
     score: pack.score,
     comments: pack.comments 
   });
+
+  const expRegEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 
   /* function TransformData(x){
 if(x.split(',').length===1) return x;
@@ -42,22 +50,42 @@ return JSON.parse(x)
     //  })); //esto es para los errores-->toca prestar atencion a cada examen de validacion
     // console.log(errors)
   }
-  function handleSubmit(e) {
-    e.preventDefault(); // para que era esto?
+  function handleSubmitBus() {
+    //e.preventDefault(); // para que era esto?
     dispatch(putBus(pack.id, bus));
   }
 
+  const name = register("name", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const phone = register("phone", {
+    required: { value: true, message: "REQUERIDO" },
+  });
+
+  const email = register("email", {
+    required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegEmail, message: "Email invalido" }
+  });
+
   return (
     <div className="div">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit(handleSubmitBus)}>
       <div className="div-form">
-          <label className="label-form"> Name:</label>
+          <label className="label-form"> Nombre de la empresa: </label>
+
           <input
             type="text"
             name="name"
             value={bus["name"]}
-            onChange={handleChange}
-            />
+            placeholder="Ingrese el nombre."
+            {...name}
+            onChange={(e) => {
+              name.onChange(e);
+              handleChange(e);
+            }}
+          />
+          {errors?.name && <span>{errors?.name?.message}</span>}
             {/* <input className={errors.name ? 'danger' : 'input-form'} 
       type="text" name='name' 
       value={city['name']} 
@@ -68,7 +96,7 @@ return JSON.parse(x)
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Phone:</label>
+          <label className="label-form"> Telefono: </label>
           {/* <input className={errors.temperaments? 'danger': 'input-form'} 
     type="text" name='location'
     value={city['location']} 
@@ -77,20 +105,33 @@ return JSON.parse(x)
           <p className="danger">{errors.temperaments}</p>
         )} */}
           <input
-            type="text"
+            type="number"
             name="phone"
             value={bus["phone"]}
-            onChange={handleChange}
+            placeholder="Ingrese el telefono."
+            {...phone}
+            onChange={(e) => {
+              phone.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.phone && <span>{errors?.phone?.message}</span>}
         </div>
+
         <div className="div-form">
-          <label className="label-form"> Email:</label>
+          <label className="label-form"> Email: </label>
           <input
             type="text"
             name="email"
             value={bus["email"]}
-            onChange={handleChange}
+            placeholder="Ingrese el email."
+            {...email}
+            onChange={(e) => {
+              email.onChange(e);
+              handleChange(e);
+            }}
           />
+          {errors?.email && <span>{errors?.email?.message}</span>}
         </div>
     
       

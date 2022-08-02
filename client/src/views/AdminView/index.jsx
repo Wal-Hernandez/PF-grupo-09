@@ -41,8 +41,9 @@ function Admin() {
   }
 
   async function handleDelete (e) {
+    console.log(e.target.value)
     let resp = window.confirm("Confirmar acción.");
-    if (resp){ await dispatch(deleteModel(e.target.value, model));
+    if (resp){  dispatch(deleteModel(e.target.value, model));
     } 
     dispatchByName(model);
   }
@@ -62,9 +63,12 @@ let setCreate =() =>{ setAdd(add => !add) }
   let setUpdate = (packs) => {
     setPack(packs)
     setEdit((edit) => !edit);
+
   };
   
-  let handleReset = () => {
+  let handleReset = (e) => {
+    dispatchByName(e.target.name)
+    setAdd(false)
     setPack(false)
     setEdit(false);
   };
@@ -163,7 +167,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
           </div>
           <div className="btn-business btnn">
               <button name="business" onClick={handleSelect}>
-                Bus
+                Business
               </button>
           </div>
           <div className="btn-activities btnn">
@@ -203,7 +207,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
               <div>
                 {" "}
                 <CreateForm word={model} />
-                <button  onClick={handleReset}>Volver</button>
+                <button className="btn btn-warning" name={model} onClick={handleReset}>Volver</button>
               </div>
             ) 
             : edit 
@@ -211,15 +215,16 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                 <div>
                 {" "}
                 <EditForm word={model} pack={pack}/>
-                <button  onClick={handleReset}>Volver</button>
+                <button className="btn btn-warning" name={model} onClick={handleReset}>Volver</button>
               </div>
                 )
               :(adminView.length 
                  ? (
                   adminView.map((packs) => {
                        return (
-                     
+                          
                         <div className="adminPanelColumn" key={packs.id}>
+                         
                          <div className="text">
                            <h1>{packs.name || packs.patent || packs.terminal}</h1>
                           </div>
@@ -232,10 +237,11 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                             </button>
                           </div>
                           <div className="btnDel">
+
                             <span class="material-symbols-outlined">
-                            <button value={packs.id} onClick={handleDelete}>
-                            
-                              delete</button>
+                            <button value={packs.id} onClick={handleDelete}>                      
+                              delete
+                              </button>
                             </span>
                             
                           </div>

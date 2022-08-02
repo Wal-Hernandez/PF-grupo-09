@@ -220,11 +220,11 @@ export function Login() {
                 
              </form>
         </div>
-        </div>
-</div>
 
-
-  );
+      </div>
+    </div>
+   
+   );
 
 }
 

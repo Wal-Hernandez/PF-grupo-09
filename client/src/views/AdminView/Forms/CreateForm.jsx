@@ -21,12 +21,12 @@ function Ejemplo({ lang }) {
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
   const expRegEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
   const [city, setCity] = React.useState({ name: "", location: [] });
-  const [bus, setBus] = React.useState({ 
-    name: "", 
+  const [bus, setBus] = React.useState({
+    name: "",
     phone: "",
     email: "",
     score: [],
-    comments: [] 
+    comments: []
   });
   const [activity, setActivity] = React.useState({
     name: "",

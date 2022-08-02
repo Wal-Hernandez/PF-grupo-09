@@ -55,7 +55,7 @@ function Ejemplo({ lang }) {
     score: [],
     comments: []
   });
-
+console.log(activity)
   function TransformData(x) {
     if (isNaN(x[0])) return x;
     return x.split(",");

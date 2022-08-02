@@ -63,7 +63,8 @@ let setCreate =() =>{ setAdd(add => !add) }
     setEdit((edit) => !edit);
   };
   
-  let handleReset = () => {
+  let handleReset = (e) => {
+    dispatchByName(e.target.name)
     setPack(false)
     setEdit(false);
   };
@@ -193,7 +194,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
               <div>
                 {" "}
                 <CreateForm word={model} />
-                <button  onClick={handleReset}>Volver</button>
+                <button name={model} onClick={handleReset}>Volver</button>
               </div>
             ) 
             : edit 
@@ -201,7 +202,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                 <div>
                 {" "}
                 <EditForm word={model} pack={pack}/>
-                <button  onClick={handleReset}>Volver</button>
+                <button  name={model} onClick={handleReset}>Volver</button>
               </div>
                 )
               :(adminView.length 

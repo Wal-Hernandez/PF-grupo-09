@@ -144,9 +144,8 @@ function Ejemplo({ lang }) {
     setPackages({ ...packages, [event.target.name]: event.target.value });
   }
 
-  function handleSubmitPackage(e) {
-    console.log('handleSubmitPackage')
-    e.preventDefault(); // para que era esto?
+  function handleSubmitPackages() {
+    //e.preventDefault(); // para que era esto?
     dispatch(postPackage(packages));
   }
 
@@ -612,6 +611,7 @@ function Ejemplo({ lang }) {
             type="text"
             name="name"
             value={bus["name"]}
+            placeholder="Ingrese un nombre."
             {...name}
               onChange={(e) => {
                 name.onChange(e);
@@ -629,6 +629,7 @@ function Ejemplo({ lang }) {
             type="text"
             name="phone"
             value={bus["phone"]}
+            placeholder="Ingrese un telefono."
             {...phone}
               onChange={(e) => {
                 phone.onChange(e);
@@ -646,6 +647,7 @@ function Ejemplo({ lang }) {
             type="text"
             name="email"
             value={bus["email"]}
+            placeholder="Ingrese un email."
             {...email}
               onChange={(e) => {
                 email.onChange(e);
@@ -663,6 +665,7 @@ function Ejemplo({ lang }) {
             type="number"
             name="score"
             value={bus["score"]}
+            placeholder="Ingrese un puntaje."
             {...score}
               onChange={(e) => {
                 score.onChange(e);
@@ -679,6 +682,7 @@ function Ejemplo({ lang }) {
             type="textarea"
             name="comments"
             value={bus["comments"]}
+            placeholder="Ingrese un comentario."
             onChange={handleChangeBus}
           />
         </div>
@@ -723,6 +727,7 @@ function Ejemplo({ lang }) {
             type="text"
             name="name"
             value={activity["name"]}
+            placeholder="Ingrese un nombre."
             {...name}
             onChange={(e) => {
               name.onChange(e);
@@ -740,6 +745,7 @@ function Ejemplo({ lang }) {
             type="text"
             name="image"
             value={activity["image"]}
+            placeholder="Ingrese una Url."
             {...image}
             onChange={(e) => {
               image.onChange(e);
@@ -757,6 +763,7 @@ function Ejemplo({ lang }) {
             type="number"
             name="price"
             value={activity["price"]}
+            placeholder="Ingrese un precio."
             {...price}
             onChange={(e) => {
               price.onChange(e);
@@ -773,6 +780,7 @@ function Ejemplo({ lang }) {
             type="text"
             name="score"
             value={activity["score"]}
+            placeholder="Ingrese el puntaje."
             onChange={handleChangeActivity}
           />
         </div>
@@ -784,6 +792,7 @@ function Ejemplo({ lang }) {
             type="text"
             name="comments"
             value={activity["comments"]}
+            placeholder="Ingrese un comentario."
             onChange={handleChangeActivity}
           />
         </div>
@@ -792,7 +801,9 @@ function Ejemplo({ lang }) {
 
           <label className="label-form"> Id ciudad: </label>
           <input type="number" 
-          name="cityId" 
+          name="cityId"
+          value={activity["cityId"]}
+          placeholder="Ingrese la ubicación."
           {...cityId}
             onChange={(e) => {
               cityId.onChange(e);
@@ -806,8 +817,6 @@ function Ejemplo({ lang }) {
         <button
           type="submit"
           className="button-form"
-          value={activity["cityId"]}
-          onChange={handleChangeActivity}
         >
           {" "}
           Create Activity
@@ -818,7 +827,7 @@ function Ejemplo({ lang }) {
 
   if (lang === "packages"){
 
-    /* const name = register("name", {
+    const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
     });
   
@@ -837,6 +846,7 @@ function Ejemplo({ lang }) {
   
     const discount = register("discount", {
       required: { value: true, message: "REQUERIDO" },
+      min: { value: 0, message: "Descuento minimo 0%" },
       max: { value: 100, message: "Descuento maximo 100%" },
     });
   
@@ -853,7 +863,7 @@ function Ejemplo({ lang }) {
       required: { value: true, message: "REQUERIDO" },
     });
   
-    const hotelId = register("cityId", {
+    const hotelId = register("hotelId", {
       required: { value: true, message: "REQUERIDO" },
     });
   
@@ -863,12 +873,12 @@ function Ejemplo({ lang }) {
 
     const activity = register('activity', {
       required: { value: true, message: "REQUERIDO" },
-    }) */
+    })
 
     return (
 
       <div className="div">
-        <form className="form" onSubmit={handleSubmitPackage}>
+        <form className="form" onSubmit={handleSubmit(handleSubmitPackages)}>
           <div className="div-form">
             <label className="label-form"> Nombre: </label>
 
@@ -876,12 +886,12 @@ function Ejemplo({ lang }) {
               type="text"
               name="name"
               value={packages["name"]}
-              onChange={handleChangePackages}
-              /* {...name}
+              placeholder="Ingrese un nombre."
+              {...name}
               onChange={(e) => {
                 name.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.name && <span>{errors?.name?.message}</span>}
           </div>
@@ -894,12 +904,11 @@ function Ejemplo({ lang }) {
               name="start_date"
               value={packages["start_date"]}
               placeholder="Ingrese fecha inicio."
-              onChange={handleChangePackages}
-              /* {...start_date}
+              {...start_date}
               onChange={(e) => {
                 start_date.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.start_date && <span>{errors?.start_date?.message}</span>}
           </div>
@@ -911,12 +920,12 @@ function Ejemplo({ lang }) {
               type="text"
               name="end_date"
               value={packages["end_date"]}
-              onChange={handleChangePackages}
-              /* {...end_date}
+              placeholder="Ingrese fecha finalización."
+              {...end_date}
               onChange={(e) => {
                 end_date.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.end_date && <span>{errors?.end_date?.message}</span>}
           </div>
@@ -929,12 +938,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="price"
               value={packages["price"]}
-              onChange={handleChangePackages}
-              /* {...price}
+              placeholder="Ingrese un precio."
+              {...price}
               onChange={(e) => {
                 price.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.price && <span>{errors?.price?.message}</span>}
           </div>
@@ -947,12 +956,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="discount"
               value={packages["discount"]}
-              onChange={handleChangePackages}
-              /* {...discount}
+              placeholder="Ingrese el descuento."
+              {...discount}
               onChange={(e) => {
                 discount.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.discount && <span>{errors?.discount?.message}</span>}
           </div>
@@ -964,12 +973,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="stock"
               value={packages["stock"]}
-              onChange={handleChangePackages}
-              /* {...stock}
+              placeholder="Ingrese el stock."
+              {...stock}
               onChange={(e) => {
                 stock.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.stock && <span>{errors?.stock?.message}</span>}
           </div>
@@ -983,12 +992,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="plattformId"
               value={packages["plattformId"]}
-              onChange={handleChangePackages}
-              /* {...plattformId}
+              placeholder="Ingrese Id plataforma."
+              {...plattformId}
               onChange={(e) => {
                 plattformId.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.plattformId && <span>{errors?.plattformId?.message}</span>}
           </div>
@@ -1001,12 +1010,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="businessId"
               value={packages["businessId"]}
-              onChange={handleChangePackages}
-              /* {...businessId}
+              placeholder="Ingrese Id transporte."
+              {...businessId}
               onChange={(e) => {
                 businessId.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.businessId && <span>{errors?.businessId?.message}</span>}
           </div>
@@ -1018,12 +1027,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="cityId"
               value={packages["cityId"]}
-              onChange={handleChangePackages}
-              /* {...cityId}
+              placeholder="Ingrese Id ciudad."
+              {...cityId}
               onChange={(e) => {
                 cityId.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.cityId && <span>{errors?.cityId?.message}</span>}
           </div>
@@ -1035,12 +1044,12 @@ function Ejemplo({ lang }) {
               type="number"
               name="hotelId"
               value={packages["hotelId"]}
-              onChange={handleChangePackages}
-              /* {...hotelId}
+              placeholder="Ingrese Id hotel."
+              {...hotelId}
               onChange={(e) => {
                 hotelId.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.hotelId && <span>{errors?.hotelId?.message}</span>}
           </div>
@@ -1051,19 +1060,19 @@ function Ejemplo({ lang }) {
               type="text"
               name="activity"
               value={packages["activity"]}
-              onChange={handleChangePackages}
-              /* {...activity}
+              placeholder="Ingrese Id actividades."
+              {...activity}
               onChange={(e) => {
                 activity.onChange(e);
                 handleChangePackages(e);
-            }} */
+            }}
           />
           {errors?.activity && <span>{errors?.activity?.message}</span>}
           </div>
         
 
-        </form>
         <button type="submit" className="button-form">Crear Paquete</button>
+        </form>
       </div>
     );
   }

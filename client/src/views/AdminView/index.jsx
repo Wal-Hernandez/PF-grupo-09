@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./adminView.css";
 import { getPackages } from "../../redux/actions/getPackages";
@@ -140,7 +140,11 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
 
 
   console.log("hola",adminView)
-
+  useEffect(() => {
+    return () => {
+        console.log("holasoygerman")
+    }
+}, [])
   return (
     <>
 
@@ -253,7 +257,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                       
                     ) 
                   : (
-              <div>Loading..</div>
+              <div>WELCOME TO THE ADMIN PANEL </div>
                 ))}
             {adminView.length && !add && !edit? <div className="pag">{pageCurrent>1?<span onClick={prevPage} className='flecha izquierda'></span>:''} 
             {sliceOfnumerosRederizados} 

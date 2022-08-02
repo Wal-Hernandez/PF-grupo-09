@@ -1,0 +1,17 @@
+.footerDiv {
+    position: absolute;
+}
+
+* a {
+    text-decoration: none;
+    color: black;
+}
+
+.background{
+    width: 100%;
+padding-top: 10%;
+    height: 700px;
+    background-image: url("https://i.redd.it/3etpet4f0xy61.jpg");
+    background-repeat:space;
+   
+}

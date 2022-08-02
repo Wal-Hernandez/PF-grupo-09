@@ -1,10 +1,12 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import { putHotel } from "../../../redux/actions/putHotel";
+import { getCities } from "../../../redux/actions/getCities";
 export const PutHotelForm = ({ pack }) => {
   const dispatch = useDispatch();
+  const { adminView } = useSelector((state) => state);
   const {
     register,
     handleSubmit,
@@ -31,6 +33,10 @@ export const PutHotelForm = ({ pack }) => {
     if (isNaN(x[0])) return x;
     return x.split(",");
   }
+
+  useEffect(() => {
+    dispatch(getCities())
+  }, [dispatch])
 
   function handleChange(event) {
     if (event.target.name === "location") {
@@ -101,10 +107,6 @@ export const PutHotelForm = ({ pack }) => {
       value: expRegUrl,
       message: "Url no valida",
     },
-  });
-
-  const cityId = register("cityId", {
-    required: { value: true, message: "REQUERIDO" },
   });
 
   return (

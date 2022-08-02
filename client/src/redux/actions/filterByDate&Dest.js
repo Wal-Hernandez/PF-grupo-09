@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FILTER_BY_DATE } from "./actionTypes";
 
-export const filterByDate = (destination, start, end) => {
+export const filterByDate = (destination, start) => {
   return async (dispatch) => {
     try {
       let result = await axios.get(

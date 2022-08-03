@@ -84,11 +84,7 @@ export default function adminReducer(state = initialState, action) {
                 adminView: action.payload,
                 activities: action.payload,
             };
-        case GET_MAIN_PACKAGES:
-            return {
-                ...state,
-                showPackages: state.packages.slice(0, 4) || "nada",
-            };
+   
         case GET_PACKAGE_ID:
             return {
                 ...state,
@@ -132,11 +128,6 @@ export default function adminReducer(state = initialState, action) {
                 ...state,
                 packages: action.payload
             }
-        case LOAD_CART:
-            return {
-                ...state,
-                cart: action.payload
-            } 
         case POST_USER:
             return{ ...state,
                 cart:action.payload
@@ -158,186 +149,6 @@ export default function adminReducer(state = initialState, action) {
             return state;
         case POST_ACTIVITY:
             return state;
-            case TYPES.ADD_TO_CART:{
-                let cartAll
-                const auth = getAuth();
-                const user = auth.currentUser;
-                let cartNotLoggedin
-                let cartJSONNotLoggedin
-                let newItemNotLoggedin
-                let itemInCartNotLoggedin=[]
-                let cartLoggedin
-                let cartJSONLoggedin
-                let newItemLoggedin
-                let itemInCartLoggedin=[]
-
-                if (user) {
-                    //Las cosas se guardan en el carrito logueado (la base de datos)
-                    
-                    newItemLoggedin=state.detail
-                    console.log(newItemLoggedin)   
-                    itemInCartLoggedin = state.arrayCartLoggedin.find(item => item.id ==newItemLoggedin.id)
-                    console.log(newItemLoggedin)
-                    
-                    if(!localStorage.getItem("myCartLoggedin")){
-                        console.log("el carrito logueado NO existe, por lo que se crea ahora")
-                        cartLoggedin= [...state.arrayCartLoggedin, {id:newItemLoggedin.id, quantity: 1}]                    
-                        cartJSONLoggedin= JSON.stringify(cartLoggedin)
-                        localStorage.setItem("myCartLoggedin", cartJSONLoggedin) 
-    
-                    } else {
-                        console.log("el carrito logueado existe y tiene algo")
-                        let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
-                        let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
-                        itemInCartLoggedin = myCartparsedLoggedin.find(item => item.id ===newItemLoggedin.id)
-                       
-                        if(itemInCartLoggedin && myCartparsedLoggedin) {
-                            console.log("en el if es verdadero, por lo que existe itemInCart en carrito logueado")
-                            cartLoggedin = myCartparsedLoggedin.map(item => item.id===newItemLoggedin.id ?
-                                {...item, quantity:item.quantity +1} : item)
-                        } else {
-                            console.log("no existe item en el cart")
-                            cartLoggedin= [...myCartparsedLoggedin, {id: newItemLoggedin.id, quantity: 1}]
-                        }
-                        console.log(cartLoggedin)
-                        let cartJSONLoggedin= JSON.stringify(cartLoggedin)
-                        localStorage.setItem("myCartLoggedin", cartJSONLoggedin)                      
-                    }
-
-                } else {
-                    // las cosas se guardan en el carrito no logueado
-                    newItemNotLoggedin=state.detail   
-                    itemInCartNotLoggedin = state.arrayCartNotLoggedin.find(item => item.id ===newItemNotLoggedin.id)
-                   
-                    if(!localStorage.getItem("myCartNotLoggedin")){
-                        console.log("el carrito NO existe, por lo que se crea ahora")
-                        cartNotLoggedin= [...state.arrayCartNotLoggedin, {id:newItemNotLoggedin.id, quantity: 1}]                    
-                        cartJSONNotLoggedin= JSON.stringify(cartNotLoggedin)
-                        localStorage.setItem("myCartNotLoggedin", cartJSONNotLoggedin) 
-    
-                    } else {
-                        console.log("el carrito existe y tiene algo")
-                        let myCarttextNotLoggedin=localStorage.getItem("myCartNotLoggedin")
-                        let myCartparsedNotLoggedin=JSON.parse(myCarttextNotLoggedin)
-                        itemInCartNotLoggedin = myCartparsedNotLoggedin.find(item => item.id ===newItemNotLoggedin.id)
-                       
-                        if(itemInCartNotLoggedin && myCartparsedNotLoggedin) {
-                            console.log("en el if es verdadero, por lo que existe itemInCart")
-                            cartNotLoggedin = myCartparsedNotLoggedin.map(item => item.id===newItemNotLoggedin.id ?
-                                {...item, quantity:item.quantity +1} : item)
-                        } else {
-                            console.log("no existe item en el cart")
-                            cartNotLoggedin= [...myCartparsedNotLoggedin, {id: newItemNotLoggedin.id, quantity: 1}]
-                        }
-                        console.log(cartNotLoggedin)
-                        let cartJSONNotLoggedin= JSON.stringify(cartNotLoggedin)
-                        localStorage.setItem("myCartNotLoggedin", cartJSONNotLoggedin)                      
-                    } 
-
-                }  
-                    
-                return {
-                    ...state,
-                    arrayCartNotLoggedin:[],
-                    arrayCartLoggedin:[]                
-                } 
-                }
-    
-    
-            case TYPES.REMOVE_ONE_FROM_CART:{
-                let cart
-                const auth = getAuth();
-                const user = auth.currentUser;      
-                if (user) { 
-                    let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
-                    let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
-        
-                    let itemToDeleteLoggedin = myCartparsedLoggedin.find(item => item.id === action.payload);
-
-                    if (itemToDeleteLoggedin.quantity>1){
-                        cart = myCartparsedLoggedin.map((item) =>
-                        item.id===action.payload ? 
-                        {...item, quantity:item.quantity-1}: item
-                    )
-                    } else {
-                        cart=myCartparsedLoggedin.filter(item => item.id!== action.payload)
-                    }
-                    let cartJSONLoggedin= JSON.stringify(cart)
-                    localStorage.setItem("myCartLoggedin", cartJSONLoggedin) 
-
-                } else {
-                        let myCarttextNotLoggedin=localStorage.getItem("myCartNotLoggedin")
-                        let myCartparsedNotLoggedin=JSON.parse(myCarttextNotLoggedin)
-            
-                        let itemToDeleteNotLoggedin = myCartparsedNotLoggedin.find(item => item.id === action.payload);
-
-                        if (itemToDeleteNotLoggedin.quantity>1){
-                            cart = myCartparsedNotLoggedin.map((item) =>
-                            item.id===action.payload ? 
-                            {...item, quantity:item.quantity-1}: item
-                        )
-                        } else {
-                            cart=myCartparsedNotLoggedin.filter(item => item.id!== action.payload)
-                        }
-                        let cartJSONNotLoggedin= JSON.stringify(cart)
-                        localStorage.setItem("myCartNotLoggedin", cartJSONNotLoggedin) 
-                        console.log(cart)
-
-                }
-                return {...state,
-                    arrayCartNotLoggedin:[]
-
-                }
-            }
-            case TYPES.REMOVE_ALL_FROM_CART:{
-                const auth = getAuth();
-                const user = auth.currentUser;  
-                console.log("remove all from carttttt")    
-                if (user) {
-                    console.log("entró a remove one from cart con usuario logueado")
-                    let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
-                    let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
-        
-                    let cart=myCartparsedLoggedin.filter(item => item.id!== action.payload)
-                    console.log(cart)
-                    let cartJSONLoggedin= JSON.stringify(cart)
-                    localStorage.setItem("myCartLoggedin", cartJSONLoggedin) 
-
-                } else {
-                    console.log("estoy en no logueado?=??")
-                    let myCarttextNotLoggedin=localStorage.getItem("myCartNotLoggedin")
-                    let myCartparsedNotLoggedin=JSON.parse(myCarttextNotLoggedin)
-        
-                    let cart=myCartparsedNotLoggedin.filter(item => item.id!== action.payload)
-                    console.log(cart)
-                    let cartJSONNotLoggedin= JSON.stringify(cart)
-                    localStorage.setItem("myCartNotLoggedin", cartJSONNotLoggedin) 
-
-                }
-
-                return {
-                    ...state,
-                    arrayCartNotLoggedin:[]
-                }
-            }
-            case TYPES.CLEAR_CART:{
-                const auth = getAuth();
-                const user = auth.currentUser; 
-                let cart=[]
-                let cartJSON
-                if(user) {
-                    cartJSON= JSON.stringify(cart)
-                    localStorage.setItem("myCartLoggedin", cartJSON) 
-                } else{
-                    cartJSON= JSON.stringify(cart)
-                    localStorage.setItem("myCartNotLoggedin", cartJSON) 
-                }
-                return {
-                    ...state,
-                    arrayCartNotLoggedin:[]
-
-                }
-            }
         default:
             return state;
     }

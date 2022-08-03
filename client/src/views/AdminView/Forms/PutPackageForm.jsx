@@ -29,7 +29,7 @@ export const PutPackageForm = ({ pack }) => {
     formState: { errors },
   } = useForm();
 
-  const { platforms, business, cities, hotels, activities } = useSelector((state) => state);
+  const { platforms, business, cities, hotels, activities } = useSelector((state) => state.adminReducer);
 
   useEffect(() => {
     dispatch(getPlatforms())

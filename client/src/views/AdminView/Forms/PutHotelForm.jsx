@@ -6,7 +6,7 @@ import { putHotel } from "../../../redux/actions/putHotel";
 import { getCities } from "../../../redux/actions/getCities";
 export const PutHotelForm = ({ pack }) => {
   const dispatch = useDispatch();
-  const { cities } = useSelector((state) => state);
+  const { cities } = useSelector((state) => state.adminReducer);
   const {
     register,
     handleSubmit,

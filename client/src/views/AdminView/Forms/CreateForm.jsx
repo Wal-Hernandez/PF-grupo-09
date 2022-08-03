@@ -72,7 +72,7 @@ function Ejemplo({ lang }) {
     comments: []
   });
 
-  const { platforms, business, cities, hotels } = useSelector((state) => state);
+  const { platforms, business, cities, hotels } = useSelector((state) => state.adminReducer);
 
   useEffect(() => {
     dispatch(getPlatforms())

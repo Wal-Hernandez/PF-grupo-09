@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getActivities } from "../../../redux/actions/getActivities";
+import { getBuses } from "../../../redux/actions/getBuses";
+import { getCities } from "../../../redux/actions/getCities";
+import { getHotels } from "../../../redux/actions/getHotels";
+import { getPlatforms } from "../../../redux/actions/getPlatforms";
 import { putPackage } from "../../../redux/actions/putPackage";
 export const PutPackageForm = ({ pack }) => {
   const dispatch = useDispatch();
@@ -24,16 +29,34 @@ export const PutPackageForm = ({ pack }) => {
     formState: { errors },
   } = useForm();
 
-  function TransformData(x) {
+  const { platforms, business, cities, hotels, activities } = useSelector((state) => state.adminReducer);
+
+  useEffect(() => {
+    dispatch(getPlatforms())
+    dispatch(getBuses())
+    dispatch(getCities())
+    dispatch(getHotels())
+    dispatch(getActivities())
+  }, [dispatch])
+
+  /* function TransformData(x) {
     return x.split(",");
+  } */
+
+  function handleDelete(activ) {
+    setPackages({
+      ...packages,
+      activity: packages.activity.filter((e) => e !== activ),
+    });
   }
 
   function handleChange(event) {
     if (event.target.name === "activity") {
       setPackages({
         ...packages,
-        [event.target.name]: TransformData(event.target.value),
+        [event.target.name]: [...packages.activity, event.target.value] /* [TransformData(event.target.value)] */,
       });
+      console.log("activity",packages.activity)
       return;
     }
     setPackages({ ...packages, [event.target.name]: event.target.value });
@@ -67,22 +90,6 @@ export const PutPackageForm = ({ pack }) => {
   });
 
   const stock = register("stock", {
-    required: { value: true, message: "REQUERIDO" },
-  });
-
-  const plattformId = register("plattformId", {
-    required: { value: true, message: "REQUERIDO" },
-  });
-
-  const businessId = register("businessId", {
-    required: { value: true, message: "REQUERIDO" },
-  });
-
-  const hotelId = register("cityId", {
-    required: { value: true, message: "REQUERIDO" },
-  });
-
-  const cityId = register("cityId", {
     required: { value: true, message: "REQUERIDO" },
   });
 
@@ -186,78 +193,83 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Id plataforma: </label>
-          <input
-            type="number"
-            name="plattformId"
-            value={packages["plattformId"]}
-            placeholder="Ingrese Id plataforma."
-            {...plattformId}
-            onChange={(e) => {
-              plattformId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.plattformId && <span>{errors?.plattformId?.message}</span>}
+          <select name="plattformId" defaultValue="" onChange={handleChange}>
+            <option key="keyplatform" value="" disabled>Plataformas</option>
+            {platforms.map((platform) => (
+              <option key={platform.id} value={platform.id}>
+                {platform.terminal}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Id empresa transporte: </label>
-          <input
-            type="number"
-            name="businessId"
-            value={packages["businessId"]}
-            placeholder="Ingrese Id empresa."
-            {...businessId}
-            onChange={(e) => {
-              businessId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.businessId && <span>{errors?.businessId?.message}</span>}
+          <select name="businessId" defaultValue="" onChange={handleChange}>
+            <option key="keybusiness" value="" disabled>Transportista</option>
+            {business.map((busi) => (
+              <option key={busi.id} value={busi.id}>
+                {busi.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Id ciudad: </label>
-          <input
-            type="number"
-            name="cityId"
-            value={packages["cityId"]}
-            placeholder="Ingrese Id ciudad."
-            {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+          <select name="cityId" defaultValue="" onChange={handleChange}>
+            <option key="keycities" value="" disabled>Ciudad</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Id hotel: </label>
-          <input
-            type="number"
-            name="hotelId"
-            value={packages["hotelId"]}
-            placeholder="Ingrese Id hotel."
-            {...hotelId}
-            onChange={(e) => {
-              hotelId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.hotelId && <span>{errors?.hotelId?.message}</span>}
+          <select name="hotelId" defaultValue="" onChange={handleChange}>
+            <option key="keyhotels" value="" disabled>Hotel</option>
+            {hotels.map((hotel) => (
+              <option key={hotel.id} value={hotel.id}>
+                {hotel.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Actividades: </label>
+        <div>
+          <label>Actividades</label>
+          <select name="activity" defaultValue="" onChange={handleChange}>
+          <option key="keyactivity" value="">Ninguna</option>
+            {activities.map((activity) => (
+              <option value={activity.name} key={activity.id}>
+                {activity.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <ul>
+            <li>
+              {packages.activity.map((activ) => (
+                <button
+                  type="button"
+                  key={activ}
+                  onClick={() => handleDelete(activ)}>
+                  {activ}
+                </button>
+              ))}
+            </li>
+          </ul>
+        </div>
+{/*           <label className="label-form"> Actividades: </label>
           <input
             type="text"
             name="activity"
             value={packages["activity"]}
             placeholder="Ingrese una actividad."
             onChange={handleChange}
-          />
+          /> */}
         </div>
 
         <button type="submit" className="button-form">

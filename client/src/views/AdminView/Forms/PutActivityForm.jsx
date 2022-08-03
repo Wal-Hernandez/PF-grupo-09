@@ -1,9 +1,11 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { putActivity } from "../../../redux/actions/putActivity";
 import { useForm } from "react-hook-form";
+import { getCities } from "../../../redux/actions/getCities";
 export const PutActivityForm = ({ pack}) => {
   
+  const { adminView } = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
   const {
     register,
@@ -27,6 +29,7 @@ export const PutActivityForm = ({ pack}) => {
       return;
     }
     setActivity({ ...activity, [event.target.name]: event.target.value });
+    console.log("Cambio: ", [event.target.name], event.target.value)
   }
 
   function handleSubmitActivity() {
@@ -50,9 +53,9 @@ export const PutActivityForm = ({ pack}) => {
     min: { value: 0, message: "Precio minimo $0" },
   });
 
-  const cityId = register("cityId", {
-    required: { value: true, message: "REQUERIDO" },
-  });
+  useEffect(() => {
+    dispatch(getCities())
+  }, [dispatch])
 
   return (
     <div className="div">
@@ -105,20 +108,15 @@ export const PutActivityForm = ({ pack}) => {
           {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
 
-        <div className="div-form">
-          <label className="label-form"> Id ciudad: </label>
-          <input
-            type="number"
-            name="cityId"
-            value={activity["cityId"]}
-            placeholder="Ingrese el Id."
-            {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+        <div>
+          <select name="cityId" defaultValue="" onChange={handleChange}>
+            <option key="keycity" value="" disabled>Ciudad</option>
+            {adminView.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <button type="submit" className="button-form">

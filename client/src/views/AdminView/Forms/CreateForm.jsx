@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect }from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { postActivity } from "../../../redux/actions/postActivity";
 import { postCity } from "../../../redux/actions/postCity";
 import { postBus } from "../../../redux/actions/postBus";
@@ -7,6 +7,10 @@ import { postPackage } from "../../../redux/actions/postPackage";
 import { postPlatform } from "../../../redux/actions/postPlattform";
 import { postHotel } from "../../../redux/actions/postHotel";
 import { useForm } from "react-hook-form";
+import { getPlatforms } from "../../../redux/actions/getPlatforms";
+import { getBuses } from "../../../redux/actions/getBuses";
+import { getCities } from "../../../redux/actions/getCities";
+import { getHotels } from "../../../redux/actions/getHotels";
 
 
 
@@ -67,6 +71,15 @@ function Ejemplo({ lang }) {
     score: [],
     comments: []
   });
+
+  const { platforms, business, cities, hotels } = useSelector((state) => state.adminReducer);
+
+  useEffect(() => {
+    dispatch(getPlatforms())
+    dispatch(getBuses())
+    dispatch(getCities())
+    dispatch(getHotels())
+  }, [dispatch])
 
   function TransformData(x) {
     if (isNaN(x[0])) return x;
@@ -139,9 +152,11 @@ function Ejemplo({ lang }) {
         ...packages,
         [event.target.name]: TransformData2(event.target.value),
       });
+      console.log([event.target.name], TransformData2(event.target.value))
       return;
     }
     setPackages({ ...packages, [event.target.name]: event.target.value });
+    console.log([event.target.name], event.target.value)
   }
 
   function handleSubmitPackages() {
@@ -247,10 +262,6 @@ function Ejemplo({ lang }) {
       },
     });
   
-    const cityId = register("cityId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-
     const score = register("score", {
       required: { value: true, message: "REQUERIDO" },
       min: { value: 0, message: "Minimo 0" },
@@ -391,21 +402,14 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
-          <label className="label-form"> Id ciudad: </label>
-
-          <input
-            type="number"
-            name="cityId"
-            value={hotel["cityId"]}
-            placeholder="Ingrese un Id."
-            {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChangeHotel(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+        <select name="cityId" defaultValue="" onChange={handleChangeHotel}>
+            <option key="keycity" value="" disabled>Ciudad</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="div-form">
@@ -712,10 +716,6 @@ function Ejemplo({ lang }) {
       required: { value: true, message: "REQUERIDO" },
       min: { value: 0, message: "Precio minimo $0" },
     });
-  
-    const cityId = register("cityId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
 
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitActivity)}>
@@ -798,20 +798,14 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
-          <label className="label-form"> Id ciudad: </label>
-          <input type="number" 
-          name="cityId"
-          value={activity["cityId"]}
-          placeholder="Ingrese la ubicación."
-          {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChangeActivity(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
-
+        <select name="cityId" defaultValue="" onChange={handleChangeActivity}>
+            <option key="keycities" value="" disabled>Ciudad</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <button
@@ -852,23 +846,7 @@ function Ejemplo({ lang }) {
   
     const stock = register("stock", {
       required: { value: true, message: "REQUERIDO" },
-      min: { value: 0, message: "Precio minimo $0" },
-    });
-  
-    const plattformId = register("plattformId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const businessId = register("businessId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const hotelId = register("hotelId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const cityId = register("cityId", {
-      required: { value: true, message: "REQUERIDO" },
+      min: { value: 0, message: "Stock minimo 0" },
     });
 
     const activity = register('activity', {
@@ -983,77 +961,52 @@ function Ejemplo({ lang }) {
           {errors?.stock && <span>{errors?.stock?.message}</span>}
           </div>
           
-   
           <div className="div-form">
-
-            <label className="label-form"> Id plataforma: </label>
-
-            <input
-              type="number"
-              name="plattformId"
-              value={packages["plattformId"]}
-              placeholder="Ingrese Id plataforma."
-              {...plattformId}
-              onChange={(e) => {
-                plattformId.onChange(e);
-                handleChangePackages(e);
-            }}
-          />
-          {errors?.plattformId && <span>{errors?.plattformId?.message}</span>}
+          <select name="plattformId" defaultValue="" onChange={handleChangePackages}>
+            <option key="keyplatform" value="" disabled>Plataforma</option>
+            {platforms.map((platf) => (
+              <option key={platf.id} value={platf.id}>
+                {platf.terminal}
+              </option>
+            ))}
+          </select>
           </div>
 
           <div className="div-form">
-
-            <label className="label-form"> Id transporte: </label>
-
-            <input
-              type="number"
-              name="businessId"
-              value={packages["businessId"]}
-              placeholder="Ingrese Id transporte."
-              {...businessId}
-              onChange={(e) => {
-                businessId.onChange(e);
-                handleChangePackages(e);
-            }}
-          />
-          {errors?.businessId && <span>{errors?.businessId?.message}</span>}
+          <select name="businessId" defaultValue="" onChange={handleChangePackages}>
+            <option key="keybusiness" value="" disabled>Transportista</option>
+            {business.map((busi) => (
+              <option key={busi.id} value={busi.id}>
+                {busi.name}
+              </option>
+            ))}
+          </select>
           </div>
 
           <div className="div-form">
-            <label className="label-form"> Id ciudad: </label>
-
-            <input
-              type="number"
-              name="cityId"
-              value={packages["cityId"]}
-              placeholder="Ingrese Id ciudad."
-              {...cityId}
-              onChange={(e) => {
-                cityId.onChange(e);
-                handleChangePackages(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+          <select name="cityId" defaultValue="" onChange={handleChangePackages}>
+            <option key="keycities" value="" disabled>Ciudad</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name
+                
+                }
+              </option>
+            ))}
+          </select>
           </div>
-
+          
           <div className="div-form">
-            <label className="label-form"> Id hotel: </label>
+          <select name="hotelId" defaultValue="" onChange={handleChangePackages}>
+            <option key="keyhotels" value="" disabled>Hotel</option>
+            {hotels.map((hotel) => (
+              <option key={hotel.id} value={hotel.id}>
+                {hotel.name}
+              </option>
+            ))}
+          </select>
 
-            <input
-              type="number"
-              name="hotelId"
-              value={packages["hotelId"]}
-              placeholder="Ingrese Id hotel."
-              {...hotelId}
-              onChange={(e) => {
-                hotelId.onChange(e);
-                handleChangePackages(e);
-            }}
-          />
-          {errors?.hotelId && <span>{errors?.hotelId?.message}</span>}
           </div>
-
           <div className="div-form">
             <label className="label-form"> Actividades: </label>
             <input

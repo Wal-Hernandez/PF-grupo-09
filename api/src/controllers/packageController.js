@@ -1,4 +1,4 @@
-const { Package, Activity,Business, Plattform, City, Hotel } = require("../db");
+const { Package, Activity,Business, Plattform, City, Hotel, Review } = require("../db");
 const { Op, Sequelize } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
@@ -44,7 +44,9 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: Hotel,
-       
+          include: {
+            model: Review
+          }
         },
       ],
     });
@@ -86,7 +88,9 @@ const getPackageById = async (req, res, next) => {
         },
         {
           model: Hotel,
-          
+          include: {
+            model: Review
+          }
         },
       ],}
     ));

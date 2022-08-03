@@ -1,5 +1,5 @@
 import React, {useEffect } from 'react'
-import {rootReducer, initialState} from '../../redux/reducer'
+import {rootReducer, initialState} from '../../redux/reducer/rootReducer'
 import ProductItem from '../ProductItem/ProductItem';
 import { useSelector, useDispatch } from 'react-redux';
 import CartItem from '../CartItem/CartItem';
@@ -12,7 +12,7 @@ import { getAuth } from "firebase/auth";
 
 export default function ShoppingCart() {
     let arrayCartNotLoggedin  = useSelector((state) => state.arrayCartNotLoggedin);
-    const { packages, showPackages } = useSelector((state) => state);
+    const { packages, showPackages } = useSelector((state) => state.rootReducer);
     const dispatch = useDispatch();
     console.log(packages)
     const auth = getAuth();

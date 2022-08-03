@@ -11,7 +11,7 @@ import CartItem from "../CartItem/CartItem"
 export default function Details() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const packageDetail = useSelector((state) => state.detail);
+  const packageDetail = useSelector((state) => state.rootReducer.detail);
   const packageActivity = [];
   packageDetail.activities?.map((e) => {
     packageActivity.push(

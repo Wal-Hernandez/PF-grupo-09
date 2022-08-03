@@ -7,7 +7,7 @@ import { getMainPackages } from "../../redux/actions/getMainPackages";
 import { getCities } from "../../redux/actions/getCities";
 
 export default function HomeBody() {
-  const { packages, showPackages } = useSelector((state) => state);
+  const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {

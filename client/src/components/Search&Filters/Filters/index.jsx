@@ -6,7 +6,7 @@ import { sortByStock } from '../../../redux/actions/sortByStock';
 
 function Filters(props) {
 
-    const {cities} = useSelector(state => state);
+    const {cities} = useSelector(state => state.rootReducer);
     const dispatch = useDispatch();
 
     function handleCities(e){

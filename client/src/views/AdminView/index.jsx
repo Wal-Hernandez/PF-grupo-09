@@ -11,15 +11,15 @@ import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
 import Logo from "../../images/Buspack.png"
-
 import { EditForm } from "./Forms/EditForm";
+import { Link } from "react-router-dom";
 
 function Admin() {
   const [model, setModel] = React.useState("");
   const [add, setAdd] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
   const [pack, setPack] = React.useState({});
-  const { adminView } = useSelector((state) => state);
+  const { adminView } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
 
   function dispatchByName(name){
@@ -151,7 +151,10 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
        <div className="logout">
-        <img src={Logo}alt="buspack" />
+       <Link to="/">
+       <img src={Logo}alt="buspack" />
+        </Link>
+      
         <button
           className="btn-logout"
           onClick={handleLogout}>

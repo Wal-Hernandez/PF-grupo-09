@@ -19,7 +19,7 @@ function Admin() {
   const [add, setAdd] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
   const [pack, setPack] = React.useState({});
-  const { adminView } = useSelector((state) => state.rootReducer);
+  const { adminView } = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
 
   function dispatchByName(name){

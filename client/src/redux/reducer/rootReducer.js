@@ -35,7 +35,11 @@ const initialState = {
     isAdmin: null,
     adminView: [],
     offers: [],
+    hotels: [],
     cities: [],
+    business: [],
+    platforms: [],
+    activities: [],
     cart:{},
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[]
@@ -54,29 +58,32 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 adminView: action.payload,
+                hotels: action.payload,
             };
         case GET_CITIES:
             return {
                 ...state,
                 adminView: action.payload,
-                cities: action.payload
+                cities: action.payload,
             };
         case GET_BUSES:
             return {
                 ...state,
                 adminView: action.payload,
+                business: action.payload,
             };
         case GET_PLATFORMS:
             return {
                 ...state,
                 adminView: action.payload,
+                platforms: action.payload,
             };
         case GET_ACTIVITIES:
             return {
                 ...state,
                 adminView: action.payload,
+                activities: action.payload,
             };
-
         case GET_MAIN_PACKAGES:
             return {
                 ...state,

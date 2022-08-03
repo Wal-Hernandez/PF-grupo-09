@@ -1014,10 +1014,10 @@ function Ejemplo({ lang }) {
               <label>Actividades</label>
               <select
                 name="activity"
-                defaultValue={[]}
+                defaultValue={''}
                 onChange={handleChangePackages}
               >
-                <option key="keyactivity" value={[]}>
+                <option key="keyactivity" value={''}>
                   Ninguna
                 </option>
                 {activities.map((activity) => (

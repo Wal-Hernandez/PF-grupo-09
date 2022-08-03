@@ -243,10 +243,10 @@ export const PutPackageForm = ({ pack }) => {
               <label>Actividades</label>
               <select
                 name="activity"
-                defaultValue={[]}
+                defaultValue={''}
                 onChange={handleChange}
               >
-                <option key="keyactivity" value={[]}>
+                <option key="keyactivity" value={''}>
                   Ninguna
                 </option>
                 {activities.map((activity) => (

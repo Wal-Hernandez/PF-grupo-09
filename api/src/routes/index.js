@@ -10,7 +10,7 @@ const CartDetail = require("./cartDetailRouter");
 const User = require("./userRouter");
 const TypeUser = require("./typeUserRouter");
 const Cart = require("./cartRouter")
-
+const Mailing = require("./mailingRouter");
 const router = Router();
 
 // Configurar los routers
@@ -25,5 +25,5 @@ router.use("/users", User);
 router.use("/typeusers", TypeUser);
 router.use("cartdetails/", CartDetail);
 router.use("/carts", Cart);
-
+router.use("/mailing", Mailing)
 module.exports = router;

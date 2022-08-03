@@ -29,17 +29,19 @@ export const PutPackageForm = ({ pack }) => {
     formState: { errors },
   } = useForm();
 
-  const { platforms, business, cities, hotels, activities } = useSelector(
-    (state) => state.adminReducer
-  );
+  const { platforms, business, cities, hotels, activities } = useSelector((state) => state.adminReducer);
 
   useEffect(() => {
-    dispatch(getPlatforms());
-    dispatch(getBuses());
-    dispatch(getCities());
-    dispatch(getHotels());
-    dispatch(getActivities());
-  }, [dispatch]);
+    dispatch(getPlatforms())
+    dispatch(getBuses())
+    dispatch(getCities())
+    dispatch(getHotels())
+    dispatch(getActivities())
+  }, [dispatch])
+
+  /* function TransformData(x) {
+    return x.split(",");
+  } */
 
   function handleDelete(activ) {
     setPackages({
@@ -52,12 +54,9 @@ export const PutPackageForm = ({ pack }) => {
     if (event.target.name === "activity") {
       setPackages({
         ...packages,
-        [event.target.name]: [
-          ...packages.activity,
-          event.target.value,
-        ] /* [TransformData(event.target.value)] */,
+        [event.target.name]: [... new Set([...packages.activity, event.target.value])] /* [TransformData(event.target.value)] */,
       });
-      console.log("activity", packages.activity);
+      console.log("activity",packages.activity)
       return;
     }
     setPackages({ ...packages, [event.target.name]: event.target.value });
@@ -195,9 +194,7 @@ export const PutPackageForm = ({ pack }) => {
 
         <div className="div-form">
           <select name="plattformId" defaultValue="" onChange={handleChange}>
-            <option key="keyplatform" value="" disabled>
-              Plataformas
-            </option>
+            <option key="keyplatform" value="" disabled>Plataformas</option>
             {platforms.map((platform) => (
               <option key={platform.id} value={platform.id}>
                 {platform.terminal}
@@ -208,9 +205,7 @@ export const PutPackageForm = ({ pack }) => {
 
         <div className="div-form">
           <select name="businessId" defaultValue="" onChange={handleChange}>
-            <option key="keybusiness" value="" disabled>
-              Transportista
-            </option>
+            <option key="keybusiness" value="" disabled>Transportista</option>
             {business.map((busi) => (
               <option key={busi.id} value={busi.id}>
                 {busi.name}
@@ -221,9 +216,7 @@ export const PutPackageForm = ({ pack }) => {
 
         <div className="div-form">
           <select name="cityId" defaultValue="" onChange={handleChange}>
-            <option key="keycities" value="" disabled>
-              Ciudad
-            </option>
+            <option key="keycities" value="" disabled>Ciudad</option>
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
@@ -234,9 +227,7 @@ export const PutPackageForm = ({ pack }) => {
 
         <div className="div-form">
           <select name="hotelId" defaultValue="" onChange={handleChange}>
-            <option key="keyhotels" value="" disabled>
-              Hotel
-            </option>
+            <option key="keyhotels" value="" disabled>Hotel</option>
             {hotels.map((hotel) => (
               <option key={hotel.id} value={hotel.id}>
                 {hotel.name}
@@ -246,37 +237,42 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <div>
-            <label>Actividades</label>
-            <select name="activity" defaultValue="" onChange={handleChange}>
-              <option key="keyactivity" value="">
-                Ninguna
-              </option>
-              {activities.map((activity) => (
-                <option value={activity.name} key={activity.id}>
-                  {activity.name}
+            <div>
+              <label>Actividades</label>
+              <select
+                name="activity"
+                defaultValue={[]}
+                required
+                onChange={handleChange}
+              >
+                <option key="keyactivity" value={[]}>
+                  Ninguna
                 </option>
-              ))}
-            </select>
+                {activities.map((activity) => (
+                  <option value={activity.name} key={activity.id}>
+                    {activity.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <ul>
+                {packages.activity.map((activ) => (
+                  <li style={{ listStyle: "none" }} key={activ}>
+                    {" "}
+                    {activ}
+                    <button
+                      type="button"
+                      key={activ}
+                      onClick={() => handleDelete(activ)}
+                    >
+                      x
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div>
-            <ul>
-              {packages.activity.map((activ) => (
-                <li style={{ listStyle: "none" }} key={activ}>
-                  {" "}
-                  {activ}
-                  <button
-                    type="button"
-                    key={activ}
-                    onClick={() => handleDelete(activ)}
-                  >
-                    x
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
 
         <button type="submit" className="button-form">
           {" "}

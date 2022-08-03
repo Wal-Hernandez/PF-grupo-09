@@ -41,10 +41,6 @@ export const PutPackageForm = ({ pack }) => {
     dispatch(getActivities());
   }, [dispatch]);
 
-  /* function TransformData(x) {
-    return x.split(",");
-  } */
-
   function handleDelete(activ) {
     setPackages({
       ...packages,
@@ -280,14 +276,6 @@ export const PutPackageForm = ({ pack }) => {
               ))}
             </ul>
           </div>
-          {/*           <label className="label-form"> Actividades: </label>
-          <input
-            type="text"
-            name="activity"
-            value={packages["activity"]}
-            placeholder="Ingrese una actividad."
-            onChange={handleChange}
-          /> */}
         </div>
 
         <button type="submit" className="button-form">

@@ -35,7 +35,11 @@ const initialState = {
     isAdmin: null,
     adminView: [],
     offers: [],
+    hotels: [],
     cities: [],
+    business: [],
+    platforms: [],
+    activities: [],
     cart:{},
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[]
@@ -50,33 +54,6 @@ export default function rootReducer(state = initialState, action) {
                 packages: action.payload,
                 adminView: action.payload,
             };
-        case GET_HOTELS:
-            return {
-                ...state,
-                adminView: action.payload,
-            };
-        case GET_CITIES:
-            return {
-                ...state,
-                adminView: action.payload,
-                cities: action.payload
-            };
-        case GET_BUSES:
-            return {
-                ...state,
-                adminView: action.payload,
-            };
-        case GET_PLATFORMS:
-            return {
-                ...state,
-                adminView: action.payload,
-            };
-        case GET_ACTIVITIES:
-            return {
-                ...state,
-                adminView: action.payload,
-            };
-
         case GET_MAIN_PACKAGES:
             return {
                 ...state,
@@ -134,23 +111,6 @@ export default function rootReducer(state = initialState, action) {
             return{ ...state,
                 cart:action.payload
             }
-            ;
-        case PUT_CITY:
-            return state;
-        case PUT_BUS:
-            return state;
-        case PUT_HOTEL:
-            return state;
-        case DELETE_MODEL:
-            return state;
-        case PUT_ACTIVITY:
-            return state;
-        case POST_CITY:
-            return state;
-        case POST_BUS:
-            return state;
-        case POST_ACTIVITY:
-            return state;
             case TYPES.ADD_TO_CART:{
                 let cartAll
                 const auth = getAuth();

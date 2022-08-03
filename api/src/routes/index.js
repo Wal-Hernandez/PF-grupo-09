@@ -11,6 +11,9 @@ const User = require("./userRouter");
 const TypeUser = require("./typeUserRouter");
 const Cart = require("./cartRouter")
 const Mailing = require("./mailingRouter");
+const Review = require('./reviewRouter')
+
+
 const router = Router();
 
 // Configurar los routers
@@ -26,4 +29,6 @@ router.use("/typeusers", TypeUser);
 router.use("cartdetails/", CartDetail);
 router.use("/carts", Cart);
 router.use("/mailing", Mailing)
+router.use('/reviews', Review)
+
 module.exports = router;

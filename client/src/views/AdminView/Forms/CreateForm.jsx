@@ -12,6 +12,7 @@ import { getBuses } from "../../../redux/actions/getBuses";
 import { getCities } from "../../../redux/actions/getCities";
 import { getHotels } from "../../../redux/actions/getHotels";
 import { getActivities } from "../../../redux/actions/getActivities";
+import { getClean } from "../../../redux/actions/getClean";
 
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function Ejemplo({ lang }) {
     dispatch(getCities());
     dispatch(getHotels());
     dispatch(getActivities());
+    return () => dispatch(getClean())
   }, [dispatch]);
 
   function TransformData(x) {

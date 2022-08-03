@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { putActivity } from "../../../redux/actions/putActivity";
 import { useForm } from "react-hook-form";
 import { getCities } from "../../../redux/actions/getCities";
+import { getClean } from "../../../redux/actions/getClean";
 export const PutActivityForm = ({ pack}) => {
   
   const { adminView } = useSelector((state) => state.adminReducer);
@@ -55,6 +56,7 @@ export const PutActivityForm = ({ pack}) => {
 
   useEffect(() => {
     dispatch(getCities())
+    return () => dispatch(getClean())
   }, [dispatch])
 
   return (

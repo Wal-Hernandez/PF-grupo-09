@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../../../redux/actions/getActivities";
 import { getBuses } from "../../../redux/actions/getBuses";
 import { getCities } from "../../../redux/actions/getCities";
+import { getClean } from "../../../redux/actions/getClean";
 import { getHotels } from "../../../redux/actions/getHotels";
 import { getPlatforms } from "../../../redux/actions/getPlatforms";
 import { putPackage } from "../../../redux/actions/putPackage";
@@ -37,6 +38,7 @@ export const PutPackageForm = ({ pack }) => {
     dispatch(getCities())
     dispatch(getHotels())
     dispatch(getActivities())
+    return () => dispatch(getClean())
   }, [dispatch])
 
   /* function TransformData(x) {

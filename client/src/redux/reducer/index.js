@@ -39,6 +39,7 @@ const initialState = {
     cities: [],
     business: [],
     platforms: [],
+    activities: [],
     cart:{},
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[]
@@ -81,6 +82,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 adminView: action.payload,
+                activities: action.payload,
             };
         case GET_MAIN_PACKAGES:
             return {

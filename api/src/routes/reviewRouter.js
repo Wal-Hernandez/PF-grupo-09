@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getReviews, getReviewById, postReview, deleteReview } = require('../controllers/reviewController')
+const { getReviews, getReviewById, postReview, deleteReview, updateReview } = require('../controllers/reviewController')
 
 const router = Router();
 

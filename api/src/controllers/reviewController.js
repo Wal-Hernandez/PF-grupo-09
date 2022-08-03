@@ -22,7 +22,7 @@ const getReviews = async (req, res) => {
   }
 };
 
-const getReviewsById = async (req, res) => {
+const getReviewById = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -46,7 +46,7 @@ const getReviewsById = async (req, res) => {
   }
 };
 
-const postReviews = async (req, res) => {
+const postReview = async (req, res) => {
   try {
     const { userId, hotelId, score, title, comment } = req.body;
 
@@ -63,7 +63,7 @@ const postReviews = async (req, res) => {
         comment: comment,
       },
     });
-    res.status(201).send("Review posted successfully");
+    return res.status(201).send("Review posted successfully");
   } catch (error) {
     res.status(400).json({
       msg: "Couldn't post review",
@@ -72,7 +72,7 @@ const postReviews = async (req, res) => {
   }
 };
 
-const updateReviews = async (req, res) => {
+const updateReview = async (req, res) => {
   try {
     const { id } = req.params;
     const { userId, hotelId, score, title, comment } = req.body;
@@ -112,7 +112,7 @@ const updateReviews = async (req, res) => {
   }
 };
 
-const deleteReviews = async (req, res) => {
+const deleteReview = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -140,8 +140,8 @@ const deleteReviews = async (req, res) => {
 
 module.exports = {
   getReviews,
-  getReviewsById,
-  postReviews,
-  updateReviews,
-  deleteReviews,
+  getReviewById,
+  postReview,
+  updateReview,
+  deleteReview,
 };

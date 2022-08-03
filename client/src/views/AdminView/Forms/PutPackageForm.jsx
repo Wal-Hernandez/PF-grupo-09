@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { getActivities } from "../../../redux/actions/getActivities";
 import { getBuses } from "../../../redux/actions/getBuses";
 import { getCities } from "../../../redux/actions/getCities";
 import { getHotels } from "../../../redux/actions/getHotels";
@@ -28,25 +29,34 @@ export const PutPackageForm = ({ pack }) => {
     formState: { errors },
   } = useForm();
 
-  const { platforms, business, cities, hotels } = useSelector((state) => state);
+  const { platforms, business, cities, hotels, activities } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getPlatforms())
     dispatch(getBuses())
     dispatch(getCities())
     dispatch(getHotels())
+    dispatch(getActivities())
   }, [dispatch])
 
-  function TransformData(x) {
+  /* function TransformData(x) {
     return x.split(",");
+  } */
+
+  function handleDelete(activ) {
+    setPackages({
+      ...packages,
+      activity: packages.activity.filter((e) => e !== activ),
+    });
   }
 
   function handleChange(event) {
     if (event.target.name === "activity") {
       setPackages({
         ...packages,
-        [event.target.name]: TransformData(event.target.value),
+        [event.target.name]: [...packages.activity, event.target.value] /* [TransformData(event.target.value)] */,
       });
+      console.log("activity",packages.activity)
       return;
     }
     setPackages({ ...packages, [event.target.name]: event.target.value });
@@ -227,14 +237,39 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Actividades: </label>
+        <div>
+          <label>Actividades</label>
+          <select name="activity" defaultValue="" onChange={handleChange}>
+          <option key="keyactivity" value="">Ninguna</option>
+            {activities.map((activity) => (
+              <option value={activity.name} key={activity.id}>
+                {activity.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <ul>
+            <li>
+              {packages.activity.map((activ) => (
+                <button
+                  type="button"
+                  key={activ}
+                  onClick={() => handleDelete(activ)}>
+                  {activ}
+                </button>
+              ))}
+            </li>
+          </ul>
+        </div>
+{/*           <label className="label-form"> Actividades: </label>
           <input
             type="text"
             name="activity"
             value={packages["activity"]}
             placeholder="Ingrese una actividad."
             onChange={handleChange}
-          />
+          /> */}
         </div>
 
         <button type="submit" className="button-form">

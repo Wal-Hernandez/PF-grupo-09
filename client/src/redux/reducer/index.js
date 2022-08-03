@@ -38,7 +38,7 @@ const initialState = {
     hotels: [],
     cities: [],
     business: [],
-    platform: [],
+    platforms: [],
     cart:{},
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[]
@@ -75,14 +75,13 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 adminView: action.payload,
-                platform: action.payload,
+                platforms: action.payload,
             };
         case GET_ACTIVITIES:
             return {
                 ...state,
                 adminView: action.payload,
             };
-
         case GET_MAIN_PACKAGES:
             return {
                 ...state,

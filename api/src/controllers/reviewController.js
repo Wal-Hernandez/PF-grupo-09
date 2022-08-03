@@ -67,7 +67,7 @@ const postReview = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       msg: "Couldn't post review",
-      error: error.parent.detail,
+      error: error,
     });
   }
 };

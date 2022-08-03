@@ -10,6 +10,7 @@ const CartDetail = require("./cartDetailRouter");
 const User = require("./userRouter");
 const TypeUser = require("./typeUserRouter");
 const Cart = require("./cartRouter")
+const Review = require('./reviewRouter')
 
 const router = Router();
 
@@ -25,5 +26,6 @@ router.use("/users", User);
 router.use("/typeusers", TypeUser);
 router.use("cartdetails/", CartDetail);
 router.use("/carts", Cart);
+router.use('/reviews', Review)
 
 module.exports = router;

@@ -193,7 +193,7 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="plattformId" defaultValue="" onChange={handleChange}>
+          <select name="plattformId" required defaultValue="" onChange={handleChange}>
             <option key="keyplatform" value="" disabled>Plataformas</option>
             {platforms.map((platform) => (
               <option key={platform.id} value={platform.id}>
@@ -204,7 +204,7 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="businessId" defaultValue="" onChange={handleChange}>
+          <select name="businessId" required defaultValue="" onChange={handleChange}>
             <option key="keybusiness" value="" disabled>Transportista</option>
             {business.map((busi) => (
               <option key={busi.id} value={busi.id}>
@@ -215,7 +215,7 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="cityId" defaultValue="" onChange={handleChange}>
+          <select name="cityId" required defaultValue="" onChange={handleChange}>
             <option key="keycities" value="" disabled>Ciudad</option>
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
@@ -226,7 +226,7 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="hotelId" defaultValue="" onChange={handleChange}>
+          <select name="hotelId" required defaultValue="" onChange={handleChange}>
             <option key="keyhotels" value="" disabled>Hotel</option>
             {hotels.map((hotel) => (
               <option key={hotel.id} value={hotel.id}>
@@ -242,7 +242,6 @@ export const PutPackageForm = ({ pack }) => {
               <select
                 name="activity"
                 defaultValue={[]}
-                required
                 onChange={handleChange}
               >
                 <option key="keyactivity" value={[]}>

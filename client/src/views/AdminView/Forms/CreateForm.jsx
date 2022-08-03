@@ -404,7 +404,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <select name="cityId" defaultValue="" onChange={handleChangeHotel}>
+          <select name="cityId" required defaultValue="" onChange={handleChangeHotel}>
             <option key="keycity" value="" disabled>
               Ciudad
             </option>
@@ -782,7 +782,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <select name="cityId" defaultValue="" onChange={handleChangeActivity}>
+          <select name="cityId" required defaultValue="" onChange={handleChangeActivity}>
             <option key="keycities" value="" disabled>
               Ciudad
             </option>
@@ -941,6 +941,7 @@ function Ejemplo({ lang }) {
               name="plattformId"
               defaultValue=""
               onChange={handleChangePackages}
+              required
             >
               <option key="keyplatform" value="" disabled>
                 Plataforma
@@ -958,6 +959,7 @@ function Ejemplo({ lang }) {
               name="businessId"
               defaultValue=""
               onChange={handleChangePackages}
+              required
             >
               <option key="keybusiness" value="" disabled>
                 Transportista
@@ -975,6 +977,7 @@ function Ejemplo({ lang }) {
               name="cityId"
               defaultValue=""
               onChange={handleChangePackages}
+              required
             >
               <option key="keycities" value="" disabled>
                 Ciudad

@@ -62,7 +62,7 @@ export default function HomeBody() {
                     <div class="card">
                       <img
                         class="card-img-top"
-                        src={e.hotel.urlImage}
+                        src={e.hotel?.urlImage}
                         alt="Card  cap"
                       />
                       <div class="card-body ">

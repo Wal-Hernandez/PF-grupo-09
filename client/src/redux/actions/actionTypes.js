@@ -20,6 +20,7 @@ export const POST_CITY = "POST_CITY";
 export const POST_BUS = "POST_BUS";
 export const POST_ACTIVITY = "POST_ACTIVITY";
 export const POST_PACKAGE = "POST_PACKAGE";
+export const POST_REVIEW = "POST_REVIEW";
 export const PUT_CITY = "PUT_CITY";
 export const PUT_BUS = "PUT_BUS";
 export const PUT_HOTEL = "PUT_HOTEL";

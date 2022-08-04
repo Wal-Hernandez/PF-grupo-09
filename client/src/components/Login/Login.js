@@ -61,10 +61,12 @@ export function Login() {
 
   const handleGoogleSignin = async () => {
     try {
+     
       await loginWithGoogle()
+      .then(()=>console.log(doc(firestore, 'usuarios')))
       .then(a=> a.user.uid)
       .then(r=> getRol(r))
-      .then(r=>{if (typeof r ==='number'){alert("Registrate,Boloo")}
+      .then(r=>{if (typeof r ==='number'){alert("No estas Registrad@,No esperes mas!")}
     else{ if (r==='client') navigate('/')
     else{navigate('/admin')}
   

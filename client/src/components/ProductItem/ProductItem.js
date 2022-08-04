@@ -42,7 +42,7 @@ export default function ProductItem({id, quantity, data, arrayCartNotLoggedin}) 
         myCartAll=myCartparsedfilteredNotLoggedin
       }
 
-
+console.log(localStorage)
 
     return(
         <div>{data ? <div>

@@ -1,0 +1,8 @@
+.nav-pag>.ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-pag .ul .pagination {
+    margin: 10px;
+}

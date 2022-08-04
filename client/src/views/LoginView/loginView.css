@@ -1,0 +1,22 @@
+.servicesViewContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+ background-color: rgba(175, 0, 0, 0.795);
+ width: 400px;
+ height: 600px;
+margin-left: 40%;
+}
+
+
+
+
+.fotoLogin{
+    background-image: url(https://static.vecteezy.com/system/resources/previews/001/248/487/non_2x/person-sitting-on-rocky-mountain-during-sunrise-free-photo.jpeg);
+    background-position: center center;
+}
+.fotoRegister{
+    background-image: url(https://wordpress-network.prod.aws.skyscnr.com/wp-content/uploads/2018/05/hiking-5.jpg);
+    background-position: center center;
+  
+}

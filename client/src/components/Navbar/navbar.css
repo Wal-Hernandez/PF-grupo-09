@@ -1,0 +1,55 @@
+a {
+    margin: 1%;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    width: 100vw;
+    margin: 1%;
+    display: flex;
+    margin-left: 30%;
+    justify-content: space-around;
+}
+
+.navbar-nav button {
+    height: 50px;
+    text-align: center;
+    background-color: #ffde5900;
+    border: none;
+    color: antiquewhite;
+    transition: transform .2s ease-in-out;
+    font-weight: 600;
+    font-size: 18px;
+    
+}
+
+.navbar-nav button:hover {
+    background-color:#FFDE59;
+    border: solid 2px silver;
+    color: #004AAD;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+.userlog-container h5{
+
+    color: #FFDE59;
+    font-size: 17px;
+    margin: 0;
+    border-bottom: 1px solid #FFDE59 ;
+}
+
+
+.navbar-expand-lg {
+    background-color:#004AAD;
+    height:150px;
+    width: 100vw;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.512);
+}
+.logo-buspack{
+    object-fit: contain;
+        padding: 0px;
+        width: 250px;
+        height: 146px;
+        margin: 0;
+
+}

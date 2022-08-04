@@ -1,0 +1,26 @@
+.productos-div {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-around;
+}
+
+.package-item {
+    border: solid 2px black;
+    width: 30%;
+    transition: transform .2s;
+}
+
+.package-item:hover {
+    transform: scale(1.02);
+}
+
+.package-item img {
+    margin: 1%;
+    width: 80%;
+}
+
+.package-item div {
+    font-family: 'Montserrat';
+    font-weight: bold;
+}

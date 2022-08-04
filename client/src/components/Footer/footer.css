@@ -1,0 +1,168 @@
+/* .FooterContainer {
+    background-color: rgba(105, 105, 105, 0.8);
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    position: relative;
+    border-top: solid 3px black;
+}
+
+.footer-container-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.FooterContainer .footerElement {
+    width: 30vw;
+    margin: 1%;
+} */
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer__container {
+    width: 100vw;
+    background-color: #004AAD;
+    margin-top: 2vh;
+    padding: 1em 0;
+    display: flex;
+    flex-direction: wrap;
+    text-align: center;
+    justify-content: space-around;
+    border-top: 3px solid rgb(37, 36, 36);
+}
+
+    
+    .red-social{
+        margin-bottom: 50px;
+    }
+    .footer-img__container img{
+        width: 100px;
+        margin-top: 15px;
+    }
+
+.redes h2 {
+    color: #F2E1E1;
+    font-weight: 1000;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.red-social a {
+    padding: 5px;
+    margin: 3px;
+    color: #F2E1E1;
+    font-size: 24px;
+    padding-top: 30px;
+}
+
+.fa-whatsapp:hover {
+    color: #25D366;
+}
+
+.fa-instagram:hover {
+    color: #833AB4;
+}
+
+.fa-facebook:hover {
+    color: #3b5998;
+}
+
+.fa-envelope:hover {
+    color: #ef233c;
+}
+
+.copyright {
+    color: #F2E1E1;
+    width: 150px;
+    padding-top: 15px;
+}
+
+.sucursales h2 {
+    color: rgba(218, 204, 204, 0.973);
+    font-weight: 1000;
+    font-size: 14px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+
+.sucursales a {
+    color: #F2E1E1;
+    padding-top: 10px;
+    font-weight: 100;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 15px;
+}
+
+.sucursales a:hover {
+    color: #EF233C;
+}
+
+.telefonos h2 {
+    color: #F2E1E1;
+    font-size: 14px;
+    padding-top: 15px;
+    margin-bottom: 10px;
+    font-weight: 1000;
+}
+
+.telefonos li {
+    color: #F2E1E1;
+    padding: 3px;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 700px) {
+    .footer__container {
+        flex-direction: column;
+    }
+    .copyright {
+        margin: 0 auto;
+    }
+    .red-social a {
+        padding-top: 10px;
+    }
+    .sucursales a:hover{
+        color: #FFDE59;
+    }
+    .telefonos h2 {
+        color: #F2E1E1;
+        font-size: 14px;
+        padding-top: 15px;
+        margin-bottom: 10px;
+        font-weight: 1000;
+    }
+    .telefonos li {
+        color: #F2E1E1;
+        padding: 3px;
+        font-size: 15px;
+    
+    }
+
+
+
+    @media screen and (max-width: 700px) {
+        .footer__container{
+            flex-direction: column;
+        }
+        .copyright{
+            margin: 0 auto;
+        }
+        .red-social a {
+            padding-top: 10px;
+        }
+    }
+
+.preguntas{
+    color: #F2E1E1 ;
+    
+    font-size: 18px;
+    font-weight: 600;
+}
+.preguntas:hover{
+    color: #FFDE59;
+}
+}

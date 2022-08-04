@@ -1,0 +1,41 @@
+.servicesViewContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    width: 100vw;
+    height: 70vh;
+}
+
+.services-view-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.services-product-container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+
+.services-footer-container .FooterContainer {
+    position: relative;
+}
+
+.services-paginado-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.select-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+}
+
+.select-container select {
+    width: 20vw;
+}

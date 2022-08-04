@@ -32,6 +32,12 @@ export const DELETE_MODEL = "DELETE_MODEL";
 export const POST_USER = "POST_USER";
 
 export const LOAD_CART = "LOAD_CART";
+export const LOAD_CART_LOGIN = "LOAD_CART_LOGIN";
+export const CLEAR_CART_LOGOUT = "CLEAR_CART_LOGOUT";
+
+
+
+
 
 export const SEND_MAIL ="SEND_MAIL";
 

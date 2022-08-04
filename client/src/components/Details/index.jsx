@@ -27,8 +27,8 @@ export default function Details() {
 
   console.log(packageDetail);
 
-  let arrayCartNotLoggedin  = useSelector((state) => state.arrayCartNotLoggedin);
-  let arrayCartLoggedin  = useSelector((state) => state.arrayCartLoggedin);
+  let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
+  let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
   console.log(arrayCartLoggedin)
   const products = useSelector ((state) => state.products)
 

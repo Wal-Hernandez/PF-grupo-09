@@ -7,6 +7,7 @@ import "./details.css";
 import {TYPES} from '../../redux/actions/shoppingActions';
 import { getAuth } from "firebase/auth";
 import CartItem from "../CartItem/CartItem"
+import Reviews from "../Reviews";
 
 export default function Details() {
   const dispatch = useDispatch();
@@ -26,8 +27,8 @@ export default function Details() {
 
   console.log(packageDetail);
 
-  let arrayCartNotLoggedin  = useSelector((state) => state.arrayCartNotLoggedin);
-  let arrayCartLoggedin  = useSelector((state) => state.arrayCartLoggedin);
+  let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
+  let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
   console.log(arrayCartLoggedin)
   const products = useSelector ((state) => state.products)
 
@@ -115,6 +116,10 @@ export default function Details() {
                     <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           
                 </article>) : null 
       }
+
+      <div>
+        {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
+      </div>
     </div>
 
   );

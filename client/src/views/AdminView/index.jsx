@@ -142,7 +142,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
 
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
-       <div className="logout">
+      <div className="logout">
         <img src={Logo}alt="buspack" />
         <button
           className="btn-logout"
@@ -215,13 +215,13 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
               </div>
                 )
               :(adminView.length 
-                 ? (
+                ? (
                   adminView.map((packs) => {
-                       return (
-                     
+                      return (
+                    
                         <div className="adminPanelColumn" key={packs.id}>
-                         <div className="text">
-                           <h1>{packs.name || packs.patent || packs.terminal}</h1>
+                          <div className="text">
+                            <h1>{packs.name || packs.patent || packs.terminal}</h1>
                           </div>
                           <div className="btns-admin">
                           <div className="btnEdit">
@@ -239,7 +239,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                             </button>
                           </div>
                           </div>
-                       </div>
+                        </div>
                   
                         );
                       }).slice(indiceInicial, indiceFinal)

@@ -68,7 +68,6 @@ export function Login() {
   };
 
   return (
-
     <div className="container w-75 bg-white mt-5 rounded">
       <div className="row align-items-stretch ">
         <div className="col fotoLogin d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
@@ -151,20 +150,6 @@ export function Login() {
         </div>
       </div>
     </div>
-    
-
-   
- 
-      {/* <button
-        onClick={handleGoogleSignin}
-        className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
-      >
-        Google login
-      </button> */}
-   </div>
-
-
-
   );
 }
 

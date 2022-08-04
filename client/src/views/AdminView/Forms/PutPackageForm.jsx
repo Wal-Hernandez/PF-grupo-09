@@ -10,6 +10,7 @@ import { getPlatforms } from "../../../redux/actions/getPlatforms";
 import { putPackage } from "../../../redux/actions/putPackage";
 export const PutPackageForm = ({ pack }) => {
   const dispatch = useDispatch();
+  const packAct = pack.activities.map(e => e.name)
   const [packages, setPackages] = React.useState({
     start_date: pack.start_date,
     end_date: pack.end_date,
@@ -21,9 +22,9 @@ export const PutPackageForm = ({ pack }) => {
     businessId: pack.businessId,
     cityId: pack.cityId,
     hotelId: pack.hotelId,
-    activity: [],
+    activity: packAct,
   });
-  console.log(packages);
+  console.log(pack);
   const {
     register,
     handleSubmit,
@@ -46,6 +47,7 @@ export const PutPackageForm = ({ pack }) => {
   } */
 
   function handleDelete(activ) {
+    console.log(activ)
     setPackages({
       ...packages,
       activity: packages.activity.filter((e) => e !== activ),
@@ -249,23 +251,23 @@ export const PutPackageForm = ({ pack }) => {
                 <option key="keyactivity" value={''}>
                   Ninguna
                 </option>
-                {activities.map((activity) => (
-                  <option value={activity.name} key={activity.id}>
-                    {activity.name}
+                {activities.map((activ) => (
+                  <option value={activ.name} key={activ.id}>
+                    {activ.name}
                   </option>
                 ))}
               </select>
             </div>
             <div>
               <ul>
-                {packages.activity.map((activ) => (
-                  <li style={{ listStyle: "none" }} key={activ}>
+                {packages.activity.map((activi) => (
+                  <li style={{ listStyle: "none" }} key={activi}>
                     {" "}
-                    {activ}
+                    {activi}
                     <button
                       type="button"
-                      key={activ}
-                      onClick={() => handleDelete(activ)}
+                      key={activi}
+                      onClick={() => handleDelete(activi)}
                     >
                       x
                     </button>

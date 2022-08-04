@@ -2,15 +2,16 @@ const { Package,Cart,CartDetail,Hotel,City, Activity,User,Business, Plattform} =
 
 
 const getCart = async (mail) => {
+  console.log(mail)
   try {
     //busco el usuario que coincida con el mail que recibo
     let user=await User.findAll({ where: { mail: mail } })
-   
+
     if (!mail) {
       return "All fields are required";
     }
     let userJson=JSON.parse(JSON.stringify(user));
-    console.log(userJson)
+
     //obtengo solo el id de ese usuario
     let id=userJson[0]['id']
     console.log(id)
@@ -41,7 +42,6 @@ include:[{
     };
   }
 };
-
 
 const createCart = async (   
     mail

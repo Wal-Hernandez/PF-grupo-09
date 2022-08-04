@@ -4,8 +4,8 @@ import { putActivity } from "../../../redux/actions/putActivity";
 import { useForm } from "react-hook-form";
 import { getCities } from "../../../redux/actions/getCities";
 import { getClean } from "../../../redux/actions/getClean";
-export const PutActivityForm = ({ pack}) => {
-  
+export const PutActivityForm = ({ pack }) => {
+
   const { adminView } = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
   const {

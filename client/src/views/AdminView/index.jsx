@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./adminView.css";
 import { getPackages } from "../../redux/actions/getPackages";
@@ -11,15 +11,15 @@ import { deleteModel } from "../../redux/actions/deleteModel";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
 import Logo from "../../images/Buspack.png"
-
 import { EditForm } from "./Forms/EditForm";
+import { Link } from "react-router-dom";
 
 function Admin() {
   const [model, setModel] = React.useState("");
   const [add, setAdd] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
   const [pack, setPack] = React.useState({});
-  const { adminView } = useSelector((state) => state);
+  const { adminView } = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
 
   function dispatchByName(name){
@@ -41,8 +41,9 @@ function Admin() {
   }
 
   async function handleDelete (e) {
+    console.log(e.target.value)
     let resp = window.confirm("Confirmar acción.");
-    if (resp){ await dispatch(deleteModel(e.target.value, model));
+    if (resp){  dispatch(deleteModel(e.target.value, model));
     } 
     dispatchByName(model);
   }
@@ -62,9 +63,12 @@ let setCreate =() =>{ setAdd(add => !add) }
   let setUpdate = (packs) => {
     setPack(packs)
     setEdit((edit) => !edit);
+
   };
   
-  let handleReset = () => {
+  let handleReset = (e) => {
+    dispatchByName(e.target.name)
+    setAdd(false)
     setPack(false)
     setEdit(false);
   };
@@ -136,14 +140,21 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
 
 
   console.log("hola",adminView)
-
+  useEffect(() => {
+    return () => {
+        console.log("holasoygerman")
+    }
+}, [])
   return (
     <>
 
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
-      <div className="logout">
-        <img src={Logo}alt="buspack" />
+       <div className="logout">
+       <Link to="/">
+       <img src={Logo}alt="buspack" />
+        </Link>
+      
         <button
           className="btn-logout"
           onClick={handleLogout}>
@@ -163,7 +174,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
           </div>
           <div className="btn-business btnn">
               <button name="business" onClick={handleSelect}>
-                Bus
+                Business
               </button>
           </div>
           <div className="btn-activities btnn">
@@ -203,7 +214,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
               <div>
                 {" "}
                 <CreateForm word={model} />
-                <button  onClick={handleReset}>Volver</button>
+                <button className="btn btn-warning" name={model} onClick={handleReset}>Volver</button>
               </div>
             ) 
             : edit 
@@ -211,17 +222,18 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                 <div>
                 {" "}
                 <EditForm word={model} pack={pack}/>
-                <button  onClick={handleReset}>Volver</button>
+                <button className="btn btn-warning" name={model} onClick={handleReset}>Volver</button>
               </div>
                 )
               :(adminView.length 
                 ? (
                   adminView.map((packs) => {
-                      return (
-                    
+                       return (
+                          
                         <div className="adminPanelColumn" key={packs.id}>
-                          <div className="text">
-                            <h1>{packs.name || packs.patent || packs.terminal}</h1>
+                         
+                         <div className="text">
+                           <h1>{packs.name || packs.patent || packs.terminal}</h1>
                           </div>
                           <div className="btns-admin">
                           <div className="btnEdit">
@@ -232,11 +244,13 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                             </button>
                           </div>
                           <div className="btnDel">
-                            <button value={packs.id} onClick={handleDelete}>
+
                             <span class="material-symbols-outlined">
+                            <button value={packs.id} onClick={handleDelete}>                      
                               delete
+                              </button>
                             </span>
-                            </button>
+                            
                           </div>
                           </div>
                         </div>
@@ -246,7 +260,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                       
                     ) 
                   : (
-              <div>Loading..</div>
+              <div>WELCOME TO THE ADMIN PANEL </div>
                 ))}
             {adminView.length && !add && !edit? <div className="pag">{pageCurrent>1?<span onClick={prevPage} className='flecha izquierda'></span>:''} 
             {sliceOfnumerosRederizados} 

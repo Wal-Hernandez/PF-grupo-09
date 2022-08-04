@@ -9,6 +9,8 @@ import "../../views/LoginView/loginView.css";
 
 import logo from "../../images/Buspack.png"; //imagen logo
 
+import { app } from "../../Firebase/firebase-config";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 export function Login() {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -16,6 +18,7 @@ export function Login() {
     password: "",
     rol: "",
   });
+  const firestore = getFirestore(app);
   const { login, loginWithGoogle, resetPassword } = useAuth();
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -46,12 +49,36 @@ export function Login() {
     setUser({ ...user, [name]: value });
   };
 
+  const getRol = async (uid) => {
+    // obtener rol
+    const docuRef = doc(firestore, `usuarios/${uid}`);
+    const docuCifrada = await getDoc(docuRef);
+    if (docuCifrada.data()) {
+      const infoFinal = docuCifrada.data().rol;
+      return infoFinal;
+    } else {
+      return 4;
+    }
+  };
+
   const handleGoogleSignin = async () => {
     try {
-      await loginWithGoogle();
-      navigate("/");
+      await loginWithGoogle()
+        .then((a) => a.user.uid)
+        .then((r) => getRol(r))
+        .then((r) => {
+          if (typeof r === "number") {
+            alert("Registrate,Boloo");
+          } else {
+            if (r === "client") navigate("/");
+            else {
+              navigate("/admin");
+            }
+          }
+        });
     } catch (error) {
       setError(error.message);
+      console.log(error);
     }
   };
 
@@ -64,6 +91,49 @@ export function Login() {
       setError("Te enviamos un mail para recuperar tu contraseña");
     } catch (error) {
       setError(error.message);
+    }
+  };
+
+  const CartNotLoggedinToLoggedin = () => {
+    console.log("holaaaaaaaaaaaaaaaaaaaaaaa");
+    if (localStorage.getItem("myCartNotLoggedin")) {
+      console.log("entro a myCartNotLoggedin");
+      let myCarttextNotLoggedin;
+      let myCartparsedNotLoggedin = [];
+      let myCarttextLoggedin;
+      let myCartparsedLoggedin = [];
+      let found;
+      if (!localStorage.getItem("myCartLoggedin")) {
+        localStorage.setItem("myCartLoggedin", "[]");
+      } else {
+        myCarttextLoggedin = localStorage.getItem("myCartLoggedin");
+        myCartparsedLoggedin = JSON.parse(myCarttextLoggedin);
+      }
+      myCarttextNotLoggedin = localStorage.getItem("myCartNotLoggedin");
+      myCartparsedNotLoggedin = JSON.parse(myCarttextNotLoggedin);
+
+      for (let i = 0; i < myCartparsedNotLoggedin.length; i++) {
+        found = false;
+        for (let j = 0; j < myCartparsedLoggedin.length; j++) {
+          if (myCartparsedNotLoggedin[i].id === myCartparsedLoggedin[j].id) {
+            myCartparsedLoggedin.quantity =
+              myCartparsedLoggedin.quantity + myCartparsedNotLoggedin.quantity;
+            found = true;
+          }
+        }
+        if (found === false) {
+          myCartparsedLoggedin = [
+            ...myCartparsedLoggedin,
+            {
+              id: myCartparsedNotLoggedin[i].id,
+              quantity: myCartparsedNotLoggedin[i].quantity,
+            },
+          ];
+        }
+      }
+      let cartJSONNotLoggedin = JSON.stringify(myCartparsedLoggedin);
+      localStorage.setItem("myCartLoggedin", cartJSONNotLoggedin);
+      localStorage.setItem("myCartNotLoggedin", "[]");
     }
   };
 
@@ -120,6 +190,7 @@ export function Login() {
             </div>
             <div className="d-grid">
               <button
+                onClick={CartNotLoggedinToLoggedin}
                 className="btn btn-primary hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
@@ -146,6 +217,12 @@ export function Login() {
                 </Link>
               </p>
             </div>
+            <button
+              onClick={handleGoogleSignin}
+              className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
+            >
+              Google login
+            </button>
           </form>
         </div>
       </div>

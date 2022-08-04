@@ -7,7 +7,7 @@ import { getMainPackages } from "../../redux/actions/getMainPackages";
 import { getCities } from "../../redux/actions/getCities";
 
 export default function HomeBody() {
-  const { packages, showPackages } = useSelector((state) => state);
+  const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function HomeBody() {
                     <div class="card">
                       <img
                         class="card-img-top"
-                        src={e.hotel.urlImage}
+                        src={e.hotel?.urlImage}
                         alt="Card  cap"
                       />
                       <div class="card-body ">

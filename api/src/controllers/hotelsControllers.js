@@ -1,12 +1,17 @@
-const { Hotel, City } = require("../db");
+const { Hotel, City, Review } = require("../db");
 
 const getHotels = async () => {
   try {
     let allHotels = await Hotel.findAll({
-      include: {
-        model: City,
-        attributes: ["name"],
-      },
+      include: [
+        {
+          model: City,
+          attributes: ["name"],
+        },
+        {
+          model: Review,
+        },
+      ],
     });
 
     return allHotels;
@@ -21,10 +26,13 @@ const getHotels = async () => {
 const getHotel = async (id) => {
   try {
     let allHotels = await Hotel.findByPk(id, {
-      include: {
-        model: City,
-        attributes: ["name"],
-      },
+      include: [
+        {
+          model: City,
+          attributes: ["name"],
+        },
+        { model: Review },
+      ],
     });
 
     return allHotels;
@@ -45,23 +53,20 @@ const createHotel = async (
   wifi,
   gym,
   urlImage,
-  cityId,
-  score,
-  comments
+  cityId
 ) => {
   try {
-    // if (
-    //   !name ||
-    //   !location ||
-    //   !stars ||
-    //   !phone ||
-    //   !price ||
-    //   !urlImage ||
-    //   !cityId ||
-    //   !score
-    // ) {
-    //   return "All fields are required";
-    // }
+    if (
+      !name ||
+      !location ||
+      !stars ||
+      !phone ||
+      !price ||
+      !urlImage ||
+      !cityId
+    ) {
+      return "All fields are required";
+    }
     if (typeof name !== "string") {
       return "Only letters are allowed in the name field";
     }
@@ -76,8 +81,6 @@ const createHotel = async (
       gym,
       urlImage,
       cityId,
-      score,
-      comments
     });
 
     return "Hotel created successfully";
@@ -105,17 +108,38 @@ const deleteHotelById = async (id) => {
     };
   }
 };
-const updateHotelById = async (id, name, location, stars, phone, price, pool, wifi, gym, urlImage, cityId, score, comments) => {
+const updateHotelById = async (
+  id,
+  name,
+  location,
+  stars,
+  phone,
+  price,
+  pool,
+  wifi,
+  gym,
+  urlImage,
+  cityId
+) => {
   try {
-    // if (!name || !location || !stars || !phone || !price || !urlImage || !cityId) {
-    //   return "All fields are required";
-    // }
+    if (!name || !location || !stars || !phone || !price || !urlImage || !cityId) {
+      return "All fields are required";
+    }
     if (typeof name !== "string") {
       return "Only letters are allowed in the name field";
     }
     const a = await Hotel.update(
       {
-        name, location, stars, phone, price, pool, wifi, gym, urlImage, cityId, score, comments
+        name,
+        location,
+        stars,
+        phone,
+        price,
+        pool,
+        wifi,
+        gym,
+        urlImage,
+        cityId
       },
       { where: { id: id } }
     );

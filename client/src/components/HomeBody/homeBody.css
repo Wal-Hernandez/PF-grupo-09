@@ -8,9 +8,8 @@
 
 .card {
     border-radius: 0px 0px 26px 0px;
-
+   height: auto;
     transition: all .3s;
-    transition: transform 0.2s ease-in-out;
 }
 
 .c-name {

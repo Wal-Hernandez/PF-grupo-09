@@ -44,7 +44,6 @@ function Footer() {
                 <div>
             <Link to ="/faq" class="preguntas"> Preguntas Frecuentes</Link>
         </div>
-
             </div>
 
             <div class="contactos">

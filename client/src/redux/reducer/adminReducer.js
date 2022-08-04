@@ -25,6 +25,8 @@ import {
     LOAD_CART,
     POST_USER
 } from "../actions/actionTypes";
+import {TYPES} from "../actions/shoppingActions"
+import { getAuth } from "firebase/auth";
 
 const initialState = {
     packages: [],
@@ -33,11 +35,17 @@ const initialState = {
     isAdmin: null,
     adminView: [],
     offers: [],
+    hotels: [],
     cities: [],
-    cart:{}
+    business: [],
+    platforms: [],
+    activities: [],
+    cart:{},
+    arrayCartNotLoggedin:[],
+    arrayCartLoggedin:[]
 };
 
-export default function rootReducer(state = initialState, action) {
+export default function adminReducer(state = initialState, action) {
     switch (action.type) {
         case GET_PACKAGES:
             console.log(action.payload);
@@ -50,34 +58,33 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 adminView: action.payload,
+                hotels: action.payload,
             };
         case GET_CITIES:
             return {
                 ...state,
                 adminView: action.payload,
-                cities: action.payload
+                cities: action.payload,
             };
         case GET_BUSES:
             return {
                 ...state,
                 adminView: action.payload,
+                business: action.payload,
             };
         case GET_PLATFORMS:
             return {
                 ...state,
                 adminView: action.payload,
+                platforms: action.payload,
             };
         case GET_ACTIVITIES:
             return {
                 ...state,
                 adminView: action.payload,
+                activities: action.payload,
             };
-
-        case GET_MAIN_PACKAGES:
-            return {
-                ...state,
-                showPackages: state.packages.slice(0, 4) || "nada",
-            };
+   
         case GET_PACKAGE_ID:
             return {
                 ...state,
@@ -87,6 +94,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 detail: action.payload,
+                hotels: action.payload,
+                cities: action.payload,
+                business: action.payload,
+                platforms: action.payload,
+                activities: action.payload,
             };
         case GET_OFFERS:
             let resp = action.payload.map((a) => {
@@ -121,11 +133,6 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 packages: action.payload
             }
-        case LOAD_CART:
-            return {
-                ...state,
-                cart: action.payload
-            } 
         case POST_USER:
             return{ ...state,
                 cart:action.payload
@@ -147,6 +154,7 @@ export default function rootReducer(state = initialState, action) {
             return state;
         case POST_ACTIVITY:
             return state;
+  
         default:
             return state;
     }

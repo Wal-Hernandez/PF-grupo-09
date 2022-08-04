@@ -40,14 +40,7 @@ module.exports = (sequelize) => {
       },
       urlImage: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-      },
-      score: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER), 
-       
-      },
-    comments:{
-      type:DataTypes.ARRAY(DataTypes.STRING)
-    }
+      }
     },
     { timestamps: false }
   );

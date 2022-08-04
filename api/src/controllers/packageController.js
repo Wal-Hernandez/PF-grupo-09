@@ -1,4 +1,4 @@
-const { Package, Activity,Business, Plattform, City, Hotel } = require("../db");
+const { Package, Activity,Business, Plattform, City, Hotel, Review } = require("../db");
 const { Op, Sequelize } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
@@ -8,7 +8,7 @@ const getPackages = async (req, res, next) => {
     const destinationWhere = destination
       ? { name: { [Op.iLike]: `%${destination}%` } }
       : {};
-    const dateWhere = start && end ? { [Op.and]: [Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start), Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end)] } : start ? Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start) : end ? Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end) : {}
+    const dateWhere = start && end ? { [Op.and]: [Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start), Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end)] } : start ? Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '>=', start) : end ? Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end) : {}
     
     let order = []
     if(stock){
@@ -44,7 +44,9 @@ const getPackages = async (req, res, next) => {
         },
         {
           model: Hotel,
-       
+          include: {
+            model: Review
+          }
         },
       ],
     });
@@ -86,7 +88,9 @@ const getPackageById = async (req, res, next) => {
         },
         {
           model: Hotel,
-          
+          include: {
+            model: Review
+          }
         },
       ],}
     ));

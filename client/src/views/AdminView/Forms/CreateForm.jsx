@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { postActivity } from "../../../redux/actions/postActivity";
 import { postCity } from "../../../redux/actions/postCity";
 import { postBus } from "../../../redux/actions/postBus";
@@ -7,8 +7,13 @@ import { postPackage } from "../../../redux/actions/postPackage";
 import { postPlatform } from "../../../redux/actions/postPlattform";
 import { postHotel } from "../../../redux/actions/postHotel";
 import { useForm } from "react-hook-form";
-
-
+import { getPlatforms } from "../../../redux/actions/getPlatforms";
+import { getBuses } from "../../../redux/actions/getBuses";
+import { getCities } from "../../../redux/actions/getCities";
+import { getHotels } from "../../../redux/actions/getHotels";
+import { getActivities } from "../../../redux/actions/getActivities";
+import { getClean } from "../../../redux/actions/getClean";
+import { CreatePackage } from "./CreatePackage";
 
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
@@ -19,14 +24,15 @@ function Ejemplo({ lang }) {
   } = useForm();
   const expRegUrl =
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
-  const expRegEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  const expRegEmail =
+    /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
   const [city, setCity] = React.useState({ name: "", location: [] });
   const [bus, setBus] = React.useState({
     name: "",
     phone: "",
     email: "",
     score: [],
-    comments: []
+    comments: [],
   });
   const [activity, setActivity] = React.useState({
     name: "",
@@ -34,7 +40,7 @@ function Ejemplo({ lang }) {
     price: "",
     cityId: 0,
     score: 0,
-    comments: []
+    comments: [],
   });
   const [packages, setPackages] = React.useState({
     start_date: "",
@@ -65,8 +71,21 @@ function Ejemplo({ lang }) {
     gym: true,
     urlImage: [],
     score: [],
-    comments: []
+    comments: [],
   });
+
+  const { platforms, business, cities, hotels, activities } = useSelector(
+    (state) => state.adminReducer
+  );
+
+  useEffect(() => {
+    dispatch(getPlatforms());
+    dispatch(getBuses());
+    dispatch(getCities());
+    dispatch(getHotels());
+    dispatch(getActivities());
+    return () => dispatch(getClean())
+  }, [dispatch]);
 
   function TransformData(x) {
     if (isNaN(x[0])) return x;
@@ -84,14 +103,14 @@ function Ejemplo({ lang }) {
   }
 
   function handleChangeBus(event) {
-    if(event.target.name === "score"){
+    if (event.target.name === "score") {
       setBus({
         ...bus,
         [event.target.name]: TransformData(event.target.value),
       });
       return;
     }
-    if(event.target.name === "comments"){
+    if (event.target.name === "comments") {
       setBus({
         ...bus,
         [event.target.name]: TransformData2(event.target.value),
@@ -108,14 +127,14 @@ function Ejemplo({ lang }) {
 
   function handleChangeActivity(event) {
     setActivity({ ...activity, [event.target.name]: event.target.value });
-    if(event.target.name === "score"){
+    if (event.target.name === "score") {
       setActivity({
         ...activity,
         [event.target.name]: TransformData(event.target.value),
       });
       return;
     }
-    if(event.target.name === "comments"){
+    if (event.target.name === "comments") {
       setActivity({
         ...activity,
         [event.target.name]: TransformData2(event.target.value),
@@ -133,18 +152,19 @@ function Ejemplo({ lang }) {
     return x.split(",");
   }
 
-  function handleChange(event) {
+  function handleChangePackages(event) {
     if (event.target.name === "activity") {
       setPackages({
         ...packages,
-        [event.target.name]: TransformData2(event.target.value),
+        [event.target.name]: [... new Set([...packages.activity, event.target.value])],
       });
       return;
     }
     setPackages({ ...packages, [event.target.name]: event.target.value });
+    console.log([event.target.name], event.target.value);
   }
 
-  function handleSubmitPackage() {
+  function handleSubmitPackages() {
     //e.preventDefault(); // para que era esto?
     dispatch(postPackage(packages));
   }
@@ -186,14 +206,14 @@ function Ejemplo({ lang }) {
 
       return;
     }
-    if(event.target.name === "score"){
+    if (event.target.name === "score") {
       setHotel({
         ...hotel,
         [event.target.name]: TransformData(event.target.value),
       });
       return;
     }
-    if(event.target.name === "comments"){
+    if (event.target.name === "comments") {
       setHotel({
         ...hotel,
         [event.target.name]: TransformData2(event.target.value),
@@ -209,14 +229,18 @@ function Ejemplo({ lang }) {
     dispatch(postHotel(hotel));
   }
 
-
+  function handleDelete(activ) {
+    setPackages({
+      ...packages,
+      activity: packages.activity.filter((e) => e !== activ),
+    });
+  }
 
   if (lang === "") {
     return <div>Waiting for the Data</div>;
   }
 
   if (lang === "hotels") {
-
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
     });
@@ -224,42 +248,37 @@ function Ejemplo({ lang }) {
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
     });
-  
+
     const stars = register("stars", {
       required: { value: true, message: "REQUERIDO" },
       min: { value: 1, message: "Minimo 1 estrella" },
       max: { value: 5, message: "Maximo 5 estrellas" },
     });
-  
+
     const phone = register("phone", {
       required: { value: true, message: "REQUERIDO" },
     });
-  
+
     const price = register("price", {
       required: { value: true, message: "REQUERIDO" },
       min: { value: 0, message: "Precio minimo $0" },
     });
-  
+
     const urlImage = register("urlImage", {
       pattern: {
         value: expRegUrl,
         message: "Url no valida",
       },
     });
-  
-    const cityId = register("cityId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
 
     const score = register("score", {
       required: { value: true, message: "REQUERIDO" },
-      min: { value: 1, message: "Minimo 1 punto" },
+      min: { value: 0, message: "Minimo 0" },
     });
 
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitHotel)}>
         <div className="div-form">
-
           <label className="label-form"> Nombre: </label>
 
           <input
@@ -309,7 +328,6 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Telefono: </label>
 
           <input
@@ -327,7 +345,6 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Precio: </label>
 
           <input
@@ -345,7 +362,6 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Imagen: </label>
 
           <input
@@ -391,25 +407,19 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
-          <label className="label-form"> Id ciudad: </label>
-
-          <input
-            type="number"
-            name="cityId"
-            value={hotel["cityId"]}
-            placeholder="Ingrese un Id."
-            {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChangeHotel(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+          <select name="cityId" required defaultValue="" onChange={handleChangeHotel}>
+            <option key="keycity" value="" disabled>
+              Ciudad
+            </option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Puntaje: </label>
 
           <input
@@ -417,17 +427,16 @@ function Ejemplo({ lang }) {
             name="score"
             value={hotel["score"]}
             placeholder="Ingrese un puntaje."
-            {...cityId}
+            {...score}
             onChange={(e) => {
-              cityId.onChange(e);
+              score.onChange(e);
               handleChangeHotel(e);
             }}
           />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+          {errors?.score && <span>{errors?.score?.message}</span>}
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Comentarios: </label>
 
           <input
@@ -447,24 +456,22 @@ function Ejemplo({ lang }) {
     );
   }
 
-  if (lang === "plattforms"){
+  if (lang === "plattforms") {
+    const terminal = register("terminal", {
+      required: { value: true, message: "REQUERIDO" },
+    });
 
-  const terminal = register("terminal", {
-    required: { value: true, message: "REQUERIDO" },
-  });
+    const address = register("address", {
+      required: { value: true, message: "REQUERIDO" },
+    });
 
-  const address = register("address", {
-    required: { value: true, message: "REQUERIDO" },
-  });
-
-  const location = register("location", {
-    required: { value: true, message: "REQUERIDO" },
-  });
+    const location = register("location", {
+      required: { value: true, message: "REQUERIDO" },
+    });
 
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitPlatform)}>
         <div className="div-form">
-
           <label className="label-form"> Terminal: </label>
 
           <input
@@ -498,11 +505,10 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Ubicación: </label>
 
           <input
-            type="number"
+            type="text"
             name="location"
             value={platform["location"]}
             placeholder="Ingrese las coordenadas."
@@ -523,13 +529,12 @@ function Ejemplo({ lang }) {
     );
   }
 
-  if (lang === "cities"){
-
+  if (lang === "cities") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
     });
-  
-    const location = register("address", {
+
+    const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
     });
 
@@ -537,7 +542,6 @@ function Ejemplo({ lang }) {
       <div className="div">
         <form className="form" onSubmit={handleSubmit(handleSubmitCity)}>
           <div className="div-form">
-
             <label className="label-form"> Nombre: </label>
 
             <input
@@ -549,13 +553,12 @@ function Ejemplo({ lang }) {
               onChange={(e) => {
                 name.onChange(e);
                 handleChangeCity(e);
-            }}
-          />
-          {errors?.name && <span>{errors?.name?.message}</span>}
+              }}
+            />
+            {errors?.name && <span>{errors?.name?.message}</span>}
           </div>
 
           <div className="div-form">
-
             <label className="label-form"> Ubicación: </label>
 
             <input
@@ -568,8 +571,8 @@ function Ejemplo({ lang }) {
                 location.onChange(e);
                 handleChangeCity(e);
               }}
-          />
-          {errors?.location && <span>{errors?.location?.message}</span>}
+            />
+            {errors?.location && <span>{errors?.location?.message}</span>}
           </div>
 
           <button type="submit" className="button-form">
@@ -581,93 +584,102 @@ function Ejemplo({ lang }) {
     );
   }
 
-  if (lang === "business"){
-
+  if (lang === "business") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
     });
-  
+
     const phone = register("phone", {
       required: { value: true, message: "REQUERIDO" },
     });
 
     const email = register("email", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegEmail, message: "Email invalido" }
+      pattern: { value: expRegEmail, message: "Email invalido" },
+    });
+
+    const score = register("score", {
+      required: { value: true, message: "REQUERIDO" },
+      min: { value: 0, message: "Minimo 0" },
     });
 
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitBus)}>
         <div className="div-form">
-
           <label className="label-form"> Nombre: </label>
 
           <input
             type="text"
             name="name"
             value={bus["name"]}
+            placeholder="Ingrese un nombre."
             {...name}
-              onChange={(e) => {
-                name.onChange(e);
-                handleChangeBus(e);
+            onChange={(e) => {
+              name.onChange(e);
+              handleChangeBus(e);
             }}
           />
           {errors?.name && <span>{errors?.name?.message}</span>}
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Telefono: </label>
 
           <input
             type="text"
             name="phone"
             value={bus["phone"]}
+            placeholder="Ingrese un telefono."
             {...phone}
-              onChange={(e) => {
-                phone.onChange(e);
-                handleChangeBus(e);
+            onChange={(e) => {
+              phone.onChange(e);
+              handleChangeBus(e);
             }}
           />
           {errors?.phone && <span>{errors?.phone?.message}</span>}
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Email: </label>
 
           <input
             type="text"
             name="email"
             value={bus["email"]}
+            placeholder="Ingrese un email."
             {...email}
-              onChange={(e) => {
-                email.onChange(e);
-                handleChangeBus(e);
+            onChange={(e) => {
+              email.onChange(e);
+              handleChangeBus(e);
             }}
           />
           {errors?.email && <span>{errors?.email?.message}</span>}
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Puntaje: </label>
 
           <input
             type="number"
             name="score"
             value={bus["score"]}
-            onChange={handleChangeBus}
+            placeholder="Ingrese un puntaje."
+            {...score}
+            onChange={(e) => {
+              score.onChange(e);
+              handleChangeBus(e);
+            }}
           />
+          {errors?.score && <span>{errors?.score?.message}</span>}
         </div>
         <div className="div-form">
-
           <label className="label-form"> Comentarios: </label>
 
           <input
             type="textarea"
             name="comments"
             value={bus["comments"]}
+            placeholder="Ingrese un comentario."
             onChange={handleChangeBus}
           />
         </div>
@@ -680,38 +692,33 @@ function Ejemplo({ lang }) {
     );
   }
 
-  if (lang === "activities"){
-
+  if (lang === "activities") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
     });
-  
+
     const image = register("image", {
       pattern: {
         value: expRegUrl,
         message: "Url no valida",
       },
     });
-  
+
     const price = register("price", {
       required: { value: true, message: "REQUERIDO" },
       min: { value: 0, message: "Precio minimo $0" },
-    });
-  
-    const cityId = register("cityId", {
-      required: { value: true, message: "REQUERIDO" },
     });
 
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitActivity)}>
         <div className="div-form">
-
           <label className="label-form"> Nombre: </label>
 
           <input
             type="text"
             name="name"
             value={activity["name"]}
+            placeholder="Ingrese un nombre."
             {...name}
             onChange={(e) => {
               name.onChange(e);
@@ -722,13 +729,13 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Imagen: </label>
 
           <input
             type="text"
             name="image"
             value={activity["image"]}
+            placeholder="Ingrese una Url."
             {...image}
             onChange={(e) => {
               image.onChange(e);
@@ -739,13 +746,13 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-
           <label className="label-form"> Precio: </label>
 
           <input
             type="number"
             name="price"
             value={activity["price"]}
+            placeholder="Ingrese un precio."
             {...price}
             onChange={(e) => {
               price.onChange(e);
@@ -755,49 +762,42 @@ function Ejemplo({ lang }) {
           {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
         <div className="div-form">
-
           <label className="label-form"> Puntaje: </label>
 
           <input
             type="text"
             name="score"
             value={activity["score"]}
+            placeholder="Ingrese el puntaje."
             onChange={handleChangeActivity}
           />
         </div>
         <div className="div-form">
-
           <label className="label-form"> Comentarios: </label>
 
           <input
             type="text"
             name="comments"
             value={activity["comments"]}
+            placeholder="Ingrese un comentario."
             onChange={handleChangeActivity}
           />
         </div>
 
         <div className="div-form">
-
-          <label className="label-form"> Id ciudad: </label>
-          <input type="number" 
-          name="cityId" 
-          {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChangeActivity(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
-
+          <select name="cityId" required defaultValue="" onChange={handleChangeActivity}>
+            <option key="keycities" value="" disabled>
+              Ciudad
+            </option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
-        <button
-          type="submit"
-          className="button-form"
-          value={activity["cityId"]}
-          onChange={handleChangeActivity}
-        >
+        <button type="submit" className="button-form">
           {" "}
           Create Activity
         </button>
@@ -805,240 +805,18 @@ function Ejemplo({ lang }) {
     );
   }
 
-  if (lang === "packages"){
-
-    const name = register("name", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const start_date = register("start_date", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const end_date = register("end_date", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const price = register("price", {
-      required: { value: true, message: "REQUERIDO" },
-      min: { value: 0, message: "Precio minimo $0" },
-    });
-  
-    const discount = register("discount", {
-      required: { value: true, message: "REQUERIDO" },
-      max: { value: 100, message: "Descuento maximo 100%" },
-    });
-  
-    const stock = register("stock", {
-      required: { value: true, message: "REQUERIDO" },
-      min: { value: 0, message: "Precio minimo $0" },
-    });
-  
-    const plattformId = register("plattformId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const businessId = register("businessId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const hotelId = register("cityId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-  
-    const cityId = register("cityId", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-
-    return (
-
-      <div className="div">
-        <form className="form" onSubmit={handleSubmit(handleSubmitPackage)}>
-          <div className="div-form">
-            <label className="label-form"> Nombre: </label>
-
-            <input
-              type="text"
-              name="name"
-              value={packages["name"]}
-              {...name}
-            onChange={(e) => {
-              name.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.name && <span>{errors?.name?.message}</span>}
-          </div>
-
-          <div className="div-form">
-            <label className="label-form"> Fecha de inicio: </label>
-
-            <input
-              type="text"
-              name="start_date"
-              value={packages["start_date"]}
-              {...start_date}
-            onChange={(e) => {
-              start_date.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.start_date && <span>{errors?.start_date?.message}</span>}
-          </div>
-
-          <div className="div-form">
-            <label className="label-form"> Fecha de finalización: </label>
-
-            <input
-              type="text"
-              name="end_date"
-              value={packages["end_date"]}
-              {...end_date}
-            onChange={(e) => {
-              end_date.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.end_date && <span>{errors?.end_date?.message}</span>}
-          </div>
-
-          <div className="div-form">
-
-            <label className="label-form"> Precio: </label>
-
-            <input
-              type="number"
-              name="price"
-              value={packages["price"]}
-              {...price}
-            onChange={(e) => {
-              price.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.price && <span>{errors?.price?.message}</span>}
-          </div>
-
-          <div className="div-form">
-
-            <label className="label-form"> Descuento: </label>
-
-            <input
-              type="number"
-              name="discount"
-              value={packages["discount"]}
-              {...discount}
-            onChange={(e) => {
-              discount.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.discount && <span>{errors?.discount?.message}</span>}
-          </div>
-
-          <div className="div-form">
-            <label className="label-form"> Stock: </label>
-
-            <input
-              type="number"
-              name="stock"
-              value={packages["stock"]}
-              {...stock}
-            onChange={(e) => {
-              stock.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.stock && <span>{errors?.stock?.message}</span>}
-          </div>
-          
-   
-          <div className="div-form">
-
-            <label className="label-form"> Id plataforma: </label>
-
-            <input
-              type="number"
-              name="plattformId"
-              value={packages["plattformId"]}
-              {...plattformId}
-            onChange={(e) => {
-              plattformId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.plattformId && <span>{errors?.plattformId?.message}</span>}
-          </div>
-
-          <div className="div-form">
-
-            <label className="label-form"> Id transporte: </label>
-
-            <input
-              type="number"
-              name="businessId"
-              value={packages["businessId"]}
-              {...businessId}
-            onChange={(e) => {
-              businessId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.businessId && <span>{errors?.businessId?.message}</span>}
-          </div>
-
-          <div className="div-form">
-            <label className="label-form"> Id ciudad: </label>
-
-            <input
-              type="number"
-              name="cityId"
-              value={packages["cityId"]}
-              {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
-          </div>
-
-          <div className="div-form">
-            <label className="label-form"> Id hotel: </label>
-
-            <input
-              type="number"
-              name="hotelId"
-              value={packages["hotelId"]}
-              {...hotelId}
-            onChange={(e) => {
-              hotelId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.hotelId && <span>{errors?.hotelId?.message}</span>}
-          </div>
-
-          <div className="div-form">
-            <label className="label-form"> Actividades: </label>
-            <input
-              type="text"
-              name="activity"
-              value={packages["activity"]}
-              onChange={handleChange}
-            />
-          </div>
-        
-
-        </form>
-        <button type="submit" className="button-form">Crear Paquete</button>
-      </div>
-    );
+  if (lang === "packages") { return <CreatePackage/>
   }
 }
-
 export const CreateForm = ({ word }) => {
-  const models = ["Hotel", "Plattform", "City", "Business", "Activity", "packages"];
+  const models = [
+    "Hotel",
+    "Plattform",
+    "City",
+    "Business",
+    "Activity",
+    "packages",
+  ];
   console.log(word);
   const [lang, setLang] = React.useState(word);
   const [boton, setButton] = React.useState(false);
@@ -1063,7 +841,8 @@ export const CreateForm = ({ word }) => {
   );
 };
 
-{/* <form onSubmit={handleSubmit}>
+{
+  /* <form onSubmit={handleSubmit}>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Name</label>
@@ -1159,6 +938,7 @@ export const CreateForm = ({ word }) => {
         Check me out
       </label>
     </div>
-  </div> */}
+  </div> */
+}
 //   <button type="submit" class="btn btn-primary">Create Package</button>
 // </form> */}

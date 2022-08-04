@@ -114,10 +114,7 @@ export const CreatePackage = ({}) => {
         min: { value: 0, message: "Stock minimo 0" },
       });
   
-      const activity = register('activity', {
-        required: { value: true, message: "REQUERIDO" },
-      })
-  
+    
       return (
   
         <div className="div">
@@ -239,7 +236,7 @@ export const CreatePackage = ({}) => {
             </select>
             </div>
             <div className="div-form">
-            <select name="plattformId" defaultValue="" onChange={handleChangePackages}>
+            <select name="plattformId" defaultValue="" onChange={handleChangePackages}   required>
               <option key="keyplatform" value="" disabled>Plataforma</option>
               {platforms.map((platf) => (
                 <option key={platf.id} value={platf.id}>
@@ -250,7 +247,7 @@ export const CreatePackage = ({}) => {
             </div>
   
             <div className="div-form">
-            <select name="businessId" defaultValue="" onChange={handleChangePackages}>
+            <select name="businessId" defaultValue="" onChange={handleChangePackages}  required>
               <option key="keybusiness" value="" disabled>Transportista</option>
               {business.map((busi) => (
                 <option key={busi.id} value={busi.id}>
@@ -300,16 +297,18 @@ export const CreatePackage = ({}) => {
             </div> */}
             <div>
           <ul>
-            <li>
-              {packages.activity.map((activ) => (
+          {packages.activity.map((activ) => (
+            <li style={{ listStyle: "none" }} key={activ}>
+              {activ}
                 <button
                   type="button"
                   key={activ}
                   onClick={() => handleDelete(activ)}>
-                  {activ}
+                 X
                 </button>
+                </li>
               ))}
-            </li>
+            
           </ul>
         </div>
   

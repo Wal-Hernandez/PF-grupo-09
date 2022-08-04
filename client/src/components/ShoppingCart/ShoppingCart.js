@@ -109,7 +109,7 @@ export default function ShoppingCart({userlog}) {
         }
       }
  
-
+//s
 //  let priceTotal=()=>{
 //     let total=0
 //     for (let i=0; i< myCartAll.length; i++) {

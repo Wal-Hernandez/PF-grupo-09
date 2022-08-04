@@ -81,7 +81,7 @@ function App() {
       <Route path="/about" element={<AboutView userlog={userlog}/>} />
       <Route path ="/reg" element ={<Register/>}/>
        <Route path ="/login" element ={<Login/>}/>
-       <Route path ="/shoppingcart" element ={<ShoppingCart/>}/>
+       <Route path ="/shoppingcart" element ={<ShoppingCart userlog={userlog}/>}/>
       <Route path ="*" element={<ErrorPage/>}/>
  
     </Routes>

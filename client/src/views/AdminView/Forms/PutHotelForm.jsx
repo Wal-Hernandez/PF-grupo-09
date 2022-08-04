@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { putHotel } from "../../../redux/actions/putHotel";
 import { getCities } from "../../../redux/actions/getCities";
+import { getClean } from "../../../redux/actions/getClean";
 export const PutHotelForm = ({ pack }) => {
   const dispatch = useDispatch();
   const { cities } = useSelector((state) => state.adminReducer);
@@ -36,6 +37,7 @@ export const PutHotelForm = ({ pack }) => {
 
   useEffect(() => {
     dispatch(getCities())
+    return () => dispatch(getClean())
   }, [dispatch])
 
   function handleChange(event) {

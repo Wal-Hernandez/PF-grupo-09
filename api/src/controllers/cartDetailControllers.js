@@ -46,17 +46,17 @@ const createCartDetail = async (
     if (
         !idCart||
         !idPackage||
-        !numberPeople||
-        !isQualified
+        !numberPeople
+       
     ) {
       return "All fields are required";
     }
   
-    const hotelCreate = await CartDetail.create({
+    const cartDetailCreate = await CartDetail.create({
         numberPeople,
         isQualified,
-        idCart,
-        idPackage,
+        packageId:idPackage,
+        cartId: idCart 
     });
   
     return " created cartDetail successfully";

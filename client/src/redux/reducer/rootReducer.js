@@ -23,6 +23,8 @@ import {
     FILTER_BY_DATE,
     CLEAR_FILTERS,
     LOAD_CART,
+    CLEAR_CART_LOGOUT,
+    LOAD_CART_LOGIN,
     POST_USER
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"
@@ -107,11 +109,22 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 cart: action.payload
             } 
+        case LOAD_CART_LOGIN:
+            return{
+                ...state,
+                cart: action.payload
+            }
+        case  CLEAR_CART_LOGOUT:
+            return{
+                 ...state,
+                 cart:{}
+                }     
         case POST_USER:
             return{ ...state,
                 cart:action.payload
             }
-            case TYPES.ADD_TO_CART:{
+            ;
+        case TYPES.ADD_TO_CART:{
                 let cartAll
                 const auth = getAuth();
                 const user = auth.currentUser;
@@ -202,6 +215,7 @@ export default function rootReducer(state = initialState, action) {
                 const auth = getAuth();
                 const user = auth.currentUser;      
                 if (user) { 
+                    //RESTAR UNA PERSONA EN UN DETALLE DE LA DB DE UN USER LOGEADO
                     let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
                     let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
         
@@ -247,6 +261,7 @@ export default function rootReducer(state = initialState, action) {
                 const user = auth.currentUser;  
                 console.log("remove all from carttttt")    
                 if (user) {
+                    //LOGICA PARA BORRAR UN DETALLE DEL CARRITO DB DE UN USER LOGEADO
                     console.log("entró a remove one from cart con usuario logueado")
                     let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
                     let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
@@ -279,9 +294,11 @@ export default function rootReducer(state = initialState, action) {
                 let cart=[]
                 let cartJSON
                 if(user) {
+                    //TRABAJAR EL BOTON ELIMINAR TODO CARRITO DE USER LOGEADO
                     cartJSON= JSON.stringify(cart)
                     localStorage.setItem("myCartLoggedin", cartJSON) 
                 } else{
+                    
                     cartJSON= JSON.stringify(cart)
                     localStorage.setItem("myCartNotLoggedin", cartJSON) 
                 }

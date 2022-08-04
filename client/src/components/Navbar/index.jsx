@@ -4,14 +4,15 @@ import './navbar.css'
 import { useAuth } from "../../context/context";
 import logo from "../../images/BusPack2.png"
 import { getAuth } from "firebase/auth";
-
+import { useDispatch} from 'react-redux'
+import {clearCartLogout}from '../../redux/actions/clearCartLogout'
 function Navbar({userlog}) {
 
 
 
 const auth = getAuth();
 const user = auth.currentUser;
-
+const dispatch=useDispatch();
 if (user) {
   // User is signed in, see docs for a list of available properties
   // https://firebase.google.com/docs/reference/js/firebase.User
@@ -25,6 +26,7 @@ if (user) {
   const handleLogout = async () => {
     try {
       await logout();
+     dispatch(clearCartLogout())
     } catch (error) {
       console.error(error.message);
     }

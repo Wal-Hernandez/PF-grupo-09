@@ -15,7 +15,7 @@ import{Login} from './components/Login/Login'
 import {Register} from './components/Login/Register'
 import { ProtectedRouted } from "./components/Login/ProtectedRouted";
 import { ProtectedRoutedAdmin } from './components/Login/ProtectedRouteAdmin';
-
+import Pasarela from "./components/Pasarela/index.js"
 import { AuthProvider } from "./context/context";
 
 import { onAuthStateChanged } from "firebase/auth";
@@ -83,6 +83,7 @@ function App() {
        <Route path ="/login" element ={<Login/>}/>
        <Route path ="/shoppingcart" element ={<ShoppingCart/>}/>
       <Route path ="*" element={<ErrorPage/>}/>
+      <Route path ="/payment" element={<ProtectedRouted><Pasarela userlog={userlog} /></ProtectedRouted>}/>
  
     </Routes>
     </AuthProvider>

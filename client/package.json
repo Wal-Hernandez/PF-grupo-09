@@ -10,6 +10,10 @@
 
         "@reduxjs/toolkit": "^1.8.3",
 
+        "@stripe/react-stripe-js": "^1.10.0",
+
+        "@stripe/stripe-js": "^1.35.0",
+
         "@testing-library/jest-dom": "^5.11.6",
 
         "@testing-library/react": "^11.2.1",
@@ -19,6 +23,8 @@
         "axios": "^0.27.2",
 
         "bootstrap": "^5.2.0",
+
+        "bootswatch": "^5.2.0",
 
         "firebase": "^9.9.1",
 

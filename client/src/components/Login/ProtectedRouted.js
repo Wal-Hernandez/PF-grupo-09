@@ -6,7 +6,7 @@ export function ProtectedRouted({ children }) {
 
   if (loading) return <h1>Loading</h1>;
 
-  if (!user) return <Navigate to="/log" />;
+  if (!user) return <Navigate to="/login" />;
 
   return <>{children}</>;
 }

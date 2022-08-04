@@ -1,5 +1,5 @@
 import React, {useEffect } from 'react'
-import {rootReducer, initialState} from '../../redux/reducer'
+import {rootReducer, initialState} from '../../redux/reducer/rootReducer'
 import ProductItem from '../ProductItem/ProductItem';
 import { useSelector, useDispatch } from 'react-redux';
 import CartItem from '../CartItem/CartItem';
@@ -11,8 +11,11 @@ import { getAuth } from "firebase/auth";
 
 
 export default function ShoppingCart() {
-    let arrayCartNotLoggedin  = useSelector((state) => state.arrayCartNotLoggedin);
-    const { packages, showPackages } = useSelector((state) => state);
+    let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
+    const { packages, showPackages } = useSelector((state) => state.rootReducer);
+
+    const cart=useSelector((state)=>state.rootReducer.cart)
+
     const dispatch = useDispatch();
     console.log(packages)
     const auth = getAuth();
@@ -58,10 +61,16 @@ export default function ShoppingCart() {
 
     if (user) {
         if(localStorage.getItem("myCartLoggedin")){
-          myCarttextLoggedin = localStorage.getItem("myCartLoggedin")
-          myCartAll= JSON.parse(myCarttextLoggedin)
+         //logica para pasar del cart al myCartAll
+        
+
       } 
-        // ...
+        
+      let detalles=cart&&cart[0]['cartDetails']?.map((cd) => ({ id: cd.packageId, quantity: cd.numberPeople }));
+          myCartAll=detalles;
+         console.log("TU PAPA:",myCartAll)
+     
+      // ...
       } else {
         // No user is signed in.
         if(localStorage.getItem("myCartNotLoggedin")){
@@ -78,9 +87,10 @@ export default function ShoppingCart() {
                 <h3>Carrito</h3>
                 <button onClick={clearCart}>Limpiar carrito</button>
                 <hr></hr>
+                
                 <article>
                     {myCartAll?.map((Cart) => 
-                        <ProductItem id={Cart.id} quantity={Cart.quantity} data={packages.filter(elemento => elemento.id==Cart.id)} arrayCartNotLoggedin={arrayCartNotLoggedin}/>
+                        <ProductItem id={Cart.id} quantity={Cart.quantity} data={packages.filter(elemento => elemento.id===Cart.id)} arrayCartNotLoggedin={arrayCartNotLoggedin}/>
                     )}
                 </article>
             </div>

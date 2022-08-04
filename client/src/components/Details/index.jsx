@@ -11,7 +11,7 @@ import CartItem from "../CartItem/CartItem"
 export default function Details() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const packageDetail = useSelector((state) => state.detail);
+  const packageDetail = useSelector((state) => state.rootReducer.detail);
   const packageActivity = [];
   packageDetail.activities?.map((e) => {
     packageActivity.push(
@@ -26,8 +26,8 @@ export default function Details() {
 
   console.log(packageDetail);
 
-  let arrayCartNotLoggedin  = useSelector((state) => state.arrayCartNotLoggedin);
-  let arrayCartLoggedin  = useSelector((state) => state.arrayCartLoggedin);
+  let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
+  let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
   console.log(arrayCartLoggedin)
   const products = useSelector ((state) => state.products)
 

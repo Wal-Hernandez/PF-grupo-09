@@ -7,7 +7,7 @@ import Paginado from "../../components/Paginado";
 import { useSelector } from "react-redux";
 import SearchAndFilters from '../../components/Search&Filters';
 export default function Services({ userlog }) {
-  const packages = useSelector((state) => state.packages);
+  const packages = useSelector((state) => state.rootReducer.packages);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [packagesPerPage /*setPackagesPerPage*/] = useState(3); //10 productos por pagina

@@ -52,9 +52,14 @@ export function Register() {
     }
     try {
       await signup(user.mail, user.password, user.rol, user.name, user.surname);
-      let userDb = { ...user };
-      console.log(userDb);
+      
+   
+      let storage=JSON.parse(localStorage.getItem("myCartNotLoggedin"));
+      //si el storage no tiene nada mando un arreglo vacio []
+      storage=storage===null?[]:storage
+      let userDb = { ...user, storage};
        dispatch(postUser(userDb));
+       localStorage.clear("myCartNotLoggedin");
       navigate("/");
     } catch (error) {
       console.log(error.code);

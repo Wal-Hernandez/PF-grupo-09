@@ -23,7 +23,7 @@ router.use('/plattforms',Plattform)
 router.use('/packages', Package)
 router.use("/users", User);
 router.use("/typeusers", TypeUser);
-router.use("cartdetails/", CartDetail);
+router.use("/cartdetails", CartDetail);
 router.use("/carts", Cart);
 
 module.exports = router;

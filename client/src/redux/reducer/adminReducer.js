@@ -94,6 +94,11 @@ export default function adminReducer(state = initialState, action) {
             return {
                 ...state,
                 detail: action.payload,
+                hotels: action.payload,
+                cities: action.payload,
+                business: action.payload,
+                platforms: action.payload,
+                activities: action.payload,
             };
         case GET_OFFERS:
             let resp = action.payload.map((a) => {
@@ -149,6 +154,7 @@ export default function adminReducer(state = initialState, action) {
             return state;
         case POST_ACTIVITY:
             return state;
+  
         default:
             return state;
     }

@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../../../redux/actions/getActivities";
 import { getBuses } from "../../../redux/actions/getBuses";
 import { getCities } from "../../../redux/actions/getCities";
+import { getClean } from "../../../redux/actions/getClean";
 import { getHotels } from "../../../redux/actions/getHotels";
 import { getPlatforms } from "../../../redux/actions/getPlatforms";
 import { putPackage } from "../../../redux/actions/putPackage";
 export const PutPackageForm = ({ pack }) => {
   const dispatch = useDispatch();
+  const packAct = pack.activities.map(e => e.name)
   const [packages, setPackages] = React.useState({
     start_date: pack.start_date,
     end_date: pack.end_date,
@@ -20,9 +22,9 @@ export const PutPackageForm = ({ pack }) => {
     businessId: pack.businessId,
     cityId: pack.cityId,
     hotelId: pack.hotelId,
-    activity: [],
+    activity: packAct,
   });
-  console.log(packages);
+  console.log(pack);
   const {
     register,
     handleSubmit,
@@ -37,6 +39,7 @@ export const PutPackageForm = ({ pack }) => {
     dispatch(getCities())
     dispatch(getHotels())
     dispatch(getActivities())
+    return () => dispatch(getClean())
   }, [dispatch])
 
   /* function TransformData(x) {
@@ -44,6 +47,7 @@ export const PutPackageForm = ({ pack }) => {
   } */
 
   function handleDelete(activ) {
+    console.log(activ)
     setPackages({
       ...packages,
       activity: packages.activity.filter((e) => e !== activ),
@@ -54,7 +58,7 @@ export const PutPackageForm = ({ pack }) => {
     if (event.target.name === "activity") {
       setPackages({
         ...packages,
-        [event.target.name]: [...packages.activity, event.target.value] /* [TransformData(event.target.value)] */,
+        [event.target.name]: [... new Set([...packages.activity, event.target.value])] /* [TransformData(event.target.value)] */,
       });
       console.log("activity",packages.activity)
       return;
@@ -193,7 +197,7 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="plattformId" defaultValue="" onChange={handleChange}>
+          <select name="plattformId" required defaultValue="" onChange={handleChange}>
             <option key="keyplatform" value="" disabled>Plataformas</option>
             {platforms.map((platform) => (
               <option key={platform.id} value={platform.id}>
@@ -204,7 +208,7 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="businessId" defaultValue="" onChange={handleChange}>
+          <select name="businessId" required defaultValue="" onChange={handleChange}>
             <option key="keybusiness" value="" disabled>Transportista</option>
             {business.map((busi) => (
               <option key={busi.id} value={busi.id}>
@@ -215,7 +219,7 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="cityId" defaultValue="" onChange={handleChange}>
+          <select name="cityId" required defaultValue="" onChange={handleChange}>
             <option key="keycities" value="" disabled>Ciudad</option>
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
@@ -226,7 +230,7 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="hotelId" defaultValue="" onChange={handleChange}>
+          <select name="hotelId" required defaultValue="" onChange={handleChange}>
             <option key="keyhotels" value="" disabled>Hotel</option>
             {hotels.map((hotel) => (
               <option key={hotel.id} value={hotel.id}>
@@ -237,40 +241,41 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-        <div>
-          <label>Actividades</label>
-          <select name="activity" defaultValue="" onChange={handleChange}>
-          <option key="keyactivity" value="">Ninguna</option>
-            {activities.map((activity) => (
-              <option value={activity.name} key={activity.id}>
-                {activity.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <ul>
-            <li>
-              {packages.activity.map((activ) => (
-                <button
-                  type="button"
-                  key={activ}
-                  onClick={() => handleDelete(activ)}>
-                  {activ}
-                </button>
-              ))}
-            </li>
-          </ul>
-        </div>
-{/*           <label className="label-form"> Actividades: </label>
-          <input
-            type="text"
-            name="activity"
-            value={packages["activity"]}
-            placeholder="Ingrese una actividad."
-            onChange={handleChange}
-          /> */}
-        </div>
+            <div>
+              <label>Actividades</label>
+              <select
+                name="activity"
+                defaultValue={''}
+                onChange={handleChange}
+              >
+                <option key="keyactivity" value={''}>
+                  Ninguna
+                </option>
+                {activities.map((activ) => (
+                  <option value={activ.name} key={activ.id}>
+                    {activ.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <ul>
+                {packages.activity.map((activi) => (
+                  <li style={{ listStyle: "none" }} key={activi}>
+                    {" "}
+                    {activi}
+                    <button
+                      type="button"
+                      key={activi}
+                      onClick={() => handleDelete(activi)}
+                    >
+                      x
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
         <button type="submit" className="button-form">
           {" "}

@@ -73,23 +73,23 @@ function App() {
 
   return (
     <div className="App">
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Home userlog={userlog} />} />
-          <Route path="/details/:id" element={<Details userlog={userlog} />} />
-          <Route path="/buy" element={<EditBuy userlog={userlog} />} />
-          <Route path="/editBuy" element={<Buy userlog={userlog} />} />
-          <Route path="/services" element={<Services userlog={userlog} />} />
-          <Route path="/admin" element={<ProtectedRoutedAdmin><Admin userlog={userlog} /></ProtectedRoutedAdmin>} />
-          <Route path="/faq" element={<FAQ userlog={userlog} />} />
-          <Route path="/about" element={<AboutView userlog={userlog} />} />
-          <Route path="/reg" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/shoppingcart" element={<ShoppingCart />} />
-          <Route path="*" element={<ErrorPage />} />
-
-        </Routes>
-      </AuthProvider>
+       <AuthProvider>
+    <Routes>
+      <Route path="/" element={<Home userlog={userlog}/>} />
+      <Route path="/details/:id" element={<Details userlog={userlog}/>} />
+      <Route path="/buy" element={<EditBuy userlog={userlog}/>} />
+      <Route path="/editBuy" element={<Buy userlog={userlog}/>} />
+      <Route path="/services" element={<Services userlog={userlog}/>} />
+      <Route path="/admin" element={<ProtectedRoutedAdmin><Admin userlog={userlog}/></ProtectedRoutedAdmin>} />
+      <Route path ="/faq" element ={<FAQ userlog={userlog}/>}/>
+      <Route path="/about" element={<AboutView userlog={userlog}/>} />
+      <Route path ="/reg" element ={<Register/>}/>
+       <Route path ="/login" element ={<Login/>}/>
+       <Route path ="/shoppingcart" element ={<ShoppingCart userlog={userlog}/>}/>
+      <Route path ="*" element={<ErrorPage/>}/>
+ 
+    </Routes>
+    </AuthProvider>
     </div>
   );
 }

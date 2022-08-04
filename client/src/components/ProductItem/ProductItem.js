@@ -5,7 +5,7 @@ import { getClean } from "../../redux/actions/getClean";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAuth } from "firebase/auth";
 
-export default function ProductItem({id, quantity, data, arrayCartNotLoggedin}) {
+export default function ProductItem({id, quantity, data, arrayCartNotLoggedin,delFromCart,idDetail}) {
     const dispatch = useDispatch();
     console.log(id)
     data=data[0]
@@ -48,6 +48,7 @@ export default function ProductItem({id, quantity, data, arrayCartNotLoggedin}) 
         <div>{data ? <div>
         <h1>{data.name}</h1>
         <p>{quantity} Personas x ${data.price}.00 = ${quantity * data.price}.00</p>
+        <button onClick={()=>delFromCart(idDetail)}>Eliminar</button>
         </div>
         : null }
         <hr></hr>

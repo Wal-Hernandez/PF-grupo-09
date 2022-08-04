@@ -10,8 +10,7 @@ import { postUser } from "../../redux/actions/postUser";
 import "../../views/LoginView/loginView.css";
 //logo
 import logo from "../../images/Buspack.png" //imagen logo
-
-
+import { sendMail } from "../../redux/actions/sendMail";
 export function Register() {
   const { signup } = useAuth();
   const dispatch = useDispatch();
@@ -28,7 +27,6 @@ export function Register() {
   console.log(user);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -59,8 +57,13 @@ export function Register() {
       storage=storage===null?[]:storage
       let userDb = { ...user, storage};
        dispatch(postUser(userDb));
-       localStorage.clear("myCartNotLoggedin");
+
+      localStorage.clear("myCartNotLoggedin");
+      dispatch(sendMail(userDb));
       navigate("/");
+     
+
+
     } catch (error) {
       console.log(error.code);
       if (error.code === "auth/invalid-email") {

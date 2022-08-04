@@ -1,10 +1,13 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import { putHotel } from "../../../redux/actions/putHotel";
+import { getCities } from "../../../redux/actions/getCities";
+import { getClean } from "../../../redux/actions/getClean";
 export const PutHotelForm = ({ pack }) => {
   const dispatch = useDispatch();
+  const { cities } = useSelector((state) => state.adminReducer);
   const {
     register,
     handleSubmit,
@@ -31,6 +34,11 @@ export const PutHotelForm = ({ pack }) => {
     if (isNaN(x[0])) return x;
     return x.split(",");
   }
+
+  useEffect(() => {
+    dispatch(getCities())
+    return () => dispatch(getClean())
+  }, [dispatch])
 
   function handleChange(event) {
     if (event.target.name === "location") {
@@ -101,10 +109,6 @@ export const PutHotelForm = ({ pack }) => {
       value: expRegUrl,
       message: "Url no valida",
     },
-  });
-
-  const cityId = register("cityId", {
-    required: { value: true, message: "REQUERIDO" },
   });
 
   return (
@@ -233,19 +237,14 @@ export const PutHotelForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Id Ciudad: </label>
-          <input
-            type="number"
-            name="cityId"
-            value={hotel["cityId"]}
-            placeholder="Ingrese el Id de la ciudad."
-            {...cityId}
-            onChange={(e) => {
-              cityId.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.cityId && <span>{errors?.cityId?.message}</span>}
+          <select name="cityId" defaultValue="" onChange={handleChange}>
+            <option key="keycity" value="" disabled>Ciudad</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <button type="submit" className="button-form">

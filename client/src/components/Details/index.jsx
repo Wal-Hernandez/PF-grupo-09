@@ -7,6 +7,7 @@ import "./details.css";
 import {TYPES} from '../../redux/actions/shoppingActions';
 import { getAuth } from "firebase/auth";
 import CartItem from "../CartItem/CartItem"
+import Reviews from "../Reviews";
 
 export default function Details() {
   const dispatch = useDispatch();
@@ -115,6 +116,10 @@ export default function Details() {
                     <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           
                 </article>) : null 
       }
+
+      <div>
+        {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
+      </div>
     </div>
 
   );

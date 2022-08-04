@@ -8,7 +8,7 @@ import Buy from './views/BuyView';
 import Services from './views/ServicesView';
 import Admin from './views/AdminView';
 import FAQ from './components/FAQ/FAQ.jsx'
-
+import ErrorPage from './views/ErrorPage';
 import AboutView from './views/AboutView';  
 import{Alert} from './components/Login/Login'
 import{Login} from './components/Login/Login'
@@ -82,8 +82,8 @@ function App() {
       <Route path ="/reg" element ={<Register/>}/>
        <Route path ="/login" element ={<Login/>}/>
        <Route path ="/shoppingcart" element ={<ShoppingCart/>}/>
-      
-
+      <Route path ="*" element={<ErrorPage/>}/>
+ 
     </Routes>
     </AuthProvider>
     </div>

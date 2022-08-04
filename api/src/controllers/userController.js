@@ -1,8 +1,11 @@
-const { User } = require("../db");
+const { User, Cart, Review} = require("../db");
 
 const getUsers = async () => {
   try {
     let allUsers = await User.findAll({
+      include: [
+        { model: Cart },{model:Review}
+    ]
       // include: {
       //   model: TypeUser,
       //   attributes: ["description"],
@@ -10,14 +13,19 @@ const getUsers = async () => {
     });
 
     return allUsers;
+
   } catch (err) {
     return {
       msg: "Error getUsers(userControllers.js)",
       error: err,
     };
   }
+ 
+
 };
+
 const getUser = async (id) => {
+
   try {
     let user = await User.findByPk(id, {
       // include: {
@@ -33,9 +41,13 @@ const getUser = async (id) => {
       error: err,
     };
   }
+
 };
+
 const createUser = async (name, surname, mail, rol) => {
+  console.log(name,surname,mail,rol)
   try {
+
     const UserCreate = await User.create({
       name,
       surname,
@@ -69,6 +81,7 @@ const deleteUserById = async (id) => {
     };
   }
 };
+
 // const updateUserById = async ( id,name, surname, mail, password, typeUserId) => {
 //   try {
 //     if (!name || !surname||!mail||!password ||!typeUserId) {

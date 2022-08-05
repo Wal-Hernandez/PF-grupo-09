@@ -28,8 +28,6 @@ export default function Details({userlog}) {
     dispatch(getClean());
   }, [dispatch, id]);
 
-  console.log(packageDetail);
-
   let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
   let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
   console.log(arrayCartLoggedin)
@@ -93,7 +91,7 @@ export default function Details({userlog}) {
     myCartAll=myCartparsedfilteredNotLoggedin
   }
 
-
+console.log(new Date(packageDetail.start_date).toString())
 
   return (
     <div class="card">
@@ -108,10 +106,11 @@ export default function Details({userlog}) {
           />
         </div>
         <h5 class="card-title">Nombre: {packageDetail.name}</h5>
+        <h6> Ciudad: {packageDetail.city?.name} </h6>
       </div>
       <div>
-        <p class="card-text">Fecha salida: {(packageDetail.start_date)?.toString()}</p>
-        <p class="card-text">Fecha llegada: {packageDetail.end_date?.toString()}</p>
+        <p class="card-text">Fecha salida: {new Date(packageDetail.start_date).toLocaleString('es-ES')}</p>
+        <p class="card-text">Fecha llegada: {new Date(packageDetail.end_date).toLocaleString('es-ES')}</p>
         <p class="card-text">Resumen de lo que incluye: </p>
       </div>
       <div>

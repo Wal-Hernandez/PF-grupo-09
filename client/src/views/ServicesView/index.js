@@ -30,7 +30,7 @@ export default function Services({ userlog }) {
       <div className="row align-items-center justify-content-center">
         <div className="row align-items-center">
           <div className="col-sm-1 col-md-2 col-lg-3"></div>
-          <div className="col-sm-10 col-md-8 col-lg-6">
+          <div className="col-sm-10 col-md-8 col-lg-12">
             <SearchAndFilters setCurrentPage={setCurrentPage}/>
           </div>
           <div className="col-sm-1 col-md-2 col-lg-3"></div>

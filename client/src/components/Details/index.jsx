@@ -41,8 +41,8 @@ export default function Details({userlog}) {
       let idCart=cart[0]['id'];
       console.log("IDCART:",idCart,id)
       let email=cart[0]['user']['mail'];
-      dispatch(addDetailCart(idCart,id))
-      dispatch(loadCart(email))
+      dispatch(addDetailCart(idCart,id,email))
+      //dispatch(loadCart(email))
     }
     else{ console.log(id)
       dispatch({type:TYPES.ADD_TO_CART, payload:id})

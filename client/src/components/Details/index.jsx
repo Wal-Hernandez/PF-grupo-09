@@ -8,11 +8,22 @@ import {TYPES} from '../../redux/actions/shoppingActions';
 import { getAuth } from "firebase/auth";
 import CartItem from "../CartItem/CartItem"
 import Reviews from "../Reviews";
+<<<<<<< HEAD
 
 export default function Details() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const packageDetail = useSelector((state) => state.rootReducer.detail);
+=======
+import{addDetailCart} from "../../redux/actions/addDetailCart"
+import {loadCart} from "../../redux/actions/loadCart"
+
+export default function Details({userlog}) {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const packageDetail = useSelector((state) => state.rootReducer.detail);
+  const cart = useSelector((state) => state.rootReducer.cart);
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
   const packageActivity = [];
   packageDetail.activities?.map((e) => {
     packageActivity.push(
@@ -32,10 +43,28 @@ export default function Details() {
   console.log(arrayCartLoggedin)
   const products = useSelector ((state) => state.products)
 
+<<<<<<< HEAD
 
   const addToCart = (id) =>{
       console.log(id)
       dispatch({type:TYPES.ADD_TO_CART, payload:id})
+=======
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  const addToCart = (id) =>{
+    if(user){
+      let idCart=cart[0]['id'];
+      console.log("IDCART:",idCart,id)
+      let email=cart[0]['user']['mail'];
+      dispatch(addDetailCart(idCart,id))
+      dispatch(loadCart(email))
+    }
+    else{ console.log(id)
+      dispatch({type:TYPES.ADD_TO_CART, payload:id})
+    }
+     
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
   }
   const delFromCart = (id, all = false) => {
     console.log("del from cartttt")
@@ -61,8 +90,12 @@ export default function Details() {
       myCartparsedfilteredNotLoggedin =myCartparsedNotLoggedin.filter((p) => p.id == id)
       myCartparsedfilteredNotLoggedin=myCartparsedfilteredNotLoggedin[0]
   } 
+<<<<<<< HEAD
   const auth = getAuth();
   const user = auth.currentUser;
+=======
+
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
   
   if (user) {
     if(localStorage.getItem("myCartLoggedin")){
@@ -93,7 +126,11 @@ export default function Details() {
             width="300px"
             height="300px"
           />
+<<<<<<< HEAD
         </div><button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
+=======
+        </div>
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
         <h5 class="card-title">Nombre: {packageDetail.name}</h5>
       </div>
       <div>
@@ -110,7 +147,11 @@ export default function Details() {
         <p class="card-text">Actividad: {packageActivity}</p>
         <p class="card-text">Precio: ${packageDetail.price}</p>
       </div>
+<<<<<<< HEAD
       
+=======
+      <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
       {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
                 <article>    
                     <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           

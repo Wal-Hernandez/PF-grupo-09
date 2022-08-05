@@ -66,12 +66,19 @@ export function Login() {
 
   const handleGoogleSignin = async () => {
     try {
+<<<<<<< HEAD
      
       await loginWithGoogle()
       .then(()=>console.log(doc(firestore, 'usuarios')))
       .then(a=> a.user.uid)
       .then(r=> getRol(r))
       .then(r=>{if (typeof r ==='number'){alert("No estas Registrad@,No esperes mas!")}
+=======
+      await loginWithGoogle()
+      .then(a=> a.user.uid)
+      .then(r=> getRol(r))
+      .then(r=>{if (typeof r ==='number'){alert("Registrate,Boloo")}
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
     else{ if (r==='client') navigate('/')
     else{navigate('/admin')}
   

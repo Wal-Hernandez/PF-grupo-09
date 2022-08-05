@@ -216,6 +216,7 @@ export default function rootReducer(state = initialState, action) {
                 const user = auth.currentUser;      
                 if (user) { 
                     //RESTAR UNA PERSONA EN UN DETALLE DE LA DB DE UN USER LOGEADO
+
                     let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
                     let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
         
@@ -231,6 +232,25 @@ export default function rootReducer(state = initialState, action) {
                     }
                     let cartJSONLoggedin= JSON.stringify(cart)
                     localStorage.setItem("myCartLoggedin", cartJSONLoggedin) 
+
+                    // let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
+                    // let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
+        
+                    // let itemToDeleteLoggedin = myCartparsedLoggedin.find(item => item.id === action.payload);
+
+                    // if (itemToDeleteLoggedin.quantity>1){
+                    //     cart = myCartparsedLoggedin.map((item) =>
+                    //     item.id===action.payload ? 
+                    //     {...item, quantity:item.quantity-1}: item
+                    // )
+
+                    // } else {
+                    //     cart=myCartparsedLoggedin.filter(item => item.id!== action.payload)
+                    // }
+                    // let cartJSONLoggedin= JSON.stringify(cart)
+                    // localStorage.setItem("myCartLoggedin", cartJSONLoggedin) 
+                      
+
 
                 } else {
                         let myCarttextNotLoggedin=localStorage.getItem("myCartNotLoggedin")

@@ -1,8 +1,18 @@
+<<<<<<< HEAD
 const { User } = require("../db");
+=======
+const { User, Cart, Review} = require("../db");
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
 
 const getUsers = async () => {
   try {
     let allUsers = await User.findAll({
+<<<<<<< HEAD
+=======
+      include: [
+        { model: Cart },{model:Review}
+    ]
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
       // include: {
       //   model: TypeUser,
       //   attributes: ["description"],
@@ -10,14 +20,27 @@ const getUsers = async () => {
     });
 
     return allUsers;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
   } catch (err) {
     return {
       msg: "Error getUsers(userControllers.js)",
       error: err,
     };
   }
+<<<<<<< HEAD
 };
 const getUser = async (id) => {
+=======
+ 
+
+};
+
+const getUser = async (id) => {
+
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
   try {
     let user = await User.findByPk(id, {
       // include: {
@@ -33,9 +56,19 @@ const getUser = async (id) => {
       error: err,
     };
   }
+<<<<<<< HEAD
 };
 const createUser = async (name, surname, mail, rol) => {
   try {
+=======
+
+};
+
+const createUser = async (name, surname, mail, rol) => {
+  console.log(name,surname,mail,rol)
+  try {
+
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
     const UserCreate = await User.create({
       name,
       surname,
@@ -69,6 +102,10 @@ const deleteUserById = async (id) => {
     };
   }
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
 // const updateUserById = async ( id,name, surname, mail, password, typeUserId) => {
 //   try {
 //     if (!name || !surname||!mail||!password ||!typeUserId) {

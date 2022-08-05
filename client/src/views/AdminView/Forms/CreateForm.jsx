@@ -14,6 +14,10 @@ import { getHotels } from "../../../redux/actions/getHotels";
 import { getActivities } from "../../../redux/actions/getActivities";
 import { getClean } from "../../../redux/actions/getClean";
 import { CreatePackage } from "./CreatePackage";
+<<<<<<< HEAD
+=======
+import { Imagenes } from "../../../components/Imagenes/imagenes";
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
 
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
@@ -362,7 +366,12 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
+<<<<<<< HEAD
           <label className="label-form"> Imagen: </label>
+=======
+          <Imagenes />
+          {/* <label className="label-form"> Imagen: </label>
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
 
           <input
             type="text"
@@ -375,7 +384,11 @@ function Ejemplo({ lang }) {
               handleChangeHotel(e);
             }}
           />
+<<<<<<< HEAD
           {errors?.urlImage && <span>{errors?.urlImage?.message}</span>}
+=======
+          {errors?.urlImage && <span>{errors?.urlImage?.message}</span>} */}
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
         </div>
 
         <div className="div-form">
@@ -805,7 +818,12 @@ function Ejemplo({ lang }) {
     );
   }
 
+<<<<<<< HEAD
   if (lang === "packages") { return <CreatePackage/>
+=======
+  if (lang === "packages") {
+    return <CreatePackage />
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
   }
 }
 export const CreateForm = ({ word }) => {

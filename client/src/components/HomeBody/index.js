@@ -4,19 +4,22 @@ import "./homeBody.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getPackages } from "../../redux/actions/getPackages";
 import { getMainPackages } from "../../redux/actions/getMainPackages";
-import { getCities } from "../../redux/actions/getCities";
+import { getClean } from '../../redux/actions/getClean'
 
 export default function HomeBody() {
   const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCities());
     !packages.length
       ? dispatch(getPackages())
       : !showPackages.length
       ? dispatch(getMainPackages())
       : console.log("hecho");
+
+      return()=>{
+        dispatch(getClean())
+      }
   }, [dispatch, packages, showPackages]);
 
   console.log("show", showPackages);

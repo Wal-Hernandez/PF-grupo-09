@@ -8,11 +8,14 @@ import {TYPES} from '../../redux/actions/shoppingActions';
 import { getAuth } from "firebase/auth";
 import CartItem from "../CartItem/CartItem"
 import Reviews from "../Reviews";
+import{addDetailCart} from "../../redux/actions/addDetailCart"
+import {loadCart} from "../../redux/actions/loadCart"
 
-export default function Details() {
+export default function Details({userlog}) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const packageDetail = useSelector((state) => state.rootReducer.detail);
+  const cart = useSelector((state) => state.rootReducer.cart);
   const packageActivity = [];
   packageDetail.activities?.map((e) => {
     packageActivity.push(
@@ -32,10 +35,21 @@ export default function Details() {
   console.log(arrayCartLoggedin)
   const products = useSelector ((state) => state.products)
 
+  const auth = getAuth();
+  const user = auth.currentUser;
 
   const addToCart = (id) =>{
-      console.log(id)
+    if(user){
+      let idCart=cart[0]['id'];
+      console.log("IDCART:",idCart,id)
+      let email=cart[0]['user']['mail'];
+      dispatch(addDetailCart(idCart,id))
+      dispatch(loadCart(email))
+    }
+    else{ console.log(id)
       dispatch({type:TYPES.ADD_TO_CART, payload:id})
+    }
+     
   }
   const delFromCart = (id, all = false) => {
     console.log("del from cartttt")
@@ -61,8 +75,7 @@ export default function Details() {
       myCartparsedfilteredNotLoggedin =myCartparsedNotLoggedin.filter((p) => p.id == id)
       myCartparsedfilteredNotLoggedin=myCartparsedfilteredNotLoggedin[0]
   } 
-  const auth = getAuth();
-  const user = auth.currentUser;
+
   
   if (user) {
     if(localStorage.getItem("myCartLoggedin")){

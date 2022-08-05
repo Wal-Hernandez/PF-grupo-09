@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { createCart,getCart } = require("../controllers/cartControllers");
 const router = Router();
+const {createCartDetail}=require("../controllers/cartDetailControllers")
 const {
   getUser,
   createUser,
@@ -34,6 +35,7 @@ router.post("/", async (req, res) => {
     console.log(req.body);
     //crea un usuario nuevo 
     let userCreated = await createUser(name, surname, mail, rol);
+    console.log(userCreated,"averrrr")
     // creo un carrito vacio a ese usuario , la primera vez que se crea
     let cartCreated= await createCart(mail);
 

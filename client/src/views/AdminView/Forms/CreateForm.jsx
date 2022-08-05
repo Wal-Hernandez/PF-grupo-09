@@ -14,6 +14,7 @@ import { getHotels } from "../../../redux/actions/getHotels";
 import { getActivities } from "../../../redux/actions/getActivities";
 import { getClean } from "../../../redux/actions/getClean";
 import { CreatePackage } from "./CreatePackage";
+import { Imagenes } from "../../../components/Imagenes/imagenes";
 
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
@@ -362,7 +363,8 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Imagen: </label>
+          <Imagenes />
+          {/* <label className="label-form"> Imagen: </label>
 
           <input
             type="text"
@@ -375,7 +377,7 @@ function Ejemplo({ lang }) {
               handleChangeHotel(e);
             }}
           />
-          {errors?.urlImage && <span>{errors?.urlImage?.message}</span>}
+          {errors?.urlImage && <span>{errors?.urlImage?.message}</span>} */}
         </div>
 
         <div className="div-form">
@@ -805,7 +807,8 @@ function Ejemplo({ lang }) {
     );
   }
 
-  if (lang === "packages") { return <CreatePackage/>
+  if (lang === "packages") {
+    return <CreatePackage />
   }
 }
 export const CreateForm = ({ word }) => {

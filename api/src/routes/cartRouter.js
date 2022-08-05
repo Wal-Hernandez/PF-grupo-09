@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const {
- createCart,deleteCartById,getCart,updateCartById
+ createCart,deleteCartById,getCart,updateCartById,clearCart
 } = require("../controllers/cartControllers");
 const {createCartDetail}=require("../controllers/cartDetailControllers")
 const router = Router();
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const cart = await deleteCartById(id);
+    const cart = await clearCart(id);
     return res.status(200).json(cart);
   } catch (error) {
     return res.status(400).json(error);

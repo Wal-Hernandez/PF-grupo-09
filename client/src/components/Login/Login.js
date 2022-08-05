@@ -33,6 +33,7 @@ export function Login() {
       if (user.mail === "productowner@henry.com") {
         navigate("/admin");
       } else {
+        
         let storage=JSON.parse(localStorage.getItem("myCartNotLoggedin"));
         console.log("STORAGE VACIO LOGIN:"+storage)
         

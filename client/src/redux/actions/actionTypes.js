@@ -36,6 +36,10 @@ export const LOAD_CART_LOGIN = "LOAD_CART_LOGIN";
 export const CLEAR_CART_LOGOUT = "CLEAR_CART_LOGOUT";
 export const REMOVE_DETAIL_CART = "REMOVE_DETAIL_CART";
 export const ADD_DETAIL_CART = "ADD_DETAIL_CART";
+export const REMOVE_CART = "REMOVE_CART";
+
+export const PRUEBA = "PRUEBA";
+
 
 
 

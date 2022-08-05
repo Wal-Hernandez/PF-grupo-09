@@ -87,6 +87,27 @@ const deleteCartById = async (id) => {
     };
   }
 };
+
+const clearCart=async (id) => {
+  try {
+    const clearCart = await CartDetail.destroy({
+      where: { cartId: id },
+    });
+
+    if (clearCart) {
+      return { msg: "The cart has been clear successfully", valor: true };
+    }
+
+    return { msg: "Id cart not found" };
+  } catch (error) {
+    return {
+      msg: "Error clearCart(cartController.js)",
+      error: error,
+    };
+  }
+};
+
+
 const updateCartById = async (
  id,userId,statusCartId
 ) => {
@@ -116,5 +137,6 @@ module.exports = {
     getCart,
     deleteCartById,
     createCart,
-    updateCartById
+    updateCartById,
+    clearCart
 };

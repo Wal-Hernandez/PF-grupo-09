@@ -6,7 +6,7 @@ import HomeBody from "../../components/HomeBody";
 import Carousel from "../../components/Carousel";
 
 function HomeView({userlog}) {
-
+  
   return (<>
     <div>
       <Navbar userlog={userlog} />

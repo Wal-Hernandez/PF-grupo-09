@@ -11,6 +11,8 @@ import Reviews from "../Reviews";
 import{addDetailCart} from "../../redux/actions/addDetailCart"
 import {loadCart} from "../../redux/actions/loadCart"
 
+
+
 export default function Details({userlog}) {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -22,19 +24,27 @@ export default function Details({userlog}) {
       <div>{e.name}</div>
     )
   })
+  
+    
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
+
 
   useEffect(() => {
     dispatch(getPackageId(id));
-    dispatch(getClean());
-  }, [dispatch, id]);
+    //dispatch(getClean());
+    if(user?.email)
+    dispatch(loadCart(user?.email))
+  }, [dispatch, id,user]);
 
   let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
   let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
   console.log(arrayCartLoggedin)
   const products = useSelector ((state) => state.products)
 
-  const auth = getAuth();
-  const user = auth.currentUser;
+ 
 
   const addToCart = (id) =>{
     if(user){

@@ -45,7 +45,7 @@ const initialState = {
     business: [],
     platforms: [],
     activities: [],
-    cart:{},
+    cart:[],
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[]
 };

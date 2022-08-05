@@ -1,42 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import "./search.css";
 
-function AutocompleteSearch({fieldInput}) {
+function AutocompleteSearch({ fieldInput, input, setInput, setDestination }) {
+  const [suggestionIndex, setSuggestionIndex] = useState(0);
+  const [filter, setFilter] = useState([]);
+  const [show, setShow] = useState(false);
+  const [userInput, setUserInput] = useState('');
 
-    const [filter, setFilter] = useState([]);
-    const [suggestionIndex, setSuggestionIndex] = useState(0);
-    const [show, setShow] = useState(false);
-    const [input, setInput] = useState("");
-    const [selected, setSelected] = useState([]);
-  
-    const handleChange = (e) => {
-      const userInput = e.target.value;
-  
-      const filtered = fieldInput.filter(
-        (suggestion) =>
-          suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-      );
-      setInput(e.target.value);
-      setFilter(filtered);
-      setSuggestionIndex(0);
-      setShow(true);
-    };
-  
-    const handleClick = (e) => {
-      setFilter([]);
-      setSelected((prevState)=>[...prevState, e.target.innerText])
-      setInput('');
+  const handleChange = (e) => {
+    const userInput = e.target.value;
+
+    const filtered = fieldInput.filter(
+      (suggestion) =>
+        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+    );
+    setSuggestionIndex(0);
+    setFilter(filtered);
+    setShow(true);
+    setDestination(e.target.value);
+    setInput(e.target.value);
+  };
+
+  const handleClick = (e) => {
+    setSuggestionIndex(0);
+    setFilter([]);
+    setShow(false);
+    setDestination(e.target.innerText);
+    setInput(e.target.innerText);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
       setSuggestionIndex(0);
       setShow(false);
-    };
-  
-    function List() {
-      return filter.length ? (
-        <>
-        <ul>
+      setDestination(filter[suggestionIndex]);
+      setInput(filter[suggestionIndex]);
+    } else if (e.keyCode === 38) {
+      if (suggestionIndex === 0) {
+        return;
+      }
+      setSuggestionIndex(suggestionIndex - 1);
+    }
+    // User pressed the down arrow, increment the index
+    else if (e.keyCode === 40) {
+      if (suggestionIndex - 1 === filter.length) {
+        return;
+      }
+      setSuggestionIndex(suggestionIndex + 1);
+    }
+  };
+
+  function List() {
+    return filter.length ? (
+      <>
+        <ul className="suggestions">
           {filter.map((suggestion, index) => {
             let classname;
             if (index === suggestionIndex) {
-              classname = "style.suggestion-active";
+              classname = "suggestion-active";
             }
             return (
               <li className={classname} key={suggestion} onClick={handleClick}>
@@ -45,28 +66,26 @@ function AutocompleteSearch({fieldInput}) {
             );
           })}
         </ul>
-        </>
-      ) : (
-        <div>
-          <p>No se encuentra ninguna actividad o destino</p>
-        </div>
-      );
-    }
-  
-    return (
-      <div>
-        <input
-          placeholder="Buscar por Destino o Actividad"
-          type="text"
-          onChange={handleChange}
-          // onKeyDown={onKeyDown}
-          value={input}
-          tempvalue = {selected}
-        />
-        {show && input && <List/>}
-        <div><p> {selected.map(e => e)} </p></div>
+      </>
+    ) : (
+      <div className="no-suggestions">
+        <p>No se encuentra ninguna actividad o destino</p>
       </div>
     );
+  }
+
+  return (
+    <div>
+      <input
+        placeholder="Buscar por Destino o Actividad"
+        type="text"
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        value={input}
+      />
+      {show && <List />}
+    </div>
+  );
 }
 
-export default AutocompleteSearch
+export default AutocompleteSearch;

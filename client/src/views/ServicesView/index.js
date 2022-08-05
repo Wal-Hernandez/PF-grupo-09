@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "./servicesView.css";
 import Productos from "../../components/Productos";
 import Paginado from "../../components/Paginado";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchAndFilters from '../../components/Search&Filters';
+import { getCities } from "../../redux/actions/getCities";
+import { getActivities } from "../../redux/actions/getActivities";
+import { getPackages } from "../../redux/actions/getPackages";
+import { getClean } from "../../redux/actions/getClean";
+
 export default function Services({ userlog }) {
+  
   const packages = useSelector((state) => state.rootReducer.packages);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getCities());
+    dispatch(getActivities())
+    !packages.length
+      ? dispatch(getPackages())
+      : console.log("hecho");
+
+      return()=>{
+        dispatch(getClean())
+      }
+  }, [dispatch, packages]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [packagesPerPage /*setPackagesPerPage*/] = useState(3); //10 productos por pagina

@@ -7,9 +7,9 @@ import AutocompleteSearch from "./AutocompleteSearch";
 
 function Search({ startDate, setStartDate, cities, activities }) {
   const dispatch = useDispatch();
-  const [search, setSearch] = useState('');
+  const [destination, setDestination] = useState('');
   const [values, setValues] = useState({
-    destination: "",
+    destination: '',
     start_date: startDate,
     passengers: 0,
   });
@@ -19,12 +19,6 @@ function Search({ startDate, setStartDate, cities, activities }) {
     date: "",
   });
 
-  const handleDestination = (e) => {
-    setValues({
-      ...values,
-      destination: e.target.value,
-    });
-  };
   const handlePassenger = (e) => {
     setValues({
       ...values,
@@ -51,6 +45,7 @@ function Search({ startDate, setStartDate, cities, activities }) {
   const handleClear = (e) => {
     e.preventDefault();
     setStartDate("");
+    setDestination('')
     setValues({
       ...values,
       destination: "",
@@ -71,7 +66,12 @@ function Search({ startDate, setStartDate, cities, activities }) {
             <label>Destino: </label>
           </div>
           <div className="row mb-2">
-            <AutocompleteSearch fieldInput={cities?.map(e=>e.name) && activities?.map(e=>e.name)} onChange={handleDestination}/>
+            <AutocompleteSearch 
+              fieldInput={cities?.map(e=>e.name)} 
+              input={destination} 
+              setInput={setDestination}
+              setDestination={(dest)=> setValues({...values, destination: dest})}
+            />
             {/* <input
               type="text"
               placeholder="Destino"

@@ -4,13 +4,17 @@ import { useForm } from "react-hook-form";
 import { getAuth } from "firebase/auth";
 import { useSelector } from "react-redux";
 
-function ReviewsForm({hotel}) {
+function ReviewsForm({ hotel }) {
   const auth = getAuth();
   const user = auth.currentUser;
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const {cart} = useSelector(state => state.rootReducer);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { cart } = useSelector((state) => state.rootReducer);
 
-  console.log(cart)
+  console.log(cart);
   const [values, setValues] = useState({
     userId: cart.userId,
     hotelId: hotel.id,
@@ -22,23 +26,21 @@ function ReviewsForm({hotel}) {
   const handleChange = (e) => {
     setValues({
       ...values,
-      [e.target.name]: e.target.value, 
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleRating = (newRating) =>{
+  const handleRating = (newRating) => {
     setValues({
-        ...values,
-        score: newRating
-    })
-  }
+      ...values,
+      score: newRating,
+    });
+  };
 
-  const handleReview = (e)=> {
-    e.preventDefault()
+  const handleReview = (e) => {
+    e.preventDefault();
+  };
 
-  }
-
-  console.log(user)
   if (user) {
     const title = register("title", {
       required: { value: true, message: "REQUERIDO" },
@@ -49,46 +51,60 @@ function ReviewsForm({hotel}) {
     });
 
     return (
+      <div>
         <div>
-          <div>
-            <form className="review-form" onSubmit={handleSubmit(handleReview)}>
-              <label>
-                {" "}
-                Título:
-                <input name='title' type="text" onChange={(e)=>{
-                    title.onChange(e)
-                    handleChange(e)
-                }}/>
-                {errors?.title ? <span>{errors?.title?.message}</span> : null}
-              </label>
-              <label>
-                {" "}
-                Comentario:
-                <textarea name='comment' onChange={(e)=>{
-                    comment.onChange(e)
-                    handleChange(e)
-                }}/>
-                {errors?.comment && <span>{errors?.comment?.message}</span>}
-              </label>
-              <label>
-                {" "}
-                Calificación:
-                <ReactStars size={30} isHalf={true} classNames="reactStars" onChange={handleRating}  emptyIcon={<i className="far fa-star"></i>}
-        halfIcon={<i className="fa fa-star-half-alt"></i>}
-        filledIcon={<i className="fa fa-star"></i>}/>
-              </label>
-              <button>Dejar valoración</button>
-            </form>
-          </div>
+          <form className="review-form" onSubmit={handleSubmit(handleReview)}>
+            <label>
+              {" "}
+              Título:
+              <input
+                name="title"
+                type="text"
+                onChange={(e) => {
+                  title.onChange(e);
+                  handleChange(e);
+                }}
+              />
+              {errors?.title ? <span>{errors?.title?.message}</span> : null}
+            </label>
+            <label>
+              {" "}
+              Comentario:
+              <textarea
+                name="comment"
+                onChange={(e) => {
+                  comment.onChange(e);
+                  handleChange(e);
+                }}
+              />
+              {errors?.comment && <span>{errors?.comment?.message}</span>}
+            </label>
+            <label style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+              {" "}
+              Calificación:
+              <ReactStars
+                size={30}
+                isHalf={true}
+                classNames="reactStars"
+                onChange={handleRating}
+                emptyIcon={<i className="far fa-star"></i>}
+                halfIcon={<i className="fa fa-star-half-alt"></i>}
+                filledIcon={<i className="fa fa-star"></i>}
+                
+              />
+            </label>
+            <button>Dejar valoración</button>
+          </form>
         </div>
-      );
-}else{
-    return(
-        <h5>Necesitas esta logueado para dejar un comentario</h5>
-    )
-}
-
-  
+      </div>
+    );
+  } else {
+    return <h5>Necesitas esta logueado para dejar un comentario</h5>;
+  }
 }
 
 export default ReviewsForm;

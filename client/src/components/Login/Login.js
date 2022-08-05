@@ -11,6 +11,7 @@ import logo from "../../images/Buspack.png"; //imagen logo
 
 import { app } from "../../Firebase/firebase-config";
 import {  doc, getDoc,getFirestore } from "firebase/firestore";
+import { deleteUser } from "firebase/auth";
 import { loadCartLogin } from "../../redux/actions/loadCartLogin";
 export function Login() {
   const dispatch = useDispatch();
@@ -63,28 +64,14 @@ export function Login() {
       return infoFinal;}
       else{return 4}
     }
-
   const handleGoogleSignin = async () => {
     try {
-<<<<<<< HEAD
-     
-      await loginWithGoogle()
-      .then(()=>console.log(doc(firestore, 'usuarios')))
-      .then(a=> a.user.uid)
-      .then(r=> getRol(r))
-      .then(r=>{if (typeof r ==='number'){alert("No estas Registrad@,No esperes mas!")}
-=======
-      await loginWithGoogle()
-      .then(a=> a.user.uid)
-      .then(r=> getRol(r))
-      .then(r=>{if (typeof r ==='number'){alert("Registrate,Boloo")}
->>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
-    else{ if (r==='client') navigate('/')
-    else{navigate('/admin')}
-  
-    
-    }})
-      
+    let r=  await loginWithGoogle()
+    let rol = await getRol(r.user.uid);
+   if( typeof rol ==='number'){deleteUser(r.user);
+    alert("No estas Registrad@,No esperes mas!")}
+    else{  if (rol==='client') navigate('/')
+    else{navigate('/admin')}}
     } catch (error) {
       setError(error.message);
       console.log(error)

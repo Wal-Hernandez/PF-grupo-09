@@ -34,15 +34,11 @@ export const POST_USER = "POST_USER";
 export const LOAD_CART = "LOAD_CART";
 export const LOAD_CART_LOGIN = "LOAD_CART_LOGIN";
 export const CLEAR_CART_LOGOUT = "CLEAR_CART_LOGOUT";
-<<<<<<< HEAD
-=======
 export const REMOVE_DETAIL_CART = "REMOVE_DETAIL_CART";
 export const ADD_DETAIL_CART = "ADD_DETAIL_CART";
->>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
 
 
 
 
 
 export const SEND_MAIL ="SEND_MAIL";
-

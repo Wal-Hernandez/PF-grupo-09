@@ -1,0 +1,27 @@
+.review-container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 0.8rem;
+    align-content:flex-start;
+}
+
+.review-form{
+    display: grid;
+    grid-template-columns: repeat(1, 4fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
+}
+
+.review-form span, .review-form input{
+    display:-moz-grid;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    align-items: center;
+    align-content: space-between;
+}
+
+.react-stars-wrapper-06114624900519329{
+    display: inline-flex;
+}

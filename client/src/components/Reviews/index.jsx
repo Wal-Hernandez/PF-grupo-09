@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ShowReviews from "./ShowReviews";
 import ReactStars from 'react-rating-stars-component'
-import './reviews.css'
+//import './reviews.css'
 
 function Reviews({hotel}) {
 

@@ -28,7 +28,7 @@ export default function ShoppingCart({userlog}) {
     const auth = getAuth();
     const user = auth.currentUser;
 
-
+    console.log("USERCOMUN:",user?.mail)
     useEffect(() => {
         dispatch(getCities());
         !packages.length
@@ -37,7 +37,23 @@ export default function ShoppingCart({userlog}) {
           ? dispatch(getMainPackages())
           : console.log("hecho");
       }, [dispatch, packages, showPackages]);
+      
+     
+      useEffect(()=>{
+        if(user?.email!==undefined){
+            dispatch(loadCart(user?.email)) 
+       }
+      },[user,dispatch])
+      
+       
+                
+      
     
+     
+
+
+      
+      
     
 
 
@@ -97,10 +113,12 @@ export default function ShoppingCart({userlog}) {
         
 
       } 
-        
-      let detalles=cart&&cart[0]['cartDetails']?.map((cd) => ({ id: cd.packageId, quantity: cd.numberPeople ,idDetail:cd.id}));
+        if(cart.length!==0){
+            let detalles=cart[0]&&cart[0]['cartDetails']?.map((cd) => ({ id: cd.packageId, quantity: cd.numberPeople ,idDetail:cd.id}));
           myCartAll=detalles;
-         console.log("TU PAPA:",myCartAll)
+        }
+      
+        
      
       // ...
       } else {
@@ -124,13 +142,15 @@ export default function ShoppingCart({userlog}) {
 //    return total;
 // } 
 
-let precioTotal= myCartAll?.map(c=>{return {id:c.id, quantity:c.quantity,data:packages.filter(elemento => elemento.id===c.id)[0]["price"] }})
-
-
-let total = precioTotal
+let precioTotal= packages.length && myCartAll?.map(c=>{return {id:c.id, quantity:c.quantity,data:packages?.find(elemento => elemento.id===c.id)["price"]}})
+let total=0
+if(precioTotal){
+    total = precioTotal
     .map((item) => item.data)
     .reduce((prev, curr) => prev + curr, 0);
   console.log(total);
+}
+
 
     return(
         <div>

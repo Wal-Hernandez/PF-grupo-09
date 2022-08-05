@@ -25,7 +25,10 @@ import {
     LOAD_CART,
     CLEAR_CART_LOGOUT,
     LOAD_CART_LOGIN,
-    POST_USER
+    POST_USER,
+    REMOVE_DETAIL_CART,
+    ADD_DETAIL_CART,
+    REMOVE_CART
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"
 import { getAuth } from "firebase/auth";
@@ -114,6 +117,22 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 cart: action.payload
             }
+        case REMOVE_DETAIL_CART:
+                return{
+                    ...state,
+                    cart:action.payload
+                }
+        case REMOVE_CART:
+                    return{
+                        ...state,
+                        cart:action.payload
+                    }
+        case  ADD_DETAIL_CART:
+                    return{
+                        ...state,
+                        cart:action.payload
+                    }
+               
         case  CLEAR_CART_LOGOUT:
             return{
                  ...state,
@@ -216,21 +235,24 @@ export default function rootReducer(state = initialState, action) {
                 const user = auth.currentUser;      
                 if (user) { 
                     //RESTAR UNA PERSONA EN UN DETALLE DE LA DB DE UN USER LOGEADO
-                    let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
-                    let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
+                    // let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
+                    // let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
         
-                    let itemToDeleteLoggedin = myCartparsedLoggedin.find(item => item.id === action.payload);
+                    // let itemToDeleteLoggedin = myCartparsedLoggedin.find(item => item.id === action.payload);
 
-                    if (itemToDeleteLoggedin.quantity>1){
-                        cart = myCartparsedLoggedin.map((item) =>
-                        item.id===action.payload ? 
-                        {...item, quantity:item.quantity-1}: item
-                    )
-                    } else {
-                        cart=myCartparsedLoggedin.filter(item => item.id!== action.payload)
-                    }
-                    let cartJSONLoggedin= JSON.stringify(cart)
-                    localStorage.setItem("myCartLoggedin", cartJSONLoggedin) 
+                    // if (itemToDeleteLoggedin.quantity>1){
+                    //     cart = myCartparsedLoggedin.map((item) =>
+                    //     item.id===action.payload ? 
+                    //     {...item, quantity:item.quantity-1}: item
+                    // )
+
+                    // } else {
+                    //     cart=myCartparsedLoggedin.filter(item => item.id!== action.payload)
+                    // }
+                    // let cartJSONLoggedin= JSON.stringify(cart)
+                    // localStorage.setItem("myCartLoggedin", cartJSONLoggedin) 
+                      
+
 
                 } else {
                         let myCarttextNotLoggedin=localStorage.getItem("myCartNotLoggedin")

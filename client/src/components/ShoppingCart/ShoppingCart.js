@@ -8,6 +8,8 @@ import { getPackages } from "../../redux/actions/getPackages";
 import { getMainPackages } from "../../redux/actions/getMainPackages";
 import { getCities } from "../../redux/actions/getCities";
 import{removeDetailCart} from "../../redux/actions/removeDetailCart"
+import {removeCart} from "../../redux/actions/removeCart"
+
 
 import {loadCart} from "../../redux/actions/loadCart"
 import { getAuth } from "firebase/auth";
@@ -48,12 +50,13 @@ export default function ShoppingCart({userlog}) {
     }
        
     }
-    const delFromCart = (id, all = false) => {
+    const delFromCart = async(id, all = false) => {
         if(user){
         
-          dispatch(removeDetailCart(id))
+          dispatch(removeDetailCart(id,userlog.email))
          
-          dispatch(loadCart(userlog.email))
+          // dispatch(loadCart(userlog.email))
+        
         }
         else{
         console.log(id,all)
@@ -66,11 +69,10 @@ export default function ShoppingCart({userlog}) {
     }
     const clearCart=() => {
         if (user){
-     for (let i = 0; i < cart[0]['cartDetails'].length; i++) { 
-        dispatch(removeDetailCart(cart[0]['cartDetails'][i]['id']))
-     }
+        dispatch(removeCart(cart[0]['id'],userlog.email))
+     
          //una vez borrado todo los detalles recargar el carrito
-          dispatch(loadCart(userlog.email))
+          //dispatch(loadCart(userlog.email))
         }
         else{
          dispatch({type:TYPES.CLEAR_CART})

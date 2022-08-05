@@ -2,15 +2,27 @@ const { Package,Cart,CartDetail,Hotel,City, Activity,User,Business, Plattform} =
 
 
 const getCart = async (mail) => {
+<<<<<<< HEAD
   try {
     //busco el usuario que coincida con el mail que recibo
     let user=await User.findAll({ where: { mail: mail } })
    
+=======
+  console.log(mail)
+  try {
+    //busco el usuario que coincida con el mail que recibo
+    let user=await User.findAll({ where: { mail: mail } })
+
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
     if (!mail) {
       return "All fields are required";
     }
     let userJson=JSON.parse(JSON.stringify(user));
+<<<<<<< HEAD
     console.log(userJson)
+=======
+
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
     //obtengo solo el id de ese usuario
     let id=userJson[0]['id']
     console.log(id)
@@ -42,7 +54,10 @@ include:[{
   }
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2b74712e773dc95dd6e1363536dc76f2e7106ee5
 const createCart = async (   
     mail
 ) => {

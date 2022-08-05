@@ -15,6 +15,7 @@ import { getActivities } from "../../../redux/actions/getActivities";
 import { getClean } from "../../../redux/actions/getClean";
 import { CreatePackage } from "./CreatePackage";
 import { Imagenes } from "../../../components/Imagenes/imagenes";
+import swal from 'sweetalert';
 
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
@@ -228,6 +229,10 @@ function Ejemplo({ lang }) {
   function handleSubmitHotel() {
     //e.preventDefault(); // para que era esto?
     dispatch(postHotel(hotel));
+    swal({
+      title: "Hotel creado con éxito",
+      icon: "success",
+    });
   }
 
   function handleDelete(activ) {

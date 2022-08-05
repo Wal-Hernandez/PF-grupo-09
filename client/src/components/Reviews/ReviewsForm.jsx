@@ -2,21 +2,18 @@ import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { useForm } from "react-hook-form";
 import { getAuth } from "firebase/auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { postReview } from '../../redux/actions/postReview'
 
 function ReviewsForm({ hotel }) {
   const auth = getAuth();
   const user = auth.currentUser;
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
   const { cart } = useSelector((state) => state.rootReducer);
+  const dispatch = useDispatch();
 
   console.log(cart);
   const [values, setValues] = useState({
-    userId: cart.userId,
+    userId: cart[0]?.userId,
     hotelId: hotel.id,
     title: "",
     comment: "",
@@ -38,22 +35,15 @@ function ReviewsForm({ hotel }) {
   };
 
   const handleReview = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    dispatch(postReview(values))
   };
 
   if (user) {
-    const title = register("title", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-
-    const comment = register("comment", {
-      required: { value: true, message: "REQUERIDO" },
-    });
-
     return (
       <div>
         <div>
-          <form className="review-form" onSubmit={handleSubmit(handleReview)}>
+          <form className="review-form" onSubmit={handleReview}>
             <label>
               {" "}
               Título:
@@ -61,11 +51,9 @@ function ReviewsForm({ hotel }) {
                 name="title"
                 type="text"
                 onChange={(e) => {
-                  title.onChange(e);
-                  handleChange(e);
+                  handleChange(e)
                 }}
               />
-              {errors?.title ? <span>{errors?.title?.message}</span> : null}
             </label>
             <label>
               {" "}
@@ -73,11 +61,9 @@ function ReviewsForm({ hotel }) {
               <textarea
                 name="comment"
                 onChange={(e) => {
-                  comment.onChange(e);
                   handleChange(e);
                 }}
               />
-              {errors?.comment && <span>{errors?.comment?.message}</span>}
             </label>
             <label style={{
                     display: 'flex',

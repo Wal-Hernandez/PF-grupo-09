@@ -48,12 +48,13 @@ export default function ShoppingCart({userlog}) {
     }
        
     }
-    const delFromCart = (id, all = false) => {
+    const delFromCart = async(id, all = false) => {
         if(user){
         
-          dispatch(removeDetailCart(id))
+          dispatch(removeDetailCart(id,userlog.email))
          
-          dispatch(loadCart(userlog.email))
+          // dispatch(loadCart(userlog.email))
+        
         }
         else{
         console.log(id,all)

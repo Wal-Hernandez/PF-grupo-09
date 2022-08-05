@@ -5,7 +5,6 @@ function AutocompleteSearch({ fieldInput, input, setInput, setDestination }) {
   const [suggestionIndex, setSuggestionIndex] = useState(0);
   const [filter, setFilter] = useState([]);
   const [show, setShow] = useState(false);
-  const [userInput, setUserInput] = useState('');
 
   const handleChange = (e) => {
     const userInput = e.target.value;

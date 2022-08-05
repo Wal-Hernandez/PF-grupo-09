@@ -11,9 +11,6 @@ import { removeDetailCart } from "../../redux/actions/removeDetailCart";
 
 import { loadCart } from "../../redux/actions/loadCart";
 import { getAuth } from "firebase/auth";
-import { Link } from "react-router-dom";
-import Pasarela from "../Pasarela/index";
-import { useState } from "react";
 
 export default function ShoppingCart({ userlog }) {
   let arrayCartNotLoggedin = useSelector(
@@ -27,16 +24,6 @@ export default function ShoppingCart({ userlog }) {
   console.log(packages);
   const auth = getAuth();
   const user = auth.currentUser;
-  const [pulsado, setPulsado] = useState(false);
-
-  useEffect(() => {
-    dispatch(getCities());
-    !packages.length
-      ? dispatch(getPackages())
-      : !showPackages.length
-      ? dispatch(getMainPackages())
-      : console.log("hecho");
-  }, [dispatch, packages, showPackages]);
 
   useEffect(() => {
     dispatch(getCities());
@@ -159,17 +146,13 @@ export default function ShoppingCart({ userlog }) {
             />
           ))}
         </article>
-        <div>{}</div>
+        <div></div>
       </div>
       <div>
         <hr></hr>
         <div>
           <h1>Total: ${total}.00</h1>
         </div>
-      </div>
-      <div>
-        <button onClick={() => setPulsado(!pulsado)}>Comprar</button>
-        {pulsado ? <Pasarela /> : null}
       </div>
     </div>
   );

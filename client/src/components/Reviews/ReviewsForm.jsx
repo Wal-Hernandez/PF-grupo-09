@@ -3,7 +3,8 @@ import ReactStars from "react-rating-stars-component";
 import { useForm } from "react-hook-form";
 import { getAuth } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { postReview } from '../../redux/actions/postReview'
+import { postReview } from "../../redux/actions/postReview";
+import { getHotels } from "../../redux/actions/getHotels";
 
 function ReviewsForm({ hotel }) {
   const auth = getAuth();
@@ -11,13 +12,12 @@ function ReviewsForm({ hotel }) {
   const { cart } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
 
-  console.log(cart);
   const [values, setValues] = useState({
     userId: cart[0]?.userId,
     hotelId: hotel.id,
     title: "",
     comment: "",
-    score: "",
+    score: 0,
   });
 
   const handleChange = (e) => {
@@ -35,8 +35,15 @@ function ReviewsForm({ hotel }) {
   };
 
   const handleReview = (e) => {
-    e.preventDefault()
-    dispatch(postReview(values))
+    e.preventDefault();
+    dispatch(postReview(values));
+    setValues({
+      ...values,
+      title: "",
+      comment: "",
+      score: 0,
+    });
+    dispatch(getHotels());
   };
 
   if (user) {
@@ -48,10 +55,11 @@ function ReviewsForm({ hotel }) {
               {" "}
               Título:
               <input
+                value={values.title}
                 name="title"
                 type="text"
                 onChange={(e) => {
-                  handleChange(e)
+                  handleChange(e);
                 }}
               />
             </label>
@@ -59,20 +67,24 @@ function ReviewsForm({ hotel }) {
               {" "}
               Comentario:
               <textarea
+                value={values.comment}
                 name="comment"
                 onChange={(e) => {
                   handleChange(e);
                 }}
               />
             </label>
-            <label style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
+            <label
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               {" "}
               Calificación:
               <ReactStars
+                value={values.score}
                 size={30}
                 isHalf={true}
                 classNames="reactStars"
@@ -80,7 +92,6 @@ function ReviewsForm({ hotel }) {
                 emptyIcon={<i className="far fa-star"></i>}
                 halfIcon={<i className="fa fa-star-half-alt"></i>}
                 filledIcon={<i className="fa fa-star"></i>}
-                
               />
             </label>
             <button>Dejar valoración</button>

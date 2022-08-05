@@ -110,8 +110,8 @@ export default function Details({userlog}) {
         <h5 class="card-title">Nombre: {packageDetail.name}</h5>
       </div>
       <div>
-        <p class="card-text">Fecha salida: {packageDetail.start_date}</p>
-        <p class="card-text">Fecha llegada: {packageDetail.end_date}</p>
+        <p class="card-text">Fecha salida: {(packageDetail.start_date)?.toString()}</p>
+        <p class="card-text">Fecha llegada: {packageDetail.end_date?.toString()}</p>
         <p class="card-text">Resumen de lo que incluye: </p>
       </div>
       <div>

@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { useForm } from "react-hook-form";
 import { getAuth } from "firebase/auth";
+import { useSelector } from "react-redux";
 
 function ReviewsForm({hotel}) {
   const auth = getAuth();
   const user = auth.currentUser;
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const {cart} = useSelector(state => state.rootReducer);
+
+  console.log(cart)
   const [values, setValues] = useState({
-    userId: "",
+    userId: cart.userId,
     hotelId: hotel.id,
     title: "",
     comment: "",

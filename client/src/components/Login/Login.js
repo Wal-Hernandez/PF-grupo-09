@@ -10,7 +10,7 @@ import "../../views/LoginView/loginView.css";
 import logo from "../../images/Buspack.png"; //imagen logo
 
 import { app } from "../../Firebase/firebase-config";
-import {  doc, getDoc,getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { loadCartLogin } from "../../redux/actions/loadCartLogin";
 export function Login() {
   const dispatch = useDispatch();
@@ -32,10 +32,10 @@ export function Login() {
       if (user.mail === "productowner@henry.com") {
         navigate("/admin");
       } else {
-        let storage=JSON.parse(localStorage.getItem("myCartNotLoggedin"));
-        console.log("STORAGE VACIO LOGIN:"+storage)
-        
-        dispatch(loadCartLogin(user.mail,storage===null?[]:storage));
+        let storage = JSON.parse(localStorage.getItem("myCartNotLoggedin"));
+        console.log("STORAGE VACIO LOGIN:" + storage);
+
+        dispatch(loadCartLogin(user.mail, storage === null ? [] : storage));
         localStorage.clear("myCartNotLoggedin");
         navigate("/");
       }
@@ -100,61 +100,32 @@ export function Login() {
   };
 
   const CartNotLoggedinToLoggedin = () => {
-    
-    if(
-      localStorage.getItem("myCartNotLoggedin"))
-      {
-        console.log("entro a myCartNotLoggedin")
-        let myCarttextNotLoggedin
-        let myCartparsedNotLoggedin=[]
-      
-       
-        myCarttextNotLoggedin = localStorage.getItem("myCartNotLoggedin")
-        myCartparsedNotLoggedin= JSON.parse(myCarttextNotLoggedin) 
-        console.log(myCartparsedNotLoggedin)   
-      }
-        // for (let i=0; i<myCartparsedNotLoggedin.length; i++){    
-        //   found=false
-        //   for(let j=0; j<myCartparsedLoggedin.length; j++) {
-        //           if(myCartparsedNotLoggedin[i].id===myCartparsedLoggedin[j].id){
-        //             myCartparsedLoggedin.quantity=myCartparsedLoggedin.quantity+myCartparsedNotLoggedin.quantity
-        //             found=true
-        //           }
-        //     }
-        //     if (found===false) {
-        //       myCartparsedLoggedin=[...myCartparsedLoggedin, {id:myCartparsedNotLoggedin[i].id,quantity:myCartparsedNotLoggedin[i].quantity}]
-        //     }
-        //   }
-        //   let cartJSONNotLoggedin= JSON.stringify(myCartparsedLoggedin)
-        //   localStorage.setItem("myCartLoggedin", cartJSONNotLoggedin) 
-        //   localStorage.setItem("myCartNotLoggedin", "[]")
-        // }
-  }
+    if (localStorage.getItem("myCartNotLoggedin")) {
+      console.log("entro a myCartNotLoggedin");
+      let myCarttextNotLoggedin;
+      let myCartparsedNotLoggedin = [];
 
-      for (let i = 0; i < myCartparsedNotLoggedin.length; i++) {
-        found = false;
-        for (let j = 0; j < myCartparsedLoggedin.length; j++) {
-          if (myCartparsedNotLoggedin[i].id === myCartparsedLoggedin[j].id) {
-            myCartparsedLoggedin.quantity =
-              myCartparsedLoggedin.quantity + myCartparsedNotLoggedin.quantity;
-            found = true;
-          }
-        }
-        if (found === false) {
-          myCartparsedLoggedin = [
-            ...myCartparsedLoggedin,
-            {
-              id: myCartparsedNotLoggedin[i].id,
-              quantity: myCartparsedNotLoggedin[i].quantity,
-            },
-          ];
-        }
-      }
-      let cartJSONNotLoggedin = JSON.stringify(myCartparsedLoggedin);
-      localStorage.setItem("myCartLoggedin", cartJSONNotLoggedin);
-      localStorage.setItem("myCartNotLoggedin", "[]");
+      myCarttextNotLoggedin = localStorage.getItem("myCartNotLoggedin");
+      myCartparsedNotLoggedin = JSON.parse(myCarttextNotLoggedin);
+      console.log(myCartparsedNotLoggedin);
     }
-  
+    // for (let i=0; i<myCartparsedNotLoggedin.length; i++){
+    //   found=false
+    //   for(let j=0; j<myCartparsedLoggedin.length; j++) {
+    //           if(myCartparsedNotLoggedin[i].id===myCartparsedLoggedin[j].id){
+    //             myCartparsedLoggedin.quantity=myCartparsedLoggedin.quantity+myCartparsedNotLoggedin.quantity
+    //             found=true
+    //           }
+    //     }
+    //     if (found===false) {
+    //       myCartparsedLoggedin=[...myCartparsedLoggedin, {id:myCartparsedNotLoggedin[i].id,quantity:myCartparsedNotLoggedin[i].quantity}]
+    //     }
+    //   }
+    //   let cartJSONNotLoggedin= JSON.stringify(myCartparsedLoggedin)
+    //   localStorage.setItem("myCartLoggedin", cartJSONNotLoggedin)
+    //   localStorage.setItem("myCartNotLoggedin", "[]")
+    // }
+  };
 
   return (
     <div className="container w-75 bg-white mt-5 rounded">
@@ -246,9 +217,8 @@ export function Login() {
         </div>
       </div>
     </div>
-   
-   );
-
+  );
+}
 
 {
   /* <button
@@ -258,4 +228,3 @@ export function Login() {
        Google login
      </button> */
 }
-

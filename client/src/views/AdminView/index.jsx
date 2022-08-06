@@ -8,6 +8,7 @@ import { getHotels } from "../../redux/actions/getHotels";
 import { getPlatforms } from "../../redux/actions/getPlatforms";
 import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
+import { getUsers } from "../../redux/actions/getUsers";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
 import Logo from "../../images/Buspack.png"
@@ -29,6 +30,7 @@ function Admin() {
       else if(name === "activities")dispatch(getActivities());
       else if(name === "cities")dispatch(getCities());
       else if(name === "plattforms")dispatch(getPlatforms());
+      else if(name === "users")dispatch(getUsers());
   };
 
   function handleSelect(e) {
@@ -142,7 +144,7 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
   console.log("hola",adminView)
   useEffect(() => {
     return () => {
-        console.log("holasoygerman")
+        console.log(" ")
     }
 }, [])
   return (
@@ -192,6 +194,13 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
                 Platforms
               </button>     
           </div>
+          </div>
+          <hr/>
+          <div>Stadistics</div>
+          <div className="btn-plattforms btnn">
+              <button name="users" onClick={handleSelect}>
+                Users
+              </button>     
           </div>
         </div>
 

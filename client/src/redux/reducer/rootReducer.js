@@ -71,6 +71,12 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 detail: action.payload,
             };
+            case GET_CITIES:
+                return {
+                    ...state,
+                    adminView: action.payload,
+                    cities: action.payload,
+                };
         case GET_OFFERS:
             let resp = action.payload.map((a) => {
                 return {

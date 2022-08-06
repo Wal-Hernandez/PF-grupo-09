@@ -13,6 +13,7 @@ import {removeCart} from "../../redux/actions/removeCart"
 
 import {loadCart} from "../../redux/actions/loadCart"
 import { getAuth } from "firebase/auth";
+import Navbar from '../Navbar';
 
 
 export default function ShoppingCart({userlog}) {
@@ -110,7 +111,7 @@ export default function ShoppingCart({userlog}) {
     if (user) {
         if(localStorage.getItem("myCartLoggedin")){
          //logica para pasar del cart al myCartAll
-        
+        //chau
 
       } 
         if(cart.length!==0){
@@ -146,7 +147,7 @@ let precioTotal= packages.length && myCartAll?.map(c=>{return {id:c.id, quantity
 let total=0
 if(precioTotal){
     total = precioTotal
-    .map((item) => item.data)
+    .map((item) => item.data*item.quantity)
     .reduce((prev, curr) => prev + curr, 0);
   console.log(total);
 }
@@ -154,6 +155,7 @@ if(precioTotal){
 
     return(
         <div>
+            <Navbar/>
             <div>
 
                 <h3>Carrito</h3>
@@ -177,7 +179,7 @@ if(precioTotal){
             <div>
             <h1>Total: ${total}.00</h1>
             </div>
-    
+              <button className='btn btn-success'>MAURO PAGALO</button>
             </div> 
         </div> 
     )

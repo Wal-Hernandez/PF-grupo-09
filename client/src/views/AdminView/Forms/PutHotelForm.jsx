@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { putHotel } from "../../../redux/actions/putHotel";
 import { getCities } from "../../../redux/actions/getCities";
 import { getClean } from "../../../redux/actions/getClean";
+import { Imagenes } from "../../../components/Imagenes/imagenes";
 export const PutHotelForm = ({ pack }) => {
   const dispatch = useDispatch();
   const { cities } = useSelector((state) => state.adminReducer);
@@ -23,9 +24,7 @@ export const PutHotelForm = ({ pack }) => {
     wifi: pack.wifi,
     gym: pack.gym,
     urlImage: pack.urlImage,
-    cityId: pack.cityId,
-    score: pack.score,
-    comments: pack.comments,
+    cityId: pack.cityId
   });
   console.log(pack.id);
   const expRegUrl =
@@ -48,10 +47,7 @@ export const PutHotelForm = ({ pack }) => {
       });
       return;
     }
-    if (event.target.name === "urlImage" || event.target.name === "comments") {
-      setHotel({ ...hotel, [event.target.name]: [event.target.value] });
-      return;
-    }
+
     if (
       event.target.name === "gym" ||
       event.target.name === "pool" ||
@@ -62,13 +58,6 @@ export const PutHotelForm = ({ pack }) => {
       } else {
         setHotel({ ...hotel, [event.target.name]: false });
       }
-      return;
-    }
-    if (event.target.name === "score") {
-      setHotel({
-        ...hotel,
-        [event.target.name]: TransformData(event.target.value),
-      });
       return;
     }
 
@@ -104,12 +93,6 @@ export const PutHotelForm = ({ pack }) => {
     required: { value: true, message: "REQUERIDO" },
   });
 
-  const urlImage = register("urlImage", {
-    pattern: {
-      value: expRegUrl,
-      message: "Url no valida",
-    },
-  });
 
   return (
     <div className="div">
@@ -194,7 +177,8 @@ export const PutHotelForm = ({ pack }) => {
           {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
         <div className="div-form">
-          <label className="label-form"> Imagen: </label>
+        <Imagenes setUrl={(url)=> setHotel({...hotel, urlImage: [url]})}/>
+          {/* <label className="label-form"> Imagen: </label>
           <input
             type="text"
             name="urlImage"
@@ -206,7 +190,7 @@ export const PutHotelForm = ({ pack }) => {
               handleChange(e);
             }}
           />
-          {errors?.urlImage && <span>{errors?.urlImage?.message}</span>}
+          {errors?.urlImage && <span>{errors?.urlImage?.message}</span>} */}
         </div>
 
         <div className="div-form">

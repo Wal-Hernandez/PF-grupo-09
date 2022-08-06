@@ -15,6 +15,7 @@ import { getActivities } from "../../../redux/actions/getActivities";
 import { getClean } from "../../../redux/actions/getClean";
 import { CreatePackage } from "./CreatePackage";
 import { Imagenes } from "../../../components/Imagenes/imagenes";
+import swal from 'sweetalert';
 
 function Ejemplo({ lang }) {
   const dispatch = useDispatch();
@@ -70,10 +71,9 @@ function Ejemplo({ lang }) {
     pool: true,
     wifi: true,
     gym: true,
-    urlImage: [],
-    score: [],
-    comments: [],
+    urlImage: []
   });
+  const [urlHotel, setUrlHotel] = React.useState([]);
 
   const { platforms, business, cities, hotels, activities } = useSelector(
     (state) => state.adminReducer
@@ -190,10 +190,7 @@ function Ejemplo({ lang }) {
       });
       return;
     }
-    if (event.target.name === "urlImage") {
-      setHotel({ ...hotel, [event.target.name]: [event.target.value] });
-      return;
-    }
+
     if (
       event.target.name === "gym" ||
       event.target.name === "pool" ||
@@ -207,27 +204,17 @@ function Ejemplo({ lang }) {
 
       return;
     }
-    if (event.target.name === "score") {
-      setHotel({
-        ...hotel,
-        [event.target.name]: TransformData(event.target.value),
-      });
-      return;
-    }
-    if (event.target.name === "comments") {
-      setHotel({
-        ...hotel,
-        [event.target.name]: TransformData2(event.target.value),
-      });
-      return;
-    }
-
+    
     setHotel({ ...hotel, [event.target.name]: event.target.value });
   }
 
   function handleSubmitHotel() {
     //e.preventDefault(); // para que era esto?
     dispatch(postHotel(hotel));
+    swal({
+      title: "Hotel creado con éxito",
+      icon: "success",
+    });
   }
 
   function handleDelete(activ) {
@@ -263,18 +250,6 @@ function Ejemplo({ lang }) {
     const price = register("price", {
       required: { value: true, message: "REQUERIDO" },
       min: { value: 0, message: "Precio minimo $0" },
-    });
-
-    const urlImage = register("urlImage", {
-      pattern: {
-        value: expRegUrl,
-        message: "Url no valida",
-      },
-    });
-
-    const score = register("score", {
-      required: { value: true, message: "REQUERIDO" },
-      min: { value: 0, message: "Minimo 0" },
     });
 
     return (
@@ -363,7 +338,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <Imagenes />
+          <Imagenes setUrlHotel={(url)=> setHotel({...hotel, urlImage: [...hotel.urlImage, url]})}/>
           {/* <label className="label-form"> Imagen: </label>
 
           <input
@@ -419,35 +394,6 @@ function Ejemplo({ lang }) {
               </option>
             ))}
           </select>
-        </div>
-
-        <div className="div-form">
-          <label className="label-form"> Puntaje: </label>
-
-          <input
-            type="number"
-            name="score"
-            value={hotel["score"]}
-            placeholder="Ingrese un puntaje."
-            {...score}
-            onChange={(e) => {
-              score.onChange(e);
-              handleChangeHotel(e);
-            }}
-          />
-          {errors?.score && <span>{errors?.score?.message}</span>}
-        </div>
-
-        <div className="div-form">
-          <label className="label-form"> Comentarios: </label>
-
-          <input
-            type="textarea"
-            name="comments"
-            value={hotel["comments"]}
-            placeholder="Ingrese un comentario."
-            onChange={handleChangeHotel}
-          />
         </div>
 
         <button type="submit" className="button-form">

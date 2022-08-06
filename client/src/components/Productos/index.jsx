@@ -16,8 +16,9 @@ export default function Productos(props) {
             <Link to={"/details/" + e.id}>
               <img class="card-img-top" src={e.hotel?.urlImage} alt="Card image cap" />
               <div>Nombre paquete: {e.name}</div>
-              <div>Fecha de salida: {e.start_date}</div>
-              <div>Fecha de llegada: {e.end_date}</div>
+              <div>Ciudad: {e.city.name}</div>
+              <div>Fecha de salida: {new Date(e.start_date).toLocaleString('es-ES')}</div>
+              <div>Fecha de llegada: {new Date(e.end_date).toLocaleString('es-ES')}</div>
               <div>Precio: ${e.price}</div>
               <div>Stock: {e.stock}</div>
             </Link>

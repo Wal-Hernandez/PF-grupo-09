@@ -58,8 +58,18 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 packages: action.payload,
-                adminView: action.payload,
             };
+        case GET_CITIES:
+            return {
+                ...state,
+                cities: action.payload,
+            };
+        case GET_ACTIVITIES:
+            return {
+                ...state,
+                activities: action.payload,
+            };
+   
         case GET_MAIN_PACKAGES:
             return {
                 ...state,
@@ -143,7 +153,12 @@ export default function rootReducer(state = initialState, action) {
             return{
                  ...state,
                  cart:{}
-                }     
+                } 
+        case REMOVE_DETAIL_CART:
+            return{
+                ...state,
+                cart:action.payload
+            }    
         case POST_USER:
             return{ ...state,
                 cart:action.payload

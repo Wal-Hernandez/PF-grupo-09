@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, FormGroup, Input } from "reactstrap";
 
-export const Imagenes = ({setUrlHotel}) => {
+export const Imagenes = ({setUrl}) => {
 
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ export const Imagenes = ({setUrlHotel}) => {
         )
         const file = await res.json();
         setImage(file.secure_url)
-        setUrlHotel(file.secure_url)
+        setUrl(file.secure_url)
         setLoading(false)
         console.log(file.secure_url)
     }

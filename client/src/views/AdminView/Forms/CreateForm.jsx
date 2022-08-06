@@ -677,9 +677,9 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Imagen: </label>
           <Imagenes setUrl={(url)=> setActivity({...activity, image: url})}/>
 {/* 
+          <label className="label-form"> Imagen: </label>
           <input
             type="text"
             name="image"

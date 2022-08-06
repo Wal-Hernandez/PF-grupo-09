@@ -33,7 +33,7 @@ export default function Details({userlog}) {
   const user = auth.currentUser;
   
 
-
+  
   useEffect(() => {
     dispatch(getPackageId(id));
     //dispatch(getClean());
@@ -123,6 +123,8 @@ export default function Details({userlog}) {
     myCartAll=myCartparsedfilteredNotLoggedin
   }
 
+
+
 console.log(new Date(packageDetail.start_date).toString())
 
   return (
@@ -155,7 +157,7 @@ console.log(new Date(packageDetail.start_date).toString())
         <p class="card-text">Precio: ${packageDetail.price}</p>
         <p class="card-text">Stock: {packageDetail.stock}</p>
       </div>
-      <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
+      <button disabled={cart.cartDetails?.map(d=>d.packageId===packageDetail.id).length>0} onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
       {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
                 <article>    
                     <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           

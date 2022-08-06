@@ -9,9 +9,11 @@ import { getMainPackages } from "../../redux/actions/getMainPackages";
 import { getCities } from "../../redux/actions/getCities";
 import{removeDetailCart} from "../../redux/actions/removeDetailCart"
 import {removeCart} from "../../redux/actions/removeCart"
-
-
+import{addDetailCart} from "../../redux/actions/addDetailCart"
 import {loadCart} from "../../redux/actions/loadCart"
+import {addOnePeople} from "../../redux/actions/addOnePeople"
+
+
 import { getAuth } from "firebase/auth";
 import Navbar from '../Navbar';
 
@@ -46,22 +48,35 @@ export default function ShoppingCart({userlog}) {
        }
       },[user,dispatch])
       
-       
-                
-      
-    
-     
-
-
-      
-      
-    
-
 
     const addToCart = (id) =>{
-        if(user){
-           
-          }
+      if(user){
+        console.log("ID:",id)
+        let detalles=cart[0]['cartDetails'];
+        detalles.forEach(element => {
+          console.log("foreach",element.packageId)
+        });
+        let detailpackageId=detalles.filter(d=>d.packageId==id)
+        console.log("detalle:",detalles)
+        console.log("detailpackageId:",detailpackageId)
+  
+        if(detailpackageId.length===1){
+           //Logica para aumentar una persona al detalle del paquete
+            let idCartDetail=detailpackageId[0].id;
+            console.log("idCartDetail",idCartDetail)
+            let numberPeople=detailpackageId[0].numberPeople;
+            console.log("numberPeople",numberPeople)
+            dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
+        }
+        else{
+          //logica para agregar un nuevo detalle
+          let idCart=cart[0]['id'];
+        console.log("IDCART:",idCart,id)
+        let email=cart[0]['user']['mail'];
+        dispatch(addDetailCart(idCart,id,email))
+        }
+        
+      }
           else{ console.log(id)
         dispatch({type:TYPES.ADD_TO_CART, payload:id})
     }
@@ -130,18 +145,7 @@ export default function ShoppingCart({userlog}) {
         }
       }
  
-//s
-//  let priceTotal=()=>{
-//     let total=0
-//     for (let i=0; i< myCartAll.length; i++) {
-//        for (let j=0; j< myCartAll.length; j++) {
-//            if( myCartAll[i].id===packages[j].id) {
-//                total=total+packages[j].price* myCartAll[i].quantity
-//            }
-//        }
-//    }
-//    return total;
-// } 
+
 
 let precioTotal= packages.length && myCartAll?.map(c=>{return {id:c.id, quantity:c.quantity,data:packages?.find(elemento => elemento.id===c.id)["price"]}})
 let total=0
@@ -152,6 +156,17 @@ if(precioTotal){
   console.log(total);
 }
 
+let myCartAll2=myCartAll.sort(function (a, b) {
+  if (a.id > b.id) {
+    return 1;
+  }
+  if (a.id < b.id) {
+    return -1;
+  }
+
+  return 0;
+});
+
 
     return(
         <div>
@@ -159,12 +174,19 @@ if(precioTotal){
             <div>
 
                 <h3>Carrito</h3>
-                <button onClick={clearCart}>Limpiar carrito</button>
+                <button className='btn btn-danger btn-lg' onClick={clearCart}>Limpiar carrito</button>
                 <hr></hr>
                 
                 <article>
-                    {myCartAll?.map((Cart) => 
-                     <ProductItem idDetail={Cart.idDetail} id={Cart.id} quantity={Cart.quantity} data={packages.filter(elemento => elemento.id===Cart.id)} arrayCartNotLoggedin={arrayCartNotLoggedin} delFromCart={delFromCart}/>   
+                    {myCartAll2?.map((Cart) => 
+                     <ProductItem idDetail={Cart.idDetail} 
+                                  id={Cart.id} 
+                                  quantity={Cart.quantity} 
+                                  data={packages.filter(elemento => elemento.id===Cart.id)} 
+                                  arrayCartNotLoggedin={arrayCartNotLoggedin} 
+                                  delFromCart={delFromCart}
+                                  addToCart={addToCart}/>
+                                     
                     )}
                     
                 </article>
@@ -179,7 +201,7 @@ if(precioTotal){
             <div>
             <h1>Total: ${total}.00</h1>
             </div>
-              <button className='btn btn-success'>MAURO PAGALO</button>
+              <button  className='btn btn-primary btn-lg'>MAURO PAGALO</button>
             </div> 
         </div> 
     )

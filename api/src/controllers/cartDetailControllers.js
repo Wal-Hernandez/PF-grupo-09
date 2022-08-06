@@ -137,6 +137,32 @@ const addPeoplecartDetailById= async (
      };
    }
  };
+ const deletePeoplecartDetailById= async (
+  id,numberPeople
+ ) => {
+   try {
+    
+     numberPeople=Number(numberPeople)-1;
+     console.log("NumberP:",numberPeople)
+     const a = await CartDetail.update(
+       {
+         numberPeople:numberPeople 
+       },
+       { where: { id: id } }
+     );
+     if (a[0]) {
+       return { msg: "The cartDetail has been update successfully", valor: true };
+     }
+     console.log("A:",a)
+     return { msg: "Id cartDetail not found" };
+   } catch (error) {
+     return {
+       msg: "Error updatecartDetailById(cartDetailController.js)",
+       error: error,
+     };
+   }
+ };
+ 
 
 
 module.exports = {
@@ -145,5 +171,6 @@ module.exports = {
     deleteCartDetailById,
     createCartDetail,
     getCartDetail,
-    addPeoplecartDetailById
+    addPeoplecartDetailById,
+    deletePeoplecartDetailById
 };

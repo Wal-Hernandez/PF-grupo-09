@@ -10,6 +10,10 @@ import CartItem from "../CartItem/CartItem"
 import Reviews from "../Reviews";
 import{addDetailCart} from "../../redux/actions/addDetailCart"
 import {loadCart} from "../../redux/actions/loadCart"
+import {addOnePeople} from "../../redux/actions/addOnePeople"
+
+
+
 
 export default function Details({userlog}) {
   const dispatch = useDispatch();
@@ -22,29 +26,55 @@ export default function Details({userlog}) {
       <div>{e.name}</div>
     )
   })
+  
+    
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
+
 
   useEffect(() => {
     dispatch(getPackageId(id));
-    dispatch(getClean());
-  }, [dispatch, id]);
-
-  console.log(packageDetail);
+    //dispatch(getClean());
+    if(user?.email)
+    dispatch(loadCart(user?.email))
+  }, [dispatch, id,user]);
 
   let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
   let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
   console.log(arrayCartLoggedin)
   const products = useSelector ((state) => state.products)
 
-  const auth = getAuth();
-  const user = auth.currentUser;
+ 
 
   const addToCart = (id) =>{
     if(user){
-      let idCart=cart[0]['id'];
+      console.log("ID:",id)
+      let detalles=cart[0]['cartDetails'];
+      detalles.forEach(element => {
+        console.log("foreach",element.packageId)
+      });
+      let detailpackageId=detalles.filter(d=>d.packageId==id)
+      console.log("detalle:",detalles)
+      console.log("detailpackageId:",detailpackageId)
+
+      if(detailpackageId.length===1){
+         //Logica para aumentar una persona al detalle del paquete
+          let idCartDetail=detailpackageId[0].id;
+          console.log("idCartDetail",idCartDetail)
+          let numberPeople=detailpackageId[0].numberPeople;
+          console.log("numberPeople",numberPeople)
+          dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
+      }
+      else{
+        //logica para agregar un nuevo detalle
+        let idCart=cart[0]['id'];
       console.log("IDCART:",idCart,id)
       let email=cart[0]['user']['mail'];
       dispatch(addDetailCart(idCart,id,email))
-      //dispatch(loadCart(email))
+      }
+      
     }
     else{ console.log(id)
       dispatch({type:TYPES.ADD_TO_CART, payload:id})
@@ -93,7 +123,7 @@ export default function Details({userlog}) {
     myCartAll=myCartparsedfilteredNotLoggedin
   }
 
-
+console.log(new Date(packageDetail.start_date).toString())
 
   return (
     <div class="card">
@@ -108,10 +138,11 @@ export default function Details({userlog}) {
           />
         </div>
         <h5 class="card-title">Nombre: {packageDetail.name}</h5>
+        <h6> Ciudad: {packageDetail.city?.name} </h6>
       </div>
       <div>
-        <p class="card-text">Fecha salida: {packageDetail.start_date}</p>
-        <p class="card-text">Fecha llegada: {packageDetail.end_date}</p>
+        <p class="card-text">Fecha salida: {new Date(packageDetail.start_date).toLocaleString('es-ES')}</p>
+        <p class="card-text">Fecha llegada: {new Date(packageDetail.end_date).toLocaleString('es-ES')}</p>
         <p class="card-text">Resumen de lo que incluye: </p>
       </div>
       <div>
@@ -122,6 +153,7 @@ export default function Details({userlog}) {
         <p class="card-text">Hotel: {packageDetail.hotel?.name}</p>
         <p class="card-text">Actividad: {packageActivity}</p>
         <p class="card-text">Precio: ${packageDetail.price}</p>
+        <p class="card-text">Stock: {packageDetail.stock}</p>
       </div>
       <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
       {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(

@@ -28,7 +28,9 @@ import {
     POST_USER,
     REMOVE_DETAIL_CART,
     ADD_DETAIL_CART,
-    REMOVE_CART
+    REMOVE_CART,
+    ADD_ONE_PEOPLE,
+    DELETE_ONE_PEOPLE
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"
 import { getAuth } from "firebase/auth";
@@ -45,7 +47,7 @@ const initialState = {
     business: [],
     platforms: [],
     activities: [],
-    cart:{},
+    cart:[],
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[]
 };
@@ -57,8 +59,18 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 packages: action.payload,
-                adminView: action.payload,
             };
+        case GET_CITIES:
+            return {
+                ...state,
+                cities: action.payload,
+            };
+        case GET_ACTIVITIES:
+            return {
+                ...state,
+                activities: action.payload,
+            };
+   
         case GET_MAIN_PACKAGES:
             return {
                 ...state,
@@ -132,12 +144,27 @@ export default function rootReducer(state = initialState, action) {
                         ...state,
                         cart:action.payload
                     }
+       case ADD_ONE_PEOPLE:
+        return {
+            ...state,
+            cart:action.payload
+        }
+        case DELETE_ONE_PEOPLE:
+            return{
+            ...state,
+            cart:action.payload
+        }
                
         case  CLEAR_CART_LOGOUT:
             return{
                  ...state,
                  cart:{}
-                }     
+                } 
+        case REMOVE_DETAIL_CART:
+            return{
+                ...state,
+                cart:action.payload
+            }    
         case POST_USER:
             return{ ...state,
                 cart:action.payload

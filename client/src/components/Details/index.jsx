@@ -106,7 +106,16 @@ export default function Details({userlog}) {
             width="300px"
             height="300px"
           />
-        </div>
+        </div>  <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
+      {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
+                <article>    
+                    <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           
+                </article>) : null 
+      }
+
+      <div>
+        {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
+      </div>
         <h5 class="card-title">Nombre: {packageDetail.name}</h5>
       </div>
       <div>
@@ -123,16 +132,7 @@ export default function Details({userlog}) {
         <p class="card-text">Actividad: {packageActivity}</p>
         <p class="card-text">Precio: ${packageDetail.price}</p>
       </div>
-      <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
-      {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
-                <article>    
-                    <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           
-                </article>) : null 
-      }
-
-      <div>
-        {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
-      </div>
+    
     </div>
 
   );

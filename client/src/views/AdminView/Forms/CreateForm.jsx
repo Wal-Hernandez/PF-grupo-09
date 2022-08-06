@@ -229,6 +229,7 @@ function Ejemplo({ lang }) {
   function handleSubmitHotel() {
     //e.preventDefault(); // para que era esto?
     dispatch(postHotel(hotel));
+    console.log(hotel)
     swal({
       title: "Hotel creado con éxito",
       icon: "success",
@@ -737,7 +738,8 @@ function Ejemplo({ lang }) {
 
         <div className="div-form">
           <label className="label-form"> Imagen: </label>
-
+          <Imagenes />
+          {/*   
           <input
             type="text"
             name="image"
@@ -748,7 +750,7 @@ function Ejemplo({ lang }) {
               image.onChange(e);
               handleChangeActivity(e);
             }}
-          />
+          /> */}
           {errors?.image && <span>{errors?.image?.message}</span>}
         </div>
 

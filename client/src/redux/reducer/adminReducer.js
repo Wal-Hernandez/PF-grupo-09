@@ -23,7 +23,8 @@ import {
     FILTER_BY_DATE,
     CLEAR_FILTERS,
     LOAD_CART,
-    POST_USER
+    POST_USER,
+    GET_USERS
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"
 import { getAuth } from "firebase/auth";
@@ -41,6 +42,7 @@ const initialState = {
     platforms: [],
     activities: [],
     cart:{},
+    users:[],
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[]
 };
@@ -84,6 +86,12 @@ export default function adminReducer(state = initialState, action) {
                 adminView: action.payload,
                 activities: action.payload,
             };
+        case GET_USERS:
+            return {
+                ...state,
+                adminView: action.payload,
+                users: action.payload,
+            }
    
         case GET_PACKAGE_ID:
             return {

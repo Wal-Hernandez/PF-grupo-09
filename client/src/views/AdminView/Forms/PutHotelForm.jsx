@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { putHotel } from "../../../redux/actions/putHotel";
 import { getCities } from "../../../redux/actions/getCities";
 import { getClean } from "../../../redux/actions/getClean";
+import swal from "sweetalert";
 export const PutHotelForm = ({ pack }) => {
   const dispatch = useDispatch();
   const { cities } = useSelector((state) => state.adminReducer);
@@ -80,6 +81,10 @@ export const PutHotelForm = ({ pack }) => {
     //e.preventDefault(); // para que era esto?
     dispatch(putHotel(pack.id, hotel));
     //e.target.reset()
+    swal({
+      title: "Hotel editado con éxito",
+      icon: "success",
+    });
   }
 
   const name = register("name", {

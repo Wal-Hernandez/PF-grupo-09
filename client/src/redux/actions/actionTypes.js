@@ -34,6 +34,16 @@ export const POST_USER = "POST_USER";
 export const LOAD_CART = "LOAD_CART";
 export const LOAD_CART_LOGIN = "LOAD_CART_LOGIN";
 export const CLEAR_CART_LOGOUT = "CLEAR_CART_LOGOUT";
+export const REMOVE_DETAIL_CART = "REMOVE_DETAIL_CART";
+export const ADD_DETAIL_CART = "ADD_DETAIL_CART";
+export const REMOVE_CART = "REMOVE_CART";
+export const ADD_ONE_PEOPLE = "ADD_ONE_PEOPLE";
+export const DELETE_ONE_PEOPLE = "DELETE_ONE_PEOPLE";
+
+
+
+export const PRUEBA = "PRUEBA";
+
 
 
 

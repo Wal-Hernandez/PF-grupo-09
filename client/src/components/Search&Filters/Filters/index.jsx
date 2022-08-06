@@ -1,12 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterByDestiny } from '../../../redux/actions/filterByDestiny';
 import { sortByPrice } from '../../../redux/actions/sortByPrice';
 import { sortByStock } from '../../../redux/actions/sortByStock';
 
 function Filters(props) {
 
-    const {cities} = useSelector(state => state.rootReducer);
     const dispatch = useDispatch();
 
     function handleCities(e){
@@ -43,21 +42,21 @@ function Filters(props) {
 
 
   return (
-    <div>
-        <select defaultValue="" onChange={handleSortByPrice}>
+    <div className='select-container'>
+        <select className='form-select' defaultValue="" onChange={handleSortByPrice}>
             <option value="" disabled>Ordenar por precio</option>
             <option label={'Menor precio'} value="asc"></option>
             <option label={'Mayor precio'} value="desc"></option>
         </select>
-        <select defaultValue="" onChange={handleSortByStock}>
+        <select className="form-select" defaultValue="" onChange={handleSortByStock}>
             <option value="" disabled>Ordenar por stock</option>
             <option label={'Menor stock'} value="asc"></option>
             <option label={'Mayor stock'} value="desc"></option>
         </select>
-        <select defaultValue="" onChange={handleCities}>
+        <select className="form-select" defaultValue="" onChange={handleCities}>
             <option value="" disabled>Filtrar por ciudad de destino</option>
             <option value="">Mostrar todo</option>
-            {cities.map((e, index) => (
+            {props.cities?.map((e, index) => (
                 <option key={index}>{e.name}</option>
             ))}
         </select>

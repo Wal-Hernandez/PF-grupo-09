@@ -4,8 +4,12 @@ import { getPackageId } from "../../redux/actions/getPackageId";
 import { getClean } from "../../redux/actions/getClean";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAuth } from "firebase/auth";
+import { addOnePeople } from '../../redux/actions/addOnePeople';
+import { deleteOnePeople } from '../../redux/actions/deleteOnePeople';
 
-export default function ProductItem({id, quantity, data, arrayCartNotLoggedin}) {
+
+
+export default function ProductItem({id, quantity, data, arrayCartNotLoggedin,delFromCart,idDetail,addToCart}) {
     const dispatch = useDispatch();
     console.log(id)
     data=data[0]
@@ -41,13 +45,49 @@ export default function ProductItem({id, quantity, data, arrayCartNotLoggedin}) 
         } 
         myCartAll=myCartparsedfilteredNotLoggedin
       }
+ 
 
+      const addOne=(idCartDetail,numberPeople)=>{
+        
+        if(user)
+     {
+       dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
+     }
+        
+      }
+      const deleteOne=(idCartDetail,numberPeople)=>{
+        
+        if(user){
+          dispatch(deleteOnePeople(idCartDetail,numberPeople,user.email))
+        }
+        else{
+
+        }
+       
+        
+      }
 
 
     return(
         <div>{data ? <div>
         <h1>{data.name}</h1>
-        <p>{quantity} Personas x ${data.price}.00 = ${quantity * data.price}.00</p>
+        <p>
+           <button onClick={()=>deleteOne(idDetail,quantity)} 
+                   disabled={quantity===1} 
+                   className='btn btn-success'>
+                    -
+           </button>
+           {quantity} Personas
+           <button onClick={()=>addOne(idDetail,quantity)}
+                   disabled={quantity>=data.stock} 
+                   className='btn btn-success'>
+                    +
+           </button> 
+          Precio Unitario x ${data.price}.00 = ${quantity * data.price}.00
+        </p>
+            <button className='btn btn-warning' onClick={()=>delFromCart(idDetail)}>
+               Eliminar
+           </button>
         </div>
         : null }
         <hr></hr>

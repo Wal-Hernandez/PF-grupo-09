@@ -4,8 +4,9 @@ import { putActivity } from "../../../redux/actions/putActivity";
 import { useForm } from "react-hook-form";
 import { getCities } from "../../../redux/actions/getCities";
 import { getClean } from "../../../redux/actions/getClean";
-export const PutActivityForm = ({ pack}) => {
-  
+import { Imagenes } from "../../../components/Imagenes/imagenes";
+export const PutActivityForm = ({ pack }) => {
+
   const { adminView } = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
   const {
@@ -79,8 +80,9 @@ export const PutActivityForm = ({ pack}) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Imagen: </label>
-          <input
+          <Imagenes setUrl={(url)=> setActivity({...activity, image: url})}/>
+          {/* <label className="label-form"> Imagen: </label> */}
+          {/* <input
             type="text"
             name="image"
             value={activity["image"]}
@@ -91,7 +93,7 @@ export const PutActivityForm = ({ pack}) => {
               handleChange(e);
             }}
           />
-          {errors?.image && <span>{errors?.image?.message}</span>}
+          {errors?.image && <span>{errors?.image?.message}</span>} */}
         </div>
 
         <div className="div-form">

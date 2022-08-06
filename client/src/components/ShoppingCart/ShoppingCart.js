@@ -111,7 +111,7 @@ export default function ShoppingCart({userlog}) {
     if (user) {
         if(localStorage.getItem("myCartLoggedin")){
          //logica para pasar del cart al myCartAll
-        
+        //hola
 
       } 
         if(cart.length!==0){

@@ -1,4 +1,4 @@
-a {
+/* a {
     margin: 1%;
     text-decoration: none;
 }
@@ -52,4 +52,70 @@ a {
         height: 146px;
         margin: 0;
 
+} */
+.navbar{
+    background-color:#004AAD;
+    border-bottom: 3px solid #062b5b;
+
+}
+.logo-buspack{
+    width: 120px;
+    height: 120px;
+
+}
+.btn-sm a{
+    text-align: center;
+    background-color: #02020200;
+    border: none;
+    color: rgb(251, 251, 251);
+    transition: transform .2s ease-in-out;
+    font-weight: 600;
+    border-radius: 3px;
+    font-size: 18px;
+    margin-right: 20px;
+}
+.btn-sm:hover a{
+    background-color:#FFDE59;
+    color: #004AAD;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+.btn-sm1 a{
+    text-align: center;
+    background-color: #02020200;
+    border: none;
+    color: rgb(251, 251, 251);
+    transition: transform .2s ease-in-out;
+    font-weight: 600;
+    border-radius: 3px;
+    font-size: 18px;
+  
+
+}
+.btn-sm1 a:hover {
+    background-color:#FFDE59;
+    color: #004AAD;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+.userlog-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userlog-container p {
+   
+    justify-content: center;
+    color: white;
+}
+.navbar-text li{
+ margin-left: 30px;
+ margin-right: 30px;
+ margin-top: 10px;
+}
+.carrito{
+    color: antiquewhite;
+}
+.carrito:hover{
+    color: #FFDE59;
 }

@@ -204,13 +204,14 @@ function Ejemplo({ lang }) {
 
       return;
     }
-    
+
     setHotel({ ...hotel, [event.target.name]: event.target.value });
   }
 
   function handleSubmitHotel() {
     //e.preventDefault(); // para que era esto?
     dispatch(postHotel(hotel));
+    console.log(hotel)
     swal({
       title: "Hotel creado con éxito",
       icon: "success",
@@ -338,7 +339,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <Imagenes setUrl={(url)=> setHotel({...hotel, urlImage: [...hotel.urlImage, url]})}/>
+          <Imagenes setUrl={(url) => setHotel({ ...hotel, urlImage: [...hotel.urlImage, url] })} />
           {/* <label className="label-form"> Imagen: </label>
 
           <input
@@ -677,21 +678,10 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <Imagenes setUrl={(url)=> setActivity({...activity, image: url})}/>
-{/* 
-          <label className="label-form"> Imagen: </label>
-          <input
-            type="text"
-            name="image"
-            value={activity["image"]}
-            placeholder="Ingrese una Url."
-            {...image}
-            onChange={(e) => {
-              image.onChange(e);
-              handleChangeActivity(e);
-            }}
-          />
-          {errors?.image && <span>{errors?.image?.message}</span>} */}
+          <Imagenes setUrl={(url) => setActivity({ ...activity, image: url })} />
+
+          {errors?.image && <span>{errors?.image?.message}</span>}
+
         </div>
 
         <div className="div-form">

@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-
 import { putHotel } from "../../../redux/actions/putHotel";
 import { getCities } from "../../../redux/actions/getCities";
 import { getClean } from "../../../redux/actions/getClean";
 import { Imagenes } from "../../../components/Imagenes/imagenes";
+import swal from "sweetalert";
+
 export const PutHotelForm = ({ pack }) => {
   const dispatch = useDispatch();
   const { cities } = useSelector((state) => state.adminReducer);
@@ -69,6 +70,10 @@ export const PutHotelForm = ({ pack }) => {
     //e.preventDefault(); // para que era esto?
     dispatch(putHotel(pack.id, hotel));
     //e.target.reset()
+    swal({
+      title: "Hotel editado con éxito",
+      icon: "success",
+    });
   }
 
   const name = register("name", {
@@ -177,7 +182,7 @@ export const PutHotelForm = ({ pack }) => {
           {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
         <div className="div-form">
-        <Imagenes setUrl={(url)=> setHotel({...hotel, urlImage: [url]})}/>
+          <Imagenes setUrl={(url) => setHotel({ ...hotel, urlImage: [url] })} />
           {/* <label className="label-form"> Imagen: </label>
           <input
             type="text"

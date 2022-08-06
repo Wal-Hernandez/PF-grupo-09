@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./adminView.css";
 import { getPackages } from "../../redux/actions/getPackages";
@@ -14,6 +14,7 @@ import { useAuth } from "../../context/context";
 import Logo from "../../images/Buspack.png"
 import { EditForm } from "./Forms/EditForm";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 function Admin() {
   const [model, setModel] = React.useState("");
@@ -39,17 +40,33 @@ function Admin() {
     setEdit((edit) => false);
     setModel(e.target.name);
     dispatchByName(e.target.name)
-    setPagC(()=>1)
+    setPagC(() => 1)
   }
 
-  async function handleDelete (e) {
+  async function handleDelete(e) {
     console.log(e.target.value)
-    let resp = window.confirm("Confirmar acción.");
-    if (resp){  dispatch(deleteModel(e.target.value, model));
-    } 
-    dispatchByName(model);
+    swal({
+      title: "Confirmar accion",
+      text: "Una vez eliminado, no se podrá recuperar este elemento",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          dispatch(deleteModel(e.target.value, model));
+          dispatchByName(model);
+          swal("Elemento borrado con éxito", {
+            icon: "success",
+          });
+        } else {
+          swal("El elemento no ha sido borrado", {
+            icon: "success",
+          });
+        }
+      });
   }
-let setCreate =() =>{ setAdd(add => !add) }
+  let setCreate = () => { setAdd(add => !add) }
 
   const { logout } = useAuth();
 
@@ -67,133 +84,134 @@ let setCreate =() =>{ setAdd(add => !add) }
     setEdit((edit) => !edit);
 
   };
-  
+
   let handleReset = (e) => {
     dispatchByName(e.target.name)
     setAdd(false)
     setPack(false)
     setEdit(false);
   };
-console.log(adminView)
-//Paginado Normal
-const [pageCurrent,setPagC] = React.useState(1);
+  console.log(adminView)
+  //Paginado Normal
+  const [pageCurrent, setPagC] = React.useState(1);
 
-let itemsPerPage=5;
-function setPagination(event) {
-  setPagC(
-    pageCurrent => Number(event.target.id)
-  )
+  let itemsPerPage = 5;
+  function setPagination(event) {
+    setPagC(
+      pageCurrent => Number(event.target.id)
+    )
 
-};
-let indiceFinal = pageCurrent * itemsPerPage;
+  };
+  let indiceFinal = pageCurrent * itemsPerPage;
   let indiceInicial = indiceFinal - itemsPerPage;
 
   let pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(adminView.length/ itemsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(adminView.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
   let numerosRenderizados = pageNumbers.map(number => {
-   return (
-     <button
-       key={number}
-       id={number}
-       onClick={setPagination}
-       style={number === pageCurrent?{backgroundColor:'#FFDE59'}:{backgroundColor:'#00000000'}}
-       className="btn-pag"
-     >
-       {number}
-     </button>
-   );
- });
+    return (
+      <button
+        key={number}
+        id={number}
+        onClick={setPagination}
+        style={number === pageCurrent ? { backgroundColor: '#FFDE59' } : { backgroundColor: '#00000000' }}
+        className="btn-pag"
+      >
+        {number}
+      </button>
+    );
+  });
 
-//Prev y Next
-const[paginado, setPaginado] = React.useState(0);
+  //Prev y Next
+  const [paginado, setPaginado] = React.useState(0);
 
-let pageLimit =10;/// porque si, vamos de 10 en 10 
-//Definamos dos funciones mas, prev y next
-function prevPage(){
-  setPagC(
-    pageCurrent =>{
-      if(pageCurrent>1){
-        return pageCurrent-1;
-      } return 1;
+  let pageLimit = 10;/// porque si, vamos de 10 en 10 
+  //Definamos dos funciones mas, prev y next
+  function prevPage() {
+    setPagC(
+      pageCurrent => {
+        if (pageCurrent > 1) {
+          return pageCurrent - 1;
+        } return 1;
 
+      }
+    );
+    setPaginado(paginado => {
+      if (pageCurrent > 1) {
+        return Math.floor((pageCurrent - 2) / pageLimit)
+      } return 0;
     }
-  );
-  setPaginado( paginado =>{if (pageCurrent>1){
- return Math.floor((pageCurrent-2) / pageLimit)
-  } return 0;
- }   
- )
-  
-};
-function nextPage(){
-  setPagC(
-    pageCurrent =>{if(pageCurrent<pageNumbers.length){
-      return pageCurrent+1
-    }
-      return pageNumbers.length; 
-     }
-  )
-  setPaginado( paginado => Math.floor((pageCurrent) / pageLimit))
-};
-let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(pageLimit*(paginado+1)));
+    )
+
+  };
+  function nextPage() {
+    setPagC(
+      pageCurrent => {
+        if (pageCurrent < pageNumbers.length) {
+          return pageCurrent + 1
+        }
+        return pageNumbers.length;
+      }
+    )
+    setPaginado(paginado => Math.floor((pageCurrent) / pageLimit))
+  };
+  let sliceOfnumerosRederizados = numerosRenderizados.slice((pageLimit * paginado), (pageLimit * (paginado + 1)));
 
 
 
-  console.log("hola",adminView)
+  console.log("hola", adminView)
   useEffect(() => {
     return () => {
-        console.log(" ")
     }
-}, [])
+  }, [])
   return (
     <>
 
       <div className="adminViewMainContainer">
         <div className="adminViewContainerRoutes">
-       <div className="logout">
-       <Link to="/">
-       <img src={Logo}alt="buspack" />
-        </Link>
-      
-        <button
-          className="btn-logout"
-          onClick={handleLogout}>
-          Logout
-        </button>
-        </div>
-        <div className="btns">
-          <div className="btn-pack btnn">
+          <div className="logout">
+            <Link to="/">
+              <img src={Logo} alt="buspack" />
+            </Link>
+
+            <button
+              className="btn-logout"
+              onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+          <div className="btns">
+            <div className="btn-pack btnn">
               <button name="packages" onClick={handleSelect}>
                 Paquetes
               </button>
-          </div  >
-          <div className="btn-hotels btnn">        
+            </div  >
+            <div className="btn-hotels btnn">
               <button name="hotels" onClick={handleSelect}>
                 Hoteles
               </button>{" "}
-          </div>
-          <div className="btn-business btnn">
+            </div>
+            <div className="btn-business btnn">
               <button name="business" onClick={handleSelect}>
                 Business
               </button>
-          </div>
-          <div className="btn-activities btnn">
+            </div>
+            <div className="btn-activities btnn">
               <button name="activities" onClick={handleSelect}>
                 Activites
               </button>
-          </div>
-          <div className="btn-cites btnn">
+            </div>
+            <div className="btn-cites btnn">
               <button name="cities" onClick={handleSelect}>
                 City
               </button>
-          </div>
-          <div className="btn-plattforms btnn">
+            </div>
+            <div className="btn-plattforms btnn">
               <button name="plattforms" onClick={handleSelect}>
                 Platforms
-              </button>     
-          </div>
+              </button>
+            </div>
           </div>
           <hr/>
           <div>Stadistics</div>
@@ -209,71 +227,71 @@ let sliceOfnumerosRederizados= numerosRenderizados.slice((pageLimit*paginado),(p
             <div className="btnAdd">
               <button onClick={setCreate}>
                 <span class="material-symbols-outlined">
-                add
+                  add
                 </span>
               </button>
             </div>
-            {adminView.length && !add && !edit? <p className="pag-info">{adminView.length} results</p>: ''}
+            {adminView.length && !add && !edit ? <p className="pag-info">{adminView.length} results</p> : ''}
           </div>
 
           <div className="adminPanelContainer">
-            {}
-            {add 
-            ? (
-              <div>
-                {" "}
-                <CreateForm word={model} />
-                <button className="btn btn-warning" name={model} onClick={handleReset}>Volver</button>
-              </div>
-            ) 
-            : edit 
+            { }
+            {add
               ? (
                 <div>
-                {" "}
-                <EditForm word={model} pack={pack}/>
-                <button className="btn btn-warning" name={model} onClick={handleReset}>Volver</button>
-              </div>
+                  {" "}
+                  <CreateForm word={model} />
+                  <button className="btn btn-warning" name={model} onClick={handleReset}>Volver</button>
+                </div>
+              )
+              : edit
+                ? (
+                  <div>
+                    {" "}
+                    <EditForm word={model} pack={pack} />
+                    <button className="btn btn-warning" name={model} onClick={handleReset}>Volver</button>
+                  </div>
                 )
-              :(adminView.length 
-                 ? (
-                  adminView.map((packs) => {
-                       return (
-                          
+                : (adminView.length
+                  ? (
+                    adminView.map((packs) => {
+                      return (
+
                         <div className="adminPanelColumn" key={packs.id}>
-                         
-                         <div className="text">
-                           <h1>{packs.name || packs.patent || packs.terminal}</h1>
+
+                          <div className="text">
+                            <h1>{packs.name || packs.patent || packs.terminal}</h1>
                           </div>
                           <div className="btns-admin">
-                          <div className="btnEdit">
-                            <button onClick={() => {setUpdate(packs)}}>
-                              <span class="material-symbols-outlined">
-                              edit
-                              </span>
-                            </button>
-                          </div>
-                          <div className="btnDel">
-                           
-                            <span  class="material-symbols-outlined">
-                            <button value={packs.id} onClick={handleDelete} >
-                              delete
+                            <div className="btnEdit">
+                              <button onClick={() => { setUpdate(packs) }}>
+                                <span class="material-symbols-outlined">
+                                  edit
+                                </span>
                               </button>
-                            </span>
-                            
+                            </div>
+                            <div className="btnDel">
+
+                              <span class="material-symbols-outlined">
+                                <button value={packs.id} onClick={handleDelete} >
+                                  delete
+                                </button>
+                              </span>
+
+                            </div>
                           </div>
-                          </div>
-                       </div>
-                  
-                        );
-                      }).slice(indiceInicial, indiceFinal)
-                      
-                    ) 
+                        </div>
+
+                      );
+                    }).slice(indiceInicial, indiceFinal)
+
+                  )
                   : (
-              <div>WELCOME TO THE ADMIN PANEL </div>
-                ))}
-            {adminView.length && !add && !edit? <div className="pag">{pageCurrent>1?<span onClick={prevPage} className='flecha izquierda'></span>:''} 
-            {sliceOfnumerosRederizados} 
-            {pageCurrent<pageNumbers.length?<span onClick={nextPage} className='flecha derecha'></span>:''}</div>: ''}
+                    <div>WELCOME TO THE ADMIN PANEL </div>
+                  ))}
+            {adminView.length && !add && !edit ? <div className="pag">{pageCurrent > 1 ? <span onClick={prevPage} className='flecha izquierda'></span> : ''}
+              {sliceOfnumerosRederizados}
+              {pageCurrent < pageNumbers.length ? <span onClick={nextPage} className='flecha derecha'></span> : ''}</div> : ''}
           </div>
         </div>
       </div>

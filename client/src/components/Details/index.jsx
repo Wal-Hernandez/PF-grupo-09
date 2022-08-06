@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getPackageId } from "../../redux/actions/getPackageId";
 import { getClean } from "../../redux/actions/getClean";
 import "./details.css";
@@ -123,8 +123,21 @@ export default function Details({userlog}) {
     myCartAll=myCartparsedfilteredNotLoggedin
   }
 
+  
 
 
+
+let paqueteCargado=false;
+ if(cart[0]){
+  if(cart[0].cartDetails.length>0){
+    let res=cart[0].cartDetails.filter(d=>d.packageId==packageDetail.id)
+    console.log("PAQUETECARGADO",res)
+    if(res.length>0)
+    {paqueteCargado=true}
+  }
+ }
+
+console.log("CART:",cart)
 console.log(new Date(packageDetail.start_date).toString())
 
   return (
@@ -157,7 +170,7 @@ console.log(new Date(packageDetail.start_date).toString())
         <p class="card-text">Precio: ${packageDetail.price}</p>
         <p class="card-text">Stock: {packageDetail.stock}</p>
       </div>
-      <button disabled={cart.cartDetails?.map(d=>d.packageId===packageDetail.id).length>0} onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
+      {paqueteCargado?<Link to="/shoppingcart"><button className="btn btn-warning">Ver en el Carrito</button></Link>:<button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button>} 
       {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
                 <article>    
                     <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           

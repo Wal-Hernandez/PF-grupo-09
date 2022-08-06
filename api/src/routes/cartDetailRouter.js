@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const {
-  createCartDetail,deleteCartDetailById,getCartDetail,getCartDetails,updatecartDetailById
+  createCartDetail,deleteCartDetailById,getCartDetail,getCartDetails,updatecartDetailById,addPeoplecartDetailById
 } = require("../controllers/cartDetailControllers");
 const router = Router();
 
@@ -53,6 +53,20 @@ router.delete("/:id", async (req, res) => {
     return res.status(400).json(error);
   }
 });
+router.put("/add", async (req, res) => {
+  const { id ,numberPeople} = req.body;
+
+  try {
+    const addPeople = await addPeoplecartDetailById(
+      id,
+      numberPeople
+    );
+    return res.status(200).json(addPeople);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const {
@@ -68,5 +82,6 @@ router.put("/:id", async (req, res) => {
     return res.status(400).json(error);
   }
 });
+
 
 module.exports = router;

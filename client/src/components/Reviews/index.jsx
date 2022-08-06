@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ShowReviews from "./ShowReviews";
 import ReactStars from 'react-rating-stars-component'
-//import './reviews.css'
+import './reviews.css'
 
 function Reviews({hotel}) {
 
@@ -23,31 +23,15 @@ function Reviews({hotel}) {
 
   return (
     <div className="review-container">
-      <div>
-        <button onClick={() => setshowReviews(!showReviews)}>
-          Mostrar valoraciones del hotel
-        </button>
-        {showReviews && <ShowReviews hotel={hotel} />}
-      </div>
-      <div>
-        <form className="review-form">
-          <label>
-            {" "}
-            Título:
-              <input type="text" />
-          </label>
-          <label>
-            {" "}
-            Comentario:
-              <textarea />
-          </label>
-          <label>
-            {" "}
-            Calificación:
-            <ReactStars size={30} classNames="reactStars" />
-          </label>
-        </form>
-      </div>
+      {hotel?.reviews.length ? (
+        <div>
+          <button onClick={() => setshowReviews(!showReviews)}>
+            Mostrar valoraciones del hotel
+          </button>
+          {showReviews && <ShowReviews hotel={hotel} />}
+        </div>
+      ) : null}
+      <ReviewsForm hotel={hotel}/>
     </div>
   );
 }

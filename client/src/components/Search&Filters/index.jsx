@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Filters from "./Filters";
 import Search from "./Search";
 
@@ -7,7 +8,8 @@ function SearchAndFilters({ setCurrentPage }) {
   const [stockOrder, setStockOrder] = useState("");
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+
+  const {cities, activities} = useSelector(state => state.rootReducer);
 
   return (
     <div className="container w-75 mt-5">
@@ -16,8 +18,8 @@ function SearchAndFilters({ setCurrentPage }) {
         setCurrentPage={setCurrentPage}
         startDate={startDate}
         setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
+        cities={cities}
+        activities={activities}
       />
       </div>
        <div className="row">
@@ -27,10 +29,10 @@ function SearchAndFilters({ setCurrentPage }) {
         stock={stockOrder}
         city={city}
         startDate={startDate}
-        endDate={endDate}
         setPrice={setPriceOrder}
         setStock={setStockOrder}
         setCity={setCity}
+        cities={cities}
       />
       </div>
     </div>

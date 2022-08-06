@@ -28,7 +28,8 @@ import {
     POST_USER,
     REMOVE_DETAIL_CART,
     ADD_DETAIL_CART,
-    REMOVE_CART
+    REMOVE_CART,
+    ADD_ONE_PEOPLE
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"
 import { getAuth } from "firebase/auth";
@@ -132,6 +133,11 @@ export default function rootReducer(state = initialState, action) {
                         ...state,
                         cart:action.payload
                     }
+       case ADD_ONE_PEOPLE:
+        return {
+            ...state,
+            cart:action.payload
+        }
                
         case  CLEAR_CART_LOGOUT:
             return{

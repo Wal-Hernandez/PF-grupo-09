@@ -91,6 +91,7 @@ export default function ShoppingCart({ userlog }) {
       }
     }
   };
+
   const clearCart = () => {
     if (user) {
       dispatch(removeCart(cart[0]["id"], userlog.email));

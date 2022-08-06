@@ -10,6 +10,8 @@ import CartItem from "../CartItem/CartItem"
 import Reviews from "../Reviews";
 import{addDetailCart} from "../../redux/actions/addDetailCart"
 import {loadCart} from "../../redux/actions/loadCart"
+import {addOnePeople} from "../../redux/actions/addOnePeople"
+
 
 
 
@@ -48,11 +50,31 @@ export default function Details({userlog}) {
 
   const addToCart = (id) =>{
     if(user){
-      let idCart=cart[0]['id'];
+      console.log("ID:",id)
+      let detalles=cart[0]['cartDetails'];
+      detalles.forEach(element => {
+        console.log("foreach",element.packageId)
+      });
+      let detailpackageId=detalles.filter(d=>d.packageId==id)
+      console.log("detalle:",detalles)
+      console.log("detailpackageId:",detailpackageId)
+
+      if(detailpackageId.length===1){
+         //Logica para aumentar una persona al detalle del paquete
+          let idCartDetail=detailpackageId[0].id;
+          console.log("idCartDetail",idCartDetail)
+          let numberPeople=detailpackageId[0].numberPeople;
+          console.log("numberPeople",numberPeople)
+          dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
+      }
+      else{
+        //logica para agregar un nuevo detalle
+        let idCart=cart[0]['id'];
       console.log("IDCART:",idCart,id)
       let email=cart[0]['user']['mail'];
       dispatch(addDetailCart(idCart,id,email))
-      //dispatch(loadCart(email))
+      }
+      
     }
     else{ console.log(id)
       dispatch({type:TYPES.ADD_TO_CART, payload:id})
@@ -131,6 +153,7 @@ console.log(new Date(packageDetail.start_date).toString())
         <p class="card-text">Hotel: {packageDetail.hotel?.name}</p>
         <p class="card-text">Actividad: {packageActivity}</p>
         <p class="card-text">Precio: ${packageDetail.price}</p>
+        <p class="card-text">Stock: {packageDetail.stock}</p>
       </div>
       <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
       {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(

@@ -16,7 +16,7 @@ import Pasarela from "../Pasarela";
 
 import { getAuth } from "firebase/auth";
 import Navbar from "../Navbar";
-
+import swal from 'sweetalert'
 export default function ShoppingCart({ userlog }) {
   const [pulsado, setPulsado] = useState(false);
   let arrayCartNotLoggedin = useSelector(
@@ -95,7 +95,10 @@ export default function ShoppingCart({ userlog }) {
   const clearCart = () => {
     if (user) {
       dispatch(removeCart(cart[0]["id"], userlog.email));
-
+       swal({
+     title:'Tu carrito va a ser autodestruido',
+     icon: 'success'
+     })
       //una vez borrado todo los detalles recargar el carrito
       //dispatch(loadCart(userlog.email))
     } else {

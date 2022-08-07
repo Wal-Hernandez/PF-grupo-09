@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate} from 'react-router-dom'
 import './navbar.css'
 import { useSelector } from 'react-redux';
 import { useAuth } from "../../context/context";
@@ -12,7 +12,7 @@ function Navbar({userlog}) {
   const cart = useSelector((state) => state.rootReducer.cart);
   // console.log("cartnav", cart.map((e)=>{e.cartDetails}))
 
-  const totalCart = cart.map((e)=>{return e.cartDetails})
+  const totalCart = cart && cart?.map((e)=>{return e.cartDetails})
   console.log(totalCart)
   let total = 0;
   if(cart.length !== 0){

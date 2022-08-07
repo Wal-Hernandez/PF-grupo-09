@@ -87,6 +87,12 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 detail: action.payload,
             };
+            case GET_CITIES:
+                return {
+                    ...state,
+                    adminView: action.payload,
+                    cities: action.payload,
+                };
         case GET_OFFERS:
             let resp = action.payload.map((a) => {
                 return {
@@ -224,8 +230,9 @@ export default function rootReducer(state = initialState, action) {
 
                 } else {
                     // las cosas se guardan en el carrito no logueado
-                    newItemNotLoggedin=state.detail   
+                    newItemNotLoggedin=state.packages.find(item => item.id ==action.payload)  
                     itemInCartNotLoggedin = state.arrayCartNotLoggedin.find(item => item.id ===newItemNotLoggedin.id)
+                    console.log(newItemNotLoggedin)
                    
                     if(!localStorage.getItem("myCartNotLoggedin")){
                         console.log("el carrito NO existe, por lo que se crea ahora")

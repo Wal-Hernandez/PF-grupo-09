@@ -14,6 +14,7 @@ export const GET_BUSES = "GET_BUSES";
 export const GET_CITIES = "GET_CITIES";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
+export const GET_USERS = "GET_USERS";
 export const POST_HOTEL = "PUT_HOTEL";
 export const POST_PLATFORM = "PUT_PLATFORM";
 export const POST_CITY = "POST_CITY";
@@ -28,7 +29,6 @@ export const PUT_ACTIVITY = "PUT_ACTIVITY";
 export const PUT_PLATFORM = "PUT_PLATFORM";
 export const PUT_PACKAGE = "PUT_PACKAGE";
 export const DELETE_MODEL = "DELETE_MODEL";
-
 export const POST_USER = "POST_USER";
 
 export const LOAD_CART = "LOAD_CART";

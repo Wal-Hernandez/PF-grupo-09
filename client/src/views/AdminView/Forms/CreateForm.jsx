@@ -85,7 +85,9 @@ function Ejemplo({ lang }) {
     dispatch(getCities());
     dispatch(getHotels());
     dispatch(getActivities());
-    return () => dispatch(getClean())
+    return () => {
+      console.log("ok")
+      dispatch(getClean())}
   }, [dispatch]);
 
   function TransformData(x) {
@@ -101,6 +103,10 @@ function Ejemplo({ lang }) {
   function handleSubmitCity() {
     //e.preventDefault(); // para que era esto?
     dispatch(postCity(city));
+    swal({
+      title: "Ciudad creada con exito",
+      icon: "success",
+    })
   }
 
   function handleChangeBus(event) {
@@ -124,6 +130,10 @@ function Ejemplo({ lang }) {
   function handleSubmitBus() {
     //e.preventDefault();
     dispatch(postBus(bus));
+    swal({
+      title: "Bus creado con exito",
+      icon: "success",
+    })
   }
 
   function handleChangeActivity(event) {
@@ -147,6 +157,10 @@ function Ejemplo({ lang }) {
   function handleSubmitActivity() {
     //e.preventDefault();
     dispatch(postActivity(activity));
+    swal({
+      title: "Actividad creada con exito",
+      icon: "success",
+    })
   }
 
   function TransformData2(x) {
@@ -180,6 +194,10 @@ function Ejemplo({ lang }) {
   function handleSubmitPlatform() {
     //e.preventDefault(); // para que era esto?
     dispatch(postPlatform(platform));
+    swal({
+      title: "Plataforma creada con exito",
+      icon: "success",
+    })
   }
 
   function handleChangeHotel(event) {
@@ -204,13 +222,14 @@ function Ejemplo({ lang }) {
 
       return;
     }
-    
+
     setHotel({ ...hotel, [event.target.name]: event.target.value });
   }
 
   function handleSubmitHotel() {
     //e.preventDefault(); // para que era esto?
     dispatch(postHotel(hotel));
+    console.log(hotel)
     swal({
       title: "Hotel creado con éxito",
       icon: "success",
@@ -338,9 +357,8 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <Imagenes setUrlHotel={(url)=> setHotel({...hotel, urlImage: [...hotel.urlImage, url]})}/>
+          <Imagenes setUrl={(url) => setHotel({ ...hotel, urlImage: [...hotel.urlImage, url] })} />
           {/* <label className="label-form"> Imagen: </label>
-
           <input
             type="text"
             name="urlImage"
@@ -645,12 +663,12 @@ function Ejemplo({ lang }) {
       required: { value: true, message: "REQUERIDO" },
     });
 
-    const image = register("image", {
-      pattern: {
-        value: expRegUrl,
-        message: "Url no valida",
-      },
-    });
+    // const image = register("image", {
+    //   pattern: {
+    //     value: expRegUrl,
+    //     message: "Url no valida",
+    //   },
+    // });
 
     const price = register("price", {
       required: { value: true, message: "REQUERIDO" },
@@ -677,20 +695,10 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Imagen: </label>
+          <Imagenes setUrl={(url) => setActivity({ ...activity, image: url })} />
 
-          <input
-            type="text"
-            name="image"
-            value={activity["image"]}
-            placeholder="Ingrese una Url."
-            {...image}
-            onChange={(e) => {
-              image.onChange(e);
-              handleChangeActivity(e);
-            }}
-          />
           {errors?.image && <span>{errors?.image?.message}</span>}
+
         </div>
 
         <div className="div-form">
@@ -783,7 +791,6 @@ export const CreateForm = ({ word }) => {
     
     <button onClick={()=>{setButton(models.includes(lang)?true:false)}}>Go</button>
     {boton && models.includes(lang)?<Ejemplo lang={lang}/>: ''}
-
     <Link to ="/admin"> Volver</Link> */}
       <Ejemplo lang={word} />
     </div>

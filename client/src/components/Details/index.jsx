@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getPackageId } from "../../redux/actions/getPackageId";
 import { getClean } from "../../redux/actions/getClean";
 import "./details.css";
@@ -11,12 +11,13 @@ import Reviews from "../Reviews";
 import{addDetailCart} from "../../redux/actions/addDetailCart"
 import {loadCart} from "../../redux/actions/loadCart"
 import {addOnePeople} from "../../redux/actions/addOnePeople"
-
+import { getPackages } from "../../redux/actions/getPackages";
 
 
 
 export default function Details({userlog}) {
   const dispatch = useDispatch();
+  const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const { id } = useParams();
   const packageDetail = useSelector((state) => state.rootReducer.detail);
   const cart = useSelector((state) => state.rootReducer.cart);
@@ -33,13 +34,23 @@ export default function Details({userlog}) {
   const user = auth.currentUser;
   
 
-
+  
   useEffect(() => {
     dispatch(getPackageId(id));
     //dispatch(getClean());
     if(user?.email)
     dispatch(loadCart(user?.email))
   }, [dispatch, id,user]);
+
+
+  useEffect(()=>{
+    if(!packages.length) dispatch(getPackages())
+    if(user?.email!==undefined){
+        dispatch(loadCart(user?.email)) 
+   }
+  },[user,dispatch])
+
+
 
   let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
   let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
@@ -104,9 +115,7 @@ export default function Details({userlog}) {
       console.log(myCartparsedNotLoggedin)
       myCartparsedfilteredNotLoggedin =myCartparsedNotLoggedin.filter((p) => p.id == id)
       myCartparsedfilteredNotLoggedin=myCartparsedfilteredNotLoggedin[0]
-  } 
-
-  
+  }   
   if (user) {
     if(localStorage.getItem("myCartLoggedin")){
       myCarttextLoggedin = localStorage.getItem("myCartLoggedin")
@@ -123,6 +132,34 @@ export default function Details({userlog}) {
     myCartAll=myCartparsedfilteredNotLoggedin
   }
 
+  
+
+
+
+let paqueteCargado=false;
+ if(cart[0]){
+  if(cart[0].cartDetails.length>0){
+    let res=cart[0].cartDetails.filter(d=>d.packageId==packageDetail.id)
+    console.log("PAQUETECARGADO",res)
+    if(res.length>0)
+    {paqueteCargado=true}
+  }
+ }
+ if(localStorage.getItem("myCartNotLoggedin")){
+  myCarttextNotLoggedin = localStorage.getItem("myCartNotLoggedin")
+  myCartparsedNotLoggedin= JSON.parse(myCarttextNotLoggedin)
+  if(id) {
+    console.log(myCartparsedNotLoggedin)
+    let myCartparsedNotLoggedinfiltered=myCartparsedNotLoggedin.filter(e=>e.id==id)
+    if(myCartparsedNotLoggedinfiltered.length>0) {
+      paqueteCargado=true
+    }
+  }
+ }
+
+
+
+console.log("CART:",cart)
 console.log(new Date(packageDetail.start_date).toString())
 
   return (
@@ -181,12 +218,7 @@ console.log(new Date(packageDetail.start_date).toString())
         <p class="card-text">Precio: ${packageDetail.price}</p>
         <p class="card-text">Stock: {packageDetail.stock}</p>
       </div>
-      <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
-      {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
-                <article>    
-                    <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           
-                </article>) : null 
-      }
+      {paqueteCargado?<Link to="/shoppingcart"><button className="btn btn-warning">Ver en el Carrito</button></Link>:<button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button>} 
 
       <div>
         {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}

@@ -5,40 +5,35 @@ import { useSelector } from 'react-redux';
 import { useAuth } from "../../context/context";
 import logo from "../../images/Buspack2.png"
 import { getAuth } from "firebase/auth";
+
 import { useDispatch} from 'react-redux'
 import {clearCartLogout}from '../../redux/actions/clearCartLogout'
 import { rootReducer, initialState } from "../../redux/reducer/rootReducer";
+import swal from 'sweetalert';
 function Navbar({userlog}) {
-  const cart = useSelector((state) => state.rootReducer.cart);
+
+const cart = useSelector((state) => state.rootReducer.cart);
+
   // console.log("cartnav", cart.map((e)=>{e.cartDetails}))
   console.log(cart)
   let totalCart = []
   if( !typeof cart === "object"){
-  if(cart !== undefined && cart.length !== 0){
+  if(cart !== undefined && cart.length !== 0 ){
+    console.log(cart)
     totalCart = cart[0]["cartDetails"]
     console.log(totalCart)
   }
-  }
-  // console.log(totalCart)
-  // let total = 0;
-  // if(cart.length !== 0){
-    
-  //   total = totalCart[0]
-  //       .map((item) => item.numberPeople)  
-  //       .reduce((prev, curr) => prev + curr, 0);
-  // }
-
-
-const auth = getAuth();
-const user = auth.currentUser;
-const dispatch=useDispatch();
-if (user) {
-  // User is signed in, see docs for a list of available properties
-  // https://firebase.google.com/docs/reference/js/firebase.User
-  // ...
-} else {
-  // No user is signed in.
 }
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const dispatch = useDispatch();
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    // ...
+  } else {
+    // No user is signed in.
+  }
 
 
   const { logout } = useAuth();
@@ -46,7 +41,11 @@ if (user) {
   const handleLogout = async () => {
     try {
       await logout();
-     dispatch(clearCartLogout())
+      dispatch(clearCartLogout())
+      swal({
+        title: "Cerraste sesion",
+        icon: "success",
+      })
     } catch (error) {
       console.error(error.message);
     }
@@ -54,13 +53,16 @@ if (user) {
 
 
 
-  
+
   return (
+
 <nav class="navbar navbar-expand-lg ">
   <div class="container-fluid">
+
         <Link to="/">
-            <img src={logo} alt="Buspack" class="logo-buspack"/>
+          <img src={logo} alt="Buspack" class="logo-buspack" />
         </Link>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -89,7 +91,7 @@ if (user) {
           </div>: <Link to="/login" className='btn-sm'>
           <a class="nav-link " href="#">Iniciar Sesion</a>
           </Link>}
-          
+
         </li>
         </ul>
       </span>

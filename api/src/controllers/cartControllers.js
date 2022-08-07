@@ -11,7 +11,6 @@ const getCart = async (mail) => {
       return "All fields are required";
     }
     let userJson=JSON.parse(JSON.stringify(user));
-
     //obtengo solo el id de ese usuario
     let id=userJson[0]['id']
     console.log(id)
@@ -22,7 +21,6 @@ const getCart = async (mail) => {
              statusCartId:1},
 include:[{
   model: User,
- 
 },
 {
   model: CartDetail,

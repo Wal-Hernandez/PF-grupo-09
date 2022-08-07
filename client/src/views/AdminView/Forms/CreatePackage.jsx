@@ -9,7 +9,8 @@ import { getHotels } from "../../../redux/actions/getHotels";
 import { getActivities } from "../../../redux/actions/getActivities";
 import { getHotelsByCityId } from "../../../redux/actions/getHotelsByCityId";
 import DateTimePicker from "react-datetime-picker";
-export const CreatePackage = ({}) => {
+import swal from "sweetalert";
+export const CreatePackage = ({ }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,6 +53,10 @@ export const CreatePackage = ({}) => {
     setPackages({
       ...packages,
       activity: packages.activity.filter((e) => e !== activ),
+    });
+    swal({
+      title: "Paquete borrado con éxito",
+      icon: "success",
     });
   }
   let [startDate, setStartDate] = useState("");
@@ -96,6 +101,10 @@ export const CreatePackage = ({}) => {
 
   function handleSubmitPackages() {
     dispatch(postPackage(packages));
+    swal({
+      title: "Paquete creado con éxito",
+      icon: "success",
+    });
   }
   const name = register("name", {
     required: { value: true, message: "REQUERIDO" },
@@ -179,7 +188,7 @@ export const CreatePackage = ({}) => {
             minutePlaceholder={"mm"}
             secondPlaceholder={"ss"}
           />
-      
+
           {/*  <input
                 type="text"
                 name="end_date"

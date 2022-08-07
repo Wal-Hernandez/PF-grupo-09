@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { rootReducer, initialState } from "../../redux/reducer/rootReducer";
 import ProductItem from "../ProductItem/ProductItem";
@@ -17,13 +18,14 @@ import Footer from "../Footer/index";
 import "../ShoppingCart/ShoppingCart.css";
 
 import { getAuth } from "firebase/auth";
+
 import Navbar from "../Navbar";
+import swal from 'sweetalert';
 
 export default function ShoppingCart({ userlog }) {
   const [pulsado, setPulsado] = useState(false);
-  let arrayCartNotLoggedin = useSelector(
-    (state) => state.rootReducer.arrayCartNotLoggedin
-  );
+  let arrayCartNotLoggedin = useSelector((state) => state.rootReducer.arrayCartNotLoggedin );
+  
   const { packages, showPackages } = useSelector((state) => state.rootReducer);
 
   const cart = useSelector((state) => state.rootReducer.cart);
@@ -34,6 +36,7 @@ export default function ShoppingCart({ userlog }) {
   const user = auth.currentUser;
 
   console.log("USERCOMUN:", user?.mail);
+
   useEffect(() => {
     dispatch(getCities());
     !packages.length
@@ -42,12 +45,21 @@ export default function ShoppingCart({ userlog }) {
       ? dispatch(getMainPackages())
       : console.log("hecho");
   }, [dispatch, packages, showPackages]);
-
-  useEffect(() => {
-    if (user?.email !== undefined) {
-      dispatch(loadCart(user?.email));
-    }
-  }, [user, dispatch]);
+  
+// El QUE ESTABA ANTES
+//  useEffect(() => {
+//    if (user?.email !== undefined) {
+//      dispatch(loadCart(user?.email));
+//    }
+//  }, [user, dispatch]);
+  
+ //SUBIDO POR AGUS FIDELIO 
+     useEffect(()=>{
+        if(!packages.length) dispatch(getPackages())
+        if(user?.email!==undefined){
+            dispatch(loadCart(user?.email)) 
+       }
+      },[user,dispatch])
 
   const addToCart = (id) => {
     if (user) {
@@ -60,43 +72,57 @@ export default function ShoppingCart({ userlog }) {
       console.log("detalle:", detalles);
       console.log("detailpackageId:", detailpackageId);
 
+
       if (detailpackageId.length === 1) {
         //Logica para aumentar una persona al detalle del paquete
         let idCartDetail = detailpackageId[0].id;
+
         console.log("idCartDetail", idCartDetail);
         let numberPeople = detailpackageId[0].numberPeople;
         console.log("numberPeople", numberPeople);
         dispatch(addOnePeople(idCartDetail, numberPeople, user.email));
-      } else {
+      }
+        
+      else {
         //logica para agregar un nuevo detalle
         let idCart = cart[0]["id"];
         console.log("IDCART:", idCart, id);
         let email = cart[0]["user"]["mail"];
         dispatch(addDetailCart(idCart, id, email));
+
       }
     } else {
       console.log(id);
       dispatch({ type: TYPES.ADD_TO_CART, payload: id });
     }
   };
-  const delFromCart = async (id, all = false) => {
-    if (user) {
-      dispatch(removeDetailCart(id, userlog.email));
-
+  const delFromCart = async(idCart, id) => {
+    if(user){
+    
+      dispatch(removeDetailCart(id,userlog.email))
+     
       // dispatch(loadCart(userlog.email))
-    } else {
-      console.log(id, all);
-      if (all) {
-        dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
-      } else {
-        dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
-      }
+    
     }
-  };
+    else{
+      console.log(id)
+      dispatch({type:TYPES.REMOVE_ALL_FROM_CART, payload:idCart})
+/*         console.log(id,all)
+    if(all){
+        dispatch({type:TYPES.REMOVE_ALL_FROM_CART, payload:id})
+    } else {
+        dispatch({type:TYPES.REMOVE_ONE_FROM_CART, payload:id})
+    } */
+  }
+}
 
   const clearCart = () => {
     if (user) {
       dispatch(removeCart(cart[0]["id"], userlog.email));
+      swal({
+        title: "Carrito vaciado",
+        icon: "success",
+      })
 
       //una vez borrado todo los detalles recargar el carrito
       //dispatch(loadCart(userlog.email))
@@ -131,10 +157,12 @@ export default function ShoppingCart({ userlog }) {
       myCartAll = detalles;
     }
 
+
     // ...
   } else {
     // No user is signed in.
     if (localStorage.getItem("myCartNotLoggedin")) {
+
       myCarttextNotLoggedin = localStorage.getItem("myCartNotLoggedin");
       myCartAll = JSON.parse(myCarttextNotLoggedin);
     }
@@ -194,10 +222,12 @@ export default function ShoppingCart({ userlog }) {
         <div>{}</div>
       </div>
       <div>
+
         <hr></hr>
         <div>
           <h1>Total: ${total}.00</h1>
         </div>
+
         <button
           className="btn btn-primary btn-lg"
           onClick={() => setPulsado(!pulsado)}
@@ -211,4 +241,6 @@ export default function ShoppingCart({ userlog }) {
       </div>
     </div>
   );
+
 }
+

@@ -86,6 +86,12 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 detail: action.payload,
             };
+            case GET_CITIES:
+                return {
+                    ...state,
+                    adminView: action.payload,
+                    cities: action.payload,
+                };
         case GET_OFFERS:
             let resp = action.payload.map((a) => {
                 return {
@@ -158,7 +164,7 @@ export default function rootReducer(state = initialState, action) {
         case  CLEAR_CART_LOGOUT:
             return{
                  ...state,
-                 cart:{}
+                 cart:[]
                 } 
         case REMOVE_DETAIL_CART:
             return{
@@ -218,8 +224,9 @@ export default function rootReducer(state = initialState, action) {
 
                 } else {
                     // las cosas se guardan en el carrito no logueado
-                    newItemNotLoggedin=state.detail   
+                    newItemNotLoggedin=state.packages.find(item => item.id ==action.payload)  
                     itemInCartNotLoggedin = state.arrayCartNotLoggedin.find(item => item.id ===newItemNotLoggedin.id)
+                    console.log(newItemNotLoggedin)
                    
                     if(!localStorage.getItem("myCartNotLoggedin")){
                         console.log("el carrito NO existe, por lo que se crea ahora")
@@ -262,6 +269,23 @@ export default function rootReducer(state = initialState, action) {
                 const user = auth.currentUser;      
                 if (user) { 
                     //RESTAR UNA PERSONA EN UN DETALLE DE LA DB DE UN USER LOGEADO
+
+                    let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
+                    let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
+        
+                    let itemToDeleteLoggedin = myCartparsedLoggedin.find(item => item.id === action.payload);
+
+                    if (itemToDeleteLoggedin.quantity>1){
+                        cart = myCartparsedLoggedin.map((item) =>
+                        item.id===action.payload ? 
+                        {...item, quantity:item.quantity-1}: item
+                    )
+                    } else {
+                        cart=myCartparsedLoggedin.filter(item => item.id!== action.payload)
+                    }
+                    let cartJSONLoggedin= JSON.stringify(cart)
+                    localStorage.setItem("myCartLoggedin", cartJSONLoggedin) 
+
                     // let myCarttextLoggedin=localStorage.getItem("myCartLoggedin")
                     // let myCartparsedLoggedin=JSON.parse(myCarttextLoggedin)
         

@@ -4,6 +4,8 @@ import { putActivity } from "../../../redux/actions/putActivity";
 import { useForm } from "react-hook-form";
 import { getCities } from "../../../redux/actions/getCities";
 import { getClean } from "../../../redux/actions/getClean";
+import { Imagenes } from "../../../components/Imagenes/imagenes";
+import swal from "sweetalert";
 export const PutActivityForm = ({ pack }) => {
 
   const { adminView } = useSelector((state) => state.adminReducer);
@@ -36,6 +38,10 @@ export const PutActivityForm = ({ pack }) => {
   function handleSubmitActivity() {
     //e.preventDefault(); 
     dispatch(putActivity(pack.id, activity));
+    swal({
+      title: "Actividad editada con exito",
+      icon: "success",
+    })
   }
 
   const name = register("name", {
@@ -79,8 +85,9 @@ export const PutActivityForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Imagen: </label>
-          <input
+          <Imagenes setUrl={(url) => setActivity({ ...activity, image: url })} />
+          {/* <label className="label-form"> Imagen: </label> */}
+          {/* <input
             type="text"
             name="image"
             value={activity["image"]}
@@ -91,7 +98,7 @@ export const PutActivityForm = ({ pack }) => {
               handleChange(e);
             }}
           />
-          {errors?.image && <span>{errors?.image?.message}</span>}
+          {errors?.image && <span>{errors?.image?.message}</span>} */}
         </div>
 
         <div className="div-form">

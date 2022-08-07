@@ -14,6 +14,7 @@ export const GET_BUSES = "GET_BUSES";
 export const GET_CITIES = "GET_CITIES";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
+export const GET_USERS = "GET_USERS";
 export const POST_HOTEL = "PUT_HOTEL";
 export const POST_PLATFORM = "PUT_PLATFORM";
 export const POST_CITY = "POST_CITY";
@@ -39,4 +40,7 @@ export const REMOVE_CART = "REMOVE_CART";
 export const ADD_ONE_PEOPLE = "ADD_ONE_PEOPLE";
 export const DELETE_ONE_PEOPLE = "DELETE_ONE_PEOPLE";
 export const PRUEBA = "PRUEBA";
+
 export const SEND_MAIL = "SEND_MAIL";
+export const GET_USER = "GET_USER";
+export const PUT_USER = "PUT_USER";

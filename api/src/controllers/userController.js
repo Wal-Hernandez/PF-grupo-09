@@ -1,10 +1,14 @@
-const { User, Cart, Review} = require("../db");
+const { User, Cart, Review, CartDetail} = require("../db");
 
 const getUsers = async () => {
   try {
     let allUsers = await User.findAll({
       include: [
-        { model: Cart },{model:Review}
+        { model: Cart,
+          include:{
+            model:CartDetail}
+           }
+        ,{model:Review}
     ]
       // include: {
       //   model: TypeUser,

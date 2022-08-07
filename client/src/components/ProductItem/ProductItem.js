@@ -31,45 +31,46 @@ export default function ProductItem({id, quantity, data, arrayCartNotLoggedin,de
     let myCartAll=[]
 
     if (user) {
-        if(localStorage.getItem("myCartLoggedin")){
-          myCarttextLoggedin = localStorage.getItem("myCartLoggedin")
-          myCartparsedLoggedin= JSON.parse(myCarttextLoggedin)
+      if(localStorage.getItem("myCartLoggedin")){
+        myCarttextLoggedin = localStorage.getItem("myCartLoggedin")
+        myCartparsedLoggedin= JSON.parse(myCarttextLoggedin)
+    } 
+      // ...
+    } else {
+      // No user is signed in.
+      console.log("No logueado")
+      if(localStorage.getItem("myCartNotLoggedin")){
+          console.log("estamos en shopping cart y el carrito existe")
+          myCarttext = localStorage.getItem("myCartNotLoggedin")
+          myCartparsed= JSON.parse(myCarttext)        
       } 
-        // ...
-      } else {
-        // No user is signed in.
-        console.log("No logueado")
-        if(localStorage.getItem("myCartNotLoggedin")){
-            console.log("estamos en shopping cart y el carrito existe")
-            myCarttext = localStorage.getItem("myCartNotLoggedin")
-            myCartparsed= JSON.parse(myCarttext)        
-        } 
-        myCartAll=myCartparsedfilteredNotLoggedin
-      }
+      myCartAll=myCartparsedfilteredNotLoggedin
+    }
+  
  
 
-      const addOne=(id,idCartDetail,numberPeople)=>{
-        
-        if(user)
-     {
-       dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
-     } else {
-      dispatch({type:TYPES.ADD_TO_CART, payload:id})
-     }
-
-      }
-      const deleteOne=(id, idCartDetail,numberPeople)=>{
-        
-        if(user){
-          dispatch(deleteOnePeople(idCartDetail,numberPeople,user.email))
+    const addOne=(id,idCartDetail,numberPeople)=>{
+    
+            if(user)
+        {
+          dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
+        } else {
+          dispatch({type:TYPES.ADD_TO_CART, payload:id})
         }
-        else{
-          dispatch({type:TYPES.REMOVE_ONE_FROM_CART, payload:id})
-
-        }
-       
         
-      }
+          }
+          const deleteOne=(id, idCartDetail,numberPeople)=>{
+            
+            if(user){
+              dispatch(deleteOnePeople(idCartDetail,numberPeople,user.email))
+            }
+            else{
+              dispatch({type:TYPES.REMOVE_ONE_FROM_CART, payload:id})
+        
+            }
+     
+      
+    }
 
 
     return(

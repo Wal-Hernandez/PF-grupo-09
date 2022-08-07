@@ -94,20 +94,25 @@ export default function ShoppingCart({ userlog }) {
       dispatch({ type: TYPES.ADD_TO_CART, payload: id });
     }
   };
-  const delFromCart = async (id, all = false) => {
-    if (user) {
-      dispatch(removeDetailCart(id, userlog.email));
-
+  const delFromCart = async(idCart, id) => {
+    if(user){
+    
+      dispatch(removeDetailCart(id,userlog.email))
+     
       // dispatch(loadCart(userlog.email))
-    } else {
-      console.log(id, all);
-      if (all) {
-        dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
-      } else {
-        dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
-      }
+    
     }
-  };
+    else{
+      console.log(id)
+      dispatch({type:TYPES.REMOVE_ALL_FROM_CART, payload:idCart})
+/*         console.log(id,all)
+    if(all){
+        dispatch({type:TYPES.REMOVE_ALL_FROM_CART, payload:id})
+    } else {
+        dispatch({type:TYPES.REMOVE_ONE_FROM_CART, payload:id})
+    } */
+  }
+}
 
   const clearCart = () => {
     if (user) {

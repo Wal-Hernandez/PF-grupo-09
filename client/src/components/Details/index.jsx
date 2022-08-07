@@ -50,6 +50,8 @@ export default function Details({userlog}) {
    }
   },[user,dispatch])
 
+
+
   let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
   let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
   console.log(arrayCartLoggedin)
@@ -113,9 +115,7 @@ export default function Details({userlog}) {
       console.log(myCartparsedNotLoggedin)
       myCartparsedfilteredNotLoggedin =myCartparsedNotLoggedin.filter((p) => p.id == id)
       myCartparsedfilteredNotLoggedin=myCartparsedfilteredNotLoggedin[0]
-  } 
-
-  
+  }   
   if (user) {
     if(localStorage.getItem("myCartLoggedin")){
       myCarttextLoggedin = localStorage.getItem("myCartLoggedin")

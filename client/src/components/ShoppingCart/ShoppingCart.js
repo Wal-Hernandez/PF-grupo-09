@@ -43,10 +43,13 @@ export default function ShoppingCart({userlog}) {
       
      
       useEffect(()=>{
+        if(!packages.length) dispatch(getPackages())
         if(user?.email!==undefined){
             dispatch(loadCart(user?.email)) 
        }
       },[user,dispatch])
+
+
       
 
     const addToCart = (id) =>{
@@ -82,7 +85,7 @@ export default function ShoppingCart({userlog}) {
     }
        
     }
-    const delFromCart = async(id, all = false) => {
+    const delFromCart = async(idCart, id) => {
         if(user){
         
           dispatch(removeDetailCart(id,userlog.email))
@@ -91,12 +94,14 @@ export default function ShoppingCart({userlog}) {
         
         }
         else{
-        console.log(id,all)
+          console.log(id)
+          dispatch({type:TYPES.REMOVE_ALL_FROM_CART, payload:idCart})
+/*         console.log(id,all)
         if(all){
             dispatch({type:TYPES.REMOVE_ALL_FROM_CART, payload:id})
         } else {
             dispatch({type:TYPES.REMOVE_ONE_FROM_CART, payload:id})
-        }
+        } */
       }
     }
     const clearCart=() => {

@@ -9,6 +9,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import "../Pasarela/Pasarela.css";
+import swal from "sweetalert";
 const stripePromise = loadStripe(
   "pk_test_51LTBDuKIottmlf7Xbtn9K29aMc0spCuzel3dOw1hX5hb5KLxKfAIWhGjh1ACx5ux3j1VRqigkN4yPNontWKFBYt200falMP3nU"
 );
@@ -47,6 +48,10 @@ const CheckoutForm = ({ total }) => {
       // }
       setLoading(false);
     }
+    swal({
+      title: "Pago realizado con exito",
+      icon: "success"
+    })
   };
 
   console.log(!stripe || loading);

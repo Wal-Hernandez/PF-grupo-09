@@ -2,20 +2,21 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { putBus } from "../../../redux/actions/putBus";
-export const PutBusForm = ({pack}) => {
- 
+import swal from "sweetalert";
+export const PutBusForm = ({ pack }) => {
+
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [bus, setBus] = React.useState({ 
-    name: pack.name, 
+  const [bus, setBus] = React.useState({
+    name: pack.name,
     phone: pack.phone,
     email: pack.email,
     score: pack.score,
-    comments: pack.comments 
+    comments: pack.comments
   });
 
   const expRegEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
@@ -32,11 +33,11 @@ return JSON.parse(x)
   }
 
   function handleChange(event) {
-    if (event.target.name === "comments" ) {
+    if (event.target.name === "comments") {
       setBus({ ...bus, [event.target.name]: [event.target.value] });
       return;
     }
-    if(event.target.name === "score"){
+    if (event.target.name === "score") {
       setBus({
         ...bus,
         [event.target.name]: TransformData(event.target.value),
@@ -53,6 +54,10 @@ return JSON.parse(x)
   function handleSubmitBus() {
     //e.preventDefault(); // para que era esto?
     dispatch(putBus(pack.id, bus));
+    swal({
+      title: "Bus editado con exito",
+      icon: "success",
+    })
   }
 
   const name = register("name", {
@@ -71,7 +76,7 @@ return JSON.parse(x)
   return (
     <div className="div">
       <form className="form" onSubmit={handleSubmit(handleSubmitBus)}>
-      <div className="div-form">
+        <div className="div-form">
           <label className="label-form"> Nombre de la empresa: </label>
 
           <input
@@ -86,7 +91,7 @@ return JSON.parse(x)
             }}
           />
           {errors?.name && <span>{errors?.name?.message}</span>}
-            {/* <input className={errors.name ? 'danger' : 'input-form'} 
+          {/* <input className={errors.name ? 'danger' : 'input-form'} 
       type="text" name='name' 
       value={city['name']} 
       onChange={handleChange}/>
@@ -133,22 +138,22 @@ return JSON.parse(x)
           />
           {errors?.email && <span>{errors?.email?.message}</span>}
         </div>
-    
-      
+
+
         <button
           type="submit"
           className="button-form"
-          //disabled={!(!Object.entries(errors).length &&perro.name !== '' )}//Explicacion:
-          //un formulario tiene 3 estados: vacio y sin errores, rellenandose con errores y
-          // relleno y sin errores. Cuando no tenga errores es la primera parte del And y
-          // el otro lado es cuando un campo este lleno. Porque al llenar solo un campo,
-          // los errores estaran presentes (vacio). //Finalmente, el ! al inicio es para decir:
-          // Mientras No pase el tercer estado, desactivame esto
+        //disabled={!(!Object.entries(errors).length &&perro.name !== '' )}//Explicacion:
+        //un formulario tiene 3 estados: vacio y sin errores, rellenandose con errores y
+        // relleno y sin errores. Cuando no tenga errores es la primera parte del And y
+        // el otro lado es cuando un campo este lleno. Porque al llenar solo un campo,
+        // los errores estaran presentes (vacio). //Finalmente, el ! al inicio es para decir:
+        // Mientras No pase el tercer estado, desactivame esto
         >
           {" "}
           Put Business
         </button>
-     
+
       </form>
     </div>
   );

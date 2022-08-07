@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import swal from "sweetalert";
 import { getActivities } from "../../../redux/actions/getActivities";
 import { getBuses } from "../../../redux/actions/getBuses";
 import { getCities } from "../../../redux/actions/getCities";
@@ -60,7 +61,7 @@ export const PutPackageForm = ({ pack }) => {
         ...packages,
         [event.target.name]: [... new Set([...packages.activity, event.target.value])] /* [TransformData(event.target.value)] */,
       });
-      console.log("activity",packages.activity)
+      console.log("activity", packages.activity)
       return;
     }
     setPackages({ ...packages, [event.target.name]: event.target.value });
@@ -69,6 +70,10 @@ export const PutPackageForm = ({ pack }) => {
   function handleSubmitPackage() {
     //e.preventDefault(); // para que era esto?
     dispatch(putPackage(pack.id, packages));
+    swal({
+      title: "Paquete editado con exito",
+      icon: "success",
+    })
   }
 
   const name = register("name", {
@@ -241,41 +246,41 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-            <div>
-              <label>Actividades</label>
-              <select
-                name="activity"
-                defaultValue={''}
-                onChange={handleChange}
-              >
-                <option key="keyactivity" value={''}>
-                  Ninguna
+          <div>
+            <label>Actividades</label>
+            <select
+              name="activity"
+              defaultValue={''}
+              onChange={handleChange}
+            >
+              <option key="keyactivity" value={''}>
+                Ninguna
+              </option>
+              {activities.map((activ) => (
+                <option value={activ.name} key={activ.id}>
+                  {activ.name}
                 </option>
-                {activities.map((activ) => (
-                  <option value={activ.name} key={activ.id}>
-                    {activ.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <ul>
-                {packages.activity.map((activi) => (
-                  <li style={{ listStyle: "none" }} key={activi}>
-                    {" "}
-                    {activi}
-                    <button
-                      type="button"
-                      key={activi}
-                      onClick={() => handleDelete(activi)}
-                    >
-                      x
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              ))}
+            </select>
           </div>
+          <div>
+            <ul>
+              {packages.activity.map((activi) => (
+                <li style={{ listStyle: "none" }} key={activi}>
+                  {" "}
+                  {activi}
+                  <button
+                    type="button"
+                    key={activi}
+                    onClick={() => handleDelete(activi)}
+                  >
+                    x
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
         <button type="submit" className="button-form">
           {" "}

@@ -9,7 +9,7 @@ import { postUser } from "../../redux/actions/postUser";
 //css
 import "../../views/LoginView/loginView.css";
 //logo
-import logo from "../../images/Buspack.png" //imagen logo
+import logo from "../../images/Buspack.png"; //imagen logo
 import { sendMail } from "../../redux/actions/sendMail";
 export function Register() {
   const { signup } = useAuth();
@@ -50,20 +50,16 @@ export function Register() {
     }
     try {
       await signup(user.mail, user.password, user.rol, user.name, user.surname);
-      
-   
-      let storage=JSON.parse(localStorage.getItem("myCartNotLoggedin"));
+
+      let storage = JSON.parse(localStorage.getItem("myCartNotLoggedin"));
       //si el storage no tiene nada mando un arreglo vacio []
-      storage=storage===null?[]:storage
-      let userDb = { ...user, storage};
-       dispatch(postUser(userDb));
+      storage = storage === null ? [] : storage;
+      let userDb = { ...user, storage };
+      dispatch(postUser(userDb));
 
       localStorage.clear("myCartNotLoggedin");
       dispatch(sendMail(userDb));
       navigate("/");
-     
-
-
     } catch (error) {
       console.log(error.code);
       if (error.code === "auth/invalid-email") {
@@ -84,114 +80,119 @@ export function Register() {
   return (
     <div className="container w-75 bg-white mt-2 rounded">
       <div className="row align-items-stretch">
-    <div className="col fotoRegister d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
-      <div className="py-4"></div>
-      <div className="text-center">
-      <h3 className="fw-bold  text-dark">Estas listo para comenzar la aventura?</h3>
-      </div>
-    </div>
-    <div className="col bg-white p-5 rounded-end">
-       <div className="text-end ">
-          <img className="rounded" src={logo} width="60" alt="logo"></img>
-       </div>
-       <h2 className="fw-bold text-center py-5">Bienvenido</h2> 
+        <div className="col fotoRegister d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+          <div className="py-4"></div>
+          <div className="text-center">
+            <h3 className="fw-bold  text-dark">
+              Estas listo para comenzar la aventura?
+            </h3>
+          </div>
+        </div>
+        <div className="col bg-white p-5 rounded-end">
+          <div className="text-end ">
+            <img className="rounded" src={logo} width="60" alt="logo"></img>
+          </div>
+          <h2 className="fw-bold text-center py-5">Bienvenido</h2>
 
-    <div className="w-full max-w-xs m-auto text-black">
-      {error && <Alert message={error} />}
-      <form  onSubmit={handleSubmit}>
-      <div className="mb-4">
-            <label
-             htmlFor="name"
-             className="form-label block text-gray-700 text-sm font-bold mb-2"
-             >
-            Nombre
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={user.name}
-              onChange={(e) => setUser({ ...user, name: e.target.value })}
-              className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Nombre..."
-            />
-      </div>
-      <div className="mb-4">
-          <label
-            htmlFor="surname"
-            className="form-label block text-gray-700 text-sm font-bold mb-2"
-          >
-            Apellido
-          </label>
-          <input
-            type="text"
-            name="surname"
-            value={user.surname}
-            onChange={(e) => setUser({ ...user, surname: e.target.value })}
-            className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Apellido..."
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="form-label block text-gray-700 text-sm font-bold mb-2"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            onChange={(e) => setUser({ ...user, mail: e.target.value })}
-            className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="youremail@company.tld"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="form-label block text-gray-700 text-sm font-bold mb-2"
-          >
-            Contraseña
-          </label>
-          <input
-            type="password"
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-            className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Contraseña..."
-          />
-        </div>
-        <div className="mb-4 ">
-        <div className="d-grid">
-        <button className="btn btn-primary hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          Registrarse
-        </button>
-        </div>
-        </div>
-        {/* <label>
+          <div className="w-full max-w-xs m-auto text-black">
+            {error && <Alert message={error} />}
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label
+                  htmlFor="name"
+                  className="form-label block text-gray-700 text-sm font-bold mb-2"
+                >
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={user.name}
+                  onChange={(e) => setUser({ ...user, name: e.target.value })}
+                  className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Nombre..."
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="surname"
+                  className="form-label block text-gray-700 text-sm font-bold mb-2"
+                >
+                  Apellido
+                </label>
+                <input
+                  type="text"
+                  name="surname"
+                  value={user.surname}
+                  onChange={(e) =>
+                    setUser({ ...user, surname: e.target.value })
+                  }
+                  className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Apellido..."
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="form-label block text-gray-700 text-sm font-bold mb-2"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  onChange={(e) => setUser({ ...user, mail: e.target.value })}
+                  className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="youremail@company.tld"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="password"
+                  className="form-label block text-gray-700 text-sm font-bold mb-2"
+                >
+                  Contraseña
+                </label>
+                <input
+                  type="password"
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
+                  className="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Contraseña..."
+                />
+              </div>
+              <div className="mb-4 ">
+                <div className="d-grid">
+                  <button className="btn btn-primary hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Registrarse
+                  </button>
+                </div>
+              </div>
+              {/* <label>
           Role:
           <select id="rol" onChange={(e) => setUser({ ...user, rol: e.target.value })}>
             <option value="admin">Admin</option>
             <option value="client">Client</option>
           </select>
         </label> */}
-        <div className="mb-4 ">
-          <p>
-          ¿ya tienes una cuenta?
-          <Link to="/login" className="">
-              <button
-              className="btn btn-warning hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit">
-              Iniciar sesión
-             </button>
-          </Link>
-          </p>
-       </div>
-
-     </form >
-     
-     </div>
+              <div className="mb-4 ">
+                <p>
+                  ¿ya tienes una cuenta?
+                  <Link to="/login" className="">
+                    <button
+                      className="btn btn-warning hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                      type="submit"
+                    >
+                      Iniciar sesión
+                    </button>
+                  </Link>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-   </div>
-   </div> 
   );
-      }
+}

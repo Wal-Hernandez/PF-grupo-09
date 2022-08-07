@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { postReview } from "../../redux/actions/postReview";
 import { getHotels } from "../../redux/actions/getHotels";
+import swal from "sweetalert";
 
 function ReviewsForm({ hotel }) {
   const auth = getAuth();
@@ -43,6 +44,10 @@ function ReviewsForm({ hotel }) {
       comment: "",
       score: 0,
     });
+    swal({
+      title: "Valoracion aceptada",
+      icon: "success"
+    })
     dispatch(getHotels());
   };
 

@@ -166,42 +166,44 @@ export default function ShoppingCart({ userlog }) {
     return 0;
   });
 
+  return (
+    <div>
+      <Navbar />
+      <div>
+        <h3>Carrito</h3>
+        <button className="btn btn-danger btn-lg" onClick={clearCart}>
+          Limpiar carrito
+        </button>
+        <hr></hr>
 
-    return(
+        <article>
+          {myCartAll2?.map((Cart) => (
+            <ProductItem
+              idDetail={Cart.idDetail}
+              id={Cart.id}
+              quantity={Cart.quantity}
+              data={packages.filter((elemento) => elemento.id === Cart.id)}
+              arrayCartNotLoggedin={arrayCartNotLoggedin}
+              delFromCart={delFromCart}
+              addToCart={addToCart}
+            />
+          ))}
+        </article>
+        <div>{}</div>
+      </div>
+      <div>
+        <hr></hr>
         <div>
-            <Navbar/>
-            <div>
-
-                <h3>Carrito</h3>
-                <button className='btn btn-danger btn-lg' onClick={clearCart}>Limpiar carrito</button>
-                <hr></hr>
-                
-                <article>
-                    {myCartAll2?.map((Cart) => 
-                     <ProductItem idDetail={Cart.idDetail} 
-                                  id={Cart.id} 
-                                  quantity={Cart.quantity} 
-                                  data={packages.filter(elemento => elemento.id===Cart.id)} 
-                                  arrayCartNotLoggedin={arrayCartNotLoggedin} 
-                                  delFromCart={delFromCart}
-                                  addToCart={addToCart}/>
-                                     
-                    )}
-                    
-                </article>
-                <div>{
-                    
-                    }
-                
-                </div>
-            </div>
-            <div > 
-            <hr></hr>
-            <div>
-            <h1>Total: ${total}.00</h1>
-            </div>
-              <button  className='btn btn-primary btn-lg'>MAURO PAGALO</button>
-            </div> 
-        </div> 
-    )
+          <h1>Total: ${total}.00</h1>
+        </div>
+        <button
+          className="btn btn-primary btn-lg"
+          onClick={() => setPulsado(!pulsado)}
+        >
+          Comprar
+        </button>
+        {pulsado ? <Pasarela total={total} /> : null}
+      </div>
+    </div>
+  );
 }

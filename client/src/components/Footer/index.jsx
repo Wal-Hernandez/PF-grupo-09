@@ -50,8 +50,8 @@ function Footer() {
                 <div class="sucursales">
                     <h2>SUCURSALES</h2>
                     <ul>
-                        <li><a href="#" target="_blank">Av. Las Heras 499, Ciudad de Mendoza</a></li>
-                        <li><a href="#" target="_blank">9 de Julio 1042, Ciudad de Mendoza</a></li>
+                        <li><a href="https://goo.gl/maps/YcMAoKZNjJqdaVkg7" target="_blank">Av. Las Heras 499, Ciudad de Mendoza</a></li>
+                        <li><a href="https://goo.gl/maps/rp7ZWZSFijBZgyFc9" target="_blank">9 de Julio 1042, Ciudad de Mendoza</a></li>
                     </ul>
                 </div>
                 <div class="telefonos">

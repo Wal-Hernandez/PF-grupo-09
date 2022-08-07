@@ -209,8 +209,9 @@ box-shadow: -3px 3px 25px -1px rgba(0,0,0,0.58);
 }
 
 .collapse #divCont{
-
+    width: 80vw;
     height: 200px;
+    margin-left: 1.2vw;
 
 }
 .button-form{

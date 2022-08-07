@@ -24,7 +24,10 @@ import {
     CLEAR_FILTERS,
     LOAD_CART,
     POST_USER,
+    GET_USER,
+    PUT_USER,
     GET_USERS
+
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"
 import { getAuth } from "firebase/auth";
@@ -44,7 +47,8 @@ const initialState = {
     cart:{},
     users:[],
     arrayCartNotLoggedin:[],
-    arrayCartLoggedin:[]
+    arrayCartLoggedin:[],
+    users:[]
 };
 
 export default function adminReducer(state = initialState, action) {
@@ -162,7 +166,11 @@ export default function adminReducer(state = initialState, action) {
             return state;
         case POST_ACTIVITY:
             return state;
-  
+        case GET_USER:
+            return {... state,
+            users: action.payload};
+            case PUT_USER:
+            return state;
         default:
             return state;
     }

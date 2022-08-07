@@ -359,7 +359,6 @@ function Ejemplo({ lang }) {
         <div className="div-form">
           <Imagenes setUrl={(url) => setHotel({ ...hotel, urlImage: [...hotel.urlImage, url] })} />
           {/* <label className="label-form"> Imagen: </label>
-
           <input
             type="text"
             name="urlImage"
@@ -792,7 +791,6 @@ export const CreateForm = ({ word }) => {
     
     <button onClick={()=>{setButton(models.includes(lang)?true:false)}}>Go</button>
     {boton && models.includes(lang)?<Ejemplo lang={lang}/>: ''}
-
     <Link to ="/admin"> Volver</Link> */}
       <Ejemplo lang={word} />
     </div>

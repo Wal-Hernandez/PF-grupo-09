@@ -287,13 +287,13 @@ function Admin() {
                         <div class="col">
                              <div class="collapse " id={`multiCollapseExample1${packs.name}`}>
                               <div class="d-flex flex-row d-inline-block bg-dark" id="divCont">
-                               <div class="card card-body h-100 w-50">
-                               Stadistics <b>Detalles de Carrito</b>
+                               <div class="card card-body h-100 w-50 rounded-0 ">
+                                <b>Detalles de Carrito</b>
                               {packs.carts?.length ? (packs.carts[0]?.cartDetails?.map(e => (<h1>{e.packageId}</h1>))) : <div>Usuario sin carrito</div>}
                                </div>
-                               <div class="card card-body h-100 w-50">
-                               Stadistics 2 <b>REVIEWS</b>
-                               <h2> {packs.reviews[0]?.title}</h2>
+                               <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
+                                <b>REVIEWS</b>
+                               <h2> {packs.reviews ? packs.reviews[0]?.title : <div>No hay reviews</div>}</h2>
                                </div>
                         </div>
                        </div>

@@ -50,4 +50,5 @@ export const PRUEBA = "PRUEBA";
 
 
 export const SEND_MAIL ="SEND_MAIL";
-
+export const GET_USER= 'GET_USER';
+export const PUT_USER ='PUT_USER';

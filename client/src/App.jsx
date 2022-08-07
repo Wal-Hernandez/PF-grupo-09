@@ -26,6 +26,9 @@ import { auth } from './Firebase/firebase-config';
 import { firestore } from "./context/context"
 import ShoppingCart from './components/ShoppingCart/ShoppingCart'
 
+import Userview from './views/AdminView/Userview.jsx';
+
+
 function App() {
   const [userlog, setUser] = React.useState(null);
 
@@ -86,12 +89,11 @@ function App() {
       <Route path ="/reg" element ={<Register/>}/>
        <Route path ="/login" element ={<Login/>}/>
        <Route path ="/shoppingcart" element ={<ShoppingCart userlog={userlog}/>}/>
+       <Route path="/admin/user" element={<ProtectedRoutedAdmin><Userview userlog={userlog}/></ProtectedRoutedAdmin>} />
       <Route path ="*" element={<ErrorPage/>}/>
- 
     </Routes>
     </AuthProvider>
     </div>
   );
 }
-export default App;
-
+export default App

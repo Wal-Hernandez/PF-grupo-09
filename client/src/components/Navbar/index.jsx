@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate} from 'react-router-dom'
 import './navbar.css'
 import { useSelector } from 'react-redux';
 import { useAuth } from "../../context/context";
@@ -11,7 +11,7 @@ import {clearCartLogout}from '../../redux/actions/clearCartLogout'
 import { rootReducer, initialState } from "../../redux/reducer/rootReducer";
 import swal from 'sweetalert';
 function Navbar({userlog}) {
-  const cart = useSelector((state) => state.rootReducer.cart);
+const cart = useSelector((state) => state.rootReducer.cart);
   // console.log("cartnav", cart.map((e)=>{e.cartDetails}))
 
 

@@ -68,7 +68,7 @@ function AutocompleteSearch({ fieldInput, input, setInput, setDestination }) {
       </>
     ) : (
       <div className="no-suggestions">
-        <p>No se encuentra ninguna actividad o destino</p>
+        <p>No se encuentra ninguna ciudad de destino</p>
       </div>
     );
   }
@@ -76,7 +76,7 @@ function AutocompleteSearch({ fieldInput, input, setInput, setDestination }) {
   return (
     <div>
       <input
-        placeholder="Buscar por Destino o Actividad"
+        placeholder="Buscar por ciudad de destino"
         type="text"
         onChange={handleChange}
         onKeyDown={handleKeyDown}

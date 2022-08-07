@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { filterByDestiny } from '../../../redux/actions/filterByDestiny';
+import { filterByActivity } from '../../../redux/actions/filterByActivity';
 import { sortByPrice } from '../../../redux/actions/sortByPrice';
 import { sortByStock } from '../../../redux/actions/sortByStock';
 
 function Filters(props) {
 
+    const [priceOrder, setPriceOrder] = useState("");
+    const [stockOrder, setStockOrder] = useState("");
     const dispatch = useDispatch();
 
-    function handleCities(e){
-        dispatch(filterByDestiny(e.target.value, props.price, props.stock))
-        props.setCity(e.target.value)
+    function handleActivities(e){
+        dispatch(filterByActivity(e.target.value, priceOrder, stockOrder))
+        props.setActivity(e.target.value)
         props.setCurrentPage(1)
     }
     function handleSortByPrice(e){
@@ -22,8 +24,8 @@ function Filters(props) {
         if(props.endDate !== ''){
             return endShortDate = props.endDate?.toISOString()
         }
-        dispatch(sortByPrice(e.target.value, props.city, startShortDate , endShortDate))
-        props.setPrice(e.target.value)
+        dispatch(sortByPrice("asc", props.city, startShortDate , endShortDate))
+        setPriceOrder(e.target.value)
         props.setCurrentPage(1)
     }
     function handleSortByStock(e){
@@ -36,7 +38,7 @@ function Filters(props) {
             return endShortDate = props.endDate?.toISOString()
         }
         dispatch(sortByStock(e.target.value, props.city, startShortDate, endShortDate))
-        props.setStock(e.target.value)
+        setStockOrder(e.target.value)
         props.setCurrentPage(1)
     }
 
@@ -53,10 +55,10 @@ function Filters(props) {
             <option label={'Menor stock'} value="asc"></option>
             <option label={'Mayor stock'} value="desc"></option>
         </select>
-        <select className="form-select" defaultValue="" onChange={handleCities}>
-            <option value="" disabled>Filtrar por ciudad de destino</option>
+        <select className="form-select" defaultValue="" onChange={handleActivities}>
+            <option value="" disabled>Filtrar por actividades</option>
             <option value="">Mostrar todo</option>
-            {props.cities?.map((e, index) => (
+            {props.activities?.map((e, index) => (
                 <option key={index}>{e.name}</option>
             ))}
         </select>

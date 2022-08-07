@@ -4,8 +4,8 @@ import Filters from "./Filters";
 import Search from "./Search";
 
 function SearchAndFilters({ setCurrentPage }) {
-  const [priceOrder, setPriceOrder] = useState("");
-  const [stockOrder, setStockOrder] = useState("");
+  
+  const [activity, setActivity] = useState("");
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
 
@@ -19,20 +19,21 @@ function SearchAndFilters({ setCurrentPage }) {
         startDate={startDate}
         setStartDate={setStartDate}
         cities={cities}
-        activities={activities}
+        setCity={setCity}
       />
       </div>
        <div className="row">
       <Filters
         setCurrentPage={setCurrentPage}
-        price={priceOrder}
-        stock={stockOrder}
-        city={city}
+        // price={priceOrder}
+        // stock={stockOrder}
+        activity={activity}
         startDate={startDate}
-        setPrice={setPriceOrder}
-        setStock={setStockOrder}
-        setCity={setCity}
-        cities={cities}
+        // setPrice={setPriceOrder}
+        // setStock={setStockOrder}
+        setActivity={setActivity}
+        activities={activities}
+        city={city}
       />
       </div>
     </div>

@@ -5,9 +5,9 @@ import { filterByDate } from "../../../redux/actions/filterByDate&Dest";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({ startDate, setStartDate, cities, activities }) {
+function Search({ startDate, setStartDate, cities, setCity }) {
   const dispatch = useDispatch();
-  const [destination, setDestination] = useState('');
+  const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
     destination: '',
     start_date: startDate,
@@ -37,6 +37,7 @@ function Search({ startDate, setStartDate, cities, activities }) {
     const { destination, start_date } = values;
     e.preventDefault();
     dispatch(filterByDate(destination, start_date));
+    setCity(destinationCity)
     setMatchingResults({
       destination: destination.toUpperCase(),
       date: startDate && new Date(start_date).toDateString(),
@@ -45,7 +46,8 @@ function Search({ startDate, setStartDate, cities, activities }) {
   const handleClear = (e) => {
     e.preventDefault();
     setStartDate("");
-    setDestination('')
+    setDestinationCity('')
+    setCity('')
     setValues({
       ...values,
       destination: "",
@@ -68,8 +70,8 @@ function Search({ startDate, setStartDate, cities, activities }) {
           <div className="row mb-2">
             <AutocompleteSearch 
               fieldInput={cities?.map(e=>e.name)} 
-              input={destination} 
-              setInput={setDestination}
+              input={destinationCity} 
+              setInput={setDestinationCity}
               setDestination={(dest)=> setValues({...values, destination: dest})}
             />
             {/* <input

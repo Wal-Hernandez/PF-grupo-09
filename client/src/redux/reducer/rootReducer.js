@@ -30,7 +30,8 @@ import {
     ADD_DETAIL_CART,
     REMOVE_CART,
     ADD_ONE_PEOPLE,
-    DELETE_ONE_PEOPLE
+    DELETE_ONE_PEOPLE,
+    FILTER_BY_ACTIVITY
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"
 import { getAuth } from "firebase/auth";
@@ -100,6 +101,11 @@ export default function rootReducer(state = initialState, action) {
             };
 
         case FILTER_BY_DESTINY:
+            return {
+                ...state,
+                packages: action.payload
+            }
+        case FILTER_BY_ACTIVITY:
             return {
                 ...state,
                 packages: action.payload

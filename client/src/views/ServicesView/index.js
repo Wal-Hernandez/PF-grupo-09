@@ -23,9 +23,6 @@ export default function Services({ userlog }) {
       ? dispatch(getPackages())
       : console.log("hecho");
 
-      return()=>{
-        dispatch(getClean())
-      }
   }, [dispatch, packages]);
 
   const [currentPage, setCurrentPage] = useState(1);

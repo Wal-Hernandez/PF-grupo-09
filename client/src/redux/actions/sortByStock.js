@@ -5,7 +5,7 @@ export const sortByStock = (stock, destination, start, end) => {
   return async (dispatch) => {
     try {
       let result = await axios.get(
-        `http://localhost:3001/packages?stock=${stock}&destination=${destination}&start=${start}&end=${end}`
+        `http://localhost:3001/packages?stock=${stock}&destination=${destination}&start=${start}`
       );
       return dispatch({
         type: SORT_BY_STOCK,

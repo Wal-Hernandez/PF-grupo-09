@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ShowReviews from "./ShowReviews";
 import ReactStars from 'react-rating-stars-component'
-import './reviews.css'
-
+import './review.css'
+import ReviewsForm from './ReviewsForm'
 function Reviews({hotel}) {
 
     const [showReviews, setshowReviews] = useState(false);

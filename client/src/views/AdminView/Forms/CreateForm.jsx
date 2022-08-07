@@ -85,7 +85,9 @@ function Ejemplo({ lang }) {
     dispatch(getCities());
     dispatch(getHotels());
     dispatch(getActivities());
-    return () => dispatch(getClean())
+    return () => {
+      console.log("ok")
+      dispatch(getClean())}
   }, [dispatch]);
 
   function TransformData(x) {
@@ -204,13 +206,14 @@ function Ejemplo({ lang }) {
 
       return;
     }
-    
+
     setHotel({ ...hotel, [event.target.name]: event.target.value });
   }
 
   function handleSubmitHotel() {
     //e.preventDefault(); // para que era esto?
     dispatch(postHotel(hotel));
+    console.log(hotel)
     swal({
       title: "Hotel creado con éxito",
       icon: "success",
@@ -338,7 +341,7 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <Imagenes setUrlHotel={(url)=> setHotel({...hotel, urlImage: [...hotel.urlImage, url]})}/>
+          <Imagenes setUrl={(url) => setHotel({ ...hotel, urlImage: [...hotel.urlImage, url] })} />
           {/* <label className="label-form"> Imagen: </label>
           <input
             type="text"
@@ -644,12 +647,12 @@ function Ejemplo({ lang }) {
       required: { value: true, message: "REQUERIDO" },
     });
 
-    const image = register("image", {
-      pattern: {
-        value: expRegUrl,
-        message: "Url no valida",
-      },
-    });
+    // const image = register("image", {
+    //   pattern: {
+    //     value: expRegUrl,
+    //     message: "Url no valida",
+    //   },
+    // });
 
     const price = register("price", {
       required: { value: true, message: "REQUERIDO" },
@@ -676,20 +679,10 @@ function Ejemplo({ lang }) {
         </div>
 
         <div className="div-form">
-          <label className="label-form"> Imagen: </label>
+          <Imagenes setUrl={(url) => setActivity({ ...activity, image: url })} />
 
-          <input
-            type="text"
-            name="image"
-            value={activity["image"]}
-            placeholder="Ingrese una Url."
-            {...image}
-            onChange={(e) => {
-              image.onChange(e);
-              handleChangeActivity(e);
-            }}
-          />
           {errors?.image && <span>{errors?.image?.message}</span>}
+
         </div>
 
         <div className="div-form">

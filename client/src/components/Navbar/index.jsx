@@ -1,14 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './navbar.css'
+import { useSelector } from 'react-redux';
 import { useAuth } from "../../context/context";
-import logo from "../../images/Buspack.png"
+import logo from "../../images/Buspack2.png"
 import { getAuth } from "firebase/auth";
-import { useDispatch } from 'react-redux'
-import { clearCartLogout } from '../../redux/actions/clearCartLogout'
-import swal from 'sweetalert';
-function Navbar({ userlog }) {
 
+import { useDispatch} from 'react-redux'
+import {clearCartLogout}from '../../redux/actions/clearCartLogout'
+import { rootReducer, initialState } from "../../redux/reducer/rootReducer";
+import swal from 'sweetalert';
+function Navbar({userlog}) {
+  const cart = useSelector((state) => state.rootReducer.cart);
+  // console.log("cartnav", cart.map((e)=>{e.cartDetails}))
+
+
+  const totalCart = cart.map((e)=>{return e.cartDetails})
+  console.log(totalCart)
+  let total = 0;
+  if(cart.length !== 0){
+    
+    total = totalCart[0]
+        .map((item) => item.numberPeople)  
+        .reduce((prev, curr) => prev + curr, 0);
+  }
 
 
   const auth = getAuth();
@@ -21,6 +36,7 @@ function Navbar({ userlog }) {
   } else {
     // No user is signed in.
   }
+
 
   const { logout } = useAuth();
 
@@ -41,41 +57,49 @@ function Navbar({ userlog }) {
 
 
   return (
-    <div class="navbar navbar-expand-lg">
-      <div>
+
+<nav class="navbar navbar-expand-lg ">
+  <div class="container-fluid">
+
         <Link to="/">
           <img src={logo} alt="Buspack" class="logo-buspack" />
         </Link>
-      </div>
-      <ul class="navbar-nav mr-auto">
-        <Link to="/shoppingcart">
-          <h1>Ir al carrito</h1>
-        </Link>
-        <li class="nav-item active">
-          <Link to="/services">
-            <button class='btn btn-sm'>
-              Paquetes
-            </button>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+      <span class="navbar-text">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item  paq-btn">
+          <Link to="/services" className='btn-sm '>
+          <a class="nav-link" href="#">Paquetes</a>
           </Link>
         </li>
-        <li class="nav-item active">
-          {userlog ? <div class="userlog-container">
-            <h5>{userlog.nombre + " " + userlog.apellido}</h5>
-            <button
-              class='btn btn-sm'
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </div> : <Link to="/login">
-            <button class='btn btn-sm'>
-              Login
-            </button>
+      <li class="nav-item">
+        <Link to="/shoppingcart" >
+            <i class="fas fa-shopping-cart carrito"></i>
+            <span class="badge rounded-pill badge-notification bg-danger">{total?total:0}</span>
+          </Link>
+        </li>
+        <li class="nav-item">
+        {userlog? <div class="userlog-container">
+            <p>{userlog.nombre +" "+ userlog.apellido}</p>
+            <div className='btn-sm1'>
+            <a class="nav-link " href="#" onClick={handleLogout}>Cerrar Sesion</a>
+            </div>
+          </div>: <Link to="/login" className='btn-sm'>
+          <a class="nav-link " href="#">Iniciar Sesion</a>
           </Link>}
 
         </li>
-      </ul>
+        </ul>
+      </span>
     </div>
+  </div>
+</nav>
   )
 }
 

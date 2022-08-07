@@ -85,7 +85,9 @@ function Ejemplo({ lang }) {
     dispatch(getCities());
     dispatch(getHotels());
     dispatch(getActivities());
-    return () => dispatch(getClean())
+    return () => {
+      console.log("ok")
+      dispatch(getClean())}
   }, [dispatch]);
 
   function TransformData(x) {

@@ -164,7 +164,7 @@ export default function rootReducer(state = initialState, action) {
         case  CLEAR_CART_LOGOUT:
             return{
                  ...state,
-                 cart:{}
+                 cart:[]
                 } 
         case REMOVE_DETAIL_CART:
             return{

@@ -126,7 +126,33 @@ export default function Details({userlog}) {
 console.log(new Date(packageDetail.start_date).toString())
 
   return (
-    <div class="card">
+    <div class="container "> 
+
+<div class="card mb-3">
+  <div class="row g-0 ">
+    <div class="col-md-4 ">
+      <img src={packageDetail.hotel?.urlImage} class="img-fluid rounded-start"  alt="Image not found"/>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{packageDetail.name}</h5>
+        <p class="card-text">Esta es una tarjeta más amplia con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
+        <p class="card-text"><small class="text-muted">Última actualización hace 3 minutos</small></p>
+      </div>
+    </div>
+    <div>
+    <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
+      {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
+                <article>    
+                    <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           
+                </article>) : null 
+      }
+    </div>
+  </div>
+</div>
+
+    {/* <div class="card">
+      
       <div>
         <div>
           <img
@@ -165,6 +191,7 @@ console.log(new Date(packageDetail.start_date).toString())
       <div>
         {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
       </div>
+    </div> */}
     </div>
 
   );

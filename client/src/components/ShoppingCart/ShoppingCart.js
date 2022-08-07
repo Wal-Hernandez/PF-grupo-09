@@ -13,6 +13,8 @@ import { addDetailCart } from "../../redux/actions/addDetailCart";
 import { loadCart } from "../../redux/actions/loadCart";
 import { addOnePeople } from "../../redux/actions/addOnePeople";
 import Pasarela from "../Pasarela";
+import Footer from "../Footer/index";
+import "../ShoppingCart/ShoppingCart.css";
 
 import { getAuth } from "firebase/auth";
 import Navbar from "../Navbar";
@@ -168,7 +170,7 @@ export default function ShoppingCart({ userlog }) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar userlog={userlog} />
       <div>
         <h3>Carrito</h3>
         <button className="btn btn-danger btn-lg" onClick={clearCart}>
@@ -202,7 +204,10 @@ export default function ShoppingCart({ userlog }) {
         >
           Comprar
         </button>
-        {pulsado ? <Pasarela total={total} /> : null}
+        {pulsado ? <Pasarela total={total} cart={cart} /> : null}
+      </div>
+      <div className="div-cart">
+        <Footer />
       </div>
     </div>
   );

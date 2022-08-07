@@ -13,7 +13,7 @@ const Cart = require("./cartRouter")
 
 const Mailing = require("./mailingRouter");
 const Review = require('./reviewRouter')
-
+const Admin = require('./adminRouter');
 const router = Router();
 
 // Configurar los routers
@@ -31,5 +31,5 @@ router.use("/carts", Cart);
 router.use("/mailing", Mailing)
 
 router.use('/reviews', Review)
-
+router.use('/admin',Admin)
 module.exports = router;

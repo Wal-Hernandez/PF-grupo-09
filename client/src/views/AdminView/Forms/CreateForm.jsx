@@ -103,6 +103,10 @@ function Ejemplo({ lang }) {
   function handleSubmitCity() {
     //e.preventDefault(); // para que era esto?
     dispatch(postCity(city));
+    swal({
+      title: "Ciudad creada con exito",
+      icon: "success",
+    })
   }
 
   function handleChangeBus(event) {
@@ -126,6 +130,10 @@ function Ejemplo({ lang }) {
   function handleSubmitBus() {
     //e.preventDefault();
     dispatch(postBus(bus));
+    swal({
+      title: "Bus creado con exito",
+      icon: "success",
+    })
   }
 
   function handleChangeActivity(event) {
@@ -149,6 +157,10 @@ function Ejemplo({ lang }) {
   function handleSubmitActivity() {
     //e.preventDefault();
     dispatch(postActivity(activity));
+    swal({
+      title: "Actividad creada con exito",
+      icon: "success",
+    })
   }
 
   function TransformData2(x) {
@@ -182,6 +194,10 @@ function Ejemplo({ lang }) {
   function handleSubmitPlatform() {
     //e.preventDefault(); // para que era esto?
     dispatch(postPlatform(platform));
+    swal({
+      title: "Plataforma creada con exito",
+      icon: "success",
+    })
   }
 
   function handleChangeHotel(event) {

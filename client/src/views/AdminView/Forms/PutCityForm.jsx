@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { putCity } from "../../../redux/actions/putCity";
+import swal from "sweetalert";
 export const PutCityForm = ({ pack }) => {
   const dispatch = useDispatch();
   const {
@@ -29,6 +30,10 @@ export const PutCityForm = ({ pack }) => {
   function handleSubmitCity() {
     //e.preventDefault(); // para que era esto?
     dispatch(putCity(pack.id, city));
+    swal({
+      title: "Ciudad editada con exito",
+      icon: "success",
+    })
   }
 
   const name = register("name", {
@@ -91,12 +96,12 @@ export const PutCityForm = ({ pack }) => {
         <button
           type="submit"
           className="button-form"
-          //disabled={!(!Object.entries(errors).length &&perro.name !== '' )}//Explicacion:
-          //un formulario tiene 3 estados: vacio y sin errores, rellenandose con errores y
-          // relleno y sin errores. Cuando no tenga errores es la primera parte del And y
-          // el otro lado es cuando un campo este lleno. Porque al llenar solo un campo,
-          // los errores estaran presentes (vacio). //Finalmente, el ! al inicio es para decir:
-          // Mientras No pase el tercer estado, desactivame esto
+        //disabled={!(!Object.entries(errors).length &&perro.name !== '' )}//Explicacion:
+        //un formulario tiene 3 estados: vacio y sin errores, rellenandose con errores y
+        // relleno y sin errores. Cuando no tenga errores es la primera parte del And y
+        // el otro lado es cuando un campo este lleno. Porque al llenar solo un campo,
+        // los errores estaran presentes (vacio). //Finalmente, el ! al inicio es para decir:
+        // Mientras No pase el tercer estado, desactivame esto
         >
           {" "}
           Put City

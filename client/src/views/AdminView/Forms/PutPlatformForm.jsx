@@ -2,8 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { putPlatform } from "../../../redux/actions/putPlatform";
-export const PutPlatformForm = ({pack}) => {
-  
+import swal from "sweetalert";
+export const PutPlatformForm = ({ pack }) => {
+
   const dispatch = useDispatch();
   const {
     register,
@@ -31,6 +32,10 @@ export const PutPlatformForm = ({pack}) => {
   function handleSubmitPlatform() {
     //e.preventDefault();
     dispatch(putPlatform(pack.id, platform));
+    swal({
+      title: "Plataforma editada con exito",
+      icon: "success",
+    })
   }
 
   const terminal = register("terminal", {
@@ -99,7 +104,7 @@ export const PutPlatformForm = ({pack}) => {
           {" "}
           Put Platform
         </button>
-    
+
       </form>
     </div>
   );

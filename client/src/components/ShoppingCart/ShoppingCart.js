@@ -16,14 +16,14 @@ import { addOnePeople } from "../../redux/actions/addOnePeople";
 import Pasarela from "../Pasarela";
 
 import { getAuth } from "firebase/auth";
+
 import Navbar from "../Navbar";
 import swal from 'sweetalert';
 
 export default function ShoppingCart({ userlog }) {
   const [pulsado, setPulsado] = useState(false);
-  let arrayCartNotLoggedin = useSelector(
-    (state) => state.rootReducer.arrayCartNotLoggedin
-  );
+  let arrayCartNotLoggedin = useSelector((state) => state.rootReducer.arrayCartNotLoggedin );
+  
   const { packages, showPackages } = useSelector((state) => state.rootReducer);
 
   const cart = useSelector((state) => state.rootReducer.cart);
@@ -40,16 +40,24 @@ export default function ShoppingCart({ userlog }) {
     !packages.length
       ? dispatch(getPackages())
       : !showPackages.length
-
       ? dispatch(getMainPackages())
       : console.log("hecho");
   }, [dispatch, packages, showPackages]);
-
-  useEffect(() => {
-    if (user?.email !== undefined) {
-      dispatch(loadCart(user?.email));
-    }
-  }, [user, dispatch]);
+  
+// El QUE ESTABA ANTES
+//  useEffect(() => {
+//    if (user?.email !== undefined) {
+//      dispatch(loadCart(user?.email));
+//    }
+//  }, [user, dispatch]);
+  
+ //SUBIDO POR AGUS FIDELIO 
+     useEffect(()=>{
+        if(!packages.length) dispatch(getPackages())
+        if(user?.email!==undefined){
+            dispatch(loadCart(user?.email)) 
+       }
+      },[user,dispatch])
 
   const addToCart = (id) => {
     if (user) {
@@ -71,12 +79,15 @@ export default function ShoppingCart({ userlog }) {
         let numberPeople = detailpackageId[0].numberPeople;
         console.log("numberPeople", numberPeople);
         dispatch(addOnePeople(idCartDetail, numberPeople, user.email));
-      } else {
+      }
+        
+      else {
         //logica para agregar un nuevo detalle
         let idCart = cart[0]["id"];
         console.log("IDCART:", idCart, id);
         let email = cart[0]["user"]["mail"];
         dispatch(addDetailCart(idCart, id, email));
+
       }
     } else {
       console.log(id);

@@ -11,12 +11,13 @@ import Reviews from "../Reviews";
 import{addDetailCart} from "../../redux/actions/addDetailCart"
 import {loadCart} from "../../redux/actions/loadCart"
 import {addOnePeople} from "../../redux/actions/addOnePeople"
-
+import { getPackages } from "../../redux/actions/getPackages";
 
 
 
 export default function Details({userlog}) {
   const dispatch = useDispatch();
+  const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const { id } = useParams();
   const packageDetail = useSelector((state) => state.rootReducer.detail);
   const cart = useSelector((state) => state.rootReducer.cart);
@@ -40,6 +41,14 @@ export default function Details({userlog}) {
     if(user?.email)
     dispatch(loadCart(user?.email))
   }, [dispatch, id,user]);
+
+
+  useEffect(()=>{
+    if(!packages.length) dispatch(getPackages())
+    if(user?.email!==undefined){
+        dispatch(loadCart(user?.email)) 
+   }
+  },[user,dispatch])
 
   let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);
   let arrayCartLoggedin  = useSelector((state) => state.rootReducer.arrayCartLoggedin);
@@ -136,6 +145,19 @@ let paqueteCargado=false;
     {paqueteCargado=true}
   }
  }
+ if(localStorage.getItem("myCartNotLoggedin")){
+  myCarttextNotLoggedin = localStorage.getItem("myCartNotLoggedin")
+  myCartparsedNotLoggedin= JSON.parse(myCarttextNotLoggedin)
+  if(id) {
+    console.log(myCartparsedNotLoggedin)
+    let myCartparsedNotLoggedinfiltered=myCartparsedNotLoggedin.filter(e=>e.id==id)
+    if(myCartparsedNotLoggedinfiltered.length>0) {
+      paqueteCargado=true
+    }
+  }
+ }
+
+
 
 console.log("CART:",cart)
 console.log(new Date(packageDetail.start_date).toString())
@@ -171,11 +193,6 @@ console.log(new Date(packageDetail.start_date).toString())
         <p class="card-text">Stock: {packageDetail.stock}</p>
       </div>
       {paqueteCargado?<Link to="/shoppingcart"><button className="btn btn-warning">Ver en el Carrito</button></Link>:<button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button>} 
-      {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
-                <article>    
-                    <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           
-                </article>) : null 
-      }
 
       <div>
         {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}

@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAuth } from "firebase/auth";
 import { addOnePeople } from '../../redux/actions/addOnePeople';
 import { deleteOnePeople } from '../../redux/actions/deleteOnePeople';
+import {TYPES} from '../../redux/actions/shoppingActions';
 
 
 
@@ -47,20 +48,23 @@ export default function ProductItem({id, quantity, data, arrayCartNotLoggedin,de
       }
  
 
-      const addOne=(idCartDetail,numberPeople)=>{
+      const addOne=(id,idCartDetail,numberPeople)=>{
         
         if(user)
      {
        dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
+     } else {
+      dispatch({type:TYPES.ADD_TO_CART, payload:id})
      }
-        
+
       }
-      const deleteOne=(idCartDetail,numberPeople)=>{
+      const deleteOne=(id, idCartDetail,numberPeople)=>{
         
         if(user){
           dispatch(deleteOnePeople(idCartDetail,numberPeople,user.email))
         }
         else{
+          dispatch({type:TYPES.REMOVE_ONE_FROM_CART, payload:id})
 
         }
        
@@ -72,20 +76,20 @@ export default function ProductItem({id, quantity, data, arrayCartNotLoggedin,de
         <div>{data ? <div>
         <h1>{data.name}</h1>
         <p>
-           <button onClick={()=>deleteOne(idDetail,quantity)} 
+           <button onClick={()=>deleteOne(id, idDetail,quantity)} 
                    disabled={quantity===1} 
                    className='btn btn-success'>
                     -
            </button>
            {quantity} Personas
-           <button onClick={()=>addOne(idDetail,quantity)}
+           <button onClick={()=>addOne(id,idDetail,quantity)}
                    disabled={quantity>=data.stock} 
                    className='btn btn-success'>
                     +
            </button> 
           Precio Unitario x ${data.price}.00 = ${quantity * data.price}.00
         </p>
-            <button className='btn btn-warning' onClick={()=>delFromCart(idDetail)}>
+            <button className='btn btn-warning' onClick={()=>delFromCart(id,idDetail)}>
                Eliminar
            </button>
         </div>

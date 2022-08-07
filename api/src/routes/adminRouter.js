@@ -28,7 +28,7 @@ router.get("/:id", async (req, res) => {
   router.post("/:id", async (req, res) => {
     const { rol } = req.body;
     const { id } = req.params;
-   try{ await db.collection("usuarios").doc(id).update({ rol });
+   try{ await db.collection("usuarios").doc(id).update( {rol:rol} );
     res.status(200).json("Exito");}
     catch(err){console.log(err)}
   });

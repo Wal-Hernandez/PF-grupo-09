@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAuth } from "firebase/auth";
 import { addOnePeople } from '../../redux/actions/addOnePeople';
 import { deleteOnePeople } from '../../redux/actions/deleteOnePeople';
+import {TYPES} from '../../redux/actions/shoppingActions';
 
 
 
@@ -30,62 +31,66 @@ export default function ProductItem({id, quantity, data, arrayCartNotLoggedin,de
     let myCartAll=[]
 
     if (user) {
-        if(localStorage.getItem("myCartLoggedin")){
-          myCarttextLoggedin = localStorage.getItem("myCartLoggedin")
-          myCartparsedLoggedin= JSON.parse(myCarttextLoggedin)
+      if(localStorage.getItem("myCartLoggedin")){
+        myCarttextLoggedin = localStorage.getItem("myCartLoggedin")
+        myCartparsedLoggedin= JSON.parse(myCarttextLoggedin)
+    } 
+      // ...
+    } else {
+      // No user is signed in.
+      console.log("No logueado")
+      if(localStorage.getItem("myCartNotLoggedin")){
+          console.log("estamos en shopping cart y el carrito existe")
+          myCarttext = localStorage.getItem("myCartNotLoggedin")
+          myCartparsed= JSON.parse(myCarttext)        
       } 
-        // ...
-      } else {
-        // No user is signed in.
-        console.log("No logueado")
-        if(localStorage.getItem("myCartNotLoggedin")){
-            console.log("estamos en shopping cart y el carrito existe")
-            myCarttext = localStorage.getItem("myCartNotLoggedin")
-            myCartparsed= JSON.parse(myCarttext)        
-        } 
-        myCartAll=myCartparsedfilteredNotLoggedin
-      }
+      myCartAll=myCartparsedfilteredNotLoggedin
+    }
+  
  
 
-      const addOne=(idCartDetail,numberPeople)=>{
-        
-        if(user)
-     {
-       dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
-     }
-        
-      }
-      const deleteOne=(idCartDetail,numberPeople)=>{
-        
-        if(user){
-          dispatch(deleteOnePeople(idCartDetail,numberPeople,user.email))
+    const addOne=(id,idCartDetail,numberPeople)=>{
+    
+            if(user)
+        {
+          dispatch(addOnePeople(idCartDetail,numberPeople,user.email))
+        } else {
+          dispatch({type:TYPES.ADD_TO_CART, payload:id})
         }
-        else{
-
-        }
-       
         
-      }
+          }
+          const deleteOne=(id, idCartDetail,numberPeople)=>{
+            
+            if(user){
+              dispatch(deleteOnePeople(idCartDetail,numberPeople,user.email))
+            }
+            else{
+              dispatch({type:TYPES.REMOVE_ONE_FROM_CART, payload:id})
+        
+            }
+     
+      
+    }
 
 
     return(
         <div>{data ? <div>
         <h1>{data.name}</h1>
         <p>
-           <button onClick={()=>deleteOne(idDetail,quantity)} 
+           <button onClick={()=>deleteOne(id, idDetail,quantity)} 
                    disabled={quantity===1} 
                    className='btn btn-success'>
                     -
            </button>
            {quantity} Personas
-           <button onClick={()=>addOne(idDetail,quantity)}
+           <button onClick={()=>addOne(id,idDetail,quantity)}
                    disabled={quantity>=data.stock} 
                    className='btn btn-success'>
                     +
            </button> 
           Precio Unitario x ${data.price}.00 = ${quantity * data.price}.00
         </p>
-            <button className='btn btn-warning' onClick={()=>delFromCart(idDetail)}>
+            <button className='btn btn-warning' onClick={()=>delFromCart(id,idDetail)}>
                Eliminar
            </button>
         </div>

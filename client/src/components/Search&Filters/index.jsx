@@ -8,6 +8,8 @@ function SearchAndFilters({ setCurrentPage }) {
   const [activity, setActivity] = useState("");
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
+  const [priceOrder, setPriceOrder] = useState("");
+  const [stockOrder, setStockOrder] = useState("");
 
   const {cities, activities} = useSelector(state => state.rootReducer);
 
@@ -20,17 +22,21 @@ function SearchAndFilters({ setCurrentPage }) {
         setStartDate={setStartDate}
         cities={cities}
         setCity={setCity}
+        price={priceOrder}
+        stock={stockOrder}
+        setPrice={setPriceOrder}
+        setStock={setStockOrder}
       />
       </div>
        <div className="row">
       <Filters
         setCurrentPage={setCurrentPage}
-        // price={priceOrder}
-        // stock={stockOrder}
+        price={priceOrder}
+        stock={stockOrder}
         activity={activity}
         startDate={startDate}
-        // setPrice={setPriceOrder}
-        // setStock={setStockOrder}
+        setPrice={setPriceOrder}
+        setStock={setStockOrder}
         setActivity={setActivity}
         activities={activities}
         city={city}

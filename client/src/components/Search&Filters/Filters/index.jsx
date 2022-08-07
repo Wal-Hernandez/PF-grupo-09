@@ -6,52 +6,45 @@ import { sortByStock } from '../../../redux/actions/sortByStock';
 
 function Filters(props) {
 
-    const [priceOrder, setPriceOrder] = useState("");
-    const [stockOrder, setStockOrder] = useState("");
     const dispatch = useDispatch();
 
+    console.log(props.city)
+
     function handleActivities(e){
-        dispatch(filterByActivity(e.target.value, priceOrder, stockOrder))
+        dispatch(filterByActivity(e.target.value, props.price, props.stock))
         props.setActivity(e.target.value)
         props.setCurrentPage(1)
     }
     function handleSortByPrice(e){
         let startShortDate = ''
-        let endShortDate = ''
         if(props.startDate !== ''){
             return startShortDate = props.startDate?.toISOString()
         }
-        if(props.endDate !== ''){
-            return endShortDate = props.endDate?.toISOString()
-        }
-        dispatch(sortByPrice("asc", props.city, startShortDate , endShortDate))
-        setPriceOrder(e.target.value)
+        dispatch(sortByPrice(e.target.value, props.city, startShortDate))
+        props.setPrice(e.target.value)
         props.setCurrentPage(1)
     }
     function handleSortByStock(e){
         let startShortDate = ''
-        let endShortDate = ''
         if(props.startDate !== ''){
             return startShortDate = props.startDate?.toISOString()
         }
-        if(props.endDate !== ''){
-            return endShortDate = props.endDate?.toISOString()
-        }
-        dispatch(sortByStock(e.target.value, props.city, startShortDate, endShortDate))
-        setStockOrder(e.target.value)
+        
+        dispatch(sortByStock(e.target.value, props.city, startShortDate))
+        props.setStock(e.target.value)
         props.setCurrentPage(1)
     }
 
 
   return (
     <div className='select-container'>
-        <select className='form-select' defaultValue="" onChange={handleSortByPrice}>
+        <select className='form-select' defaultValue="" onChange={handleSortByPrice} label={'Ordenar por precio'}>
             <option value="" disabled>Ordenar por precio</option>
             <option label={'Menor precio'} value="asc"></option>
             <option label={'Mayor precio'} value="desc"></option>
         </select>
-        <select className="form-select" defaultValue="" onChange={handleSortByStock}>
-            <option value="" disabled>Ordenar por stock</option>
+        <select className="form-select" defaultValue="" onChange={handleSortByStock} label={'Ordenar por stock'}>
+            <option value="" disabled></option>
             <option label={'Menor stock'} value="asc"></option>
             <option label={'Mayor stock'} value="desc"></option>
         </select>

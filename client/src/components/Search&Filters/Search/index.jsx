@@ -5,7 +5,7 @@ import { filterByDate } from "../../../redux/actions/filterByDate&Dest";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({ startDate, setStartDate, cities, setCity }) {
+function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, SetStock }) {
   const dispatch = useDispatch();
   const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
@@ -36,7 +36,7 @@ function Search({ startDate, setStartDate, cities, setCity }) {
   const handleSearch = (e) => {
     const { destination, start_date } = values;
     e.preventDefault();
-    dispatch(filterByDate(destination, start_date));
+    dispatch(filterByDate(destination, start_date, price, stock));
     setCity(destinationCity)
     setMatchingResults({
       destination: destination.toUpperCase(),
@@ -56,6 +56,8 @@ function Search({ startDate, setStartDate, cities, setCity }) {
       destination: "",
       date: "",
     });
+    setPrice('');
+    SetStock('')
     dispatch(getPackages());
   };
 

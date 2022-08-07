@@ -256,8 +256,10 @@ function Admin() {
                   ? (
                     adminView.map((packs) => {
                       return (
-
-                        <div className="adminPanelColumn" key={packs.id}>
+                        
+                        <div>
+                        <a class="btn btn-info w-100 p-3" data-bs-toggle="collapse" href={`#multiCollapseExample1${packs.name}`} role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <div class="adminPanelColumn w-100" key={packs.id}>
 
                           <div className="text">
                             <h1>{packs.name || packs.patent || packs.terminal}</h1>
@@ -281,8 +283,23 @@ function Admin() {
                             </div>
                           </div>
                         </div>
-
-                      );
+                        </a>
+                        <div class="col">
+                             <div class="collapse " id={`multiCollapseExample1${packs.name}`}>
+                              <div class="d-flex flex-row d-inline-block bg-dark" id="divCont">
+                               <div class="card card-body h-100 w-50">
+                               Stadistics <b>Detalles de Carrito</b>
+                              {packs.carts?.length ? (packs.carts[0]?.cartDetails?.map(e => (<h1>{e.packageId}</h1>))) : <div>Usuario sin carrito</div>}
+                               </div>
+                               <div class="card card-body h-100 w-50">
+                               Stadistics 2 <b>REVIEWS</b>
+                               <h2> {packs.reviews[0]?.title}</h2>
+                               </div>
+                        </div>
+                       </div>
+                        </div>
+                        </div>
+                      )
                     }).slice(indiceInicial, indiceFinal)
 
                   )

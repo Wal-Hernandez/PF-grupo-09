@@ -22,7 +22,6 @@ const getCart = async (mail) => {
              statusCartId:1},
 include:[{
   model: User,
- 
 },
 {
   model: CartDetail,

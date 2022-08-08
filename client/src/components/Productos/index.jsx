@@ -10,21 +10,45 @@ export default function Productos(props) {
 
   return (
     <div className='productos-div'>
-      {packages.map((e) => {
-        return (
-          <div key={e.id} className="package-item">
-            <Link to={"/details/" + e.id}>
-              <img class="card-img-top" src={e.hotel?.urlImage} alt="Card image cap" />
-              <div>Nombre paquete: {e.name}</div>
-              <div>Ciudad: {e.city.name}</div>
-              <div>Fecha de salida: {new Date(e.start_date).toLocaleString('es-ES')}</div>
-              <div>Fecha de llegada: {new Date(e.end_date).toLocaleString('es-ES')}</div>
-              <div>Precio: ${e.price}</div>
-              <div>Stock: {e.stock}</div>
-            </Link>
-          </div>
-        )
-      })}
+      <ul class="list-group list-group-flush">
+        {packages.map((e) => {
+          return (
+            <div key={e.id} class="card package-item">
+              <Link to={"/details/" + e.id}>
+                <li class="list-group-item">
+                  <div class="card-body">
+                    <div>
+                      <p class="card-text card-main c-city">Nombre paquete</p> <br />
+                      <h5 class="card-title card-main c-name">{e.name}</h5>
+                    </div>
+                    <div>
+                      <p class="card-title card-main c-city">Ciudad</p> <br />
+                      <h5 class="card-title card-main c-name">{e.city.name}</h5>
+                    </div>
+                    <div>
+                      <p class="card-title card-main c-city">Fecha de salida</p> <br />
+                      <h5 class="card-title card-main c-name">{new Date(e.start_date).toLocaleString('es-ES')}</h5>
+                    </div>
+                    <div>
+                      <p class="card-title card-main c-city">Fecha de llegada</p> <br />
+                      <h5 class="card-title card-main c-name">{new Date(e.end_date).toLocaleString('es-ES')}</h5>
+                    </div>
+                    <div>
+                      <p class="card-title card-main c-city">Precio</p> <br />
+                      <h5 class="card-title card-main c-name">${e.price}</h5>
+                    </div>
+                    <div>
+                      <p class="card-title card-main c-city">Stock</p> <br />
+                      <h5 class="card-title card-main c-name">{e.stock}</h5>
+                    </div>
+                  </div>
+                </li>
+              </Link>
+            </div>
+          )
+        })}
+      </ul>
+
     </div>
   )
 }

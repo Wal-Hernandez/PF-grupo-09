@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link,useNavigate} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './navbar.css'
 import { useSelector } from 'react-redux';
 import { useAuth } from "../../context/context";
@@ -11,21 +11,19 @@ import {clearCartLogout}from '../../redux/actions/clearCartLogout'
 import { rootReducer, initialState } from "../../redux/reducer/rootReducer";
 import swal from 'sweetalert';
 function Navbar({userlog}) {
+
 const cart = useSelector((state) => state.rootReducer.cart);
+
   // console.log("cartnav", cart.map((e)=>{e.cartDetails}))
-
-
-  const totalCart = cart.map((e)=>{return e.cartDetails})
-  console.log(totalCart)
-  let total = 0;
-  if(cart.length !== 0){
-    
-    total = totalCart[0]
-        .map((item) => item.numberPeople)  
-        .reduce((prev, curr) => prev + curr, 0);
+  console.log(cart)
+  let totalCart = []
+  if( !typeof cart === "object"){
+  if(cart !== undefined && cart.length !== 0 ){
+    console.log(cart)
+    totalCart = cart[0]["cartDetails"]
+    console.log(totalCart)
   }
-
-
+}
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();
@@ -81,7 +79,7 @@ const cart = useSelector((state) => state.rootReducer.cart);
       <li class="nav-item">
         <Link to="/shoppingcart" >
             <i class="fas fa-shopping-cart carrito"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">{total?total:0}</span>
+            <span class="badge rounded-pill badge-notification bg-danger">{!totalCart.length?0:totalCart.length}</span>
           </Link>
         </li>
         <li class="nav-item">

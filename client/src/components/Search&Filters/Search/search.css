@@ -17,7 +17,7 @@ input {
     max-height: 143px;
     overflow-y: auto;
     padding-left: 0;
-    width: calc(300px + 1rem);
+    /* width: calc(300px + 1rem); */
   }
   
   .suggestions li {

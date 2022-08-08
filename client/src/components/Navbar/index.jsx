@@ -17,13 +17,13 @@ const cart = useSelector((state) => state.rootReducer.cart);
   // console.log("cartnav", cart.map((e)=>{e.cartDetails}))
   console.log(cart)
   let totalCart = []
-  if( !typeof cart === "object"){
+ 
   if(cart !== undefined && cart.length !== 0 ){
     console.log(cart)
     totalCart = cart[0]["cartDetails"]
     console.log(totalCart)
   }
-}
+
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();

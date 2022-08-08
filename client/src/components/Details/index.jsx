@@ -268,7 +268,7 @@ shopping_cart_checkout
       </div>
       {paqueteCargado?<Link to="/shoppingcart"><button className="btn btn-warning">Ver en el Carrito</button></Link>:<button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button>} 
 
-      <div>
+      {/* <div>
         {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
       </div>
     </div> */}

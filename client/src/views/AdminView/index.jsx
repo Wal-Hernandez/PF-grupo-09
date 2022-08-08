@@ -174,43 +174,43 @@ function Admin() {
             </button>
           </div>
           <div className="btns">
-            <div className="btn-pack btnn">
-              <button name="packages" onClick={handleSelect}>
+            <div className="btn-pack btnn" style={model === 'packages' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%' } : { backgroundColor: '#00000000' }}>
+              <button name="packages" onClick={handleSelect} style={model === 'packages' ? { backgroundColor: '#ccc', position:'relative'} : { backgroundColor: '#00000000' }}>
                 Paquetes
               </button>
-            </div>
-            <div className="btn-hotels btnn">
-              <button name="hotels" onClick={handleSelect}>
+            </div >
+            <div className="btn-hotels btnn" style={model === 'hotels' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+              <button name="hotels" onClick={handleSelect} style={model === 'hotels' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
                 Hoteles
               </button>{" "}
             </div>
-            <div className="btn-business btnn">
-              <button name="business" onClick={handleSelect}>
+            <div className="btn-business btnn" style={model === 'business' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+              <button name="business" onClick={handleSelect} style={model === 'business' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
                 Business
               </button>
             </div>
-            <div className="btn-activities btnn">
-              <button name="activities" onClick={handleSelect}>
+            <div className="btn-activities btnn" style={model === 'activities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+              <button name="activities" onClick={handleSelect} style={model === 'activities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
                 Activites
               </button>
             </div>
-            <div className="btn-cites btnn">
-              <button name="cities" onClick={handleSelect}>
+            <div className="btn-cites btnn" style={model === 'cities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+              <button name="cities" onClick={handleSelect} style={model === 'citiess' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
                 City
               </button>
             </div>
-            <div className="btn-plattforms btnn">
-              <button name="plattforms" onClick={handleSelect}>
+            <div className="btn-plattforms btnn" style={model === 'plattforms' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+              <button name="plattforms" onClick={handleSelect} style={model === 'plattforms' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
                 Platforms
               </button>
             </div>
           </div>
           <hr />
           <div>Stadistics</div>
-          <div className="btn-plattforms btnn">
-            <button name="users" onClick={handleSelect}>
-              Users
-            </button>
+          <div className="btn-plattforms btnn" style={model === 'users' ? { backgroundColor: '#FFDE59', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+              <button name="users" onClick={handleSelect} style={model === 'users' ? { backgroundColor: '##FFDE59', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+                Users
+              </button>     
           </div>
         </div>
 

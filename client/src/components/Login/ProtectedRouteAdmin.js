@@ -35,8 +35,10 @@ getRol(user?.uid)
   }
 
   if (loading) return <h1>Loading</h1>;
+
 console.log(roles)
   if (roles !=='admin') {
+
     return <NoPermissions />;
   }
   return <>{children}</>;

@@ -1,4 +1,4 @@
-const { Hotel, City, Review } = require("../db");
+const { Hotel, City, ReviewHotel } = require("../db");
 
 const getHotels = async () => {
   try {
@@ -9,7 +9,7 @@ const getHotels = async () => {
           attributes: ["name"],
         },
         {
-          model: Review,
+          model: ReviewHotel,
         },
       ],
     });
@@ -31,7 +31,7 @@ const getHotel = async (id) => {
           model: City,
           attributes: ["name"],
         },
-        { model: Review },
+        { model: ReviewHotel },
       ],
     });
 

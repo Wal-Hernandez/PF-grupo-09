@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
 
-  sequelize.define('review', {
+  sequelize.define('reviewBusiness', {
     score: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -20,4 +20,3 @@ module.exports = (sequelize) => {
   
   },{timestamps:true});
 };
-

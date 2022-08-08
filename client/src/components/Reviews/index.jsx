@@ -13,13 +13,13 @@ function Reviews({ hotel, userlog }) {
     score: "",
   });
 
-  if (userlog.rol === "banned") {
+  if (userlog?.rol === "banned") {
     return <>BANEADO</>;
   }
 
   return (
     <div className="review-container">
-      {hotel?.reviews.length ? (
+      {hotel?.reviews?.length? (
         <div>
           <button onClick={() => setshowReviews(!showReviews)}>
             Mostrar valoraciones del hotel

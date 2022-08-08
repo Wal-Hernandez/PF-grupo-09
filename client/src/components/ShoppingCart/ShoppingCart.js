@@ -12,6 +12,7 @@ import { removeCart } from "../../redux/actions/removeCart";
 import { addDetailCart } from "../../redux/actions/addDetailCart";
 import { loadCart } from "../../redux/actions/loadCart";
 import { addOnePeople } from "../../redux/actions/addOnePeople";
+import Footer from "../../components/Footer/index";
 import Pasarela from "../Pasarela";
 
 import { getAuth } from "firebase/auth";
@@ -31,7 +32,7 @@ export default function ShoppingCart({ userlog }) {
   const auth = getAuth();
   const user = auth.currentUser;
 
-  console.log("USERCOMUN:", user?.mail);
+  console.log("USERCOMUN:", user?.email);
   useEffect(() => {
     dispatch(getCities());
     !packages.length
@@ -204,6 +205,8 @@ export default function ShoppingCart({ userlog }) {
         </button>
         {pulsado ? <Pasarela total={total} /> : null}
       </div>
+
+      <Footer />
     </div>
   );
 }

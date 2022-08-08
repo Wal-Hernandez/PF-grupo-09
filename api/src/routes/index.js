@@ -11,6 +11,7 @@ const User = require("./userRouter");
 const TypeUser = require("./typeUserRouter");
 const Cart = require("./cartRouter");
 const Review = require("./reviewRouter");
+const Payment = require("./paymentRouter");
 
 const router = Router();
 
@@ -27,5 +28,6 @@ router.use("/typeusers", TypeUser);
 router.use("/cartdetails", CartDetail);
 router.use("/carts", Cart);
 router.use("/reviews", Review);
+router.use("/payment", Payment);
 
 module.exports = router;

@@ -4,7 +4,6 @@ import logo from "../../images/Buspack.png";
 import { loadStripe } from "@stripe/stripe-js";
 import { useDispatch, useSelector } from "react-redux";
 import { postPayment } from "../../redux/actions/postPayment";
-import swal from "sweetalert";
 import {
   Elements,
   CardElement,
@@ -64,6 +63,7 @@ const CheckoutForm = ({ total, cart }) => {
           userMail: cart[0].user.mail,
           description: description,
         };
+        console.log("hola", pay);
         let resBack = await axios.post(`http://localhost:3001/payment`, pay);
         resBack = resBack.data;
         console.log(resBack);

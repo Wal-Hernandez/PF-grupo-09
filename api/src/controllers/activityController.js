@@ -1,12 +1,16 @@
 // const axios = require("axios");
 // const e = require("express");
 const { Op } = require("sequelize");
-const { Activity, City } = require("../db");
+const { Activity, City, ReviewActivity } = require("../db");
 
 
 const getActivities=async()=>{
   try {
-     let activities = await Activity.findAll()
+     let activities = await Activity.findAll({
+      include: {
+        model: ReviewActivity,
+      }
+     })
  return activities;
   } catch (err) {
     return {
@@ -20,10 +24,13 @@ const getActivitiesFromCity = async (idCity) => {
   try {
     let activitiesFromCity = await Activity.findAll({
       where: { cityId: idCity },
-      include: {
+      include: [{
         model: City,
         attributes: [],
       },
+      {
+        model: ReviewActivity,
+      }],
     });
     console.log(activitiesFromCity);
     return activitiesFromCity;
@@ -35,15 +42,13 @@ const getActivitiesFromCity = async (idCity) => {
   }
 };
 
-const createActivity = async (name, image, price, score, comments, cityId) => {
+const createActivity = async (name, image, price, cityId) => {
   try {
    // const city = await City.findAll({where: { id: cityId }})
     const activity = await Activity.create({
       name: name,
       image: image,
       price: price,
-      score: score,
-      comments: comments,
       cityId: cityId,
     });
    // activity.addCity(city)
@@ -79,15 +84,13 @@ const deleteActivityById = async (id) => {
   }
 };
 
-const updateActivity = async (id,name,image,price, score, comments, cityId) => {
+const updateActivity = async (id,name,image,price, cityId) => {
   try {
     const activity = await Activity.update(
       {
        name,
        image,
        price, 
-       score, 
-       comments, 
        cityId,
       },
       { where: { id: id } }

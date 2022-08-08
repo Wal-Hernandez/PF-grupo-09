@@ -1,4 +1,4 @@
-const { Package, Activity,Business, Plattform, City, Hotel, Review } = require("../db");
+const { Package, Activity,Business, Plattform, City, Hotel, ReviewHotel, ReviewBusiness, ReviewActivity } = require("../db");
 const { Op, Sequelize } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
@@ -26,11 +26,16 @@ const getPackages = async (req, res, next) => {
       include: [
         {
           model: Activity,
-          where: activityWhere
+          where: activityWhere,
+          include: {
+            model: ReviewActivity
+          }
         },
         {
           model: Business,
-          
+          include: {
+            model: ReviewBusiness 
+          }
         },
         {
           model: Plattform,
@@ -44,7 +49,7 @@ const getPackages = async (req, res, next) => {
         {
           model: Hotel,
           include: {
-            model: Review
+            model: ReviewHotel
           }
         },
       ],
@@ -68,14 +73,15 @@ const getPackageById = async (req, res, next) => {
         include: [
           {
             model: Activity,
-
-          through: {
-            attributes: [],
-          }
+            include: {
+              model: ReviewActivity
+            }
         },
         {
           model: Business,
-         
+          include: {
+            model: ReviewBusiness 
+          }
         },
         {
           model: Plattform,
@@ -88,7 +94,7 @@ const getPackageById = async (req, res, next) => {
         {
           model: Hotel,
           include: {
-            model: Review
+            model: ReviewHotel
           }
         },
       ],}
@@ -218,7 +224,7 @@ const updatePackage = async (req, res) => {
     hotelId,
     stock,
   } = req.body;
-  console.log(req.body)
+ 
   try {
     if (
       !name ||

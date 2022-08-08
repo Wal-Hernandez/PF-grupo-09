@@ -10,10 +10,15 @@ const CartDetail = require("./cartDetailRouter");
 const User = require("./userRouter");
 const TypeUser = require("./typeUserRouter");
 const Cart = require("./cartRouter");
-const Review = require("./reviewRouter");
+const ReviewHotel = require("./reviewHotelRouter");
 const Payment = require("./paymentRouter");
-const Mailing = require('./mailingRouter');
-const Admin = require('./adminRouter');
+const ReviewActivity = require("./reviewActivityRouter");
+const ReviewBusiness = require("./reviewBusRouter");
+const Mailing = require("./mailingRouter");
+const Admin = require("./adminRouter");
+const Shopping = require("./shoppingRouter");
+const Stock = require("./stockRouter");
+
 const router = Router();
 
 // Configurar los routers
@@ -28,8 +33,15 @@ router.use("/users", User);
 router.use("/typeusers", TypeUser);
 router.use("/cartdetails", CartDetail);
 router.use("/carts", Cart);
-router.use("/reviews", Review);
+router.use("/hotelreviews", ReviewHotel);
 router.use("/payment", Payment);
-router.use("/mailing",Mailing);
-router.use("/admin",Admin);
+router.use("/activityreviews", ReviewActivity);
+router.use("/businessreviews", ReviewBusiness);
+router.use("/mailing", Mailing);
+router.use("/admin", Admin);
+router.use("/mailing", Mailing);
+router.use("/admin", Admin);
+router.use("/shopping", Shopping);
+router.use("/stock", Stock);
+
 module.exports = router;

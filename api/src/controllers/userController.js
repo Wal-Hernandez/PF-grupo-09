@@ -1,4 +1,4 @@
-const { User, Cart, Review, CartDetail} = require("../db");
+const { User, Cart, ReviewHotel, CartDetail, ReviewActivity, ReviewBusiness} = require("../db");
 
 const getUsers = async () => {
   try {
@@ -8,7 +8,9 @@ const getUsers = async () => {
           include:{
             model:CartDetail}
            }
-        ,{model:Review}
+        ,{model:ReviewHotel},
+        {model:ReviewActivity},
+        {model:ReviewBusiness}
     ]
       // include: {
       //   model: TypeUser,
@@ -32,10 +34,15 @@ const getUser = async (id) => {
 
   try {
     let user = await User.findByPk(id, {
-      // include: {
-      //   model: TypeUser,
-      //   attributes: ["description"],
-      // },
+      include:[
+        { model: Cart,
+          include:{
+            model:CartDetail}
+           }
+        ,{model:ReviewHotel},
+        {model:ReviewActivity},
+        {model:ReviewBusiness}
+      ]
     });
 
     return user;

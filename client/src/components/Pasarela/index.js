@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import logo from "../../images/Buspack.png";
 import { loadStripe } from "@stripe/stripe-js";
 import { useDispatch, useSelector } from "react-redux";
-import { postPayment } from "../../redux/actions/postPayment";
+import { changeStateCart} from "../../redux/actions/changeStateCart";
 import {
   Elements,
   CardElement,
@@ -69,6 +69,8 @@ const CheckoutForm = ({ total, cart }) => {
         console.log(resBack);
 
         if (!resBack.error) {
+          //cambiar el estado del carrito 
+          dispatch(changeStateCart({id:pay.idCart,mail:pay.userMail}))
           swal({
             title: "El pago fue realizado con exito",
             icon: "success",

@@ -28,7 +28,7 @@ let rol = getRol(user?.uid)
 
   if (loading) return <h1>Loading</h1>;
 
-  if (user.email !== "productowner@henry.com"&& rol ==='client') {
+  if (user.email !== "productowner@henry.com"&& rol !=='admin') {
     return <NoPermissions />;
   }
   return <>{children}</>;

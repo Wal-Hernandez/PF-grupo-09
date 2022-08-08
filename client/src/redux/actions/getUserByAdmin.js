@@ -4,7 +4,7 @@ import axios from "axios";
 export const getUserForAdmin= () => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/admin`);
+            let result = await axios.get(`http://localhost:3001/admin/user`);
             return dispatch({
                 type: GET_USER,
                 payload: result.data

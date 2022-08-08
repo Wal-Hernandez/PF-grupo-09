@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import ShowReviews from "./ShowReviews";
-import ReactStars from 'react-rating-stars-component'
-import './review.css'
-import ReviewsForm from './ReviewsForm'
-function Reviews({hotel}) {
+import ReactStars from "react-rating-stars-component";
+import "./review.css";
+import ReviewsForm from "./ReviewsForm";
+function Reviews({ hotel, userlog }) {
+  const [showReviews, setshowReviews] = useState(false);
+  const [values, setValues] = useState({
+    userId: "",
+    hotelId: hotel.id,
+    title: "",
+    comment: "",
+    score: "",
+  });
 
-    const [showReviews, setshowReviews] = useState(false);
-    const [values, setValues] = useState({
-        userId: '',
-        hotelId: hotel.id,
-        title: '',
-        comment: '',
-        score: ''
-    });
-
-    const handleChange = (e)=>{
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value
-        })
-    }
+  if (userlog.rol === "banned") {
+    return <>BANEADO</>;
+  }
 
   return (
     <div className="review-container">
@@ -31,7 +27,7 @@ function Reviews({hotel}) {
           {showReviews && <ShowReviews hotel={hotel} />}
         </div>
       ) : null}
-      <ReviewsForm hotel={hotel}/>
+      <ReviewsForm hotel={hotel} />
     </div>
   );
 }

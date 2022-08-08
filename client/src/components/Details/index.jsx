@@ -12,6 +12,7 @@ import{addDetailCart} from "../../redux/actions/addDetailCart"
 import {loadCart} from "../../redux/actions/loadCart"
 import {addOnePeople} from "../../redux/actions/addOnePeople"
 import { getPackages } from "../../redux/actions/getPackages";
+import StarRating from "../StarRatings/index"
 
 
 
@@ -33,7 +34,7 @@ export default function Details({userlog}) {
   const auth = getAuth();
   const user = auth.currentUser;
   
-
+   console.log(packageDetail)
   
   useEffect(() => {
     dispatch(getPackageId(id));
@@ -168,8 +169,75 @@ console.log("CART:",cart)
 console.log(new Date(packageDetail.start_date).toString())
 
   return (
-  <div class="container "> 
-      <div class="card">
+    <div class="container "> 
+
+<div class="card mb-3">
+  <div class="row g-0 ">
+    <div class="col-md-4 ">
+      <img src={packageDetail.hotel?.urlImage} class="img-fluid rounded-start"  alt="Image not found"/>
+    </div>
+    <div class="col-md-5">
+      <div class="card-body info-det">
+        <h5 class="card-title title-det">{packageDetail.name}</h5>
+        <h6 class="card-title city-det">{packageDetail.city?.name} </h6>
+        <h6 class="card-title hotel-det">{packageDetail.hotel?.name}</h6>
+        <h5 className="card-title star"><StarRating stars = {packageDetail.hotel?.stars}/></h5> 
+        <h5>{packageDetail.hotel?.wifi? <span class="material-symbols-outlined">
+              wifi
+              </span>:null} {packageDetail.hotel?.pool?<span class="material-symbols-outlined">
+              pool
+              </span>:null}{packageDetail.hotel?.gym?<span class="material-symbols-outlined">
+              fitness_center
+              </span>:null}
+        </h5>
+        <div className="activites-det">
+        <a class="card-title" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+          Actividades incluidas 
+          <span class="material-symbols-outlined">
+          expand_more
+          </span>
+        </a>
+          <div class="col">
+            <div class="collapse" id="multiCollapseExample1">
+              <div class="card card-body">
+              <p class="card-text act">{packageActivity?packageActivity:null}</p>
+              </div>
+            </div>
+          </div>
+        {/* <h6 class="card-title">Actividades incluidas</h6>
+        <p class="card-text act">{packageActivity}</p> */}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card-body">
+        <h4 class="card-title">Precio por persona</h4>
+        <h3 class="card-text price-det">$ {packageDetail.price}</h3>
+        <p class="card-text fecha">Salida: {new Date(packageDetail.start_date).toLocaleString('es-ES')}</p>
+        <p class="card-text fecha">Llegada: {new Date(packageDetail.end_date).toLocaleString('es-ES')}</p>
+        <p class="card-text stock"> <small class="text-muted">Stock disponible {packageDetail.stock}</small></p>
+        
+      </div> 
+      <div className="btn-comprar">
+      {paqueteCargado?<Link to="/shoppingcart">
+      <button className="btn btn-warning">Ver en el Carrito<span class="material-symbols-outlined">
+shopping_cart_checkout
+</span></button></Link>:
+      <button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar al carrito 
+        <span class="material-symbols-outlined">
+        add_shopping_cart
+        </span>
+      </button>} 
+      </div>
+    </div>
+    <div>
+    
+    </div>
+  </div>
+</div>
+
+    <div class="card">
+      
       <div>
         <div>
           <img
@@ -200,36 +268,12 @@ console.log(new Date(packageDetail.start_date).toString())
       </div>
       {paqueteCargado?<Link to="/shoppingcart"><button className="btn btn-warning">Ver en el Carrito</button></Link>:<button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button>} 
 
-      {/* <div>
-        {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
-      </div> */}
+
+      <div>
+        {packageDetail.hotel ? <Reviews userlog={userlog} hotel={packageDetail.hotel}/> : null}
+
     </div> 
- </div>
-
-
+    </div>
+    </div>
   );
 }
-
-
-
-{/* <div class="card mb-3">
-  <div class="row g-0 ">
-    <div class="col-md-4 ">
-      <img src={packageDetail.hotel?.urlImage} class="img-fluid rounded-start"  alt="Image not found"/>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{packageDetail.name}</h5>
-        <p class="card-text">Esta es una tarjeta más amplia con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
-        <p class="card-text"><small class="text-muted">Última actualización hace 3 minutos</small></p>
-      </div>
-    </div>
-    <div>
-    <button onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button> 
-      {     (myCartAll && (localStorage.getItem("myCartNotLoggedin") || localStorage.getItem("myCartLoggedin")))?(
-                <article>    
-                    <CartItem id={packageDetail.id} quantity={myCartAll.quantity} price={packageDetail.price} delFromCart={delFromCart} arrayCartNotLoggedin={arrayCartNotLoggedin} arrayCartLoggedin={arrayCartLoggedin}/>           
-                </article>) : null 
-      }
-    </div>
-  </div> */}

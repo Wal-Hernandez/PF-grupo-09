@@ -5,7 +5,7 @@ import { filterByDate } from "../../../redux/actions/filterByDate&Dest";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, SetStock }) {
+function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock }) {
   const dispatch = useDispatch();
   const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
@@ -51,21 +51,22 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
     setValues({
       ...values,
       destination: "",
+      start_date: ''
     });
     setMatchingResults({
       destination: "",
       date: "",
     });
     setPrice('');
-    SetStock('')
+    setStock('')
     dispatch(getPackages());
   };
 
   return (
-    <div className="container d-flex align-items-center mt-6">
+    <div className="container d-flex align-items-center justify-content-center mt-6">
       <div className="row">
         <div className="row">
-        <div className="col-4 mb-4">
+        <div className="col-6 mb-4">
           <div className="row mb-2">
             <label>Destino: </label>
           </div>
@@ -99,7 +100,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
             minDate={new Date()}
             />
         </div>
-        <div className="col-4 mb-4">
+        <div className="col-2 mb-4">
           <div className="row mb-2">
             <label>Pasajeros:</label>
           </div>
@@ -116,7 +117,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
           <div className="row col-sm-12 col-md-12 col-lg-12 justify-content-center">
             <div className="col-4 mb-4">
               <button className="btn btn-success" onClick={handleSearch}>
-                Buscar
+                Buscar 🔎 
               </button>
             </div>
             <div className="col-4 mb-4">

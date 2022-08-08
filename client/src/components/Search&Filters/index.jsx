@@ -14,7 +14,7 @@ function SearchAndFilters({ setCurrentPage }) {
   const {cities, activities} = useSelector(state => state.rootReducer);
 
   return (
-    <div className="container w-75 mt-5">
+    <div className="container w-85 mt-5">
       <div className="row mt-5">
       <Search
         setCurrentPage={setCurrentPage}

@@ -86,6 +86,8 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 detail: action.payload,
+                packages: action.payload,
+                showPackages: action.payload
             };
             case GET_CITIES:
                 return {

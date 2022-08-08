@@ -256,7 +256,7 @@ function Admin() {
                   ? (
                     adminView.map((packs) => {
                       return model === "users" ? ( <div>
-                        <a class="btn btn-info w-100 p-3" data-bs-toggle="collapse" href={`#multiCollapseExample1${packs.name}`} role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <a class="btn btn-info w-100 p-3" data-bs-toggle="collapse" href={`#multiCollapseExample1${packs.nombre}`} role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
                         <div class="adminPanelColumn w-100" key={packs.id}>
 
                           <div className="text">
@@ -283,11 +283,11 @@ function Admin() {
                         </div>
                         </a>
                         <div class="col">
-                             <div class="collapse " id={`multiCollapseExample1${packs.name}`}>
+                             <div class="collapse " id={`multiCollapseExample1${packs.nombre}`}>
                               <div class="d-flex flex-row d-inline-block bg-dark" id="divCont">
                                <div class="card card-body h-100 w-50 rounded-0 ">
                                 <b>Detalles de Carrito</b>
-                              {packs.carts?.length ? (packs.carts[0]?.cartDetails?.map(e => (<h1>{e.packageId}</h1>))) : <div>Usuario sin carrito</div>}
+                              {packs.usuarioDB?.carts?.length ? (packs.usuarioDB.carts[0]?.cartDetails?.map(e => (<h1>{e.packageId}</h1>))) : <div>Usuario sin carrito</div>}
                                </div>
                                <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
                                 <b>REVIEWS</b>

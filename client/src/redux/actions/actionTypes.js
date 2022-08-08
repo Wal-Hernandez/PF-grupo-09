@@ -1,6 +1,6 @@
 export const GET_PACKAGES = "GET_PACKAGES";
 export const GET_PACKAGE_ID = "GET_PACKAGE_ID";
-export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
+export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 export const FILTER_BY_DESTINY = "FILTER_BY_DESTINY";
 export const FILTER_BY_DATE = "FILTER_BY_DATE";
 export const FILTER_BY_DATE_RETURN = "FILTER_BY_DATE_RETURN";
@@ -30,7 +30,7 @@ export const PUT_PLATFORM = "PUT_PLATFORM";
 export const PUT_PACKAGE = "PUT_PACKAGE";
 export const DELETE_MODEL = "DELETE_MODEL";
 export const POST_USER = "POST_USER";
-
+export const POST_PAYMENT = "POST_PAYMENT";
 export const LOAD_CART = "LOAD_CART";
 export const LOAD_CART_LOGIN = "LOAD_CART_LOGIN";
 export const CLEAR_CART_LOGOUT = "CLEAR_CART_LOGOUT";
@@ -39,16 +39,8 @@ export const ADD_DETAIL_CART = "ADD_DETAIL_CART";
 export const REMOVE_CART = "REMOVE_CART";
 export const ADD_ONE_PEOPLE = "ADD_ONE_PEOPLE";
 export const DELETE_ONE_PEOPLE = "DELETE_ONE_PEOPLE";
-
-
-
 export const PRUEBA = "PRUEBA";
 
-
-
-
-
-
-export const SEND_MAIL ="SEND_MAIL";
-export const GET_USER= 'GET_USER';
-export const PUT_USER ='PUT_USER';
+export const SEND_MAIL = "SEND_MAIL";
+export const GET_USER = "GET_USER";
+export const PUT_USER = "PUT_USER";

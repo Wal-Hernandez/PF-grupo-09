@@ -8,7 +8,7 @@ import { getHotels } from "../../redux/actions/getHotels";
 import { getPlatforms } from "../../redux/actions/getPlatforms";
 import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
-import { getUsers } from "../../redux/actions/getUsers";
+import { getUserForAdmin } from "../../redux/actions/getUserByAdmin";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
 import Logo from "../../images/Buspack.png"
@@ -31,7 +31,7 @@ function Admin() {
       else if(name === "activities")dispatch(getActivities());
       else if(name === "cities")dispatch(getCities());
       else if(name === "plattforms")dispatch(getPlatforms());
-      else if(name === "users")dispatch(getUsers());
+      else if(name === "users")dispatch(getUserForAdmin());
   };
 
   function handleSelect(e) {
@@ -260,7 +260,7 @@ function Admin() {
                         <div class="adminPanelColumn w-100" key={packs.id}>
 
                           <div className="text">
-                            <h1>{packs.name || packs.patent || packs.terminal}</h1>
+                            <h1>{packs.name || packs.patent || packs.terminal || packs.apellido}</h1>
                           </div>
                           <div className="btns-admin">
                             <div className="btnEdit">

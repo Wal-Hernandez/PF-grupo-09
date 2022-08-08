@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { PutUser } from "../../../redux/actions/putUser";
 export const PutUserForm = ({ pack }) => {
-    
+    console.log(pack)
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [user, setUser] = React.useState({ nombre:'' , rol: pack.rol});
+  const [user, setUser] = React.useState({ nombre:'' , rol: pack.rol, usuario:pack.usuarioDB});
 console.log(user.rol)
   function TransformData(x) {
     if (isNaN(x[0])) return x;

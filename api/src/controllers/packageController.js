@@ -3,12 +3,13 @@ const { Op, Sequelize } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
   try {
-    const { destination, start, end, price, stock } = req.query;
+    const { destination, start, end, price, stock, activity } = req.query;
 
     const destinationWhere = destination
       ? { name: { [Op.iLike]: `%${destination}%` } }
       : {};
     const dateWhere = start && end ? { [Op.and]: [Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start), Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end)] } : start ? Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '>=', start) : end ? Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end) : {}
+    const activityWhere = activity ? { name: {[Op.iLike]: `%${activity}%`}} : {};
     
     let order = []
     if(stock){
@@ -25,9 +26,7 @@ const getPackages = async (req, res, next) => {
       include: [
         {
           model: Activity,
-      /*     through: {
-            attributes: [],
-          }, */
+          where: activityWhere
         },
         {
           model: Business,

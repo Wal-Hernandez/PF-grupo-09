@@ -5,9 +5,9 @@ import { filterByDate } from "../../../redux/actions/filterByDate&Dest";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({ startDate, setStartDate, cities, activities }) {
+function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock }) {
   const dispatch = useDispatch();
-  const [destination, setDestination] = useState('');
+  const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
     destination: '',
     start_date: startDate,
@@ -36,7 +36,8 @@ function Search({ startDate, setStartDate, cities, activities }) {
   const handleSearch = (e) => {
     const { destination, start_date } = values;
     e.preventDefault();
-    dispatch(filterByDate(destination, start_date));
+    dispatch(filterByDate(destination, start_date, price, stock));
+    setCity(destinationCity)
     setMatchingResults({
       destination: destination.toUpperCase(),
       date: startDate && new Date(start_date).toDateString(),
@@ -45,31 +46,35 @@ function Search({ startDate, setStartDate, cities, activities }) {
   const handleClear = (e) => {
     e.preventDefault();
     setStartDate("");
-    setDestination('')
+    setDestinationCity('')
+    setCity('')
     setValues({
       ...values,
       destination: "",
+      start_date: ''
     });
     setMatchingResults({
       destination: "",
       date: "",
     });
+    setPrice('');
+    setStock('')
     dispatch(getPackages());
   };
 
   return (
-    <div className="container d-flex align-items-center mt-6">
+    <div className="container d-flex align-items-center justify-content-center mt-6">
       <div className="row">
         <div className="row">
-        <div className="col-4 mb-4">
+        <div className="col-6 mb-4">
           <div className="row mb-2">
             <label>Destino: </label>
           </div>
           <div className="row mb-2">
             <AutocompleteSearch 
               fieldInput={cities?.map(e=>e.name)} 
-              input={destination} 
-              setInput={setDestination}
+              input={destinationCity} 
+              setInput={setDestinationCity}
               setDestination={(dest)=> setValues({...values, destination: dest})}
             />
             {/* <input
@@ -95,7 +100,7 @@ function Search({ startDate, setStartDate, cities, activities }) {
             minDate={new Date()}
             />
         </div>
-        <div className="col-4 mb-4">
+        <div className="col-2 mb-4">
           <div className="row mb-2">
             <label>Pasajeros:</label>
           </div>
@@ -112,7 +117,7 @@ function Search({ startDate, setStartDate, cities, activities }) {
           <div className="row col-sm-12 col-md-12 col-lg-12 justify-content-center">
             <div className="col-4 mb-4">
               <button className="btn btn-success" onClick={handleSearch}>
-                Buscar
+                Buscar 🔎 
               </button>
             </div>
             <div className="col-4 mb-4">

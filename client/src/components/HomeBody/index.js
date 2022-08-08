@@ -31,11 +31,13 @@ export default function HomeBody() {
       : !showPackages.length
       ? dispatch(getMainPackages())
       : console.log("hecho");
-
-      return()=>{
-        dispatch(getClean())
-      }
   }, [dispatch, packages, showPackages]);
+
+  useEffect(() => {
+     return()=>{
+      dispatch(getClean())
+    }
+  }, [dispatch]);
 
   console.log("show", showPackages);
 

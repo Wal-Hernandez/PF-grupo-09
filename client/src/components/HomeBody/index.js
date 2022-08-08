@@ -6,24 +6,22 @@ import { getPackages } from "../../redux/actions/getPackages";
 import { getMainPackages } from "../../redux/actions/getMainPackages";
 
 import { getCities } from "../../redux/actions/getCities";
-import {loadCart} from "../../redux/actions/loadCart"
+import { loadCart } from "../../redux/actions/loadCart";
 import { getAuth } from "firebase/auth";
 
-import { getClean } from '../../redux/actions/getClean'
-
+import { getClean } from "../../redux/actions/getClean";
 
 export default function HomeBody() {
   const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
-  
 
   const auth = getAuth();
   const user = auth.currentUser;
-  useEffect(()=>{
-    if(user?.email!==undefined){
-        dispatch(loadCart(user?.email)) 
-   }
-  },[user,dispatch])
+  useEffect(() => {
+    if (user?.email !== undefined) {
+      dispatch(loadCart(user?.email));
+    }
+  }, [user, dispatch]);
 
   useEffect(() => {
     !packages.length
@@ -34,9 +32,9 @@ export default function HomeBody() {
   }, [dispatch, packages, showPackages]);
 
   useEffect(() => {
-     return()=>{
-      dispatch(getClean())
-    }
+    return () => {
+      dispatch(getClean());
+    };
   }, [dispatch]);
 
   console.log("show", showPackages);
@@ -70,9 +68,6 @@ export default function HomeBody() {
           )}
         </div> */}
       <div class="container cont-card">
-        <div className="ofertasContainer">
-          <h1>Ofertas</h1>
-        </div>
         <div class="row g-3">
           {showPackages.length ? (
             showPackages.map((e) => {

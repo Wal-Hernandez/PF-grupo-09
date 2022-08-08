@@ -61,7 +61,7 @@ export default function Services({ userlog }) {
           />
         </div>
             <div className="row">
-              <Productos currentPackages={currentPackages} />
+              <Productos currentPackages={currentPackages}/>
             </div>
           </div>
           <div className="row">

@@ -255,10 +255,8 @@ function Admin() {
                 : (adminView.length
                   ? (
                     adminView.map((packs) => {
-                      return (
-                        
-                        <div>
-                        <a class="btn btn-info w-100 p-3" data-bs-toggle="collapse" href={`#multiCollapseExample1${packs.name}`} role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                      return model === "users" ? ( <div>
+                        <a class="btn btn-info w-100 p-3" data-bs-toggle="collapse" href={`#multiCollapseExample1${packs.nombre}`} role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
                         <div class="adminPanelColumn w-100" key={packs.id}>
 
                           <div className="text">
@@ -285,20 +283,49 @@ function Admin() {
                         </div>
                         </a>
                         <div class="col">
-                             <div class="collapse " id={`multiCollapseExample1${packs.name}`}>
+                             <div class="collapse " id={`multiCollapseExample1${packs.nombre}`}>
                               <div class="d-flex flex-row d-inline-block bg-dark" id="divCont">
                                <div class="card card-body h-100 w-50 rounded-0 ">
                                 <b>Detalles de Carrito</b>
-                              {packs.carts?.length ? (packs.carts[0]?.cartDetails?.map(e => (<h1>{e.packageId}</h1>))) : <div>Usuario sin carrito</div>}
+                              {packs.usuarioDB?.carts?.length ? (packs.usuarioDB.carts[0]?.cartDetails?.map(e => (<h1>{e.packageId}</h1>))) : <div>Usuario sin carrito</div>}
                                </div>
                                <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
                                 <b>REVIEWS</b>
-                               <h2> {packs.reviews ? packs.reviews[0]?.title : <div>No hay reviews</div>}</h2>
+                                {packs.reviews ? packs.reviews?.map(e => <h1>{e.title}</h1>) : <div>No hay reviews</div>}
                                </div>
                         </div>
                        </div>
                         </div>
-                        </div>
+                        </div>) : (
+                        
+                        <div>
+                        <a class="btn btn-info w-100 p-3" data-bs-toggle="collapse" href={`#multiCollapseExample1${packs.name}`} role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                        <div class="adminPanelColumn w-100" key={packs.id}>
+
+                          <div className="text">
+                            <h1>{packs.name || packs.patent || packs.terminal}</h1>
+                          </div>
+                          <div className="btns-admin">
+                            <div className="btnEdit">
+                              <button onClick={() => { setUpdate(packs) }}>
+                                <span class="material-symbols-outlined">
+                                  edit
+                                </span>
+                              </button>
+                            </div>
+                            <div className="btnDel">
+
+                              <span class="material-symbols-outlined">
+                                <button value={packs.id} onClick={handleDelete} >
+                                  delete
+                                </button>
+                              </span>
+
+                         </div>
+                         </div>
+                         </div>
+                         </a>
+                         </div>
                       )
                     }).slice(indiceInicial, indiceFinal)
 

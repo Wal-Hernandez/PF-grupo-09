@@ -19,14 +19,12 @@ export default function Services({ userlog }) {
   useEffect(() => {
     dispatch(getCities());
     dispatch(getActivities())
-    !packages.length
-      ? dispatch(getPackages())
-      : console.log("hecho");
+    dispatch(getPackages())
 
-      return()=>{
-        dispatch(getClean())
-      }
-  }, [dispatch, packages]);
+    return()=>{
+      dispatch(getClean())
+    }
+  }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [packagesPerPage /*setPackagesPerPage*/] = useState(3); //10 productos por pagina

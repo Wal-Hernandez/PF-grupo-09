@@ -12,11 +12,11 @@ export default class Paginado extends React.Component {
 
     return (
       <nav className="nav-pag">
-        <ul className="ul">
-          <li className="pagination">
+        <ul className="ul pagination">
+          <li className="pagination page-item">
             {currentPage !== 1 ? (
               <button
-                className="pagination-button"
+                className="pagination-button page-link"
                 onClick={() => paginado(currentPage - 1)}
               >
                 {" "}
@@ -24,18 +24,18 @@ export default class Paginado extends React.Component {
               </button>
             ) : null}
           </li>
-          <li className="pagination">
+          <li className="pagination page-item active">
             <button
-              className="pagination-number"
+              className="pagination-number page-link"
               onClick={() => paginado(currentPage)}
             >
               {currentPage}
             </button>
           </li>
-          <li className="pagination">
+          <li className="pagination page-item">
             {currentPage > pageNumbers.length ? null : (
               <button
-                className="pagination-button"
+                className="pagination-button page-link"
                 onClick={() => paginado(currentPage + 1)}
               >
                 {currentPage + 1}

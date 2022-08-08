@@ -50,6 +50,11 @@ export default function Details({userlog}) {
    }
   },[user,dispatch])
 
+  useEffect(() => {
+     return()=>{
+      dispatch(getClean())
+    }
+  }, [dispatch]);
 
 
   let arrayCartNotLoggedin  = useSelector((state) => state.rootReducer.arrayCartNotLoggedin);

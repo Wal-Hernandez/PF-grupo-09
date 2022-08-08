@@ -14,10 +14,10 @@ const ReviewHotel = require("./reviewHotelRouter");
 const Payment = require("./paymentRouter");
 const ReviewActivity = require("./reviewActivityRouter");
 const ReviewBusiness = require("./reviewBusRouter");
-const Mailing = require('./mailingRouter');
-const Admin = require('./adminRouter');
-const Shopping=require('./shoppingRouter')
-const Stock=require('./stockRouter')
+const Mailing = require("./mailingRouter");
+const Admin = require("./adminRouter");
+const Shopping = require("./shoppingRouter");
+const Stock = require("./stockRouter");
 
 const router = Router();
 
@@ -37,9 +37,11 @@ router.use("/hotelreviews", ReviewHotel);
 router.use("/payment", Payment);
 router.use("/activityreviews", ReviewActivity);
 router.use("/businessreviews", ReviewBusiness);
-router.use("/mailing",Mailing);
-router.use("/admin",Admin);
-router.use("/shopping",Shopping);
-router.use("/stock",Stock);
+router.use("/mailing", Mailing);
+router.use("/admin", Admin);
+router.use("/mailing", Mailing);
+router.use("/admin", Admin);
+router.use("/shopping", Shopping);
+router.use("/stock", Stock);
 
 module.exports = router;

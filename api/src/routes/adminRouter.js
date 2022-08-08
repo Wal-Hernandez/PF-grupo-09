@@ -55,7 +55,7 @@ router.get("/:id", async (req, res) => {
     const { rol,usuario} = req.body;
     const { id } = req.params;
    try{ 
-   // let user = await getUser(usuario.id);
+   
     await User.update({rol:rol},{where:{id:usuario.id}})
 
     await db.collection("usuarios").doc(id).update( {rol:rol} );

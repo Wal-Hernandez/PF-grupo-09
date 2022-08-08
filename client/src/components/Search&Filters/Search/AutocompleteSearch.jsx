@@ -49,10 +49,19 @@ function AutocompleteSearch({ fieldInput, input, setInput, setDestination }) {
     }
   };
 
+  const handleFocus = ()=>{
+
+    const mapped = fieldInput.map(
+      (list) => list);
+    setSuggestionIndex(0);
+    setFilter(mapped);
+    setShow(true);
+  }
+
   function List() {
     return filter.length ? (
       <>
-        <ul className="suggestions">
+        <ul className="suggestions" onMouseLeave={()=>setShow(false)}>
           {filter.map((suggestion, index) => {
             let classname;
             if (index === suggestionIndex) {
@@ -81,6 +90,8 @@ function AutocompleteSearch({ fieldInput, input, setInput, setDestination }) {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         value={input}
+        onClick={handleFocus}
+        // onBlur={()=>setShow(false)}
       />
       {show && <List />}
     </div>

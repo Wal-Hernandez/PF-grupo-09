@@ -6,20 +6,6 @@ import ReviewsForm from './ReviewsForm'
 function Reviews({hotel}) {
 
     const [showReviews, setshowReviews] = useState(false);
-    const [values, setValues] = useState({
-        userId: '',
-        hotelId: hotel.id,
-        title: '',
-        comment: '',
-        score: ''
-    });
-
-    const handleChange = (e)=>{
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value
-        })
-    }
 
   return (
     <div className="review-container">
@@ -28,7 +14,7 @@ function Reviews({hotel}) {
           <button onClick={() => setshowReviews(!showReviews)}>
             Mostrar valoraciones del hotel
           </button>
-          {showReviews && <ShowReviews hotel={hotel} />}
+          {showReviews && <ShowReviews data={hotel} />}
         </div>
       ) : null}
       <ReviewsForm hotel={hotel}/>

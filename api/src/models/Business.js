@@ -17,13 +17,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-    score: {                                
-        type: DataTypes.ARRAY(DataTypes.INTEGER),  
-      },
-    comments:{
-      type:DataTypes.ARRAY(DataTypes.STRING)
-    }
-    
   
   },{timestamps:false});
 };

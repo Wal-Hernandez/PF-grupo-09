@@ -1,8 +1,8 @@
-const { Review, User, Hotel } = require("../db");
+const { ReviewHotel, User, Hotel } = require("../db");
 
 const getReviews = async (req, res) => {
   try {
-    const reviews = await Review.findAll({
+    const reviews = await ReviewHotel.findAll({
       include: [
         {
           model: User,
@@ -26,7 +26,7 @@ const getReviewById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const review = await Review.findByPk(id, {
+    const review = await ReviewHotel.findByPk(id, {
       include: [
         {
           model: User,
@@ -54,7 +54,7 @@ const postReview = async (req, res) => {
     if (typeof title !== "string" || typeof comment !== "string") res.status(400).json({ msg: "Input must be letters or letters and numbers" });
     if (score < 1 || score > 5) res.status(400).json({ msg: "Score must be between 1 and 5" });
 
-    const newReview = await Review.findOrCreate({
+    const newReview = await ReviewHotel.findOrCreate({
       where: {
         userId: userId,
         hotelId: hotelId,
@@ -66,9 +66,9 @@ const postReview = async (req, res) => {
     return res.status(201).send("Review posted successfully");
   } catch (error) {
     res.status(400).json({
-      msg: "Couldn't post review",
+      msg: `Couldn't post review`,
       error: error,
-    });
+    })
   }
 };
 
@@ -81,7 +81,7 @@ const updateReview = async (req, res) => {
     if (typeof title !== "string" || typeof comment !== "string") res.status(400).json({ msg: "Input must be letters or letters and numbers" });
     if (score < 1 || score > 5) res.status(400).json({ msg: "Score must be between 1 and 5" });
 
-    const updated = await Review.update(
+    const updated = await ReviewHotel.update(
       {
         userId,
         hotelId,
@@ -116,7 +116,7 @@ const deleteReview = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const deleteReview = await Review.destroy({
+    const deleteReview = await ReviewHotel.destroy({
       where: { id: id },
     });
 

@@ -16,6 +16,7 @@ const ReviewActivity = require("./reviewActivityRouter");
 const ReviewBusiness = require("./reviewBusRouter");
 const Mailing = require('./mailingRouter');
 const Admin = require('./adminRouter');
+const Shopping=require('./shoppingRouter')
 
 const router = Router();
 
@@ -37,5 +38,6 @@ router.use("/activityreviews", ReviewActivity);
 router.use("/businessreviews", ReviewBusiness);
 router.use("/mailing",Mailing);
 router.use("/admin",Admin);
+router.use("/shopping",Shopping);
 
 module.exports = router;

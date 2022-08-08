@@ -193,7 +193,7 @@ console.log(new Date(packageDetail.start_date).toString())
   </div>
 </div>
 
-    {/* <div class="card">
+    <div class="card">
       
       <div>
         <div>
@@ -226,9 +226,9 @@ console.log(new Date(packageDetail.start_date).toString())
       {paqueteCargado?<Link to="/shoppingcart"><button className="btn btn-warning">Ver en el Carrito</button></Link>:<button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button>} 
 
       <div>
-        {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
+        {packageDetail.hotel ? <Reviews userlog={userlog} hotel={packageDetail.hotel}/> : null}
       </div>
-    </div> */}
+    </div> 
     </div>
 
   );

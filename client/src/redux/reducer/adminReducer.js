@@ -111,6 +111,7 @@ export default function adminReducer(state = initialState, action) {
                 business: action.payload,
                 platforms: action.payload,
                 activities: action.payload,
+                users:action.payload
             };
         case GET_OFFERS:
             let resp = action.payload.map((a) => {
@@ -168,7 +169,8 @@ export default function adminReducer(state = initialState, action) {
             return state;
         case GET_USER:
             return {... state,
-            users: action.payload};
+            users: action.payload,
+            adminView: action.payload};
             case PUT_USER:
             return state;
         default:

@@ -11,6 +11,7 @@ import logo from "../../images/Buspack.png"; //imagen logo
 
 import { app } from "../../Firebase/firebase-config";
 import {  doc, getDoc,getFirestore } from "firebase/firestore";
+import { deleteUser } from "firebase/auth";
 import { loadCartLogin } from "../../redux/actions/loadCartLogin";
 export function Login() {
   const dispatch = useDispatch();
@@ -28,8 +29,12 @@ export function Login() {
     e.preventDefault();
     setError("");
     try {
-      await login(user.mail, user.password);
-      if (user.mail === "productowner@henry.com") {
+    let r=  await login(user.mail, user.password)
+    let r_uid = await r.user.uid;
+    let rol =  await getRol(r_uid);
+  
+    
+      if (user.mail === "productowner@henry.com" || rol ==='admin') {
         navigate("/admin");
       } else {
         
@@ -64,19 +69,14 @@ export function Login() {
       return infoFinal;}
       else{return 4}
     }
-
   const handleGoogleSignin = async () => {
     try {
-      await loginWithGoogle()
-      .then(a=> a.user.uid)
-      .then(r=> getRol(r))
-      .then(r=>{if (typeof r ==='number'){alert("Registrate,Boloo")}
-    else{ if (r==='client') navigate('/')
-    else{navigate('/admin')}
-  
-    
-    }})
-      
+    let r=  await loginWithGoogle()
+    let rol = await getRol(r.user.uid);
+   if( typeof rol ==='number'){deleteUser(r.user);
+    alert("No estas Registrad@,No esperes mas!")}
+    else{  if (rol==='client') navigate('/')
+    else{navigate('/admin')}}
     } catch (error) {
       setError(error.message);
       console.log(error)
@@ -213,14 +213,14 @@ export function Login() {
                   </Link>
                   </p>
                  </div>
-                 <button
+                
+                
+             </form> <button
                  onClick={handleGoogleSignin}
               className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
                 >
                Google login
                 </button> 
-                
-             </form>
         </div>
       </div>
     </div>

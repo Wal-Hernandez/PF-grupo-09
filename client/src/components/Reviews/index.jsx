@@ -1,10 +1,25 @@
 import React, { useState } from "react";
 import ShowReviews from "./ShowReviews";
-import "./reviews.css";
-import ReviewsForm from "./ReviewsForm";
+import ReactStars from 'react-rating-stars-component'
+import './review.css'
+import ReviewsForm from './ReviewsForm'
+function Reviews({hotel}) {
 
-function Reviews({ hotel }) {
-  const [showReviews, setshowReviews] = useState(false);
+    const [showReviews, setshowReviews] = useState(false);
+    const [values, setValues] = useState({
+        userId: '',
+        hotelId: hotel.id,
+        title: '',
+        comment: '',
+        score: ''
+    });
+
+    const handleChange = (e)=>{
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value
+        })
+    }
 
   return (
     <div className="review-container">

@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './views/HomeView';
-import DetailsView from './views/DetailsView';
+import Details from './views/DetailsView';
 import EditBuy from './views/EditBuyView';
 import Buy from './views/BuyView';
 import Services from './views/ServicesView';
@@ -79,7 +79,7 @@ function App() {
        <AuthProvider>
     <Routes>
       <Route path="/" element={<Home userlog={userlog}/>} />
-      <Route path="/details/:id" element={<DetailsView userlog={userlog}/>} />
+      <Route path="/details/:id" element={<Details userlog={userlog}/>} />
       <Route path="/buy" element={<EditBuy userlog={userlog}/>} />
       <Route path="/editBuy" element={<Buy userlog={userlog}/>} />
       <Route path="/services" element={<Services userlog={userlog}/>} />

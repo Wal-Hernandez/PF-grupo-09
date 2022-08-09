@@ -40,6 +40,7 @@ function SearchAndFilters({ setCurrentPage }) {
         setActivity={setActivity}
         activities={activities}
         city={city}
+        cities={cities}
       />
       </div>
     </div>

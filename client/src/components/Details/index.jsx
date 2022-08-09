@@ -35,6 +35,12 @@ export default function Details({userlog}) {
   const user = auth.currentUser;
   
    console.log(packageDetail)
+   useEffect(()=>{
+     dispatch(getPackages())
+     if(user?.email!==undefined){
+         dispatch(loadCart(user?.email)) 
+    }
+   },[user,dispatch])
   
   useEffect(() => {
     dispatch(getPackageId(id));
@@ -44,12 +50,6 @@ export default function Details({userlog}) {
   }, [dispatch, id,user]);
 
 
-  useEffect(()=>{
-    if(!packages.length) dispatch(getPackages())
-    if(user?.email!==undefined){
-        dispatch(loadCart(user?.email)) 
-   }
-  },[user,dispatch])
 
   useEffect(() => {
      return()=>{
@@ -223,7 +223,8 @@ console.log(new Date(packageDetail.start_date).toString())
       <button className="btn btn-warning">Ver en el Carrito<span class="material-symbols-outlined">
 shopping_cart_checkout
 </span></button></Link>:
-      <button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar al carrito 
+      <button className="btn btn-warning" onClick={() => addToCart(id)}>
+        Agregar al carrito 
         <span class="material-symbols-outlined">
         add_shopping_cart
         </span>
@@ -236,44 +237,7 @@ shopping_cart_checkout
   </div>
 </div>
 
-    <div >
-      
-      <div>
-        <div>
-          <img
-            class="card-img-top"
-            src={packageDetail.hotel?.urlImage}
-            alt="Image not found"
-            width="300px"
-            height="300px"
-          />
-        </div>
-        <h5 class="card-title">Nombre: {packageDetail.name}</h5>
-        <h6> Ciudad: {packageDetail.city?.name} </h6>
-      </div>
-      <div>
-        <p class="card-text">Fecha salida: {new Date(packageDetail.start_date).toLocaleString('es-ES')}</p>
-        <p class="card-text">Fecha llegada: {new Date(packageDetail.end_date).toLocaleString('es-ES')}</p>
-        <p class="card-text">Resumen de lo que incluye: </p>
-      </div>
-      <div>
-        <p class="card-text">
-          Coordenadas: {packageDetail.hotel?.location[0]} -{" "}
-          {packageDetail.hotel?.location[1]}
-        </p>
-        <p class="card-text">Hotel: {packageDetail.hotel?.name}</p>
-        <p class="card-text">Actividad: {packageActivity}</p>
-        <p class="card-text">Precio: ${packageDetail.price}</p>
-        <p class="card-text">Stock: {packageDetail.stock}</p>
-      </div>
-      {paqueteCargado?<Link to="/shoppingcart"><button className="btn btn-warning">Ver en el Carrito</button></Link>:<button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button>} 
+</div>
+);
 
-
-      <div>
-        {packageDetail.hotel ? <Reviews userlog={userlog} hotel={packageDetail.hotel} activity={packageDetail.activities} business={packageDetail.business}/> : null}
-
-    </div> 
-    </div>
-    </div>
-  );
 }

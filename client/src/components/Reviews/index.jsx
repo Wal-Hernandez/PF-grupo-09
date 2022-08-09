@@ -55,7 +55,7 @@ function Reviews({hotel, activity, business, userlog}) {
         }
     {/* <div className="review-container">
       {hotel?.reviews?.length? (
->>>>>>> 642a8872b759f35256873c06c29f9e7940e63755
+
         <div>
           <button onClick={() => setshowReviews(!showReviews)}>
             Mostrar valoraciones del hotel

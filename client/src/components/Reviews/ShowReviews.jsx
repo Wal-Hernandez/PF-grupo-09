@@ -1,17 +1,23 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
-function ShowReviews({ hotel }) {
-  const starsValue = hotel?.reviewHotels.map((e) => e.score);
+
+function ShowReviews({ data }) {
+  const starsValue = data?.reviews.map((e) => e.score);
+
   const sumScore = starsValue.reduce((a, b) => a + b);
   const mediaScore = sumScore / starsValue.length;
 
   return (
     <div>
       <h5>
-        Calificación del hotel:{" "}
-        <ReactStars size={40} edit={false} value={mediaScore} />{" "}
+          Calificaciones de usuarios:
+          <p>
+            {`${mediaScore} de 5 estrellas`}
+            <ReactStars size={40} edit={false} value={mediaScore} />
+          </p>
       </h5>
-      {hotel.reviewHotels?.map((e) => (
+
+      {data.reviews.map((e) => (
         <div>
           <ReactStars edit={false} value={e.score} />
           <h5>{e.title}</h5>

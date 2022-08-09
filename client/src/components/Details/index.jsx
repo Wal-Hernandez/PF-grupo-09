@@ -35,6 +35,12 @@ export default function Details({userlog}) {
   const user = auth.currentUser;
   
    console.log(packageDetail)
+   useEffect(()=>{
+     dispatch(getPackages())
+     if(user?.email!==undefined){
+         dispatch(loadCart(user?.email)) 
+    }
+   },[user,dispatch])
   
   useEffect(() => {
     dispatch(getPackageId(id));
@@ -44,12 +50,6 @@ export default function Details({userlog}) {
   }, [dispatch, id,user]);
 
 
-  useEffect(()=>{
-    if(!packages.length) dispatch(getPackages())
-    if(user?.email!==undefined){
-        dispatch(loadCart(user?.email)) 
-   }
-  },[user,dispatch])
 
   useEffect(() => {
      return()=>{
@@ -304,4 +304,5 @@ console.log(new Date(packageDetail.start_date).toString())
       )}
     </div>
   );
+
 }

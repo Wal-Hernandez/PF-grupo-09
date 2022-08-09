@@ -1,44 +1,47 @@
- .user-card {
-     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-     max-width: 300px;
-     margin: auto;
-     text-align: center;
- }
- 
- .title {
-     color: white;
-     font-size: 18px;
- }
- 
- .coment-btn {
-     border: none;
-     outline: 0;
-     display: inline-block;
-     padding: 8px;
-     color: red;
-     background-color: #000;
-     text-align: center;
-     cursor: pointer;
-     width: 20%;
-     font-size: 18px;
- }
- 
- a {
-     text-decoration: none;
-     font-size: 22px;
-     color: black;
- }
- 
- button:hover,
- a:hover {
-     opacity: 0.7;
- }
- 
- input[id^="spoiler"] {
-     display: none;
- }
- 
- input[id^="spoiler"]+label {
+
+/* .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    background-color:blue;
+  }
+   */
+  /* .title {
+    color:white;
+    font-size: 18px;
+  }
+  
+  .coment-btn {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: red;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 20%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover,
+  a:hover {
+    opacity: 0.7;
+  }
+  
+
+  input[id^="spoiler"]{
+    display: none;
+   }
+   input[id^="spoiler"] + label {
+
      display: block;
      width: 200px;
      margin: 0 auto;
@@ -74,4 +77,6 @@
      height: auto;
      opacity: 1;
      padding: 10px;
- }
+
+   } */
+

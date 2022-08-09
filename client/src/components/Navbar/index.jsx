@@ -18,9 +18,9 @@ const cart = useSelector((state) => state.rootReducer.cart);
   console.log(cart)
   let totalCart = []
  
-  if(cart !== undefined && cart.length !== 0 ){
+  if(cart !== undefined && cart?.length !== 0 ){
     console.log(cart)
-    totalCart = cart[0]["cartDetails"]
+    totalCart = cart[0]?.cartDetails
     console.log(totalCart)
   }
 

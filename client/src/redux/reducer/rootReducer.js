@@ -33,7 +33,8 @@ import {
     DELETE_ONE_PEOPLE,
     FILTER_BY_ACTIVITY,
     CHANGE_STATE_CART,
-    LOAD_SHOPPING
+    LOAD_SHOPPING,
+    SEND_PAYMENT
 
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"

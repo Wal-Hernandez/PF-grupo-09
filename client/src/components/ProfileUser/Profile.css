@@ -3,7 +3,6 @@
     max-width: 300px;
     margin: auto;
     text-align: center;
-    background-color:blue;
   }
   
   .title {
@@ -63,7 +62,7 @@
      opacity: 0;
      margin: 10px auto 0; 
      padding: 10px; 
-     background: blue;
+     background: rgb(181, 181, 185);
      border: 1px solid #ccc;
      border-radius: 8px;
      transition: all .6s;

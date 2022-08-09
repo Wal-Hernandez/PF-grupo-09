@@ -34,16 +34,10 @@ const result2 = await result.docs.map(a=> ({
   let cosos=result2.map(a=>users.find(b=>b.mail===a.correo))
   result2.forEach((a,i)=>a['usuarioDB']=cosos[i]);
   let usuarios=result2.filter(a=>a['usuarioDB']!==undefined)
- res.status(201).json(usuarios)}
-
-
-
-
-
-catch{return res.status(400).json('Wrong');}
+ res.status(201).json(usuarios)
+} catch(err){return res.status(400).json('Wrong', err);}
 
 })
-
 
 
 router.get("/:id", async (req, res) => {

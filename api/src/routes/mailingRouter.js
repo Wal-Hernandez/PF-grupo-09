@@ -17,9 +17,10 @@ catch(err){
 
 })
 
-router.post('/confirmation', async (req,res)=>{
-    try{ const {mail} =req.body /// no es por body
+router.post('/confirmation/:mail', async (req,res)=>{
+    try{ const {mail} =req.params /// no es por body
     await sendPaymentConfirmation(mail)
+    console.log(mail)
     res.status(201).json('Exitoo')
     }
     

@@ -21,18 +21,18 @@ export default function ProfileUser({ userlog }) {
         {/* <img src="img.jpg" alt="John" style={{ width: "100%" }} /> */}
         <h1 className='title'>{userlog?.nombre + " " + userlog?.apellido}</h1>
         <p>Historial de Compras</p>
-        {shopping.length ? shopping.map(data => <div className='user-card'>
+        {shopping.length ? shopping.map((data,i) => <div className='user-card'>
           <p className='title'>{data?.cartDetails[0].package?.name}</p>
-          <input type="checkbox" id="spoiler2" />
-          <label for="spoiler2" >Actividades</label>
+          <input type="checkbox" id={`spoiler2${i}`} />
+          <label for={`spoiler2${i}`}  >Actividades</label>
           <div class="spoiler">{data?.cartDetails[0].package?.activities?.map(a => <p className='title'>{a?.name}</p>)}
           </div>
-          <input type="checkbox" id="spoiler" />
-          <label for="spoiler" >Empresa</label>
+          <input type="checkbox" id={`spoiler${i}`}  />
+          <label for={`spoiler${i}`}  >Empresa</label>
           <div class="spoiler">   <p className='title'>{data?.cartDetails[0].package?.business?.name}</p>
           </div>
-          <input type="checkbox" id="spoiler3" />
-          <label for="spoiler3" >Hospedaje</label>
+          <input type="checkbox" id={`spoiler3${i}`} />
+          <label for={`spoiler3${i}`}  >Hospedaje</label>
 
           <div class="spoiler">  <p className='title'>{data?.cartDetails[0].package?.hotel?.name}</p>
           </div>

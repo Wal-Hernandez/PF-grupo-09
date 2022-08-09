@@ -13,6 +13,7 @@ import {
 } from "@stripe/react-stripe-js";
 import "../Pasarela/Pasarela.css";
 import { confirmPasswordReset } from "firebase/auth";
+import { sendPayment } from "../../redux/actions/sendPayment";
 import axios from "axios";
 import swal from "sweetalert";
 const stripePromise = loadStripe(
@@ -90,6 +91,8 @@ const CheckoutForm = ({ total, cart }) => {
             icon: "success",
           });
           elements.getElement(CardElement).clear();
+          
+          dispatch(sendPayment(cart[0].user.mail))
         } else {
           swal({
             title: `El pago fue denegado: ${resBack.error.raw.message}`,
@@ -141,7 +144,7 @@ function Pasarela({ userlog, total, cart }) {
         <div className="container p-4">
           <div className="row h-100">
             <div className="col-md-4 offset-md-4 h-100">
-              <CheckoutForm total={total} cart={cart} />
+              <CheckoutForm total={total} cart={cart}/>
             </div>
           </div>
         </div>

@@ -4,10 +4,10 @@ import axios from 'axios'
 export const sendPayment= (mail) => {
     return async function(dispatch) {
         try {
-            let result = await axios.post(`http://localhost:3001/mailing/confirmation`,mail);
+            let result = await axios.post(`http://localhost:3001/mailing/confirmation/${mail}`);
             console.log(result.data)
             return dispatch({
-                type: SEND_MAIL,
+                type: SEND_PAYMENT,
                 payload: result.data
             })
 

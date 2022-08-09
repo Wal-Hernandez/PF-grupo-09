@@ -21,7 +21,7 @@ return(
         {/* <img src="img.jpg" alt="John" style={{ width: "100%" }} /> */}
         <h1 className='title'>{userlog?.nombre +" "+ userlog?.apellido}</h1>
         <p>Historial de Compras</p>
-        {shopping.length? shopping.map(data=><div className='card'>
+        {shopping.length? shopping.map(data=><div className='card' style={{backgroundColor:'purple', width:'60vw', position:'relative', left:'20vw'}}>
             <p className='title'>{data?.cartDetails[0].package?.name}</p>
             <input type="checkbox"  id="spoiler2" /> 
   <label for="spoiler2" >Actividades</label>

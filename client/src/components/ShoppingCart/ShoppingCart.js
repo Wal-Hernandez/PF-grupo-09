@@ -189,6 +189,26 @@ export default function ShoppingCart({ userlog }) {
     return 0;
   });
 
+  const comprobarStock = (cartDetails, packages) => {
+    let flag = true;
+    if (!cartDetails || !packages) {
+      flag = false;
+    }
+
+    //[{id,uiserId,packageId,numberPeople},{id,uiserId,packageId,numberPeople}]
+    cartDetails?.forEach((item) => {
+      let pack = packages.filter((elemento) => elemento.id === item.packageId);
+      console.log(pack);
+      let stockPackage = pack[0]?.stock;
+      console.log(stockPackage);
+      console.log(item.numberPeople, stockPackage);
+      if (item.numberPeople > stockPackage) {
+        flag = false;
+      }
+    });
+    return flag;
+  };
+
   return (
     <div>
       <Navbar userlog={userlog} />
@@ -223,10 +243,23 @@ export default function ShoppingCart({ userlog }) {
           <Link to={"/login"}>
             <button className="btn btn-primary btn-lg">Comprar</button>
           </Link>
-        ) : (
+        ) : comprobarStock(cart[0]?.cartDetails, packages) ? (
           <button
             className="btn btn-primary btn-lg"
             onClick={() => setPulsado(!pulsado)}
+          >
+            Comprar
+          </button>
+        ) : (
+          <button
+            className="btn btn-primary btn-lg"
+            onClick={() =>
+              swal({
+                title:
+                  "Lo sentimos hay paquetes que no tienen cupos disponibles, eliminelos para continuar con su compra",
+                icon: "error",
+              })
+            }
           >
             Comprar
           </button>

@@ -5,7 +5,7 @@ import "./servicesView.css";
 import Productos from "../../components/Productos";
 import Paginado from "../../components/Paginado";
 import { useDispatch, useSelector } from "react-redux";
-import SearchAndFilters from '../../components/Search&Filters';
+import SearchAndFilters from "../../components/Search&Filters";
 import { getCities } from "../../redux/actions/getCities";
 import { getActivities } from "../../redux/actions/getActivities";
 import { getPackages } from "../../redux/actions/getPackages";
@@ -15,11 +15,15 @@ export default function Services({ userlog }) {
 
   const packages = useSelector((state) => state.rootReducer.packages);
   const dispatch = useDispatch();
+  const paquetesDisponibles = packages?.filter((e) => {
+    return e.stock > 0;
+  });
+
 
   useEffect(() => {
     dispatch(getCities());
-    dispatch(getActivities())
-    dispatch(getPackages())
+    dispatch(getActivities());
+    dispatch(getPackages());
 
     return () => {
       dispatch(getClean())
@@ -30,7 +34,7 @@ export default function Services({ userlog }) {
   const [packagesPerPage, setPackagesPerPage] = useState(5); //10 productos por pagina
   const indexOfLastPackage = currentPage * packagesPerPage; // 10
   const indexOfFirstPackage = indexOfLastPackage - packagesPerPage; // 0
-  const currentPackages = packages.slice(
+  const currentPackages = paquetesDisponibles.slice(
     indexOfFirstPackage,
     indexOfLastPackage
   );
@@ -56,9 +60,11 @@ export default function Services({ userlog }) {
           <div className="row mt-5 mb-3">
             <Productos currentPackages={currentPackages} />
           </div>
+
           <div>
             <button class="btn btn-primary" onClick={mostrarPaquetes}> Ver mas paquetes </button>
           </div>
+
         </div>
         <div className="row">
           <Footer />

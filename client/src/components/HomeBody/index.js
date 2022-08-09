@@ -15,6 +15,13 @@ export default function HomeBody() {
   const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
 
+  console.log("home", packages);
+
+  const paquetesDisponibles = packages?.filter((e) => {
+    return e.stock > 0;
+  });
+  console.log(paquetesDisponibles);
+
   const auth = getAuth();
   const user = auth.currentUser;
   useEffect(() => {

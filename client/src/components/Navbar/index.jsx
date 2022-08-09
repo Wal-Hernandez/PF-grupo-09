@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {  useNavigate } from "react-router-dom";
 import './navbar.css'
 import { useSelector } from 'react-redux';
 import { useAuth } from "../../context/context";
@@ -11,7 +12,7 @@ import {clearCartLogout}from '../../redux/actions/clearCartLogout'
 import { rootReducer, initialState } from "../../redux/reducer/rootReducer";
 import swal from 'sweetalert';
 function Navbar({userlog}) {
-
+  const navigate = useNavigate();
 const cart = useSelector((state) => state.rootReducer.cart);
 
   // console.log("cartnav", cart.map((e)=>{e.cartDetails}))
@@ -20,7 +21,7 @@ const cart = useSelector((state) => state.rootReducer.cart);
  
   if(cart !== undefined && cart.length !== 0 ){
     console.log(cart)
-    totalCart = cart[0]["cartDetails"]
+    totalCart = cart[0]?.cartDetails
     console.log(totalCart)
   }
 
@@ -46,6 +47,7 @@ const cart = useSelector((state) => state.rootReducer.cart);
         title: "Cerraste sesion",
         icon: "success",
       })
+      navigate("/")
     } catch (error) {
       console.error(error.message);
     }
@@ -79,7 +81,7 @@ const cart = useSelector((state) => state.rootReducer.cart);
       <li class="nav-item">
         <Link to="/shoppingcart" >
             <i class="fas fa-shopping-cart carrito"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">{!totalCart.length?0:totalCart.length}</span>
+            <span class="badge rounded-pill badge-notification bg-danger">{!totalCart?.length?0:totalCart.length}</span>
           </Link>
         </li>
         <li class="nav-item">

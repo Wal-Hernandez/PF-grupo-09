@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import logo from "../../images/Buspack.png";
 import { loadStripe } from "@stripe/stripe-js";
 import { useDispatch, useSelector } from "react-redux";
-import { changeStateCart} from "../../redux/actions/changeStateCart";
-import {reduceStock} from "../../redux/actions/reduceStock";
+import { changeStateCart } from "../../redux/actions/changeStateCart";
+import { reduceStock } from "../../redux/actions/reduceStock";
 import {
   Elements,
   CardElement,
@@ -22,7 +22,7 @@ const stripePromise = loadStripe(
 const CheckoutForm = ({ total, cart }) => {
   const stripe = useStripe();
   const elements = useElements();
-  let packageDetails = cart[0].cartDetails.map((e) => {
+  let packageDetails = cart[0]?.cartDetails.map((e) => {
     // return `${e.package.name}, ${e.package.city.name}`;
     return {
       cityName: e.package.city.name,
@@ -70,16 +70,21 @@ const CheckoutForm = ({ total, cart }) => {
         console.log(resBack);
 
         if (!resBack.error) {
-          //cambiar el estado del carrito 
-          dispatch(changeStateCart({id:pay.idCart,mail:pay.userMail}))
-          let packagesUpdateStockcart=cart[0].cartDetails.map(function(details) {
-            return {id:details.packageId,numberPeople:details.numberPeople};
-            });
+          //cambiar el estado del carrito
+          dispatch(changeStateCart({ id: pay.idCart, mail: pay.userMail }));
+          let packagesUpdateStockcart = cart[0].cartDetails.map(function (
+            details
+          ) {
+            return {
+              id: details.packageId,
+              numberPeople: details.numberPeople,
+            };
+          });
 
-            packagesUpdateStockcart.forEach((item)=>{
-              dispatch(reduceStock(item))
-            })
-            
+          packagesUpdateStockcart.forEach((item) => {
+            dispatch(reduceStock(item));
+          });
+
           swal({
             title: "El pago fue realizado con exito",
             icon: "success",

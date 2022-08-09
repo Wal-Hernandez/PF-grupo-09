@@ -7,19 +7,10 @@ import { postReview } from "../../redux/actions/postReview";
 import { getHotels } from "../../redux/actions/getHotels";
 import swal from "sweetalert";
 
-function ReviewsForm({ data }) {
+function ReviewsForm({ values, setValues, selected }) {
   const auth = getAuth();
   const user = auth.currentUser;
-  const { cart } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
-
-  const [values, setValues] = useState({
-    userId: cart[0]?.userId,
-    hotelId: data.id,
-    title: "",
-    comment: "",
-    score: 0,
-  });
 
   const handleChange = (e) => {
     setValues({
@@ -37,7 +28,7 @@ function ReviewsForm({ data }) {
 
   const handleReview = (e) => {
     e.preventDefault();
-    dispatch(postReview(values));
+    dispatch(postReview(selected, values));
     setValues({
       ...values,
       title: "",

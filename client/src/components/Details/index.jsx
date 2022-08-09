@@ -270,7 +270,7 @@ shopping_cart_checkout
 
 
       <div>
-        {packageDetail.hotel ? <Reviews userlog={userlog} hotel={packageDetail.hotel}/> : null}
+        {packageDetail.hotel ? <Reviews userlog={userlog} hotel={packageDetail.hotel} activity={packageDetail.activities} business={packageDetail.business}/> : null}
 
     </div> 
     </div>

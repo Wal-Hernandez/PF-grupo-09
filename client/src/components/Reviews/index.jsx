@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ShowReviews from "./ShowReviews";
+
 import ReactStars from 'react-rating-stars-component'
 import './review.css'
 import ReviewsForm from './ReviewsForm'
@@ -37,6 +38,7 @@ function Reviews({hotel, activity, business, userlog}) {
   }
   
   return (
+
     <>
      <div className="div-form">
           <select name="cityId" defaultValue="" onChange={(e)=>setSelected(e.target.value)}>
@@ -53,6 +55,7 @@ function Reviews({hotel, activity, business, userlog}) {
         }
     {/* <div className="review-container">
       {hotel?.reviews?.length? (
+
         <div>
           <button onClick={() => setshowReviews(!showReviews)}>
             Mostrar valoraciones del hotel

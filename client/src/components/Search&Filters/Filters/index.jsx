@@ -37,7 +37,7 @@ function Filters(props) {
 
   return (
     <div className="select-container d-flex row-cols-3">
-      <div className="col-3 justify-content-center">
+      <div className="col-1 justify-content-center">
         <form>
           Ordenar por:
           <div className="form-check">

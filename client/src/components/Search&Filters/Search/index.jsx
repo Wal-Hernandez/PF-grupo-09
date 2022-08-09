@@ -66,58 +66,58 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
     <div className="container d-flex align-items-center justify-content-center mt-6">
       <div className="row">
         <div className="row">
-        <div className="col-6 mb-4">
-          <div className="row mb-2">
-            <label>Destino: </label>
-          </div>
-          <div className="row mb-2">
-            <AutocompleteSearch 
-              fieldInput={cities?.map(e=>e.name)} 
-              input={destinationCity} 
-              setInput={setDestinationCity}
-              setDestination={(dest)=> setValues({...values, destination: dest})}
-            />
-            {/* <input
+          <div className="col-4 mb-4">
+            <div className="row mb-2">
+              <label>Destino: </label>
+            </div>
+            <div className="row mb-2">
+              <AutocompleteSearch
+                fieldInput={cities?.map(e => e.name)}
+                input={destinationCity}
+                setInput={setDestinationCity}
+                setDestination={(dest) => setValues({ ...values, destination: dest })}
+              />
+              {/* <input
               type="text"
               placeholder="Destino"
               value={values.destination}
               onChange={handleDestination}
               /> */}
+            </div>
           </div>
-        </div>
-        <div className="col-4 mb-4">
-          <div className="row mb-2">
-            <label>Ida:</label>
-          </div>
-          <DatePicker
-            onChange={setStartDate}
-            onBlur={handleDates}
-            value={startDate === null ? "" : startDate}
-            dayPlaceholder={"DD"}
-            monthPlaceholder={"MM"}
-            yearPlaceholder={"YYYY"}
-            format={"dd-MM-y"}
-            minDate={new Date()}
+          <div className="col-4 mb-4">
+            <div className="row mb-2">
+              <label>Ida:</label>
+            </div>
+            <DatePicker
+              onChange={setStartDate}
+              onBlur={handleDates}
+              value={startDate === null ? "" : startDate}
+              dayPlaceholder={"DD"}
+              monthPlaceholder={"MM"}
+              yearPlaceholder={"YYYY"}
+              format={"dd-MM-y"}
+              minDate={new Date()}
             />
-        </div>
-        <div className="col-2 mb-4">
-          <div className="row mb-2">
-            <label>Pasajeros:</label>
           </div>
-          <div className="row mb-2">
-            <input
-              type="text"
-              placeholder="Pasajeros"
-              onChange={handlePassenger}
+          <div className="col-4 mb-4">
+            <div className="row mb-2">
+              <label>Pasajeros:</label>
+            </div>
+            <div className="row mb-2">
+              <input
+                type="text"
+                placeholder="Pasajeros"
+                onChange={handlePassenger}
               />
+            </div>
           </div>
-        </div>
         </div>
         <div className="row">
           <div className="row col-sm-12 col-md-12 col-lg-12 justify-content-center">
             <div className="col-4 mb-4">
               <button className="btn btn-success" onClick={handleSearch}>
-                Buscar 🔎 
+                Buscar 🔎
               </button>
             </div>
             <div className="col-4 mb-4">

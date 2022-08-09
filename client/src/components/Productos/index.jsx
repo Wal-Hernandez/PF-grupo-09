@@ -14,7 +14,7 @@ export default function Productos(props) {
       <ul class="list-group list-group-flush">
         {packages.map((e) => {
           return (
-            <div key={e.id} class="card package-item">
+            <div key={e.id} class="card package-item rounded-0 my-1">
               <Link to={"/details/" + e.id}>
                 <li class="list-group-item">
                   <div class="card-body">

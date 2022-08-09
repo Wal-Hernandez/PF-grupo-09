@@ -12,15 +12,17 @@ export default function Productos(props) {
     <div className='productos-div'>
       {packages.map((e) => {
         return (
-          <div key={e.id} className="package-item">
+          <div key={e.id} class="card package-item">
             <Link to={"/details/" + e.id}>
               <img class="card-img-top" src={e.hotel?.urlImage} alt="Card image cap" />
-              <div>Nombre paquete: {e.name}</div>
-              <div>Ciudad: {e.city.name}</div>
-              <div>Fecha de salida: {new Date(e.start_date).toLocaleString('es-ES')}</div>
-              <div>Fecha de llegada: {new Date(e.end_date).toLocaleString('es-ES')}</div>
-              <div>Precio: ${e.price}</div>
-              <div>Stock: {e.stock}</div>
+              <div class="card-body">
+                <h5 class="card-title card-main c-name">Nombre paquete: {e.name}</h5>
+                <p class="card-title card-main c-city">Ciudad: {e.city.name}</p>
+                <p class="card-text card-main c-hotel">Fecha de salida: {new Date(e.start_date).toLocaleString('es-ES')}</p>
+                <p class="card-text card-main c-hotel">Fecha de llegada: {new Date(e.end_date).toLocaleString('es-ES')}</p>
+                <p class="card-text card-main c-price">Precio: ${e.price}</p>
+                <p class="card-text card-main c-price">Stock: {e.stock}</p>
+              </div>
             </Link>
           </div>
         )

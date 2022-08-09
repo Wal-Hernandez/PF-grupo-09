@@ -236,7 +236,7 @@ shopping_cart_checkout
   </div>
 </div>
 
-    {/* <div class="card">
+    <div class="card">
       
       <div>
         <div>
@@ -268,11 +268,12 @@ shopping_cart_checkout
       </div>
       {paqueteCargado?<Link to="/shoppingcart"><button className="btn btn-warning">Ver en el Carrito</button></Link>:<button className="btn btn-warning" onClick={() => addToCart(id)}>Agregar una persona al carrito al carrito</button>} 
 
-      {/* <div>
-        {packageDetail.hotel ? <Reviews hotel={packageDetail.hotel}/> : null}
-      </div>
-    </div> */}
-    </div>
 
+      <div>
+        {packageDetail.hotel ? <Reviews userlog={userlog} hotel={packageDetail.hotel}/> : null}
+
+    </div> 
+    </div>
+    </div>
   );
 }

@@ -38,7 +38,7 @@ const CheckoutForm = ({ total, cart }) => {
   console.log("carrito", packageDetails);
 
   const [loading, setLoading] = useState(false);
-  let description = packageDetails.map((e) => e.packageName);
+  let description = packageDetails?.map((e) => e.packageName);
   console.log(description);
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {

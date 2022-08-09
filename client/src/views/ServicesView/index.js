@@ -12,22 +12,22 @@ import { getPackages } from "../../redux/actions/getPackages";
 import { getClean } from "../../redux/actions/getClean";
 
 export default function Services({ userlog }) {
-  
+
   const packages = useSelector((state) => state.rootReducer.packages);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getCities());
     dispatch(getActivities())
     dispatch(getPackages())
 
-    return()=>{
+    return () => {
       dispatch(getClean())
     }
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [packagesPerPage /*setPackagesPerPage*/] = useState(3); //10 productos por pagina
+  const [packagesPerPage /*setPackagesPerPage*/] = useState(5); //10 productos por pagina
   const indexOfLastPackage = currentPage * packagesPerPage; // 10
   const indexOfFirstPackage = indexOfLastPackage - packagesPerPage; // 0
   const currentPackages = packages.slice(
@@ -41,33 +41,36 @@ export default function Services({ userlog }) {
 
   return (
     <>
-     
-        <Navbar setCurrentPage={setCurrentPage} userlog={userlog} />
+
+      <Navbar setCurrentPage={setCurrentPage} userlog={userlog} />
       <div className="container">
-      <div className="row align-items-center justify-content-center">
-        <div className="row align-items-center">
-          <div className="col-sm-1 col-md-2 col-lg-3"></div>
-          <div className="col-sm-10 col-md-8 col-lg-12">
-            <SearchAndFilters setCurrentPage={setCurrentPage}/>
-          </div>
-          <div className="col-sm-1 col-md-2 col-lg-3"></div>
-        </div>
-        <div className="row">
-          <Paginado
-            currentPage={currentPage}
-            packagesPerPage={packagesPerPage}
-            packages={packages.length}
-            paginado={paginado}
-          />
-        </div>
-            <div className="row">
-              <Productos currentPackages={currentPackages}/>
+
+        <div className="row align-items-center justify-content-center">
+          <div className="row align-items-center">
+            <div className="col-sm-1 col-md-2 col-lg-3"></div>
+            <div className="col-sm-10 col-md-8 col-lg-12">
+              <SearchAndFilters setCurrentPage={setCurrentPage} />
+
+
             </div>
+            <div className="col-sm-1 col-md-2 col-lg-3"></div>
           </div>
           <div className="row">
-            <Footer />
+            <Paginado
+              currentPage={currentPage}
+              packagesPerPage={packagesPerPage}
+              packages={packages.length}
+              paginado={paginado}
+            />
           </div>
-     </div>
+          <div className="row">
+            <Productos currentPackages={currentPackages} />
+          </div>
+        </div>
+        <div className="row">
+          <Footer />
+        </div>
+      </div>
     </>
   );
 }

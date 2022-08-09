@@ -33,7 +33,8 @@ import {
     DELETE_ONE_PEOPLE,
     FILTER_BY_ACTIVITY,
     CHANGE_STATE_CART,
-    LOAD_SHOPPING
+    LOAD_SHOPPING,
+    FILTER_BY_PASSENGER
 
 } from "../actions/actionTypes";
 import {TYPES} from "../actions/shoppingActions"
@@ -54,7 +55,8 @@ const initialState = {
     cart:[],
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[],
-    shopping:[]
+    shopping:[],
+    aux: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -64,6 +66,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 packages: action.payload,
+                aux: action.payload
             };
         case GET_CITIES:
             return {
@@ -115,27 +118,32 @@ export default function rootReducer(state = initialState, action) {
         case FILTER_BY_DESTINY:
             return {
                 ...state,
-                packages: action.payload
+                packages: action.payload,
+                aux: action.payload
             }
         case FILTER_BY_ACTIVITY:
             return {
                 ...state,
-                packages: action.payload
+                packages: action.payload,
+                aux: action.payload
             }
         case FILTER_BY_DATE:
             return {
                 ...state,
-                packages: action.payload
+                packages: action.payload,
+                aux: action.payload
             }
         case SORT_BY_PRICE:
             return {
                 ...state,
-                packages: action.payload
+                packages: action.payload,
+                aux: action.payload
             }
         case SORT_BY_STOCK:
             return {
                 ...state,
-                packages: action.payload
+                packages: action.payload,
+                aux: action.payload
             }
         case LOAD_CART:
             return {
@@ -398,6 +406,18 @@ export default function rootReducer(state = initialState, action) {
                     arrayCartNotLoggedin:[]
 
                 }
+            }
+            case FILTER_BY_PASSENGER: {
+                if(action.payload){
+                    const filterPassenger = state.aux.filter(a=> parseInt(action.payload) < a.stock )
+                    return{
+                      ...state,
+                      packages: filterPassenger
+                    }
+                  }
+                  return{
+                    ...state
+                  }
             }
         default:
             return state;

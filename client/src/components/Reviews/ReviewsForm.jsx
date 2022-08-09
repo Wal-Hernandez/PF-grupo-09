@@ -7,7 +7,7 @@ import { postReview } from "../../redux/actions/postReview";
 import { getHotels } from "../../redux/actions/getHotels";
 import swal from "sweetalert";
 
-function ReviewsForm({ hotel }) {
+function ReviewsForm({ data }) {
   const auth = getAuth();
   const user = auth.currentUser;
   const { cart } = useSelector((state) => state.rootReducer);
@@ -15,7 +15,7 @@ function ReviewsForm({ hotel }) {
 
   const [values, setValues] = useState({
     userId: cart[0]?.userId,
-    hotelId: hotel.id,
+    hotelId: data.id,
     title: "",
     comment: "",
     score: 0,

@@ -7,7 +7,7 @@ import ReviewsForm from './ReviewsForm'
 import { useSelector } from "react-redux";
 function Reviews({hotel, activity, business, userlog}) {
 
-    const [showReviews, setshowReviews] = useState(false);
+    
     const { cart } = useSelector((state) => state.rootReducer);
     const [selected, setSelected] = useState('');
     console.log(cart[0]?.user)

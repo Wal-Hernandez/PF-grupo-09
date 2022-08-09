@@ -28,13 +28,13 @@ console.log(user.rol)
     dispatch(PutUser(pack.id, user));
   }
 
-  const nombre = register("nombre", {
+  /* const nombre = register("nombre", {
     required: { value: true, message: "REQUERIDO" },
-  });
+  }); */
 
-  const rol = register("rol", {
+  /* const rol = register("rol", {
     required: { value: true, message: "REQUERIDO" },
-  });
+  }); */
 
   return (
     <div className="div">
@@ -46,31 +46,19 @@ console.log(user.rol)
             type="text"
             name="name"
             value={user["nombre"]}
-            placeholder="Ingrese el nombre del usuario."
-            {...nombre}
-            onChange={(e) => {
-              nombre.onChange(e);
-              handleChange(e);
-            }}
+            placeholder={pack.nombre}
+            onChange={handleChange}
           />
-          {errors?.nombre && <span>{errors?.nombre?.message}</span>}
         </div>
 
         <div className="div-form">
           <label className="label-form"> Rol: </label>
-       
-          <input
-            type="text"
-            name="rol"
-            value={user["rol"]}
-            placeholder="Ingrese una ubicación."
-            {...rol}
-            onChange={(e) => {
-              rol.onChange(e);
-              handleChange(e);
-            }}
-          />
-          {errors?.rol && <span>{errors?.rol?.message}</span>}
+            
+          <select name="rol" onChange={handleChange} defaultValue="client">
+            <option value="admin">Administrador</option>
+            <option value="banned">Baneado</option>
+            <option value="client">Cliente</option>
+          </select>
         </div>
 
         <button
@@ -79,7 +67,7 @@ console.log(user.rol)
         
         >
           {" "}
-          Update User
+          Actualizar
         </button>
 
       </form>

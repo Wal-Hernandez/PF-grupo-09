@@ -12,11 +12,13 @@ import { getPackages } from "../../redux/actions/getPackages";
 import { getClean } from "../../redux/actions/getClean";
 
 export default function Services({ userlog }) {
+
   const packages = useSelector((state) => state.rootReducer.packages);
   const dispatch = useDispatch();
   const paquetesDisponibles = packages?.filter((e) => {
     return e.stock > 0;
   });
+
 
   useEffect(() => {
     dispatch(getCities());
@@ -24,12 +26,12 @@ export default function Services({ userlog }) {
     dispatch(getPackages());
 
     return () => {
-      dispatch(getClean());
-    };
+      dispatch(getClean())
+    }
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [packagesPerPage /*setPackagesPerPage*/] = useState(3); //10 productos por pagina
+  const [packagesPerPage /*setPackagesPerPage*/] = useState(5); //10 productos por pagina
   const indexOfLastPackage = currentPage * packagesPerPage; // 10
   const indexOfFirstPackage = indexOfLastPackage - packagesPerPage; // 0
   const currentPackages = paquetesDisponibles.slice(
@@ -43,8 +45,10 @@ export default function Services({ userlog }) {
 
   return (
     <>
+
       <Navbar setCurrentPage={setCurrentPage} userlog={userlog} />
       <div className="container">
+
         <div className="row align-items-center justify-content-center">
           <div className="row align-items-center">
             <div className="col-sm-1 col-md-2 col-lg-3"></div>
@@ -64,6 +68,7 @@ export default function Services({ userlog }) {
           <div className="row">
             <Productos currentPackages={currentPackages} />
           </div>
+
         </div>
         <div className="row">
           <Footer />

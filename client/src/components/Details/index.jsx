@@ -236,6 +236,8 @@ shopping_cart_checkout
     </div>
   </div>
 </div>
+
 </div>
 );
+
 }

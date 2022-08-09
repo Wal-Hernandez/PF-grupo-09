@@ -1,6 +1,6 @@
 const Stripe = require("stripe");
 const stripe = new Stripe(
-  "sk_test_51LTBDuKIottmlf7XdnmMDguYreyugdwIejADALbMEEuEpsSSleHhwzyclxnWuRDaLNVr4GEsHOOOTmAMFbIWxQKz00bVeDYFn4"
+  "sk_test_51LS6WxEnjWLgT9mPGDkdkl95tYMhY58ULD00s2GL0x6uhSN2GSpn3z6SZjmXMvFYULDvsPB3qpOhquvBaA5zdB8k00fFT9AuHY"
 );
 
 const { Cart } = require("../db");

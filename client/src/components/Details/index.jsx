@@ -68,15 +68,15 @@ export default function Details({userlog}) {
   const addToCart = (id) =>{
     if(user){
       console.log("ID:",id)
-      let detalles=cart[0]['cartDetails'];
-      detalles.forEach(element => {
+      let detalles=cart[0]?.cartDetails;
+      detalles?.forEach(element => {
         console.log("foreach",element.packageId)
       });
-      let detailpackageId=detalles.filter(d=>d.packageId==id)
+      let detailpackageId=detalles?.filter(d=>d.packageId==id)
       console.log("detalle:",detalles)
       console.log("detailpackageId:",detailpackageId)
 
-      if(detailpackageId.length===1){
+      if(detailpackageId?.length===1){
          //Logica para aumentar una persona al detalle del paquete
           let idCartDetail=detailpackageId[0].id;
           console.log("idCartDetail",idCartDetail)
@@ -86,7 +86,7 @@ export default function Details({userlog}) {
       }
       else{
         //logica para agregar un nuevo detalle
-        let idCart=cart[0]['id'];
+        let idCart=cart[0]?.id;
       console.log("IDCART:",idCart,id)
       let email=cart[0]['user']['mail'];
       dispatch(addDetailCart(idCart,id,email))
@@ -236,7 +236,7 @@ shopping_cart_checkout
   </div>
 </div>
 
-    <div class="card">
+    {/* <div class="card">
       
       <div>
         <div>
@@ -273,7 +273,7 @@ shopping_cart_checkout
         {packageDetail.hotel ? <Reviews userlog={userlog} hotel={packageDetail.hotel}/> : null}
 
     </div> 
-    </div>
+    </div> */}
     </div>
   );
 }

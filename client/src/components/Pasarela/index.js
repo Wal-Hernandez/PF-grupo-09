@@ -16,20 +16,21 @@ import { confirmPasswordReset } from "firebase/auth";
 import axios from "axios";
 import swal from "sweetalert";
 const stripePromise = loadStripe(
-  "pk_test_51LTBDuKIottmlf7Xbtn9K29aMc0spCuzel3dOw1hX5hb5KLxKfAIWhGjh1ACx5ux3j1VRqigkN4yPNontWKFBYt200falMP3nU"
+  "pk_test_51LS6WxEnjWLgT9mPM7FvJzPJGe1pxQJxLZCac1972YwkIattNDW8i24H4IWbsSbC64fpcU2cgfPa41uvM9vpxPiV00Yrbtodlp"
 );
 
 const CheckoutForm = ({ total, cart }) => {
   const stripe = useStripe();
   const elements = useElements();
-  let packageDetails = cart[0].cartDetails.map((e) => {
+  let packageDetails = cart[0]?.cartDetails.map((e) => {
     // return `${e.package.name}, ${e.package.city.name}`;
+    console.log( total, cart)
     return {
       cityName: e.package.city.name,
       packageName: e.package.name,
       packageId: e.packageId,
       numberPeople: e.numberPeople,
-      hotelName: e.package.hotel.name,
+       hotelName: e.package.hotel.name,
       hotelImage: e.package.hotel.urlImage, //cambiar por imgen de city
       start_date: e.package.start_date,
       plattform: `${e.package.plattform.terminal}: ${e.package.plattform.address}`,

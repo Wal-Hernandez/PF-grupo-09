@@ -20,7 +20,7 @@ const cart = useSelector((state) => state.rootReducer.cart);
  
   if(cart !== undefined && cart.length !== 0 ){
     console.log(cart)
-    totalCart = cart[0]["cartDetails"]
+    totalCart = cart[0]?.cartDetails
     console.log(totalCart)
   }
 
@@ -79,7 +79,7 @@ const cart = useSelector((state) => state.rootReducer.cart);
       <li class="nav-item">
         <Link to="/shoppingcart" >
             <i class="fas fa-shopping-cart carrito"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">{!totalCart.length?0:totalCart.length}</span>
+            <span class="badge rounded-pill badge-notification bg-danger">{!totalCart?.length?0:totalCart.length}</span>
           </Link>
         </li>
         <li class="nav-item">

@@ -49,19 +49,19 @@ export default function ShoppingCart({ userlog }) {
   }, [dispatch, packages, showPackages]);
 
   // El QUE ESTABA ANTES
-  useEffect(() => {
-    if (user?.email !== undefined) {
-      dispatch(loadCart(user?.email));
-    }
-  }, [user, dispatch]);
-
-  //SUBIDO POR AGUS FIDELIO
   // useEffect(() => {
-  //   if (!packages.length) dispatch(getPackages());
   //   if (user?.email !== undefined) {
   //     dispatch(loadCart(user?.email));
   //   }
   // }, [user, dispatch]);
+
+  //SUBIDO POR AGUS FIDELIO
+  useEffect(() => {
+    if (!packages.length) dispatch(getPackages());
+    if (user?.email !== undefined) {
+      dispatch(loadCart(user?.email));
+    }
+  }, [user, dispatch]);
 
   const addToCart = (id) => {
     if (user) {
@@ -189,6 +189,29 @@ export default function ShoppingCart({ userlog }) {
     return 0;
   });
 
+  // const comprobarStock=(cartDetails,packages)=>{
+  //   let flag=true;
+  //   if(!cartDetails||!packages){
+  //       flag=false; 
+  //   }
+    
+
+  //     //[{id,uiserId,packageId,numberPeople},{id,uiserId,packageId,numberPeople}]
+  //     cartDetails?.forEach((item)=>{
+  //       let pack=packages.filter((elemento) => elemento.id === item.packageId)
+  //       console.log(pack)
+  //       let stockPackage=pack[0]?.stock
+  //       console.log(stockPackage)
+  //       console.log(item.numberPeople,stockPackage)
+  //       if(item.numberPeople>stockPackage){
+         
+  //         flag=false;
+  //       }
+
+  //     })
+  //   return flag;
+  // }
+
   return (
     <div>
       <Navbar userlog={userlog} />
@@ -230,6 +253,7 @@ export default function ShoppingCart({ userlog }) {
           >
             Comprar
           </button>
+          
         )}
 
         {pulsado ? <Pasarela total={total} cart={cart} /> : null}

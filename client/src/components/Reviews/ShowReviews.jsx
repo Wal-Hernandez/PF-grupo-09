@@ -1,7 +1,9 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
+
 function ShowReviews({ data }) {
   const starsValue = data?.reviews.map((e) => e.score);
+
   const sumScore = starsValue.reduce((a, b) => a + b);
   const mediaScore = sumScore / starsValue.length;
 
@@ -14,6 +16,7 @@ function ShowReviews({ data }) {
             <ReactStars size={40} edit={false} value={mediaScore} />
           </p>
       </h5>
+
       {data.reviews.map((e) => (
         <div>
           <ReactStars edit={false} value={e.score} />

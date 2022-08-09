@@ -236,7 +236,7 @@ shopping_cart_checkout
   </div>
 </div>
 
-    <div class="card">
+    <div >
       
       <div>
         <div>

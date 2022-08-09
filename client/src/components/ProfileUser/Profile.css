@@ -1,10 +1,20 @@
+
 .card-profile {
+}
+
+/* .card {
+>>>>>>> 1e15cd5236d91e34071adf5b0412b53a2b2169e9
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: auto;
     text-align: center;
+    background-color:blue;
   }
+<<<<<<< HEAD
   
+=======
+   */
+
   /* .title {
     color:white;
     font-size: 18px;
@@ -39,37 +49,42 @@
     display: none;
    }
    input[id^="spoiler"] + label {
+
      display: block;
      width: 200px;
      margin: 0 auto;
      padding: 5px 20px;
      background: #FFDE59;
-     color:white;
+     color: white;
      text-align: center;
      font-size: 24px;
      border-radius: 8px;
      cursor: pointer;
      transition: all .6s;
-   }
-   input[id^="spoiler"]:checked + label {
+ }
+ 
+ input[id^="spoiler"]:checked+label {
      color: #333;
      background: #ccc;
-   }
-   input[id^="spoiler"] ~ .spoiler {
+ }
+ 
+ input[id^="spoiler"]~.spoiler {
      width: 90%;
      height: 0;
      overflow: hidden;
      opacity: 0;
-     margin: 10px auto 0; 
-     padding: 10px; 
+     margin: 10px auto 0;
+     padding: 10px;
      background: rgb(181, 181, 185);
      border: 1px solid #ccc;
      border-radius: 8px;
      transition: all .6s;
-   }
-   input[id^="spoiler"]:checked + label + .spoiler{
+ }
+ 
+ input[id^="spoiler"]:checked+label+.spoiler {
      height: auto;
      opacity: 1;
      padding: 10px;
-   }
-   
+
+   } 
+

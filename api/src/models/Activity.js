@@ -17,6 +17,10 @@ module.exports = (sequelize) => {
         type: DataTypes.DECIMAL,
         allowNull: false,
       },
+      enabled: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
   
   },{timestamps:false});
 };

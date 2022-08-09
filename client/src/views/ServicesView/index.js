@@ -44,11 +44,32 @@ export default function Services({ userlog }) {
 
       <Navbar setCurrentPage={setCurrentPage} userlog={userlog} />
       <div className="container">
+<<<<<<< HEAD
         <div className="row align-items-center justify-content-center">
           <div className="row align-items-center">
             <div className="col-sm-1 col-md-2 col-lg-3"></div>
             <div className="col-sm-10 col-md-8 col-lg-12">
               <SearchAndFilters setCurrentPage={setCurrentPage} />
+=======
+      <div className="row align-items-center justify-content-center">
+        <div className="row align-items-center">
+          <div className="col-sm-1 col-md-2 col-lg-3"></div>
+          <div className="col-sm-10 col-md-8 col-lg-12">
+            <SearchAndFilters setCurrentPage={setCurrentPage}/>
+          </div>
+          <div className="col-sm-1 col-md-2 col-lg-3"></div>
+        </div>
+        <div className="row">
+          <Paginado
+            currentPage={currentPage}
+            packagesPerPage={packagesPerPage}
+            packages={packages.length}
+            paginado={paginado}
+          />
+        </div>
+            <div className="row">
+              <Productos currentPackages={currentPackages}/>
+>>>>>>> 59a4c585653db32d8ef8f463193fb234585ea07a
             </div>
             <div className="col-sm-1 col-md-2 col-lg-3"></div>
           </div>

@@ -42,6 +42,8 @@ export const DELETE_ONE_PEOPLE = "DELETE_ONE_PEOPLE";
 export const PRUEBA = "PRUEBA";
 export const CHANGE_STATE_CART= "CHANGE_STATE_CART";
 export const LOAD_SHOPPING= "LOAD_SHOPPING";
+export const REDUCE_STOCK= "REDUCE_STOCK";
+
 
 
 export const SEND_MAIL = "SEND_MAIL";

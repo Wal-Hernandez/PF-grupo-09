@@ -10,6 +10,7 @@ export default function Productos(props) {
 
   return (
     <div className='productos-div'>
+
       <ul class="list-group list-group-flush">
         {packages.map((e) => {
           return (
@@ -48,6 +49,7 @@ export default function Productos(props) {
           )
         })}
       </ul>
+
 
     </div>
   )

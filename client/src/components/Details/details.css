@@ -1,10 +1,56 @@
+.info-det{
+    border-right: 1px solid rgba(55, 54, 54, 0.335);
+}
+.title-det{
+ font-size: 30px;
+}
+.city-det{
+    font-weight: 400;
+    font-size:25px;
+    display: flex;
+}
+.hotel-det{
+    font-weight: 400;
+    font-size:20px;
+    display: flex;
+   
+    justify-content:first baseline;
+    align-items: center;
 
-/* .div-img{
-width: 500px;
+}
+.card img {
+    height: 100%;
+}
+/* 
+.star{
+   
+    padding-left: 20px;
+} */
+.activites-det{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-top: 1px solid rgba(55, 54, 54, 0.06);
 
-} */
-/* .container{
-    border: 1px solid red;
-    width: 2000px;
-    margin-right: 1000px;
-} */
+}
+.activites-det a {
+    font-size: 20px;
+    font-weight: 500;
+}
+.activites-det a:hover {
+   color: #004AAD;
+   font-size: 20.5px;
+}
+.act{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.btn-comprar button{
+   font-size: 22px;
+   font-weight: 500;
+}
+.btn-comprar{
+    margin-bottom: 20px;
+}

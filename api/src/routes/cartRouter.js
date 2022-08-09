@@ -51,18 +51,25 @@ router.put("/login", async (req, res) => {
     let cart=await getCart(mail);
     //conseguir el id de ese carrito
     let cartJson=JSON.parse(JSON.stringify(cart));
-   
+    let idPackageDetails=cartJson[0].cartDetails.map(d=>d.packageId)
+    
+    console.log("idsPackages:",idPackageDetails);
     //obtengo solo el id de ese usuario
     let id=cartJson[0]['id']
     //agregar los detalles del carrito si hay info en localStorage
 
     for (let i = 0; i < storage.length; i++) {
-      let detalle=await createCartDetail (
-        idCart=id,
-        idPackage=storage[i].id,
-        numberPeople=storage[i].quantity,
-        isQualified=false
-    )
+
+      if(!idPackageDetails.includes(storage[i].id))
+      {
+            let detalle=await createCartDetail (
+            idCart=id,
+            idPackage=storage[i].id,
+            numberPeople=storage[i].quantity,
+            isQualified=false
+        )
+      }
+     
      }
      let cartLoad=await getCart(mail);
 

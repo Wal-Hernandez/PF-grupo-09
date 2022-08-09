@@ -15,7 +15,7 @@ import { Login } from './components/Login/Login'
 import { Register } from './components/Login/Register'
 import { ProtectedRouted } from "./components/Login/ProtectedRouted";
 import { ProtectedRoutedAdmin } from './components/Login/ProtectedRouteAdmin';
-
+import ProfileUser from './components/ProfileUser/ProfileUser';
 
 import { AuthProvider } from "./context/context";
 
@@ -89,7 +89,7 @@ function App() {
       <Route path ="/reg" element ={<Register/>}/>
        <Route path ="/login" element ={<Login/>}/>
        <Route path ="/shoppingcart" element ={<ShoppingCart userlog={userlog}/>}/>
-       <Route path="/admin/user" element={<ProtectedRoutedAdmin><Userview userlog={userlog}/></ProtectedRoutedAdmin>} />
+       <Route path="/user" element={<ProfileUser userlog={userlog}/>} />
       <Route path ="*" element={<ErrorPage/>}/>
     </Routes>
     </AuthProvider>

@@ -20,6 +20,7 @@ import { getAuth } from "firebase/auth";
 
 import Navbar from "../Navbar";
 import swal from "sweetalert";
+import { Link } from "react-router-dom";
 
 export default function ShoppingCart({ userlog }) {
   const [pulsado, setPulsado] = useState(false);
@@ -55,12 +56,12 @@ export default function ShoppingCart({ userlog }) {
   }, [user, dispatch]);
 
   //SUBIDO POR AGUS FIDELIO
-  //  useEffect(()=>{
-  //     if(!packages.length) dispatch(getPackages())
-  //     if(user?.email!==undefined){
-  //         dispatch(loadCart(user?.email))
-  //    }
-  //   },[user,dispatch])
+  // useEffect(() => {
+  //   if (!packages.length) dispatch(getPackages());
+  //   if (user?.email !== undefined) {
+  //     dispatch(loadCart(user?.email));
+  //   }
+  // }, [user, dispatch]);
 
   const addToCart = (id) => {
     if (user) {
@@ -218,13 +219,19 @@ export default function ShoppingCart({ userlog }) {
         <div>
           <h1>Total: ${total}.00</h1>
         </div>
+        {user?.email === undefined ? (
+          <Link to={"/login"}>
+            <button className="btn btn-primary btn-lg">Comprar</button>
+          </Link>
+        ) : (
+          <button
+            className="btn btn-primary btn-lg"
+            onClick={() => setPulsado(!pulsado)}
+          >
+            Comprar
+          </button>
+        )}
 
-        <button
-          className="btn btn-primary btn-lg"
-          onClick={() => setPulsado(!pulsado)}
-        >
-          Comprar
-        </button>
         {pulsado ? <Pasarela total={total} cart={cart} /> : null}
       </div>
       <div className="div-cart">

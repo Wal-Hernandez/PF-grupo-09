@@ -12,7 +12,7 @@ export default function DetailsView({userlog}) {
       </div>
       <div className="detailsViewContainer">
         <div className="details-card-top">
-          <Details />
+          <Details userlog={userlog} />
         </div>
       </div>
       <div className="footerDiv">

@@ -154,6 +154,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
         </div>
       </div>
     </div>
+ 
   );
 }
 

@@ -12,8 +12,12 @@
 
 .card {
     border-radius: 0px 0px 26px 0px;
-   height: auto;
+    height: auto;
     transition: all .3s;
+    box-shadow: -7px 8px 20px -11px rgba(0,0,0,0.75);
+}
+.title-card-home{
+    margin:30px ;
 }
 .card-bodyhome{
     min-height: 170px;
@@ -33,9 +37,10 @@
 }
 
 .c-name {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 100;
     margin-bottom: 2px;
+ 
 }
 
 .card:hover {

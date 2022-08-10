@@ -6,6 +6,10 @@ body{
   background-color: #DDD5F5;
 }
 
+.leaflet-container {
+  width:50vw;
+  height:50vh;
+}
 
 
 

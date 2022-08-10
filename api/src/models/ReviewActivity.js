@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     comment:{
         type: DataTypes.TEXT,
         allowNull: false
-    }
+    },
   
   },{timestamps:true});
 };

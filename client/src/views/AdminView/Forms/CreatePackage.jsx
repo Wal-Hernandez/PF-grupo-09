@@ -10,9 +10,10 @@ import { getActivities } from "../../../redux/actions/getActivities";
 import { getHotelsByCityId } from "../../../redux/actions/getHotelsByCityId";
 import DateTimePicker from "react-datetime-picker";
 import swal from "sweetalert";
+import './Form.css'
 export const CreatePackage = ({ }) => {
   const dispatch = useDispatch();
-
+  const expRegSoloLetras = /^[a-zA-Z ]*$/;
   useEffect(() => {
     dispatch(getPlatforms());
     dispatch(getBuses());
@@ -108,6 +109,7 @@ export const CreatePackage = ({ }) => {
   }
   const name = register("name", {
     required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
   });
   /*   
       const start_date = register("start_date", {
@@ -135,7 +137,7 @@ export const CreatePackage = ({ }) => {
   });
 
   return (
-    <div className="div">
+    <div className="div div-package-form">
       <form className="form" onSubmit={handleSubmit(handleSubmitPackages)}>
         <div className="div-form">
           <label className="label-form"> Nombre: </label>
@@ -169,6 +171,7 @@ export const CreatePackage = ({ }) => {
             hourPlaceholder={"hh"}
             minutePlaceholder={"mm"}
             secondPlaceholder={"ss"}
+            required
           />
         </div>
 
@@ -187,6 +190,7 @@ export const CreatePackage = ({ }) => {
             hourPlaceholder={"hh"}
             minutePlaceholder={"mm"}
             secondPlaceholder={"ss"}
+            required
           />
 
           {/*  <input
@@ -254,11 +258,11 @@ export const CreatePackage = ({ }) => {
         </div>
 
         <div className="div-form">
-          <select name="cityId" defaultValue="" onChange={handleChangePackages}>
+          <select name="cityId" defaultValue="" required onChange={handleChangePackages}>
             <option key="keycities" value="" disabled>
               Ciudad
             </option>
-            {cities.map((city) => (
+            {cities.filter(a=>a.enabled).map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
               </option>
@@ -293,7 +297,7 @@ export const CreatePackage = ({ }) => {
             <option key="keybusiness" value="" disabled>
               Transportista
             </option>
-            {business.map((busi) => (
+            {business.filter(a=>a.enabled).map((busi) => (
               <option key={busi.id} value={busi.id}>
                 {busi.name}
               </option>
@@ -306,11 +310,12 @@ export const CreatePackage = ({ }) => {
             name="hotelId"
             defaultValue=""
             onChange={handleChangePackages}
+            required
           >
             <option key="keyhotels" value="" disabled>
               Hotel
             </option>
-            {newHotels.map((hotel) => (
+            {newHotels.filter(a=>a.enabled).map((hotel) => (
               <option key={hotel?.id} value={hotel?.id}>
                 {hotel?.name}
               </option>
@@ -326,7 +331,7 @@ export const CreatePackage = ({ }) => {
             <option key="keyActivity" value="" disabled>
               ACTIVIDADES
             </option>
-            {newActivities.map((activity) => (
+            {newActivities.filter(a=>a.enabled).map((activity) => (
               <option key={activity?.id} value={activity?.name}>
                 {activity?.name}
               </option>

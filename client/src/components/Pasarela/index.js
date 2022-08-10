@@ -13,6 +13,7 @@ import {
 } from "@stripe/react-stripe-js";
 import "../Pasarela/Pasarela.css";
 import { confirmPasswordReset } from "firebase/auth";
+import { sendPayment } from "../../redux/actions/sendPayment";
 import axios from "axios";
 import swal from "sweetalert";
 import { DB_HEROKU } from "../../redux/actions/actionTypes";
@@ -91,6 +92,8 @@ const CheckoutForm = ({ total, cart }) => {
             icon: "success",
           });
           elements.getElement(CardElement).clear();
+          
+          dispatch(sendPayment(cart[0].user.mail))
         } else {
           swal({
             title: `El pago fue denegado: ${resBack.error.raw.message}`,

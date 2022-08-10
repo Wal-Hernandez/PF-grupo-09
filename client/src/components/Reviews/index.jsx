@@ -10,7 +10,6 @@ function Reviews({hotel, activity, business, userlog, selected}) {
 
   const { cart } = useSelector((state) => state.rootReducer);
   
-  console.log(cart[0]?.user)
   const [hotelValues, setHotelValues] = useState({
     userId: cart[0]?.user.id,
     hotelId: hotel,
@@ -33,7 +32,7 @@ function Reviews({hotel, activity, business, userlog, selected}) {
       comment: "",
       score: 0,
     });
-
+ 
     useEffect(() => {
       setHotelValues({...hotelValues, hotelId: hotel})
       setBusinessValues({...businessValues, businessId: business})
@@ -57,8 +56,8 @@ function Reviews({hotel, activity, business, userlog, selected}) {
       </div> */}
       {
         selected === 'activityreviews' ? <ReviewsForm values={activityValues} setValues={setActivityValues} selected={selected}/>
-        : selected === 'businessreviews' ? <ReviewsForm values={businessValues} setValues={setBusinessValues} selected={selected}/>
-        : selected === 'hotelreviews' ? <ReviewsForm values={hotelValues} setValues={setHotelValues} selected={selected}/>
+        : selected === 'businessreviews' ? <ReviewsForm values={businessValues} setValues={setBusinessValues} selected={selected} />
+        : selected === 'hotelreviews' ? <ReviewsForm values={hotelValues} setValues={setHotelValues} selected={selected} />
         : null
       }
     </>

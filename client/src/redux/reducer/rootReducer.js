@@ -37,6 +37,7 @@ import {
     FILTER_BY_PASSENGER,
     FINISH_TRAVEL
 
+
 } from "../actions/actionTypes";
 import { TYPES } from "../actions/shoppingActions";
 import { getAuth } from "firebase/auth";

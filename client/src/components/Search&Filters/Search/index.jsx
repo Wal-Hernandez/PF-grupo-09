@@ -6,7 +6,7 @@ import { filterPassenger } from "../../../redux/actions/filterByDateReturn";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock }) {
+function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock, setCurrentPage }) {
   const dispatch = useDispatch();
   const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
@@ -44,7 +44,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
       destination: destination.toUpperCase(),
       date: startDate && new Date(start_date).toDateString(),
     });
-    
+    setCurrentPage(1)
   };
   const handleClear = (e) => {
     e.preventDefault();

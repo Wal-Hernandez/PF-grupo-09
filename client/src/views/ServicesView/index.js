@@ -18,16 +18,16 @@ export default function Services({ userlog }) {
     return e.stock > 0;
   });
 
-  paquetesDisponibles?.sort(function (a, b) {
-    if (a.start_date > b.start_date) {
-      return 1;
-    }
-    if (a.start_date < b.start_date) {
-      return -1;
-    }
+  // paquetesDisponibles?.sort(function (a, b) {
+  //   if (a.start_date > b.start_date) {
+  //     return 1;
+  //   }
+  //   if (a.start_date < b.start_date) {
+  //     return -1;
+  //   }
 
-    return 0;
-  });
+  //   return 0;
+  // });
 
   useEffect(() => {
     dispatch(getCities());

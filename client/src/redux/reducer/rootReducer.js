@@ -34,7 +34,8 @@ import {
     FILTER_BY_ACTIVITY,
     CHANGE_STATE_CART,
     LOAD_SHOPPING,
-    FILTER_BY_PASSENGER
+    FILTER_BY_PASSENGER,
+    FINISH_TRAVEL
 
 } from "../actions/actionTypes";
 import { TYPES } from "../actions/shoppingActions";
@@ -197,6 +198,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         shopping: action.payload,
       };
+      case FINISH_TRAVEL:
+        return{
+          ...state,
+          shopping: action.payload,
+        }
     case TYPES.ADD_TO_CART: {
       let cartAll;
       const auth = getAuth();

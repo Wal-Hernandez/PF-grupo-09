@@ -11,7 +11,8 @@ export const PutCityForm = ({ pack }) => {
     formState: { errors },
   } = useForm();
   const [city, setCity] = React.useState({ name: pack.name, location: pack.location });
-
+  const expRegSoloLetras = /^[a-zA-Z ]*$/;
+  const expRegLatLon = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
   function TransformData(x) {
     if (isNaN(x[0])) return x;
     return x.split(",");
@@ -38,10 +39,12 @@ export const PutCityForm = ({ pack }) => {
 
   const name = register("name", {
     required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
   });
 
   const location = register("location", {
     required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegLatLon, message: "COORDENADA INCORRECTA" }
   });
 
   return (

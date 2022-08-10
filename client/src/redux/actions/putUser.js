@@ -1,10 +1,10 @@
-import {PUT_USER} from './actionTypes'
+import {PUT_USER,DB_HEROKU} from './actionTypes'
 import axios from "axios";
 
 export const PutUser= (id,rol) => {
     return async function(dispatch) {
         try {
-            let result = await axios.post(`http://localhost:3001/admin/${id}`,rol);
+            let result = await axios.post(`${DB_HEROKU}/admin/${id}`,rol);
             return dispatch({
                 type: PUT_USER,
                 payload: result.data

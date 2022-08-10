@@ -10,6 +10,7 @@ import { getActivities } from "../../../redux/actions/getActivities";
 import { getHotelsByCityId } from "../../../redux/actions/getHotelsByCityId";
 import DateTimePicker from "react-datetime-picker";
 import swal from "sweetalert";
+import './Form.css'
 export const CreatePackage = ({ }) => {
   const dispatch = useDispatch();
   const expRegSoloLetras = /^[a-zA-Z ]*$/;
@@ -136,7 +137,7 @@ export const CreatePackage = ({ }) => {
   });
 
   return (
-    <div className="div">
+    <div className="div div-package-form">
       <form className="form" onSubmit={handleSubmit(handleSubmitPackages)}>
         <div className="div-form">
           <label className="label-form"> Nombre: </label>

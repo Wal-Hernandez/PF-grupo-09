@@ -10,7 +10,6 @@ function Reviews({hotel, activity, business, userlog, selected}) {
 
   const { cart } = useSelector((state) => state.rootReducer);
   
-  console.log(cart[0]?.user)
   const [hotelValues, setHotelValues] = useState({
     userId: cart[0]?.user.id,
     hotelId: hotel,
@@ -33,12 +32,12 @@ function Reviews({hotel, activity, business, userlog, selected}) {
       comment: "",
       score: 0,
     });
-    console.log(activityValues)
+ 
     useEffect(() => {
       setHotelValues({...hotelValues, hotelId: hotel})
       setBusinessValues({...businessValues, businessId: business})
       setActivityValues({...activityValues, activityId: activity})
-console.log(hotel,business,activity)
+
     }, [hotel, activity, business]);
 
   if (userlog?.rol === "banned") {

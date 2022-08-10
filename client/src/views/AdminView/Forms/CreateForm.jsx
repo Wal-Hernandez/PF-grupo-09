@@ -28,6 +28,7 @@ function Ejemplo({ lang }) {
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
   const expRegEmail =
     /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  const expRegSoloLetras = /^[a-zA-Z ]*$/;
   const [city, setCity] = React.useState({ name: "", location: [] });
   const [bus, setBus] = React.useState({
     name: "",
@@ -250,6 +251,7 @@ function Ejemplo({ lang }) {
   if (lang === "hotels") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegUrl, message: "SOLO LETRAS" }
     });
 
     const location = register("location", {
@@ -498,6 +500,7 @@ function Ejemplo({ lang }) {
   if (lang === "cities") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegUrl, message: "SOLO LETRAS" }
     });
 
     const location = register("location", {
@@ -553,6 +556,7 @@ function Ejemplo({ lang }) {
   if (lang === "business") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegUrl, message: "SOLO LETRAS" }
     });
 
     const phone = register("phone", {
@@ -564,10 +568,10 @@ function Ejemplo({ lang }) {
       pattern: { value: expRegEmail, message: "Email invalido" },
     });
 
-    const score = register("score", {
+    /* const score = register("score", {
       required: { value: true, message: "REQUERIDO" },
       min: { value: 0, message: "Minimo 0" },
-    });
+    }); */
 
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitBus)}>
@@ -592,7 +596,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Telefono: </label>
 
           <input
-            type="text"
+            type="number"
             name="phone"
             value={bus["phone"]}
             placeholder="Ingrese un telefono."
@@ -622,7 +626,7 @@ function Ejemplo({ lang }) {
           {errors?.email && <span>{errors?.email?.message}</span>}
         </div>
 
-        <div className="div-form">
+        {/* <div className="div-form">
           <label className="label-form"> Puntaje: </label>
 
           <input
@@ -648,7 +652,7 @@ function Ejemplo({ lang }) {
             placeholder="Ingrese un comentario."
             onChange={handleChangeBus}
           />
-        </div>
+        </div> */}
 
         <button type="submit" className="button-form">
           {" "}
@@ -661,6 +665,7 @@ function Ejemplo({ lang }) {
   if (lang === "activities") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegUrl, message: "SOLO LETRAS" }
     });
 
     // const image = register("image", {
@@ -717,7 +722,7 @@ function Ejemplo({ lang }) {
           />
           {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
-        <div className="div-form">
+        {/* <div className="div-form">
           <label className="label-form"> Puntaje: </label>
 
           <input
@@ -738,7 +743,7 @@ function Ejemplo({ lang }) {
             placeholder="Ingrese un comentario."
             onChange={handleChangeActivity}
           />
-        </div>
+        </div> */}
 
         <div className="div-form">
           <select name="cityId" required defaultValue="" onChange={handleChangeActivity}>

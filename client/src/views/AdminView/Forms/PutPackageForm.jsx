@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
@@ -9,8 +9,10 @@ import { getClean } from "../../../redux/actions/getClean";
 import { getHotels } from "../../../redux/actions/getHotels";
 import { getPlatforms } from "../../../redux/actions/getPlatforms";
 import { putPackage } from "../../../redux/actions/putPackage";
+import DateTimePicker from "react-datetime-picker";
 export const PutPackageForm = ({ pack }) => {
   const dispatch = useDispatch();
+ 
   const packAct = pack.activities.map(e => e.name)
   const [packages, setPackages] = React.useState({
     start_date: pack.start_date,
@@ -25,7 +27,6 @@ export const PutPackageForm = ({ pack }) => {
     hotelId: pack.hotelId,
     activity: packAct,
   });
-  console.log(pack);
   const {
     register,
     handleSubmit,
@@ -33,7 +34,8 @@ export const PutPackageForm = ({ pack }) => {
   } = useForm();
 
   const { platforms, business, cities, hotels, activities } = useSelector((state) => state.adminReducer);
-
+  let [newHotels, setNewHotels] = useState([]);
+  let [newActivities, setNewActivities] = useState([])
   useEffect(() => {
     dispatch(getPlatforms())
     dispatch(getBuses())
@@ -42,7 +44,7 @@ export const PutPackageForm = ({ pack }) => {
     dispatch(getActivities())
     return () => dispatch(getClean())
   }, [dispatch])
-
+ 
   /* function TransformData(x) {
     return x.split(",");
   } */
@@ -61,12 +63,32 @@ export const PutPackageForm = ({ pack }) => {
         ...packages,
         [event.target.name]: [... new Set([...packages.activity, event.target.value])] /* [TransformData(event.target.value)] */,
       });
-      console.log("activity", packages.activity)
       return;
     }
+    if (event.target.name === "cityId") {
+    
+    
+      console.log(packages)
+      let newHotel = hotels.filter(
+        (h) => h.cityId === parseInt(event.target.value)
+      );
+      let newActivities = activities.filter(
+        (h) => h.cityId === parseInt(event.target.value)
+      );
+     
+      setNewHotels(newHotel);
+      setNewActivities(newActivities);
+      
+      return   (setPackages({
+        ...packages,
+        [event.target.name]: event.target.value,
+        activity:[]
+      }))  
+    }
+
     setPackages({ ...packages, [event.target.name]: event.target.value });
   }
-
+  console.log(packages.activity)
   function handleSubmitPackage() {
     //e.preventDefault(); // para que era esto?
     dispatch(putPackage(pack.id, packages));
@@ -237,7 +259,7 @@ export const PutPackageForm = ({ pack }) => {
         <div className="div-form">
           <select name="hotelId" required defaultValue="" onChange={handleChange}>
             <option key="keyhotels" value="" disabled>Hotel</option>
-            {hotels.map((hotel) => (
+            {newHotels.map((hotel) => (
               <option key={hotel.id} value={hotel.id}>
                 {hotel.name}
               </option>
@@ -256,7 +278,7 @@ export const PutPackageForm = ({ pack }) => {
               <option key="keyactivity" value={''}>
                 Ninguna
               </option>
-              {activities.map((activ) => (
+              {newActivities.map((activ) => (
                 <option value={activ.name} key={activ.id}>
                   {activ.name}
                 </option>
@@ -265,8 +287,8 @@ export const PutPackageForm = ({ pack }) => {
           </div>
           <div>
             <ul>
-              {packages.activity.map((activi) => (
-                <li style={{ listStyle: "none" }} key={activi}>
+              {packages["activity"].map((activi) => (
+                <li style={{ listStyle: "none" }} key={activi.id}>
                   {" "}
                   {activi}
                   <button

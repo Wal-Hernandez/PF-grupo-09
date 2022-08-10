@@ -13,7 +13,7 @@ import {addOnePeople} from "../../redux/actions/addOnePeople"
 import { getPackages } from "../../redux/actions/getPackages";
 import StarRating from "../StarRatings/index"
 import ShowReviews from "../Reviews/ShowReviews";
-
+import MapView from "../Map/MapView.js";
 
 
 export default function Details({userlog}) {
@@ -140,7 +140,7 @@ export default function Details({userlog}) {
 
   
 
-
+  console.log(packageDetail.city?.image)
 
 let paqueteCargado=false;
  if(cart[0]){
@@ -162,7 +162,23 @@ let paqueteCargado=false;
     }
   }
  }
+ let imagen1
+ let imagen2
+ let imagen3
+ let name1
+ let name2
+ let name3
+let imagen=packageDetail.activities
+if(imagen){
+ imagen1=imagen[0].image.slice(1, -1)
+  imagen2=imagen[1].image.slice(1, -1)
+  imagen3=imagen[2].image.slice(1, -1)
+  name1=packageDetail.activities[0].name
+  name2=packageDetail.activities[1].name
+  name3=packageDetail.activities[2].name
 
+
+}
 
 
 console.log("CART:",cart)
@@ -174,7 +190,7 @@ console.log(new Date(packageDetail.start_date).toString())
         <div class="row g-0 ">
           <div class="col-md-4 ">
             <img
-              src={packageDetail.hotel?.urlImage}
+              src={packageDetail.city?.image}
               class="img-fluid rounded-start"
               alt="Image not found"
             />
@@ -300,7 +316,164 @@ console.log(new Date(packageDetail.start_date).toString())
             </div>
           ) : null)}
         </div>
-      )}</div>
+      )}
+      <h3>Ubicacion en Google Maps</h3>
+                  <MapView packageDetail = {packageDetail}/>
+
+{/*           <img
+              src={packageDetail.hotel?.urlImage[0]}
+              class="img-fluid rounded-start"
+              alt="Image not found"
+            />
+            {imagen1 ?           <img
+              src={imagen1}
+              class="img-fluid rounded-start"
+              alt="Image not found"            
+            /> : null }
+
+        {imagen2 ? <img
+              src={imagen2}
+              class="img-fluid rounded-start"
+              alt="Image not found"
+            /> : null }
+            {imagen3 ?           <img
+              src={imagen3}
+              class="img-fluid rounded-start"
+              alt="Image not found"
+            /> : null } */}
+                  <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded card-cart">
+          <div class="mr-1">
+            <img
+              class="rounded"
+              src={packageDetail.hotel?.urlImage[0]}
+              width="220"
+              height="170"
+            />
+          </div>
+
+          
+
+            <div class="d-flex flex-column align-items-center product-details info-cart">
+              <h4 class="font-weight-bold">Hotel: {packageDetail.hotel?.name}</h4>
+              <div class="d-flex flex-column align-items-start product-desc">
+                <div class="sizese mr-1">
+
+                </div>
+
+                <div class="colores">
+                  <span class="text-grey b "> </span>{" "}
+                  <span class="font-weight-bold b">
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          <div class="d-flex flex-row align-items-center qty">           
+          </div>
+            <div>             
+            </div>
+          <div class="d-flex align-items-center">
+          </div>
+        </div>
+            
+
+      <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded card-cart">
+          <div class="mr-1">
+            <img
+              class="rounded"
+              src={imagen1}
+              width="220"
+              height="170"
+            />
+          </div>
+
+            <div class="d-flex flex-column align-items-center product-details info-cart">
+              <h4 class="font-weight-bold">{name1}</h4>
+              <div class="d-flex flex-column align-items-start product-desc">
+                <div class="sizese mr-1">
+
+                </div>
+
+                <div class="colores">
+                  <span class="text-grey b "> </span>{" "}
+                  <span class="font-weight-bold b">
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          <div class="d-flex flex-row align-items-center qty">           
+          </div>
+            <div>             
+            </div>
+          <div class="d-flex align-items-center">
+          </div>
+        </div>
+        <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded card-cart">
+          <div class="mr-1">
+            <img
+              class="rounded"
+              src={imagen2}
+              width="220"
+              height="170"
+            />
+          </div>
+
+            <div class="d-flex flex-column align-items-center product-details info-cart">
+              <h4 class="font-weight-bold">{name2}</h4>
+              <div class="d-flex flex-column align-items-start product-desc">
+                <div class="sizese mr-1">
+
+                </div>
+
+                <div class="colores">
+                  <span class="text-grey b "> </span>{" "}
+                  <span class="font-weight-bold b">
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          <div class="d-flex flex-row align-items-center qty">           
+          </div>
+            <div>             
+            </div>
+          <div class="d-flex align-items-center">
+          </div>
+        </div>
+        <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded card-cart">
+          <div class="mr-1">
+            <img
+              class="rounded"
+              src={imagen3}
+              width="220"
+              height="170"
+            />
+          </div>
+
+            <div class="d-flex flex-column align-items-center product-details info-cart">
+              <h4 class="font-weight-bold">{name1}</h4>
+              <div class="d-flex flex-column align-items-start product-desc">
+                <div class="sizese mr-1">
+
+                </div>
+
+                <div class="colores">
+                  <span class="text-grey b "> </span>{" "}
+                  <span class="font-weight-bold b">
+
+                  </span>
+                </div>
+              </div>
+            </div>
+          <div class="d-flex flex-row align-items-center qty">           
+          </div>
+            <div>             
+            </div>
+          <div class="d-flex align-items-center">
+          </div>
+        </div>
+
     </div>
   );
 

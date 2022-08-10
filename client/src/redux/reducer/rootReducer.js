@@ -34,27 +34,30 @@ import {
     FILTER_BY_ACTIVITY,
     CHANGE_STATE_CART,
     LOAD_SHOPPING,
+    FILTER_BY_PASSENGER,
     SEND_PAYMENT
+
 } from "../actions/actionTypes";
 import { TYPES } from "../actions/shoppingActions";
 import { getAuth } from "firebase/auth";
 
 const initialState = {
-  packages: [],
-  showPackages: [],
-  detail: [],
-  isAdmin: null,
-  adminView: [],
-  offers: [],
-  hotels: [],
-  cities: [],
-  business: [],
-  platforms: [],
-  activities: [],
-  cart: [],
-  arrayCartNotLoggedin: [],
-  arrayCartLoggedin: [],
-  shopping: [],
+    packages: [],
+    showPackages: [],
+    detail: [],
+    isAdmin: null,
+    adminView: [],
+    offers: [],
+    hotels: [],
+    cities: [],
+    business: [],
+    platforms: [],
+    activities: [],
+    cart:[],
+    arrayCartNotLoggedin:[],
+    arrayCartLoggedin:[],
+    shopping:[],
+    aux: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -64,6 +67,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         packages: action.payload,
+        aux: action.payload
       };
     case GET_CITIES:
       return {
@@ -431,6 +435,18 @@ export default function rootReducer(state = initialState, action) {
         arrayCartNotLoggedin: [],
       };
     }
+    case FILTER_BY_PASSENGER: {
+      if(action.payload){
+          const filterPassenger = state.aux.filter(a=> parseInt(action.payload) < a.stock )
+          return{
+            ...state,
+            packages: filterPassenger
+          }
+        }
+        return{
+          ...state
+        }
+  }
     default:
       return state;
   }

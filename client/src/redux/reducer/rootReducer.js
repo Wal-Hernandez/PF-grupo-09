@@ -35,7 +35,6 @@ import {
     CHANGE_STATE_CART,
     LOAD_SHOPPING,
     FILTER_BY_PASSENGER,
-    SEND_PAYMENT
 
 } from "../actions/actionTypes";
 import { TYPES } from "../actions/shoppingActions";

@@ -33,12 +33,12 @@ function Reviews({hotel, activity, business, userlog, selected}) {
       comment: "",
       score: 0,
     });
-
+    console.log(activityValues)
     useEffect(() => {
       setHotelValues({...hotelValues, hotelId: hotel})
       setBusinessValues({...businessValues, businessId: business})
       setActivityValues({...activityValues, activityId: activity})
-
+console.log(hotel,business,activity)
     }, [hotel, activity, business]);
 
   if (userlog?.rol === "banned") {

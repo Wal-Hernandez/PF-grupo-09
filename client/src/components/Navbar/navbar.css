@@ -53,6 +53,13 @@
         margin: 0;
 
 } */
+.nombreperf:hover{
+    background-color:#FFDE59;
+    color: #004AAD;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+    border-radius: 3px;
+}
 .navbar{
     background-color:#004AAD;
     border-bottom: 3px solid #062b5b;

@@ -6,30 +6,22 @@ import { filterPassenger } from "../../../redux/actions/filterByDateReturn";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({
-  startDate,
-  setStartDate,
-  cities,
-  setCity,
-  price,
-  stock,
-  setPrice,
-  setStock,
-}) {
+function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock }) {
   const dispatch = useDispatch();
-  const [destinationCity, setDestinationCity] = useState("");
+  const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
-    destination: "",
+    destination: '',
     start_date: startDate,
     passengers: 0,
   });
-
+ console.log("valores",values)
   const [matchingResults, setMatchingResults] = useState({
     destination: "",
     date: "",
   });
 
   const handlePassenger = (e) => {
+    console.log("pasajeros", e.target.value)
     setValues({
       ...values,
       passengers: e.target.value,
@@ -44,7 +36,7 @@ function Search({
   };
 
   const handleSearch = (e) => {
-    const { destination, start_date } = values;
+    const {destination, start_date } = values;
     e.preventDefault();
     dispatch(filterByDate(destination, start_date, price, stock));
     setCity(destinationCity);
@@ -52,6 +44,7 @@ function Search({
       destination: destination.toUpperCase(),
       date: startDate && new Date(start_date).toDateString(),
     });
+    
   };
   const handleClear = (e) => {
     e.preventDefault();
@@ -61,11 +54,12 @@ function Search({
     setValues({
       ...values,
       destination: "",
-      start_date: "",
+      start_date: ''
     });
     setMatchingResults({
       destination: "",
       date: "",
+     
     });
     setPrice("");
     setStock("");
@@ -116,19 +110,19 @@ function Search({
               format={"dd-MM-y"}
               minDate={new Date()}
             />
+        </div>
+        {/* <div className="col-2 mb-4">
+          <div className="row mb-2">
+            <label>Pasajeros:</label>
           </div>
-          <div className="col-2 mb-4">
-            <div className="row mb-2">
-              <label>Pasajeros:</label>
-            </div>
-            <div className="row mb-2">
-              <input
-                type="text"
-                placeholder="Pasajeros"
-                onChange={handlePassenger}
+          <div className="row mb-2">
+            <input
+              type="text"
+              placeholder="Pasajeros"
+              onChange={handlePassenger}
               />
-            </div>
           </div>
+        </div> */}
         </div>
         <div className="row">
           <div className="row col-sm-12 col-md-12 col-lg-12 justify-content-center">

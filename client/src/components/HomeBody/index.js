@@ -10,7 +10,7 @@ import { loadCart } from "../../redux/actions/loadCart";
 import { getAuth } from "firebase/auth";
 
 import { getClean } from "../../redux/actions/getClean";
-
+import Loaderpag from "../Loaderpag/Loaderpag";
 export default function HomeBody() {
   const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const dispatch = useDispatch();
@@ -48,32 +48,6 @@ export default function HomeBody() {
 
   return (
     <>
-      {/* <div className="homeViewContainer"> */}
-
-      {/* <div className="mainViewContainer">
-          {showPackages.length ? (
-            showPackages.map((e) => {
-              return (
-                <div key={e.id} className="div-key-card">
-                  <Link to={`/details/${e.id}`}>
-                    <div class="card">
-                      <h3 class="card-title">{e.name}</h3>
-                      <img
-                        class="card-img-top"
-                        src={e.hotel?.urlImage}
-                        alt="Card image cap"
-                      />
-                      <p class="card-text">${e.price}</p>
-                      <p class="card-text">{e.hotel?.name}</p>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })
-          ) : (
-            <div> loading</div>
-          )}
-        </div> */}
       <div class="container cont-card">
         <div class="row g-3">
           {showPackages.length ? (
@@ -83,16 +57,17 @@ export default function HomeBody() {
                   <Link to={`/details/${e.id}`}>
                     <div class="card">
                       <img
-                        class="card-img-top"
+                        class=" card-bodyhome"
                         src={e.hotel?.urlImage}
                         alt="Card  cap"
                       />
+
                       <div class="card-body ">
                         <h5 class="card-title card-main c-name ">{e.name}</h5>
                         <p class="card-text card-main c-city ">
                           {e.city?.name}
                         </p>
-                        <p class="card-text  card-main c-hotel ">
+                        <p class="card-text  card-main c-hotel card-p ">
                           Traslado + {e.hotel?.name}
                         </p>
                         <p class="card-text  card-main c-precio ">
@@ -109,10 +84,13 @@ export default function HomeBody() {
               );
             })
           ) : (
-            <div> loading</div>
+            <div className="loader">
+              {" "}
+              <Loaderpag />{" "}
+            </div>
           )}
         </div>
-        <div class="btn-pack">
+        <div class="btn-pack-home">
           <Link to="/services">
             <button class="btn btn-sm">
               <h3>Ver todos los paquetes</h3>

@@ -29,6 +29,7 @@ function Ejemplo({ lang }) {
   const expRegEmail =
     /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
   const expRegSoloLetras = /^[a-zA-Z ]*$/;
+  const expRegLatLon = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
   const [city, setCity] = React.useState({ name: "", location: [] });
   const [bus, setBus] = React.useState({
     name: "",
@@ -256,6 +257,7 @@ function Ejemplo({ lang }) {
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     const stars = register("stars", {
@@ -295,7 +297,7 @@ function Ejemplo({ lang }) {
         <div className="div-form">
           <label className="label-form"> Ubicación: </label>
           <input
-            type="number"
+            type="text"
             name="location"
             value={hotel["location"]}
             placeholder="Ingrese la ubicación."
@@ -311,7 +313,7 @@ function Ejemplo({ lang }) {
         <div className="div-form">
           <label className="label-form"> Estrellas: </label>
           <input
-            type="number"
+            type="text"
             name="stars"
             value={hotel["stars"]}
             placeholder="Ingrese la ubicación."
@@ -328,7 +330,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Telefono: </label>
 
           <input
-            type="number"
+            type="text"
             name="phone"
             value={hotel["phone"]}
             placeholder="Ingrese la ubicación."
@@ -436,6 +438,7 @@ function Ejemplo({ lang }) {
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     return (
@@ -477,7 +480,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Ubicación: </label>
 
           <input
-            type="number"
+            type="text"
             name="location"
             value={platform["location"]}
             placeholder="Ingrese las coordenadas."
@@ -506,6 +509,7 @@ function Ejemplo({ lang }) {
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     return (
@@ -532,7 +536,7 @@ function Ejemplo({ lang }) {
             <label className="label-form"> Ubicación: </label>
 
             <input
-              type="number"
+              type="text"
               name="location"
               value={city["location"]}
               placeholder="Ingrese la ubicación."

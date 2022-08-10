@@ -271,8 +271,7 @@ console.log(new Date(packageDetail.start_date).toString())
       </div>
       <div className="detalles-div">
       {!packageDetail.hotel?.reviewHotels?.length &&
-      !packageDetail.business?.reviewBusinesses?.length &&
-      !packageDetail.activities?.reviewActivities?.length ? (
+      !packageDetail.business?.reviewBusinesses?.length ? (
         <p>Aún no hay valoraciones para los elementos de este paquete</p>
       ) : (
         <div className="review-container">

@@ -1,10 +1,10 @@
-import { GET_PACKAGES } from './actionTypes'
+import { GET_PACKAGES,DB_HEROKU } from './actionTypes'
 import axios from 'axios'
 
 export const getPackages = () => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/packages`);
+            let result = await axios.get(`${DB_HEROKU}/packages`);
             console.log(result.data)
             return dispatch({
                 type: GET_PACKAGES,

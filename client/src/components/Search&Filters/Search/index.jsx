@@ -76,22 +76,19 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
       <div className="row">
         <div className="row">
 
-          <div className="col-4 mb-4">
-
           <div className="col-6 mb-4">
-
             <div className="row mb-2">
               <label>Destino: </label>
             </div>
             <div className="row mb-2">
               <AutocompleteSearch
+
                 fieldInput={cities?.map((e) => e.name)}
                 input={destinationCity}
                 setInput={setDestinationCity}
                 setDestination={(dest) =>
                   setValues({ ...values, destination: dest })
                 }
-
               />
               {/* <input
               type="text"
@@ -120,7 +117,6 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
         {/* <div className="col-2 mb-4">
           <div className="row mb-2">
             <label>Pasajeros:</label>
->>>>>>> fac26158b1ee4ea38f3705b5da2b2eb76ca12d4a
           </div>
           <div className="col-4 mb-4">
             <div className="row mb-2">
@@ -134,10 +130,8 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
               />
             </div>
           </div>
-<<<<<<< HEAD
-=======
-        </div> */}
 
+        </div> */}
         </div>
         <div className="row">
           <div className="row col-sm-12 col-md-12 col-lg-12 justify-content-center">
@@ -168,7 +162,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
         </div>
       </div>
     </div>
-    </div>
+ 
   );
 }
 

@@ -8,6 +8,7 @@ import { getHotels } from "../../redux/actions/getHotels";
 import { getPlatforms } from "../../redux/actions/getPlatforms";
 import { getActivities } from "../../redux/actions/getActivities";
 import { deleteModel } from "../../redux/actions/deleteModel";
+import { enableModel } from "../../redux/actions/enableModel";
 import { getUserForAdmin } from "../../redux/actions/getUserByAdmin";
 import { CreateForm } from "./Forms/CreateForm";
 import { useAuth } from "../../context/context";
@@ -47,17 +48,26 @@ function Admin() {
     console.log(e.target.value);
     swal({
       title: "Confirmar accion",
-      text: "Una vez eliminado, no se podrá recuperar este elemento",
+      text: "El elemento se borrara",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        dispatch(deleteModel(e.target.value, model));
+
+        dispatch(enableModel(e.target.value, model));
+        swal("Elemento borrado con éxito", {
+          icon: "success",
+        });
+        console.log("HOTEL BORRADO INTELIGENTEMENTEEEEEEEEEEEEEEEEEEEEEEE")
+
+        //dispatch(deleteModel(e.target.value, model));
         dispatchByName(model);
         swal("Elemento borrado con éxito", {
           icon: "success",
         });
+
+
       } else {
         swal("El elemento no ha sido borrado", {
           icon: "success",
@@ -158,7 +168,7 @@ function Admin() {
 
   console.log("hola", adminView);
   useEffect(() => {
-    return () => {};
+    return () => { };
   }, []);
   return (
     <>
@@ -174,43 +184,43 @@ function Admin() {
             </button>
           </div>
           <div className="btns">
-            <div className="btn-pack btnn" style={model === 'packages' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%' } : { backgroundColor: '#00000000' }}>
-              <button name="packages" onClick={handleSelect} style={model === 'packages' ? { backgroundColor: '#ccc', position:'relative'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-pack btnn" style={model === 'packages' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
+              <button name="packages" onClick={handleSelect} style={model === 'packages' ? { backgroundColor: '#ccc', position: 'relative' } : { backgroundColor: '#00000000' }}>
                 Paquetes
               </button>
             </div >
-            <div className="btn-hotels btnn" style={model === 'hotels' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="hotels" onClick={handleSelect} style={model === 'hotels' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-hotels btnn" style={model === 'hotels' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
+              <button name="hotels" onClick={handleSelect} style={model === 'hotels' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
                 Hoteles
               </button>{" "}
             </div>
-            <div className="btn-business btnn" style={model === 'business' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="business" onClick={handleSelect} style={model === 'business' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-business btnn" style={model === 'business' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
+              <button name="business" onClick={handleSelect} style={model === 'business' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
                 Business
               </button>
             </div>
-            <div className="btn-activities btnn" style={model === 'activities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="activities" onClick={handleSelect} style={model === 'activities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-activities btnn" style={model === 'activities' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
+              <button name="activities" onClick={handleSelect} style={model === 'activities' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
                 Activites
               </button>
             </div>
-            <div className="btn-cites btnn" style={model === 'cities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="cities" onClick={handleSelect} style={model === 'citiess' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-cites btnn" style={model === 'cities' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
+              <button name="cities" onClick={handleSelect} style={model === 'citiess' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
                 City
               </button>
             </div>
-            <div className="btn-plattforms btnn" style={model === 'plattforms' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="plattforms" onClick={handleSelect} style={model === 'plattforms' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-plattforms btnn" style={model === 'plattforms' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
+              <button name="plattforms" onClick={handleSelect} style={model === 'plattforms' ? { backgroundColor: '#ccc', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
                 Platforms
               </button>
             </div>
           </div>
           <hr />
           <div>Stadistics</div>
-          <div className="btn-plattforms btnn" style={model === 'users' ? { backgroundColor: '#FFDE59', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="users" onClick={handleSelect} style={model === 'users' ? { backgroundColor: '##FFDE59', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-                Users
-              </button>     
+          <div className="btn-plattforms btnn" style={model === 'users' ? { backgroundColor: '#FFDE59', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
+            <button name="users" onClick={handleSelect} style={model === 'users' ? { backgroundColor: '##FFDE59', position: 'relative', width: '100%', height: '12.5%' } : { backgroundColor: '#00000000' }}>
+              Users
+            </button>
           </div>
         </div>
 
@@ -229,7 +239,7 @@ function Admin() {
           </div>
 
           <div className="adminPanelContainer">
-            {}
+            { }
             {add ? (
               <div>
                 {" "}
@@ -367,7 +377,7 @@ function Admin() {
                           </div>
                         </div>
                       </a>
-                      {packs.reviews ?              <div class="col">
+                      {packs.reviews ? <div class="col">
                         <div
                           class="collapse "
                           id={`multiCollapseExample1${packs.id}`}
@@ -376,8 +386,8 @@ function Admin() {
                             class="d-flex flex-row d-inline-block bg-dark"
                             id="divCont"
                           >
-                  
-                        
+
+
                             <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
                               <b>REVIEWS</b>
                               {packs.reviews ? (

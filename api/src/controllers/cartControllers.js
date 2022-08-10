@@ -132,6 +132,33 @@ const updateCartById = async (
   }
 };
 
+const finishCartById = async (
+  id
+ ) => {
+   try {
+     if (!id) return "All fields are required";
+     
+    const statusCartId=3
+     const cartUpdate = await Cart.update(
+       {
+         statusCartId
+       },
+       { where: { id: id } }
+     );
+     if (cartUpdate[0]) {
+       return { msg: "The cart has been update successfully", valor: true };
+     }
+     return { msg: "Id cart not found" };
+   } catch (error) {
+     return {
+       msg: "Error updateCartById(cartController.js)",
+       error: error,
+     };
+   }
+ };
+
+
+
 
 
 module.exports = {
@@ -140,5 +167,5 @@ module.exports = {
     createCart,
     updateCartById,
     clearCart,
- 
+    finishCartById
 };

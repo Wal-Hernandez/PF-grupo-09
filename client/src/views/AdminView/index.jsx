@@ -16,6 +16,7 @@ import Logo from "../../images/Buspack.png";
 import { EditForm } from "./Forms/EditForm";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import Stadistic from "../../components/Stadistic";
 
 function Admin() {
   const [model, setModel] = React.useState("");
@@ -404,12 +405,14 @@ function Admin() {
                   );
                 })
                 .slice(indiceInicial, indiceFinal)
-            ) : (
+            ) : (<>
               <div className="bienvenida">
                 <h1>Hola!</h1>
                 <h2>Bienvenido al Panel de Administrador </h2>
                 <p>Para comenzar elige que elementos de tu pagina quieres editar, crear o eliminar</p>
               </div>
+              <Stadistic/>
+              </>
             )}
             {adminView.length && !add && !edit ? (
               <div className="pag">

@@ -1,4 +1,14 @@
-const { Package, Activity,Business, Plattform, City, Hotel, ReviewHotel, ReviewBusiness, ReviewActivity } = require("../db");
+const {
+  Package,
+  Activity,
+  Business,
+  Plattform,
+  City,
+  Hotel,
+  ReviewHotel,
+  ReviewBusiness,
+  ReviewActivity,
+} = require("../db");
 const { Op, Sequelize } = require("sequelize");
 
 const getPackages = async (req, res, next) => {
@@ -6,18 +16,56 @@ const getPackages = async (req, res, next) => {
     const { destination, start, end, price, stock, activity } = req.query;
 
     const destinationWhere = destination
-      ? { name: { [Op.iLike]: `%${destination}%` } }
+      ? {
+          name: {
+            [Op.iLike]: `%${destination}%`,
+          },
+        }
       : {};
-    const dateWhere = start && end ? { [Op.and]: [Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start), Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end)] } : start ? Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '>=', start) : end ? Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end) : {}
-    const activityWhere = activity ? { name: {[Op.iLike]: `%${activity}%`}} : {};
-    
-    let order = []
-    if(stock){
-      order = ["stock", stock.toUpperCase()]
-    } else if(price){
-      order = ["price", price.toUpperCase()]
-    }else{
-      order = ["stock", "NULLS FIRST"]
+    const dateWhere =
+      start && end
+        ? {
+            [Op.and]: [
+              Sequelize.where(
+                Sequelize.fn("date", Sequelize.col("start_date")),
+                "=",
+                start
+              ),
+              Sequelize.where(
+                Sequelize.fn("date", Sequelize.col("end_date")),
+                "=",
+                end
+              ),
+            ],
+          }
+        : start
+        ? Sequelize.where(
+            Sequelize.fn("date", Sequelize.col("start_date")),
+            ">=",
+            start
+          )
+        : end
+        ? Sequelize.where(
+            Sequelize.fn("date", Sequelize.col("end_date")),
+            "=",
+            end
+          )
+        : {};
+    const activityWhere = activity
+      ? {
+          name: {
+            [Op.iLike]: `%${activity}%`,
+          },
+        }
+      : {};
+
+    let order = [];
+    if (stock) {
+      order = ["stock", stock.toUpperCase()];
+    } else if (price) {
+      order = ["price", price.toUpperCase()];
+    } else {
+      order = ["start_date", "ASC"];
     }
 
     const allPackages = await Package.findAll({
@@ -28,29 +76,28 @@ const getPackages = async (req, res, next) => {
           model: Activity,
           where: activityWhere,
           include: {
-            model: ReviewActivity
-          }
+            model: ReviewActivity,
+          },
         },
         {
           model: Business,
           include: {
-            model: ReviewBusiness 
-          }
+            model: ReviewBusiness,
+          },
         },
         {
           model: Plattform,
-          
         },
         {
           model: City,
           where: destinationWhere,
-      /*    attributes: ["name"], */
+          /*    attributes: ["name"], */
         },
         {
           model: Hotel,
           include: {
-            model: ReviewHotel
-          }
+            model: ReviewHotel,
+          },
         },
       ],
     });
@@ -74,32 +121,30 @@ const getPackageById = async (req, res, next) => {
           {
             model: Activity,
             include: {
-              model: ReviewActivity
-            }
-        },
-        {
-          model: Business,
-          include: {
-            model: ReviewBusiness 
-          }
-        },
-        {
-          model: Plattform,
-         
-        },
-        {
-          model: City,
-          
-        },
-        {
-          model: Hotel,
-          include: {
-            model: ReviewHotel
-          }
-        },
-      ],}
-    ));
-    res.status(200).json(packageById)
+              model: ReviewActivity,
+            },
+          },
+          {
+            model: Business,
+            include: {
+              model: ReviewBusiness,
+            },
+          },
+          {
+            model: Plattform,
+          },
+          {
+            model: City,
+          },
+          {
+            model: Hotel,
+            include: {
+              model: ReviewHotel,
+            },
+          },
+        ],
+      }));
+    res.status(200).json(packageById);
   } catch (error) {
     res.status(404).json({
       msg: "Error getPackageById(packageController.js)",
@@ -184,6 +229,37 @@ const postPackage = async (req, res, next) => {
     });
   }
 };
+
+const enablePackageById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    let packageEnable = await Package.findByPk(id);
+    packageEnable = JSON.parse(JSON.stringify(packageEnable));
+    let enablePackage = packageEnable.enabled;
+    enablePackage = !enablePackage;
+    const a = await Package.update(
+      {
+        enabled: enablePackage,
+      },
+      { where: { id: id } }
+    );
+    if (a[0]) {
+      return res.status(201).json({
+        msg: "The package has been removed successfully",
+        valor: true,
+      });
+    }
+    return res.status(201).json({
+      msg: "Id package not found",
+      valor: true,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      msg: "The package cannot be removed because the id does not exist",
+    });
+  }
+};
+
 const deletePackagesById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -224,7 +300,7 @@ const updatePackage = async (req, res) => {
     hotelId,
     stock,
   } = req.body;
- 
+
   try {
     if (
       !name ||
@@ -280,7 +356,6 @@ const updatePackage = async (req, res) => {
     });
 
     const package = await Package.findByPk(id);
-    
 
     await package.setActivities(activities);
 
@@ -307,5 +382,6 @@ module.exports = {
   getPackageById,
   postPackage,
   deletePackagesById,
+  enablePackageById,
   updatePackage,
 };

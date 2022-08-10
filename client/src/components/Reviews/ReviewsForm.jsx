@@ -7,7 +7,7 @@ import { postReview } from "../../redux/actions/postReview";
 import { getHotels } from "../../redux/actions/getHotels";
 import swal from "sweetalert";
 
-function ReviewsForm({ values, setValues, selected }) {
+function ReviewsForm({ values, setValues, selected, userlog }) {
   const auth = getAuth();
   const user = auth.currentUser;
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ function ReviewsForm({ values, setValues, selected }) {
       title: "",
       comment: "",
       score: 0,
+      mail:userlog?.email
     });
     swal({
       title: "Valoracion aceptada",

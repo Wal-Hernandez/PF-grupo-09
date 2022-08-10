@@ -18,7 +18,13 @@ export default function ProfileUser({ userlog }) {
   console.log(activityId)
   console.log(businessId)
 
-  return (
+  ///Algoritmo para las Reviews
+let cartDetails= shopping && shopping?.map(a=>a.cartDetails);
+
+let paquetes = cartDetails?.flat(Infinity).map(a=>a.package);
+let puntuables= paquetes?.map(a=>{return{ra: a.activities, rb:a.business, rh:a.hotel} })
+console.log(puntuables)
+return (
     <div>
       <Navbar userlog={userlog} />
       {/* <link
@@ -89,11 +95,11 @@ export default function ProfileUser({ userlog }) {
               ))
             )
           : ""}
-        <p> Opiniones y Puntajes</p>
+       
           <Reviews hotel={hotelId} activity={activityId} business={businessId} userlog={userlog} selected={selected}/>
-        <p>
+        {/* <p>
           <button className="coment-btn">Comentario</button>
-        </p>
+        </p> <p> Opiniones y Puntajes</p> */}
       </div>
     </div>
   );

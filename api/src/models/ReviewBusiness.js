@@ -16,7 +16,10 @@ module.exports = (sequelize) => {
     comment:{
         type: DataTypes.TEXT,
         allowNull: false
+    },
+    mail: {
+      type: DataTypes.STRING,
+      allowNull: false,
     }
-  
   },{timestamps:true});
 };

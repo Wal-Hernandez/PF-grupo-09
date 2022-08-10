@@ -56,9 +56,9 @@ console.log(hotel,business,activity)
         </select>
       </div> */}
       {
-        selected === 'activityreviews' ? <ReviewsForm values={activityValues} setValues={setActivityValues} selected={selected}/>
-        : selected === 'businessreviews' ? <ReviewsForm values={businessValues} setValues={setBusinessValues} selected={selected}/>
-        : selected === 'hotelreviews' ? <ReviewsForm values={hotelValues} setValues={setHotelValues} selected={selected}/>
+        selected === 'activityreviews' ? <ReviewsForm values={activityValues} setValues={setActivityValues} selected={selected} userlog={userlog}/>
+        : selected === 'businessreviews' ? <ReviewsForm values={businessValues} setValues={setBusinessValues} selected={selected} userlog={userlog}/>
+        : selected === 'hotelreviews' ? <ReviewsForm values={hotelValues} setValues={setHotelValues} selected={selected} userlog={userlog}/>
         : null
       }
     </>

@@ -94,51 +94,34 @@ export default function ProfileUser({ userlog }) {
                   <div class="spoiler">
                     {pack.package?.activities?.map((a) => (
                       <div>
-                        <p className="title">
-                          {a?.name}{" "}
-                          {data.statusCartId === 3?<button
-                            onClick={() => {
-                              setActivityId(a.id);
-                              setSelected("activityreviews");
-                            }}
-                          >
-                            Evaluar
-                          </button>: null}
-                        </p>
+                        <p className="title">{a?.name} <button onClick={()=>{
+                            setActivityId(a.id) 
+                            setSelected('activityreviews')
+                          }}>Evaluar</button></p>
                       </div>
                     ))}
+                    
                   </div>
                   <input type="checkbox" id={`spoiler${pack.id}2`} />
                   <label for={`spoiler${pack.id}2`}>Empresa</label>
                   <div class="spoiler">
                     <p className="title">{pack.package?.business?.name}</p>
-                    {data.statusCartId === 3 ? (
-                      <button
-                        onClick={() => {
-                          setBusinessId(pack.package?.business.id);
-                          setSelected("businessreviews");
-                        }}
-                      >
-                        Evaluar
-                      </button>
-                    ) : null}
+                    <button onClick={()=>{
+                      setBusinessId(pack.package?.business.id)
+                      setSelected('businessreviews')
+                      }}>Evaluar</button>
                   </div>
                   <input type="checkbox" id={`spoiler${pack.id}3`} />
                   <label for={`spoiler${pack.id}3`}>Hospedaje</label>
                   <div class="spoiler">
                     <p className="title">{pack.package?.hotel?.name}</p>
-                    {data.statusCartId === 3 ? (
-                      <button
-                        onClick={() => {
-                          setHotelId(pack.package?.hotel.id);
-                          setSelected("hotelreviews");
-                        }}
-                      >
-                        Evaluar
-                      </button>
-                    ) : null}
+                    <button onClick={()=>{
+                      setHotelId(pack.package?.hotel.id)
+                      setSelected('hotelreviews')
+                      }}>Evaluar</button>
                   </div>
                 </div>
+                
               ))
             )
           : ""}

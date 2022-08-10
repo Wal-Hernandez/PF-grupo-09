@@ -212,60 +212,74 @@ export default function ShoppingCart({ userlog }) {
   return (
     <div>
       <Navbar userlog={userlog} />
-      <div>
-        <h3>Carrito</h3>
-        <button className="btn btn-danger btn-lg" onClick={clearCart}>
-          Limpiar carrito
-        </button>
-        <hr></hr>
+      <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-center row">
+          <div class="col-md-12">
+            <div class="p-2">
+              <h4>Carrito de compras</h4>
+              <div class="d-flex flex-row align-items-center pull-right">
+                {" "}
+                <button className="btn btn-danger btn-lg" onClick={clearCart}>
+                  Limpiar carrito
+                </button>
+              </div>
+            </div>
+            <div>
+              {myCartAll2?.map((Cart) => (
+                <ProductItem
+                  idDetail={Cart.idDetail}
+                  id={Cart.id}
+                  quantity={Cart.quantity}
+                  data={packages.filter((elemento) => elemento.id === Cart.id)}
+                  arrayCartNotLoggedin={arrayCartNotLoggedin}
+                  delFromCart={delFromCart}
+                  addToCart={addToCart}
+                />
+              ))}
+              <hr></hr>
+              <div class="d-flex flex-row align-items-start mt-3 p-2 bg-white rounded cc">
+                <h5>Total ${total}.00</h5>
+              </div>
+            </div>
 
-        <article>
-          {myCartAll2?.map((Cart) => (
-            <ProductItem
-              idDetail={Cart.idDetail}
-              id={Cart.id}
-              quantity={Cart.quantity}
-              data={packages.filter((elemento) => elemento.id === Cart.id)}
-              arrayCartNotLoggedin={arrayCartNotLoggedin}
-              delFromCart={delFromCart}
-              addToCart={addToCart}
-            />
-          ))}
-        </article>
-        <div>{}</div>
-      </div>
-      <div>
-        <hr></hr>
-        <div>
-          <h1>Total: ${total}.00</h1>
+            <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded cc">
+              {user?.email === undefined ? (
+                <Link to={"/login"}>
+                  <button
+                    type="button"
+                    className="btn btn-warning btn-block btn-lg ml-2 pay-button bb"
+                  >
+                    Comprar
+                  </button>
+                </Link>
+              ) : comprobarStock(cart[0]?.cartDetails, packages) ? (
+                <button
+                  type="button"
+                  className="btn btn-warning btn-block btn-lg ml-2 pay-button bb"
+                  onClick={() => setPulsado(!pulsado)}
+                >
+                  Comprar
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-warning btn-block btn-lg ml-2 pay-button bb"
+                  onClick={() =>
+                    swal({
+                      title:
+                        "Lo sentimos hay paquetes que no tienen cupos disponibles, eliminelos para continuar con su compra",
+                      icon: "error",
+                    })
+                  }
+                >
+                  Comprar
+                </button>
+              )}
+            </div>
+
+            {pulsado ? <Pasarela total={total} cart={cart} /> : null}
+          </div>
         </div>
-        {user?.email === undefined ? (
-          <Link to={"/login"}>
-            <button className="btn btn-primary btn-lg">Comprar</button>
-          </Link>
-        ) : comprobarStock(cart[0]?.cartDetails, packages) ? (
-          <button
-            className="btn btn-primary btn-lg"
-            onClick={() => setPulsado(!pulsado)}
-          >
-            Comprar
-          </button>
-        ) : (
-          <button
-            className="btn btn-primary btn-lg"
-            onClick={() =>
-              swal({
-                title:
-                  "Lo sentimos hay paquetes que no tienen cupos disponibles, eliminelos para continuar con su compra",
-                icon: "error",
-              })
-            }
-          >
-            Comprar
-          </button>
-        )}
-
-        {pulsado ? <Pasarela total={total} cart={cart} /> : null}
       </div>
       <div className="div-cart">
         <Footer />

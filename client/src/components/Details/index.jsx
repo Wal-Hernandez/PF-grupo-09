@@ -269,7 +269,7 @@ console.log(new Date(packageDetail.start_date).toString())
           <div></div>
         </div>
       </div>
-
+      <div className="detalles-div">
       {!packageDetail.hotel?.reviewHotels?.length &&
       !packageDetail.business?.reviewBusinesses?.length &&
       !packageDetail.business?.reviewBusinesses?.length ? (
@@ -301,7 +301,7 @@ console.log(new Date(packageDetail.start_date).toString())
             </div>
           ) : null)}
         </div>
-      )}
+      )}</div>
     </div>
   );
 

@@ -170,7 +170,7 @@ function Admin() {
             </Link>
 
             <button className="btn-logout" onClick={handleLogout}>
-              Cerrar sesion
+              Cerrar Sesion
             </button>
           </div>
           <div className="btns">
@@ -186,27 +186,27 @@ function Admin() {
             </div>
             <div className="btn-business btnn" style={model === 'business'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
               <button name="business" onClick={handleSelect} style={model === 'business' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
-                Business
+                Buses
               </button>
             </div>
             <div className="btn-activities btnn" style={model === 'activities'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
               <button name="activities" onClick={handleSelect} style={model === 'activities' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
-                Activites
+                Actividades
               </button>
             </div>
             <div className="btn-cites btnn" style={model === 'cities'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
               <button name="cities" onClick={handleSelect} style={model === 'citiess'? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
-                City
+                Ciudades
               </button>
             </div>
             <div className="btn-plattforms btnn" style={model === 'plattforms'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
               <button name="plattforms" onClick={handleSelect} style={model === 'plattforms' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
-                Platforms
+                Plataformas
               </button>
             </div>
           <div className="btn-plattforms btnn" style={model === 'users' ?  { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
               <button name="users" onClick={handleSelect} style={model === 'users' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
-                Users
+                Usuarios
               </button>     
           </div>
           </div>

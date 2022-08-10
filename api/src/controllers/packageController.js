@@ -17,7 +17,7 @@ const getPackages = async (req, res, next) => {
     } else if(price){
       order = ["price", price.toUpperCase()]
     }else{
-      order = ["stock", "NULLS FIRST"]
+      order = ["start_date", "ASC"]
     }
 
     const allPackages = await Package.findAll({

@@ -6,7 +6,7 @@ import { filterPassenger } from "../../../redux/actions/filterByDateReturn";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock }) {
+function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock, setCurrentPage }) {
   const dispatch = useDispatch();
   const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
@@ -44,7 +44,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
       destination: destination.toUpperCase(),
       date: startDate && new Date(start_date).toDateString(),
     });
-    
+    setCurrentPage(1)
   };
   const handleClear = (e) => {
     e.preventDefault();
@@ -75,12 +75,14 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
     <div className="container d-flex align-items-center justify-content-center mt-6">
       <div className="row">
         <div className="row">
+
           <div className="col-6 mb-4">
             <div className="row mb-2">
               <label>Destino: </label>
             </div>
             <div className="row mb-2">
               <AutocompleteSearch
+
                 fieldInput={cities?.map((e) => e.name)}
                 input={destinationCity}
                 setInput={setDestinationCity}
@@ -110,18 +112,25 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
               format={"dd-MM-y"}
               minDate={new Date()}
             />
+
         </div>
         {/* <div className="col-2 mb-4">
           <div className="row mb-2">
             <label>Pasajeros:</label>
           </div>
-          <div className="row mb-2">
-            <input
-              type="text"
-              placeholder="Pasajeros"
-              onChange={handlePassenger}
+          <div className="col-4 mb-4">
+            <div className="row mb-2">
+              <label>Pasajeros:</label>
+            </div>
+            <div className="row mb-2">
+              <input
+                type="text"
+                placeholder="Pasajeros"
+                onChange={handlePassenger}
               />
+            </div>
           </div>
+
         </div> */}
         </div>
         <div className="row">

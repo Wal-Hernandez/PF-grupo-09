@@ -1,10 +1,10 @@
-import { PUT_BUS } from './actionTypes'
+import { PUT_BUS ,DB_HEROKU} from './actionTypes'
 import axios from 'axios'
 
 export const putBus= (id,bus) => {
     return async function(dispatch) {
         try {
-            let result = await axios.put(`http://localhost:3001/business/${id}`,bus);
+            let result = await axios.put(`${DB_HEROKU}/business/${id}`,bus);
             return dispatch({
                 type: PUT_BUS,
                 payload: result.data

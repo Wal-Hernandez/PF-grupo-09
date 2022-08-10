@@ -1,11 +1,11 @@
 import axios from "axios";
-import { FILTER_BY_DESTINY } from "./actionTypes";
+import { FILTER_BY_DESTINY,DB_HEROKU } from "./actionTypes";
 
 export const filterByDestiny = (destination, price, stock) => {
   return async (dispatch) => {
     try {
       let result = await axios.get(
-        `http://localhost:3001/packages?destination=${destination}&price=${price}&stock=${stock}`
+        `${DB_HEROKU}/packages?destination=${destination}&price=${price}&stock=${stock}`
       );
       return dispatch({
         type: FILTER_BY_DESTINY,

@@ -18,7 +18,7 @@ export default function Services({ userlog }) {
     return e.stock > 0;
   });
 
-  paquetesDisponibles?.sort(function (a, b) {
+/*   paquetesDisponibles?.sort(function (a, b) {
     if (a.start_date > b.start_date) {
       return 1;
     }
@@ -27,7 +27,7 @@ export default function Services({ userlog }) {
     }
 
     return 0;
-  });
+  }); */
 
   useEffect(() => {
     dispatch(getCities());
@@ -40,7 +40,7 @@ export default function Services({ userlog }) {
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [packagesPerPage /*setPackagesPerPage*/] = useState(5); //10 productos por pagina
+  const [packagesPerPage, setPackagesPerPage] = useState(5); //10 productos por pagina
   const indexOfLastPackage = currentPage * packagesPerPage; // 10
   const indexOfFirstPackage = indexOfLastPackage - packagesPerPage; // 0
   const currentPackages = paquetesDisponibles.slice(
@@ -48,9 +48,9 @@ export default function Services({ userlog }) {
     indexOfLastPackage
   );
 
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  function mostrarPaquetes() {
+    setPackagesPerPage(packagesPerPage + 5);
+  }
 
   return (
     <>
@@ -64,17 +64,13 @@ export default function Services({ userlog }) {
             </div>
             <div className="col-sm-1 col-md-2 col-lg-3"></div>
           </div>
-          <div className="row">
-            <Paginado
-              currentPage={currentPage}
-              packagesPerPage={packagesPerPage}
-              packages={packages.length}
-              paginado={paginado}
-            />
-          </div>
-          <div className="row">
+          <div className="row mt-5 mb-3">
             <Productos currentPackages={currentPackages} />
           </div>
+          <div>
+            <button class="btn btn-primary" onClick={mostrarPaquetes}> Ver mas paquetes </button>
+          </div>
+
         </div>
         <div className="row">
           <Footer />

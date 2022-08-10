@@ -16,6 +16,7 @@ import { confirmPasswordReset } from "firebase/auth";
 import { sendPayment } from "../../redux/actions/sendPayment";
 import axios from "axios";
 import swal from "sweetalert";
+import { DB_HEROKU } from "../../redux/actions/actionTypes";
 const stripePromise = loadStripe(
   "pk_test_51LTBDuKIottmlf7Xbtn9K29aMc0spCuzel3dOw1hX5hb5KLxKfAIWhGjh1ACx5ux3j1VRqigkN4yPNontWKFBYt200falMP3nU"
 );
@@ -66,7 +67,7 @@ const CheckoutForm = ({ total, cart }) => {
           description: description,
         };
         console.log("hola", pay);
-        let resBack = await axios.post(`http://localhost:3001/payment`, pay);
+        let resBack = await axios.post(`${DB_HEROKU}/payment`, pay);
         resBack = resBack.data;
         console.log(resBack);
 

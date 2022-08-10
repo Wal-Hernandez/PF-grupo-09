@@ -90,7 +90,7 @@ export default function HomeBody() {
             </div>
           )}
         </div>
-        <div class="btn-pack">
+        <div class="btn-pack-home">
           <Link to="/services">
             <button class="btn btn-sm">
               <h3>Ver todos los paquetes</h3>

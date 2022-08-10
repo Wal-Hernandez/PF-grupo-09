@@ -40,14 +40,17 @@ export const REMOVE_CART = "REMOVE_CART";
 export const ADD_ONE_PEOPLE = "ADD_ONE_PEOPLE";
 export const DELETE_ONE_PEOPLE = "DELETE_ONE_PEOPLE";
 export const PRUEBA = "PRUEBA";
-export const CHANGE_STATE_CART= "CHANGE_STATE_CART";
-export const LOAD_SHOPPING= "LOAD_SHOPPING";
-export const REDUCE_STOCK= "REDUCE_STOCK";
+export const CHANGE_STATE_CART = "CHANGE_STATE_CART";
+export const LOAD_SHOPPING = "LOAD_SHOPPING";
+export const REDUCE_STOCK = "REDUCE_STOCK";
+export const ENABLE_MODEL = "ENABLE_MODEL";
 
-
-
+/* https://whispering-scrubland-86101.herokuapp.com */
+export const DB_HEROKU = "http://localhost:3001"
 export const SEND_MAIL = "SEND_MAIL";
 export const GET_USER = "GET_USER";
+
 export const PUT_USER = "PUT_USER";
 
 export const SEND_PAYMENT='SEND_PAYMENT'
+

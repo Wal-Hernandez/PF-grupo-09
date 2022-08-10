@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 
 function ShowReviews({ data, titulo }) {
+
   const starsValue = data?.map((e) => e.score);
 
   const sumScore = starsValue.reduce((a, b) => a + b);
   const mediaScore = sumScore / starsValue.length;
+
 
   return (
     <div className="comment">

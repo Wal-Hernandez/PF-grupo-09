@@ -35,7 +35,8 @@ import {
     CHANGE_STATE_CART,
     LOAD_SHOPPING,
     FILTER_BY_PASSENGER,
-    FINISH_TRAVEL
+    FINISH_TRAVEL,
+    GET_USER_REVIEWS
 
 } from "../actions/actionTypes";
 import { TYPES } from "../actions/shoppingActions";
@@ -57,7 +58,8 @@ const initialState = {
     arrayCartNotLoggedin:[],
     arrayCartLoggedin:[],
     shopping:[],
-    aux: []
+    aux: [],
+    userReviews: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -440,17 +442,11 @@ export default function rootReducer(state = initialState, action) {
         arrayCartNotLoggedin: [],
       };
     }
-    case FILTER_BY_PASSENGER: {
-      if(action.payload){
-          const filterPassenger = state.aux.filter(a=> parseInt(action.payload) < a.stock )
-          return{
-            ...state,
-            packages: filterPassenger
-          }
-        }
-        return{
-          ...state
-        }
+    case GET_USER_REVIEWS: {
+      return {
+        ...state,
+        userReviews: action.payload
+      }
   }
     default:
       return state;

@@ -245,9 +245,14 @@ function Ejemplo({ lang }) {
     });
   }
 
-  if (lang === "") {
+  if (lang === "" ) {
     return <div>Waiting for the Data</div>;
   }
+if (lang === "users"){
+  return <div> You Cannot Create People</div>;
+
+}
+
 
   if (lang === "hotels") {
     const name = register("name", {

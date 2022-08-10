@@ -18,6 +18,9 @@
     align-items: center;
 
 }
+.card-detalles-details{
+    border-top: 1px solid rgba(55, 54, 54, 0.06);
+}
 .card img {
     height: 100%;
 }
@@ -57,16 +60,110 @@
 .detalles-div{
     display: flex;
     flex-direction: column;
-   
+    margin-top: 30px;
     justify-content: center;
-    
+    margin-bottom: 20px;
     background-color: white;
     border-radius: 17px;
-    padding:30px;
+    padding:50px;
+    box-shadow: -7px 8px 20px -11px rgba(0,0,0,0.75);
+}
+.detalles-div p{
+    font-weight: 600;
 }
 .comment{
     padding: 20px;
     margin-top: 20px;
-    background-color: #DDD5F5;
+    background-color: #fdfdfd;
     border-radius: 17px;
+    border: 2px solid #004AAD;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+.comment h5 {
+  
+    border-bottom: 2px solid rgba(0, 0, 0, 0.59);
+}
+.ubicacion-google{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* padding: 25px; */
+    border-radius: 17px;
+    /* background-color: #dee1e6; */
+    border: 2px solid #004AAD;
+
+}
+.ubicacion-google span{
+  color: #ffffff;
+}
+.tittulo-detalles{
+    margin-bottom: 20px;
+    background-color: #004AAD;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    color: #ffffff;
+    width: 100%;
+    padding: 5px;
+}
+.card-hotel-detalles{
+    width: 40%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    
+}
+.card-hotel-detalles img{
+    margin-right: 20px;
+}
+.actividades-incluidas{
+    display: flex;
+    
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 17px;
+   
+}
+.actividades{
+    
+    /* padding: 10px; */
+    margin-top: 20px;
+    border-radius: 17px;
+    border: 2px solid #004AAD;
+}
+.actividades h5{
+    margin-bottom: 20px;
+    background-color: #004AAD;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    color: #ffffff;
+    width: 100%;
+    padding: 5px;
+}
+.act {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    margin: 3px;
+    
+}
+.btn-detalles-pag{
+    border: none;
+    border-radius: 15px;
+    background-color: #004AAD;
+    color: #ffffff;
+    padding: 10px;
+}
+.btn-detalles-pag:hover {
+    background-color: #FFDE59;;
 }

@@ -11,11 +11,9 @@ function ShowReviews({ data, titulo }) {
     <div className="comment">
       <h5>
           {titulo}:
-          <p>
-            <ReactStars size={20} edit={false} value={mediaScore} />
-          </p>
       </h5>
-
+            <ReactStars size={20} edit={false} value={mediaScore} />
+       
       {data.map((e) => (
         <div>
           <h6>{e.title}</h6>

@@ -111,7 +111,7 @@ const CheckoutForm = ({ total, cart }) => {
   console.log("total", total);
 
   return (
-    <form className="card card-body" onSubmit={handleSubmit}>
+    <form className="card card-body card-pasarela" onSubmit={handleSubmit}>
       {/* Product Information */}
       <img src={logo} alt="buspack" className="img-fluid" />
 
@@ -128,7 +128,7 @@ const CheckoutForm = ({ total, cart }) => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : (
-          "Buy"
+          "Comprar"
         )}
       </button>
     </form>
@@ -137,14 +137,14 @@ const CheckoutForm = ({ total, cart }) => {
 
 function Pasarela({ userlog, total, cart }) {
   return (
-    <div>
+    <div className="pasarela">
       <div>{userlog ? userlog.email : null}</div>
       <div></div>
       <Elements stripe={stripePromise}>
         <div className="container p-4">
           <div className="row h-100">
-            <div className="col-md-4 offset-md-4 h-100">
-              <CheckoutForm total={total} cart={cart}/>
+            <div className="col-md-4 offset-md-4 h-100 card-pasarela">
+              <CheckoutForm total={total} cart={cart} />
             </div>
           </div>
         </div>

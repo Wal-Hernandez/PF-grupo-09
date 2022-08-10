@@ -1,0 +1,19 @@
+
+.size span {
+    font-size: 18px;
+    font-weight: 450;
+}
+.a-cart{
+    border: none;
+}
+.color span {
+    font-size:12px ;
+    font-weight: 450;
+}
+.card-cart{
+
+}
+.card-cart:hover{
+   
+    box-shadow: -28px 16px 59px -24px rgba(0,0,0,0.75);
+}

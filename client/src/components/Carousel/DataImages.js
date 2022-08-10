@@ -12,10 +12,10 @@ export const DataImage = [
       "https://hoteldonhoracio.com/wp-content/uploads/2020/09/Cataratas-desde-Mendoza-Portada.jpg",
   },
   {
-    image:
-      "https://wanderlust.com.ar/wp-content/uploads/2019/04/bariloche-wanderlust-expediciones.jpg",
+    image: "https://flyfishingcaribe.com/images_db/travel/2_2737.jpg",
   },
   {
-    image: "https://flyfishingcaribe.com/images_db/travel/2_2737.jpg",
+    image:
+      "https://wanderlust.com.ar/wp-content/uploads/2019/04/bariloche-wanderlust-expediciones.jpg",
   },
 ];

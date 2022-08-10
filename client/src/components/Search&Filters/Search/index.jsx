@@ -13,13 +13,14 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
     start_date: startDate,
     passengers: 0,
   });
-
+ console.log("valores",values)
   const [matchingResults, setMatchingResults] = useState({
     destination: "",
     date: "",
   });
 
   const handlePassenger = (e) => {
+    console.log("pasajeros", e.target.value)
     setValues({
       ...values,
       passengers: e.target.value,
@@ -34,7 +35,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
   };
 
   const handleSearch = (e) => {
-    const { destination, start_date } = values;
+    const {destination, start_date } = values;
     e.preventDefault();
     dispatch(filterByDate(destination, start_date, price, stock));
     setCity(destinationCity)
@@ -42,6 +43,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
       destination: destination.toUpperCase(),
       date: startDate && new Date(start_date).toDateString(),
     });
+    
   };
   const handleClear = (e) => {
     e.preventDefault();
@@ -51,11 +53,13 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
     setValues({
       ...values,
       destination: "",
-      start_date: ''
+      start_date: '',
+   
     });
     setMatchingResults({
       destination: "",
       date: "",
+     
     });
     setPrice('');
     setStock('')
@@ -100,7 +104,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
             minDate={new Date()}
             />
         </div>
-        <div className="col-2 mb-4">
+        {/* <div className="col-2 mb-4">
           <div className="row mb-2">
             <label>Pasajeros:</label>
           </div>
@@ -111,7 +115,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
               onChange={handlePassenger}
               />
           </div>
-        </div>
+        </div> */}
         </div>
         <div className="row">
           <div className="row col-sm-12 col-md-12 col-lg-12 justify-content-center">

@@ -170,6 +170,7 @@ export const CreatePackage = ({ }) => {
             hourPlaceholder={"hh"}
             minutePlaceholder={"mm"}
             secondPlaceholder={"ss"}
+            required
           />
         </div>
 
@@ -188,6 +189,7 @@ export const CreatePackage = ({ }) => {
             hourPlaceholder={"hh"}
             minutePlaceholder={"mm"}
             secondPlaceholder={"ss"}
+            required
           />
 
           {/*  <input

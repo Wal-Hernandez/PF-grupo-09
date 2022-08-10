@@ -94,7 +94,7 @@ function Admin() {
   //Paginado Normal
   const [pageCurrent, setPagC] = React.useState(1);
 
-  let itemsPerPage = 5;
+  let itemsPerPage = 4;
   function setPagination(event) {
     setPagC((pageCurrent) => Number(event.target.id));
   }
@@ -170,47 +170,45 @@ function Admin() {
             </Link>
 
             <button className="btn-logout" onClick={handleLogout}>
-              Logout
+              Cerrar sesion
             </button>
           </div>
           <div className="btns">
-            <div className="btn-pack btnn" style={model === 'packages' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%' } : { backgroundColor: '#00000000' }}>
-              <button name="packages" onClick={handleSelect} style={model === 'packages' ? { backgroundColor: '#ccc', position:'relative'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-pack btnn" style={model === 'packages' ? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
+              <button name="packages" onClick={handleSelect} style={model === 'packages' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
                 Paquetes
               </button>
             </div >
-            <div className="btn-hotels btnn" style={model === 'hotels' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="hotels" onClick={handleSelect} style={model === 'hotels' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-hotels btnn" style={model === 'hotels'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
+              <button name="hotels" onClick={handleSelect} style={model === 'hotels'? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
                 Hoteles
-              </button>{" "}
+              </button>
             </div>
-            <div className="btn-business btnn" style={model === 'business' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="business" onClick={handleSelect} style={model === 'business' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-business btnn" style={model === 'business'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
+              <button name="business" onClick={handleSelect} style={model === 'business' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
                 Business
               </button>
             </div>
-            <div className="btn-activities btnn" style={model === 'activities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="activities" onClick={handleSelect} style={model === 'activities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-activities btnn" style={model === 'activities'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
+              <button name="activities" onClick={handleSelect} style={model === 'activities' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
                 Activites
               </button>
             </div>
-            <div className="btn-cites btnn" style={model === 'cities' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="cities" onClick={handleSelect} style={model === 'citiess' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-cites btnn" style={model === 'cities'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
+              <button name="cities" onClick={handleSelect} style={model === 'citiess'? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
                 City
               </button>
             </div>
-            <div className="btn-plattforms btnn" style={model === 'plattforms' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="plattforms" onClick={handleSelect} style={model === 'plattforms' ? { backgroundColor: '#ccc', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+            <div className="btn-plattforms btnn" style={model === 'plattforms'? { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
+              <button name="plattforms" onClick={handleSelect} style={model === 'plattforms' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
                 Platforms
               </button>
             </div>
-          </div>
-          <hr />
-          <div>Stadistics</div>
-          <div className="btn-plattforms btnn" style={model === 'users' ? { backgroundColor: '#FFDE59', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
-              <button name="users" onClick={handleSelect} style={model === 'users' ? { backgroundColor: '##FFDE59', position:'relative', width:'100%', height:'12.5%'} : { backgroundColor: '#00000000' }}>
+          <div className="btn-plattforms btnn" style={model === 'users' ?  { backgroundColor: '#FFDE59', position:'relative', width:'100%' } : { backgroundColor: '#00000000' }}>
+              <button name="users" onClick={handleSelect} style={model === 'users' ? { backgroundColor: '#FFDE59', position:'relative'} : { backgroundColor: '#00000000' }}>
                 Users
               </button>     
+          </div>
           </div>
         </div>
 
@@ -221,8 +219,9 @@ function Admin() {
                 <span class="material-symbols-outlined">add</span>
               </button>
             </div>
+            <h5>Crear</h5>
             {adminView.length && !add && !edit ? (
-              <p className="pag-info">{adminView.length} results</p>
+              <p className="pag-info">{adminView.length} Resultados</p>
             ) : (
               ""
             )}
@@ -258,7 +257,7 @@ function Admin() {
               adminView
                 .map((packs) => {
                   return model === "users" ? (
-                    <div>
+                    <div >
                       <a
                         class="btn btn-info w-100 p-3"
                         data-bs-toggle="collapse"
@@ -394,18 +393,26 @@ function Admin() {
                 })
                 .slice(indiceInicial, indiceFinal)
             ) : (
-              <div>WELCOME TO THE ADMIN PANEL </div>
+              <div className="bienvenida"> 
+              <h1>Hola!</h1>
+              <h2>Bienvenido al Panel de Administrador </h2> 
+              <p>Para comenzar elige que elementos de tu pagina quieres editar, crear o eliminar</p>
+              </div>
             )}
             {adminView.length && !add && !edit ? (
               <div className="pag">
                 {pageCurrent > 1 ? (
-                  <span onClick={prevPage} className="flecha izquierda"></span>
+                  <span onClick={prevPage}  class="flecha-nueva material-symbols-outlined">
+                  arrow_back_ios
+                  </span>
                 ) : (
                   ""
                 )}
                 {sliceOfnumerosRederizados}
                 {pageCurrent < pageNumbers.length ? (
-                  <span onClick={nextPage} className="flecha derecha"></span>
+                  <span onClick={nextPage}  class="flecha-nueva material-symbols-outlined">
+                  arrow_forward_ios
+                  </span>
                 ) : (
                   ""
                 )}

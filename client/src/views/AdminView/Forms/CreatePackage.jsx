@@ -13,7 +13,7 @@ import swal from "sweetalert";
 import './Form.css'
 export const CreatePackage = ({ }) => {
   const dispatch = useDispatch();
-
+  const expRegSoloLetras = /^[a-zA-Z ]*$/;
   useEffect(() => {
     dispatch(getPlatforms());
     dispatch(getBuses());
@@ -109,6 +109,7 @@ export const CreatePackage = ({ }) => {
   }
   const name = register("name", {
     required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
   });
   /*   
       const start_date = register("start_date", {
@@ -170,6 +171,7 @@ export const CreatePackage = ({ }) => {
             hourPlaceholder={"hh"}
             minutePlaceholder={"mm"}
             secondPlaceholder={"ss"}
+            required
           />
         </div>
 
@@ -188,6 +190,7 @@ export const CreatePackage = ({ }) => {
             hourPlaceholder={"hh"}
             minutePlaceholder={"mm"}
             secondPlaceholder={"ss"}
+            required
           />
 
           {/*  <input
@@ -255,7 +258,7 @@ export const CreatePackage = ({ }) => {
         </div>
 
         <div className="div-form">
-          <select name="cityId" defaultValue="" onChange={handleChangePackages}>
+          <select name="cityId" defaultValue="" required onChange={handleChangePackages}>
             <option key="keycities" value="" disabled>
               Ciudad
             </option>
@@ -307,6 +310,7 @@ export const CreatePackage = ({ }) => {
             name="hotelId"
             defaultValue=""
             onChange={handleChangePackages}
+            required
           >
             <option key="keyhotels" value="" disabled>
               Hotel

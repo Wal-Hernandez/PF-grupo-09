@@ -12,7 +12,7 @@ import { putPackage } from "../../../redux/actions/putPackage";
 import DateTimePicker from "react-datetime-picker";
 export const PutPackageForm = ({ pack }) => {
   const dispatch = useDispatch();
-
+  const expRegSoloLetras = /^[a-zA-Z ]*$/;
 
   const packAct = pack.activities.map(e => e.name)
   const [packages, setPackages] = React.useState({
@@ -116,6 +116,7 @@ export const PutPackageForm = ({ pack }) => {
 
   const name = register("name", {
     required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
   });
 
 /*   const start_date = register("start_date", {
@@ -133,11 +134,13 @@ export const PutPackageForm = ({ pack }) => {
 
   const discount = register("discount", {
     required: { value: true, message: "REQUERIDO" },
+    min: { value: 0, message: "Descuento minimo 0%" },
     max: { value: 100, message: "Descuento maximo 100%" },
   });
 
   const stock = register("stock", {
     required: { value: true, message: "REQUERIDO" },
+    min: { value: 0, message: "Stock minimo 0" },
   });
 
   return (
@@ -244,8 +247,9 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="plattformId" required defaultValue="" onChange={handleChange}>
-            <option key="keyplatform" value="" disabled>Plataformas</option>
+        <label className="label-form"> Plataforma: </label>
+          <select name="plattformId" defaultValue={packages.plattformId} onChange={handleChange}>
+            {/* <option key="keyplatform" value="" disabled>Plataformas</option> */}
             {platforms.map((platform) => (
               <option key={platform.id} value={platform.id}>
                 {platform.terminal}
@@ -255,8 +259,9 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="businessId" required defaultValue="" onChange={handleChange}>
-            <option key="keybusiness" value="" disabled>Transportista</option>
+        <label className="label-form"> Transportista: </label>
+          <select name="businessId" defaultValue={packages.businessId} onChange={handleChange}>
+            {/* <option key="keybusiness" value="" disabled>Transportista</option> */}
             {business.map((busi) => (
               <option key={busi.id} value={busi.id}>
                 {busi.name}
@@ -266,8 +271,9 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="cityId" required defaultValue="" onChange={handleChange}>
-            <option key="keycities" value="" disabled>Ciudad</option>
+        <label className="label-form"> Ciudad: </label>
+          <select name="cityId" defaultValue={packages.cityId} onChange={handleChange}>
+            {/* <option key="keycities" value="" disabled>Ciudad</option> */}
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
@@ -277,8 +283,9 @@ export const PutPackageForm = ({ pack }) => {
         </div>
 
         <div className="div-form">
-          <select name="hotelId" required defaultValue="" onChange={handleChange}>
-            <option key="keyhotels" value="" disabled>Hotel</option>
+        <label className="label-form"> Hotel: </label>
+          <select name="hotelId" defaultValue={packages.hotelId} onChange={handleChange}>
+            {/* <option key="keyhotels" value="" disabled>Hotel</option> */}
             {newHotels.map((hotel) => (
               <option key={hotel.id} value={hotel.id}>
                 {hotel.name}
@@ -326,7 +333,7 @@ export const PutPackageForm = ({ pack }) => {
 
         <button type="submit" className="button-form">
           {" "}
-          Put Package
+          Actualizar paquete
         </button>
       </form>
     </div>

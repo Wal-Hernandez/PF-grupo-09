@@ -20,7 +20,8 @@ export const PutBusForm = ({ pack }) => {
   });
 
   const expRegEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-
+  const expRegSoloLetras = /^[a-zA-Z ]*$/;
+  const expRegSoloNum = /^\d*$/;
   /* function TransformData(x){
 if(x.split(',').length===1) return x;
 return JSON.parse(x)
@@ -62,10 +63,11 @@ return JSON.parse(x)
 
   const name = register("name", {
     required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
   });
 
   const phone = register("phone", {
-    required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegSoloNum, message: "SOLO NUMEROS" },
   });
 
   const email = register("email", {
@@ -110,7 +112,7 @@ return JSON.parse(x)
           <p className="danger">{errors.temperaments}</p>
         )} */}
           <input
-            type="number"
+            type="text"
             name="phone"
             value={bus["phone"]}
             placeholder="Ingrese el telefono."
@@ -151,7 +153,7 @@ return JSON.parse(x)
         // Mientras No pase el tercer estado, desactivame esto
         >
           {" "}
-          Put Business
+          Actualizar transportista
         </button>
 
       </form>

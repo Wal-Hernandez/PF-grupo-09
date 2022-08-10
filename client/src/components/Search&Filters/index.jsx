@@ -26,6 +26,8 @@ function SearchAndFilters({ setCurrentPage }) {
         stock={stockOrder}
         setPrice={setPriceOrder}
         setStock={setStockOrder}
+        activity={activity}
+        setActivity={setActivity}
       />
       </div>
        <div className="row">

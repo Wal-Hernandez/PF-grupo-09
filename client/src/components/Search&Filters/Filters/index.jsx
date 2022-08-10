@@ -9,7 +9,7 @@ function Filters(props) {
   const dispatch = useDispatch();
 
   function handleActivities(e) {
-    dispatch(filterByActivity(e.target.value, props.price, props.stock));
+    dispatch(filterByActivity(e.target.value, props.price, props.stock, props.city));
     props.setActivity(e.target.value);
     props.setCurrentPage(1);
   }
@@ -18,7 +18,7 @@ function Filters(props) {
     if (props.startDate !== "") {
       return (startShortDate = props.startDate?.toISOString());
     }
-    dispatch(sortByPrice(e.target.value, props.city, startShortDate));
+    dispatch(sortByPrice(e.target.value, props.city, startShortDate, props.activity));
     props.setPrice(e.target.value);
     props.setCurrentPage(1);
   }
@@ -28,7 +28,7 @@ function Filters(props) {
       return (startShortDate = props.startDate?.toISOString());
     }
 
-    dispatch(sortByStock(e.target.value, props.city, startShortDate));
+    dispatch(sortByStock(e.target.value, props.city, startShortDate, props.activity));
     props.setStock(e.target.value);
     props.setCurrentPage(1);
   }
@@ -73,6 +73,7 @@ function Filters(props) {
           <select
             className="form-select"
             defaultValue=""
+            value={props.price}
             onChange={handleSortByPrice}
             label={"Ordenar por precio"}
           >
@@ -86,6 +87,7 @@ function Filters(props) {
             defaultValue=""
             onChange={handleSortByStock}
             label={"Ordenar por stock"}
+            value={props.stock}
           >
             <option value="">Ordenar por stock</option>
             <option label={"Menor stock"} value="asc"></option>
@@ -98,6 +100,7 @@ function Filters(props) {
           className="form-select"
           defaultValue=""
           onChange={handleActivities}
+          value={props.activities}
         >
           <option value="" disabled>
             Filtrar por actividades

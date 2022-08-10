@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
 
   sequelize.define('reviewActivity', {
     score: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     title:{

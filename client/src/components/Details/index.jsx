@@ -164,9 +164,7 @@ let paqueteCargado=false;
  }
 
 
-
 console.log("CART:",cart)
-console.log(new Date(packageDetail.start_date).toString())
 
   return (
     <div class="container ">
@@ -271,7 +269,9 @@ console.log(new Date(packageDetail.start_date).toString())
       </div>
      {/*&& !packageDetail.activities?.length  */}
       {!packageDetail.hotel?.reviewHotels?.length &&
-      !packageDetail.business?.reviewBusinesses?.length ? (
+      !packageDetail.business?.reviewBusinesses?.length &&
+      !packageDetail.activities?.map(e=>e.reviewActivities).flat().length
+      ? (
         <p>Aún no hay valoraciones para los elementos de este paquete</p>
       ) : (
         <div className="review-container">

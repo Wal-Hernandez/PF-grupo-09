@@ -6,27 +6,18 @@ import { filterPassenger } from "../../../redux/actions/filterByDateReturn";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock, setCurrentPage }) {
+function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock, setCurrentPage, setActivity }) {
   const dispatch = useDispatch();
   const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
     destination: '',
     start_date: startDate,
-    passengers: 0,
   });
  console.log("valores",values)
   const [matchingResults, setMatchingResults] = useState({
     destination: "",
     date: "",
   });
-
-  const handlePassenger = (e) => {
-    console.log("pasajeros", e.target.value)
-    setValues({
-      ...values,
-      passengers: e.target.value,
-    });
-  };
 
   const handleDates = () => {
     setValues({
@@ -63,6 +54,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
     });
     setPrice("");
     setStock("");
+    setActivity('')
     dispatch(getPackages());
   };
 

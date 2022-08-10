@@ -119,7 +119,7 @@ flex-direction: row;
     align-items:flex-start;
 
     margin-bottom: 40px;
-    background-color: #004AAD;
+    /* background-color: #004AAD; */
 }
 .adminPanelContainer a{
  border: none;

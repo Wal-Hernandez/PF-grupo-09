@@ -258,7 +258,7 @@ export const CreatePackage = ({ }) => {
             <option key="keycities" value="" disabled>
               Ciudad
             </option>
-            {cities.map((city) => (
+            {cities.filter(a=>a.enabled).map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
               </option>
@@ -293,7 +293,7 @@ export const CreatePackage = ({ }) => {
             <option key="keybusiness" value="" disabled>
               Transportista
             </option>
-            {business.map((busi) => (
+            {business.filter(a=>a.enabled).map((busi) => (
               <option key={busi.id} value={busi.id}>
                 {busi.name}
               </option>
@@ -310,7 +310,7 @@ export const CreatePackage = ({ }) => {
             <option key="keyhotels" value="" disabled>
               Hotel
             </option>
-            {newHotels.map((hotel) => (
+            {newHotels.filter(a=>a.enabled).map((hotel) => (
               <option key={hotel?.id} value={hotel?.id}>
                 {hotel?.name}
               </option>
@@ -326,7 +326,7 @@ export const CreatePackage = ({ }) => {
             <option key="keyActivity" value="" disabled>
               ACTIVIDADES
             </option>
-            {newActivities.map((activity) => (
+            {newActivities.filter(a=>a.enabled).map((activity) => (
               <option key={activity?.id} value={activity?.name}>
                 {activity?.name}
               </option>

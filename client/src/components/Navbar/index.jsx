@@ -86,10 +86,12 @@ const cart = useSelector((state) => state.rootReducer.cart);
         </li>
         <li class="nav-item">
         {userlog? <div class="userlog-container">
-            <p>{userlog.nombre +" "+ userlog.apellido}</p>
+            <Link to='/user'>
+            <p className='nombreperf'>{userlog.nombre +" "+ userlog.apellido}</p>
+            </Link>
             <div className='btn-sm1'>
             <a class="nav-link " href="#" onClick={handleLogout}>Cerrar Sesion</a>
-            <Link to='/user'>Perfil</Link>
+            {/* <Link to='/user'>Perfil</Link> */}
             </div>
           </div>: <Link to="/login" className='btn-sm'>
           <a class="nav-link " href="#">Iniciar Sesion</a>

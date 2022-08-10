@@ -86,12 +86,12 @@ export default function ProductItem({
             <div class="d-flex flex-column align-items-center product-details info-cart">
               <h4 class="font-weight-bold">{data?.name}</h4>
               <div class="d-flex flex-column align-items-start product-desc">
-                <div class="size mr-1">
+                <div class="sizese mr-1">
                   <span class="text-grey">Hotel:</span>{" "}
                   <span class="font-weight-bold">{data?.hotel.name}</span>
                 </div>
 
-                <div class="color">
+                <div class="colores">
                   <span class="text-grey b "> Stock</span>{" "}
                   <span class="font-weight-bold b">
                     {data?.stock - quantity}

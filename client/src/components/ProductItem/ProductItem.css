@@ -1,17 +1,14 @@
 
-.size span {
+.sizese span {
     font-size: 18px;
     font-weight: 450;
 }
 .a-cart{
     border: none;
 }
-.color span {
+.colores span {
     font-size:12px ;
     font-weight: 450;
-}
-.card-cart{
-
 }
 .card-cart:hover{
    

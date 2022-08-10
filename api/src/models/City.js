@@ -12,6 +12,13 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.DECIMAL),
       allowNull: false,
     },
+    image: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    enabled: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },  
   
   },{timestamps:false});
 };

@@ -14,6 +14,7 @@ import { getPackages } from "../../redux/actions/getPackages";
 import StarRating from "../StarRatings/index"
 import ShowReviews from "../Reviews/ShowReviews";
 import MapView from "../Map/MapView.js";
+import {getUsers} from "../../redux/actions/getUsers"
 
 
 export default function Details({userlog}) {
@@ -21,6 +22,8 @@ export default function Details({userlog}) {
   const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const { id } = useParams();
   
+  const users = useSelector((state) => state.rootReducer.users);
+
   const packageDetail = useSelector((state) => state.rootReducer.detail);
   const cart = useSelector((state) => state.rootReducer.cart);
   const packageActivity = [];
@@ -38,6 +41,7 @@ export default function Details({userlog}) {
    console.log(packageDetail)
    useEffect(()=>{
      dispatch(getPackages())
+     dispatch(getUsers())
      if(user?.email!==undefined){
          dispatch(loadCart(user?.email)) 
     }

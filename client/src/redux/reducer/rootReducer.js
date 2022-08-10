@@ -1,63 +1,64 @@
 import {
-    GET_PACKAGE_ID,
-    GET_CLEAN,
-    GET_PACKAGES,
-    GET_MAIN_PACKAGES,
-    GET_HOTELS,
-    GET_CITIES,
-    PUT_CITY,
-    GET_OFFERS,
-    GET_BUSES,
-    PUT_BUS,
-    PUT_HOTEL,
-    GET_PLATFORMS,
-    GET_ACTIVITIES,
-    FILTER_BY_DESTINY,
-    SORT_BY_PRICE,
-    SORT_BY_STOCK,
-    DELETE_MODEL,
-    PUT_ACTIVITY,
-    POST_ACTIVITY,
-    POST_BUS,
-    POST_CITY,
-    FILTER_BY_DATE,
-    CLEAR_FILTERS,
-    LOAD_CART,
-    CLEAR_CART_LOGOUT,
-    LOAD_CART_LOGIN,
-    POST_USER,
-    REMOVE_DETAIL_CART,
-    ADD_DETAIL_CART,
-    REMOVE_CART,
-    ADD_ONE_PEOPLE,
-    DELETE_ONE_PEOPLE,
-    FILTER_BY_ACTIVITY,
-    CHANGE_STATE_CART,
-    LOAD_SHOPPING,
-    FILTER_BY_PASSENGER,
-    FINISH_TRAVEL
-
+  GET_PACKAGE_ID,
+  GET_CLEAN,
+  GET_PACKAGES,
+  GET_MAIN_PACKAGES,
+  GET_HOTELS,
+  GET_CITIES,
+  PUT_CITY,
+  GET_OFFERS,
+  GET_BUSES,
+  PUT_BUS,
+  PUT_HOTEL,
+  GET_PLATFORMS,
+  GET_ACTIVITIES,
+  FILTER_BY_DESTINY,
+  SORT_BY_PRICE,
+  SORT_BY_STOCK,
+  DELETE_MODEL,
+  PUT_ACTIVITY,
+  POST_ACTIVITY,
+  POST_BUS,
+  POST_CITY,
+  FILTER_BY_DATE,
+  CLEAR_FILTERS,
+  LOAD_CART,
+  CLEAR_CART_LOGOUT,
+  LOAD_CART_LOGIN,
+  GET_USERS,
+  POST_USER,
+  REMOVE_DETAIL_CART,
+  ADD_DETAIL_CART,
+  REMOVE_CART,
+  ADD_ONE_PEOPLE,
+  DELETE_ONE_PEOPLE,
+  FILTER_BY_ACTIVITY,
+  CHANGE_STATE_CART,
+  LOAD_SHOPPING,
+  FILTER_BY_PASSENGER,
+  FINISH_TRAVEL,
 } from "../actions/actionTypes";
 import { TYPES } from "../actions/shoppingActions";
 import { getAuth } from "firebase/auth";
 
 const initialState = {
-    packages: [],
-    showPackages: [],
-    detail: [],
-    isAdmin: null,
-    adminView: [],
-    offers: [],
-    hotels: [],
-    cities: [],
-    business: [],
-    platforms: [],
-    activities: [],
-    cart:[],
-    arrayCartNotLoggedin:[],
-    arrayCartLoggedin:[],
-    shopping:[],
-    aux: []
+  packages: [],
+  showPackages: [],
+  detail: [],
+  isAdmin: null,
+  adminView: [],
+  offers: [],
+  hotels: [],
+  cities: [],
+  business: [],
+  platforms: [],
+  activities: [],
+  users: [],
+  cart: [],
+  arrayCartNotLoggedin: [],
+  arrayCartLoggedin: [],
+  shopping: [],
+  aux: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -67,7 +68,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         packages: action.payload,
-        aux: action.payload
+        aux: action.payload,
       };
     case GET_CITIES:
       return {
@@ -117,6 +118,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         offers: resp,
+      };
+    case GET_USERS:
+      return {
+        ...state,
+
+        users: action.payload,
       };
 
     case FILTER_BY_DESTINY:
@@ -198,11 +205,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         shopping: action.payload,
       };
-      case FINISH_TRAVEL:
-        return{
-          ...state,
-          shopping: action.payload,
-        }
+    case FINISH_TRAVEL:
+      return {
+        ...state,
+        shopping: action.payload,
+      };
     case TYPES.ADD_TO_CART: {
       let cartAll;
       const auth = getAuth();
@@ -441,17 +448,19 @@ export default function rootReducer(state = initialState, action) {
       };
     }
     case FILTER_BY_PASSENGER: {
-      if(action.payload){
-          const filterPassenger = state.aux.filter(a=> parseInt(action.payload) < a.stock )
-          return{
-            ...state,
-            packages: filterPassenger
-          }
-        }
-        return{
-          ...state
-        }
-  }
+      if (action.payload) {
+        const filterPassenger = state.aux.filter(
+          (a) => parseInt(action.payload) < a.stock
+        );
+        return {
+          ...state,
+          packages: filterPassenger,
+        };
+      }
+      return {
+        ...state,
+      };
+    }
     default:
       return state;
   }

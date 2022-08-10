@@ -48,9 +48,9 @@ const getReviewById = async (req, res) => {
 
 const postReview = async (req, res) => {
   try {
-    const { userId, businessId, score, title, comment, mail } = req.body;
+    const { userId, businessId, score, title, comment } = req.body;
 
-    if (!userId || !businessId || !score || !title || !comment || !mail) res.status(400).json({ msg: "You need to fill all the fields to leave a review" });
+    if (!userId || !businessId || !score || !title || !comment) res.status(400).json({ msg: "You need to fill all the fields to leave a review" });
     if (typeof title !== "string" || typeof comment !== "string") res.status(400).json({ msg: "Input must be letters or letters and numbers" });
     if (score < 1 || score > 5) res.status(400).json({ msg: "Score must be between 1 and 5" });
 
@@ -61,7 +61,6 @@ const postReview = async (req, res) => {
         score: score,
         title: title,
         comment: comment,
-        mail:mail
       },
     });
     return res.status(201).send("Review posted successfully");

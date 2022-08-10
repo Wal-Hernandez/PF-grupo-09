@@ -83,7 +83,7 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
             <div className="row mb-2">
               <AutocompleteSearch
 
-                fieldInput={cities?.map((e) => e.name)}
+                fieldInput={cities && cities?.map((e) => e.name)}
                 input={destinationCity}
                 setInput={setDestinationCity}
                 setDestination={(dest) =>

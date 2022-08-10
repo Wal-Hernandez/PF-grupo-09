@@ -49,6 +49,9 @@ export default function HomeBody() {
   return (
     <>
       <div class="container cont-card">
+        <h2 className="title-card-home">
+          Elegi un paquete para comenzar tu aventura
+        </h2>
         <div class="row g-3">
           {showPackages.length ? (
             showPackages.map((e) => {

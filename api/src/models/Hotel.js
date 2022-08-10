@@ -40,7 +40,11 @@ module.exports = (sequelize) => {
       },
       urlImage: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-      }
+      },
+      enabled: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     { timestamps: false }
   );

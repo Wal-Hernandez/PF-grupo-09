@@ -1,13 +1,13 @@
 
-/* .card {
+.user-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: auto;
     text-align: center;
-    background-color:blue;
+    background-color:rgb(68, 68, 104);
   }
-   */
-  /* .title {
+  
+  .user-title {
     color:white;
     font-size: 18px;
   }
@@ -25,7 +25,7 @@
     font-size: 18px;
   }
   
-  a {
+  /* a {
     text-decoration: none;
     font-size: 22px;
     color: black;
@@ -34,7 +34,7 @@
   button:hover,
   a:hover {
     opacity: 0.7;
-  }
+  } */
   
 
   input[id^="spoiler"]{
@@ -46,7 +46,7 @@
      width: 200px;
      margin: 0 auto;
      padding: 5px 20px;
-     background: #FFDE59;
+     background: #756111;
      color: white;
      text-align: center;
      font-size: 24px;
@@ -78,5 +78,5 @@
      opacity: 1;
      padding: 10px;
 
-   } */
+   }
 

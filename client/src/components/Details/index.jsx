@@ -453,7 +453,7 @@ console.log("CART:",cart)
           </div>
 
             <div class="d-flex flex-column align-items-center product-details info-cart">
-              <h4 class="font-weight-bold">{name1}</h4>
+              <h4 class="font-weight-bold">{name3}</h4>
               <div class="d-flex flex-column align-items-start product-desc">
                 <div class="sizese mr-1">
 

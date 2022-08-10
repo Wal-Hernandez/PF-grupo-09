@@ -77,7 +77,7 @@ export default function ProductItem({
           <div class="mr-1">
             <img
               class="rounded"
-              src={data?.hotel.urlImage}
+              src={data.city?.image}
               width="220"
               height="170"
             />

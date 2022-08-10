@@ -12,11 +12,12 @@ import { putPackage } from "../../../redux/actions/putPackage";
 import DateTimePicker from "react-datetime-picker";
 export const PutPackageForm = ({ pack }) => {
   const dispatch = useDispatch();
- 
+
+
   const packAct = pack.activities.map(e => e.name)
   const [packages, setPackages] = React.useState({
-    start_date: pack.start_date,
-    end_date: pack.end_date,
+    start_date: new Date(pack.start_date),
+    end_date: new Date(pack.end_date),
     name: pack.name,
     price: pack.price,
     discount: pack.discount,
@@ -27,6 +28,8 @@ export const PutPackageForm = ({ pack }) => {
     hotelId: pack.hotelId,
     activity: packAct,
   });
+  let [startDate, setStartDate] = useState(packages["start_date"]);
+  let [endDate, setEndDate] =  useState(packages["start_date"]);
   const {
     register,
     handleSubmit,
@@ -36,6 +39,19 @@ export const PutPackageForm = ({ pack }) => {
   const { platforms, business, cities, hotels, activities } = useSelector((state) => state.adminReducer);
   let [newHotels, setNewHotels] = useState([]);
   let [newActivities, setNewActivities] = useState([])
+  const handleDates = () => {
+
+    setPackages({
+      ...packages,
+      start_date: startDate ? startDate?.toISOString() : "",
+    });
+  };
+  const handleEndDates = () => {
+    setPackages({
+      ...packages,
+      end_date: endDate ? endDate?.toISOString() : "",
+    });
+  };
   useEffect(() => {
     dispatch(getPlatforms())
     dispatch(getBuses())
@@ -88,9 +104,10 @@ export const PutPackageForm = ({ pack }) => {
 
     setPackages({ ...packages, [event.target.name]: event.target.value });
   }
-  console.log(packages.activity)
+
   function handleSubmitPackage() {
     //e.preventDefault(); // para que era esto?
+    console.log("mm")
     dispatch(putPackage(pack.id, packages));
     swal({
       title: "Paquete editado con exito",
@@ -102,13 +119,13 @@ export const PutPackageForm = ({ pack }) => {
     required: { value: true, message: "REQUERIDO" },
   });
 
-  const start_date = register("start_date", {
+/*   const start_date = register("start_date", {
     required: { value: true, message: "REQUERIDO" },
   });
 
   const end_date = register("end_date", {
     required: { value: true, message: "REQUERIDO" },
-  });
+  }); */
 
   const price = register("price", {
     required: { value: true, message: "REQUERIDO" },
@@ -143,37 +160,41 @@ export const PutPackageForm = ({ pack }) => {
           {errors?.name && <span>{errors?.name?.message}</span>}
         </div>
 
+        
         <div className="div-form">
           <label className="label-form"> Fecha de inicio: </label>
-          <input
-            type="text"
+          <DateTimePicker
             name="start_date"
-            value={packages["start_date"]}
-            placeholder="Ingrese fecha inicio."
-            {...start_date}
-            onChange={(e) => {
-              start_date.onChange(e);
-              handleChange(e);
-            }}
+            onBlur={handleDates}
+            onChange={setStartDate}
+            value={startDate}
+            dayPlaceholder={"DD"}
+            monthPlaceholder={"MM"}
+            yearPlaceholder={"YYYY"}
+            format={"dd-MM-y h:mm:ss a"}
+            minDate={new Date()}
+            hourPlaceholder={"hh"}
+            minutePlaceholder={"mm"}
+            secondPlaceholder={"ss"}
           />
-          {errors?.start_date && <span>{errors?.start_date?.message}</span>}
         </div>
-
         <div className="div-form">
           <label className="label-form"> Fecha de finalización: </label>
-          <input
-            type="text"
+          <DateTimePicker
             name="end_date"
-            value={packages["end_date"]}
-            placeholder="Ingrese fecha finalización."
-            {...end_date}
-            onChange={(e) => {
-              end_date.onChange(e);
-              handleChange(e);
-            }}
+            onBlur={handleEndDates}
+            onChange={setEndDate}
+            value={endDate}
+            dayPlaceholder={"DD"}
+            monthPlaceholder={"MM"}
+            yearPlaceholder={"YYYY"}
+            format={"dd-MM-y h:mm:ss a"}
+            minDate={new Date()}
+            hourPlaceholder={"hh"}
+            minutePlaceholder={"mm"}
+            secondPlaceholder={"ss"}
           />
-          {errors?.end_date && <span>{errors?.end_date?.message}</span>}
-        </div>
+ </div>
 
         <div className="div-form">
           <label className="label-form"> Precio: </label>

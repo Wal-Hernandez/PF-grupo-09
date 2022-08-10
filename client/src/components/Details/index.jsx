@@ -272,7 +272,7 @@ console.log(new Date(packageDetail.start_date).toString())
 
       {!packageDetail.hotel?.reviewHotels?.length &&
       !packageDetail.business?.reviewBusinesses?.length &&
-      !packageDetail.business?.reviewBusinesses?.length ? (
+      !packageDetail.activities?.length ? (
         <p>Aún no hay valoraciones para los elementos de este paquete</p>
       ) : (
         <div className="review-container">

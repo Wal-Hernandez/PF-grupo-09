@@ -18,7 +18,7 @@ export default function Services({ userlog }) {
     return e.stock > 0;
   });
 
-  paquetesDisponibles?.sort(function (a, b) {
+/*   paquetesDisponibles?.sort(function (a, b) {
     if (a.start_date > b.start_date) {
       return 1;
     }
@@ -27,7 +27,7 @@ export default function Services({ userlog }) {
     }
 
     return 0;
-  });
+  }); */
 
   useEffect(() => {
     dispatch(getCities());

@@ -286,10 +286,9 @@ console.log(new Date(packageDetail.start_date).toString())
           <div></div>
         </div>
       </div>
-
+     {/*&& !packageDetail.activities?.length  */}
       {!packageDetail.hotel?.reviewHotels?.length &&
-      !packageDetail.business?.reviewBusinesses?.length &&
-      !packageDetail.activities?.reviewActivities?.length ? (
+      !packageDetail.business?.reviewBusinesses?.length ? (
         <p>Aún no hay valoraciones para los elementos de este paquete</p>
       ) : (
         <div className="review-container">

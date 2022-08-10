@@ -1,10 +1,10 @@
-import { GET_HOTELS } from './actionTypes'
+import { GET_HOTELS ,DB_HEROKU} from './actionTypes'
 import axios from 'axios'
 
 export const getHotels = () => {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3001/hotels`);
+            let result = await axios.get(`${DB_HEROKU}/hotels`);
             return dispatch({
                 type: GET_HOTELS,
                 payload: result.data

@@ -26,10 +26,11 @@ import {
     POST_USER,
     GET_USER,
     PUT_USER,
-    GET_USERS
+    GET_USERS,
+    ENABLE_MODEL
 
 } from "../actions/actionTypes";
-import {TYPES} from "../actions/shoppingActions"
+import { TYPES } from "../actions/shoppingActions"
 import { getAuth } from "firebase/auth";
 
 const initialState = {
@@ -44,11 +45,11 @@ const initialState = {
     business: [],
     platforms: [],
     activities: [],
-    cart:{},
-    users:[],
-    arrayCartNotLoggedin:[],
-    arrayCartLoggedin:[],
-    users:[]
+    cart: {},
+    users: [],
+    arrayCartNotLoggedin: [],
+    arrayCartLoggedin: [],
+    users: []
 };
 
 export default function adminReducer(state = initialState, action) {
@@ -96,7 +97,7 @@ export default function adminReducer(state = initialState, action) {
                 adminView: action.payload,
                 users: action.payload,
             }
-   
+
         case GET_PACKAGE_ID:
             return {
                 ...state,
@@ -111,7 +112,7 @@ export default function adminReducer(state = initialState, action) {
                 business: action.payload,
                 platforms: action.payload,
                 activities: action.payload,
-                users:action.payload
+                users: action.payload
             };
         case GET_OFFERS:
             let resp = action.payload.map((a) => {
@@ -147,10 +148,9 @@ export default function adminReducer(state = initialState, action) {
                 packages: action.payload
             }
         case POST_USER:
-            return{ ...state,
-                cart:action.payload
-            }
-            ;
+            return {...state,
+                cart: action.payload
+            };
         case PUT_CITY:
             return state;
         case PUT_BUS:
@@ -168,11 +168,15 @@ export default function adminReducer(state = initialState, action) {
         case POST_ACTIVITY:
             return state;
         case GET_USER:
-            return {... state,
-            users: action.payload,
-            adminView: action.payload};
-            case PUT_USER:
+            return {...state,
+                users: action.payload,
+                adminView: action.payload
+            };
+        case PUT_USER:
             return state;
+        case ENABLE_MODEL:
+            return {...state
+            }
         default:
             return state;
     }

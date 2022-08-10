@@ -107,7 +107,6 @@ export const PutPackageForm = ({ pack }) => {
 
   function handleSubmitPackage() {
     //e.preventDefault(); // para que era esto?
-    console.log("mm")
     dispatch(putPackage(pack.id, packages));
     swal({
       title: "Paquete editado con exito",

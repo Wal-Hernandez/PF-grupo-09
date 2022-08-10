@@ -1,10 +1,10 @@
-import { PUT_HOTEL } from './actionTypes'
+import { PUT_HOTEL,DB_HEROKU } from './actionTypes'
 import axios from 'axios'
 
 export const putHotel= (id,hotel) => {
     return async function(dispatch) {
         try {
-            let result = await axios.put(`http://localhost:3001/hotels/${id}`,hotel);
+            let result = await axios.put(`${DB_HEROKU}/hotels/${id}`,hotel);
             console.log(result.data)
             return dispatch({
                 type: PUT_HOTEL,

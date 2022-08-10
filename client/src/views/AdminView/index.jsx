@@ -332,8 +332,8 @@ function Admin() {
                             </div>
                             <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
                               <b>REVIEWS</b>
-                              {packs.usuarioDB?.reviews ? (
-                                packs.usuarioDB?.reviews?.map((e) => <h1>{e.title}</h1>)
+                              {packs.usuarioDB?.reviewHotels ? (
+                                packs.usuarioDB?.reviewHotels?.map((e) => <h1>{e.title}</h1>)
                               ) : (
                                 <div>No hay reviews</div>
                               )}
@@ -380,7 +380,7 @@ function Admin() {
                           </div>
                         </div>
                       </a>
-                      {packs.reviews ? <div class="col">
+                      {packs.reviewHotels?.length ? (<div class="col">
                         <div
                           class="collapse "
                           id={`multiCollapseExample1${packs.id}`}
@@ -393,15 +393,15 @@ function Admin() {
 
                             <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
                               <b>REVIEWS</b>
-                              {packs.reviews ? (
-                                packs.reviews?.map((e) => <h1>{e.title}</h1>)
+                              {packs.reviewHotels ? (
+                                packs.reviewHotels?.map((e) => <h1>{e.title}</h1>)
                               ) : (
                                 <div>No hay reviews</div>
                               )}
                             </div>
                           </div>
                         </div>
-                      </div> : <></>}
+                      </div>) : <></>}
                     </div>
                   );
                 })

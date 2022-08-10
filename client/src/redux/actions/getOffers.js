@@ -1,5 +1,5 @@
 import {
-    GET_OFFERS
+    GET_OFFERS,DB_HEROKU
 } from "./actionTypes";
 
 import axios from 'axios';
@@ -8,7 +8,7 @@ import axios from 'axios';
 function getOffers() {
     return async function(dispatch) {
         try {
-            let result = await axios.get(`http://localhost:3000/packages`);
+            let result = await axios.get(`${DB_HEROKU}/packages`);
             return dispatch({
                 type: GET_OFFERS,
                 payload: result.data

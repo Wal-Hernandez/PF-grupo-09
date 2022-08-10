@@ -17,7 +17,7 @@ const getShoppings = async (mail) => {
   
       let  shoppings= await Cart.findAll({   // REVISAR RELACIONES DE INCLUDE
         where:{userId:id,
-               statusCartId:2},
+               statusCartId:[2,3]},
   include:[{
     model: User,
   },

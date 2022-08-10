@@ -203,7 +203,6 @@ export const PutHotelForm = ({ pack }) => {
         <div className="div-form">
           <label className="label-form"> Gimnasio </label>
           <select name="gym" onChange={handleChange} defaultValue={hotel.gym}>
-            <option value="">-</option>
             <option value="true">Si</option>
             <option value="false">No</option>
           </select>
@@ -212,7 +211,6 @@ export const PutHotelForm = ({ pack }) => {
         <div className="div-form">
           <label className="label-form"> Pool </label>
           <select name="pool" onChange={handleChange} defaultValue={hotel.pool}>
-            <option value="">-</option>
             <option value="true">Si</option>
             <option value="false">No</option>
           </select>
@@ -221,15 +219,15 @@ export const PutHotelForm = ({ pack }) => {
         <div className="div-form">
           <label className="label-form"> Wifi </label>
           <select name="wifi" onChange={handleChange} defaultValue={hotel.wifi}>
-            <option value="">-</option>
             <option value="true">Si</option>
             <option value="false">No</option>
           </select>
         </div>
 
         <div className="div-form">
+        <label className="label-form"> Ciudad: </label>
           <select name="cityId" defaultValue={hotel.cityId} onChange={handleChange}>
-            <option key="keycity" value="" disabled>Ciudad</option>
+            {/* <option key="keycity" value="" disabled>Ciudad</option> */}
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
@@ -240,7 +238,7 @@ export const PutHotelForm = ({ pack }) => {
 
         <button type="submit" className="button-form">
           {" "}
-          Actualizar ciudad
+          Actualizar hotel
         </button>
       </form>
     </div>

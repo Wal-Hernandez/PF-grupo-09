@@ -119,8 +119,9 @@ export const PutActivityForm = ({ pack }) => {
         </div>
 
         <div>
+        <label className="label-form"> Ciudad: </label>
           <select name="cityId" defaultValue={pack.cityId} onChange={handleChange}>
-            <option key="keycity" value="" disabled>Ciudad</option>
+            {/* <option key="keycity" value="" disabled>Ciudad</option> */}
             {adminView.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
@@ -131,7 +132,7 @@ export const PutActivityForm = ({ pack }) => {
 
         <button type="submit" className="button-form">
           {" "}
-          Put Activity
+          Actualizar actividad
         </button>
 
       </form>

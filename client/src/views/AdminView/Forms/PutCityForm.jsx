@@ -10,13 +10,13 @@ export const PutCityForm = ({ pack }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [city, setCity] = React.useState({ name: pack.name, location: pack.location });
   const expRegSoloLetras = /^[a-zA-Z ]*$/;
   const expRegLatLon = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
   function TransformData(x) {
     if (isNaN(x[0])) return x;
     return x.split(",");
   }
+  const [city, setCity] = React.useState({ name: pack.name, location: pack.location });
   function handleChange(event) {
     setCity({
       ...city,
@@ -42,10 +42,9 @@ export const PutCityForm = ({ pack }) => {
     pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
   });
 
-  const location = register("location", {
-    required: { value: true, message: "REQUERIDO" },
-    pattern: { value: expRegLatLon, message: "COORDENADA INCORRECTA" }
-  });
+  const location = register("location"/* , {
+    required: { value: true, message: "REQUERIDO" }, }*/
+  );
 
   return (
     <div className="div">
@@ -83,9 +82,10 @@ export const PutCityForm = ({ pack }) => {
           <p className="danger">{errors.temperaments}</p>
         )} */}
           <input
-            type="number"
+            type="text"
             name="location"
             value={city["location"]}
+            defaultValue={pack.location}
             placeholder="Ingrese una ubicación."
             {...location}
             onChange={(e) => {
@@ -107,7 +107,7 @@ export const PutCityForm = ({ pack }) => {
         // Mientras No pase el tercer estado, desactivame esto
         >
           {" "}
-          Put City
+          Actualizar ciudad
         </button>
 
       </form>

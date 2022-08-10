@@ -8,6 +8,7 @@ const {
   ReviewHotel,
   ReviewBusiness,
   ReviewActivity,
+  User
 } = require("../db");
 const { Op, Sequelize } = require("sequelize");
 
@@ -139,7 +140,9 @@ const getPackageById = async (req, res, next) => {
           {
             model: Hotel,
             include: {
-              model: ReviewHotel,
+              model: ReviewHotel,  include: {
+                model: User,
+              },
             },
           },
         ],

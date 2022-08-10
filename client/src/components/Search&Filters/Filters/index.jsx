@@ -8,8 +8,6 @@ function Filters(props) {
   const [selectOrder, setSelectOrder] = useState("precio");
   const dispatch = useDispatch();
 
-  console.log(props.city);
-
   function handleActivities(e) {
     dispatch(filterByActivity(e.target.value, props.price, props.stock));
     props.setActivity(e.target.value);

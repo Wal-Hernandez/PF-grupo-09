@@ -1,37 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShowReviews from "./ShowReviews";
 
 import ReactStars from 'react-rating-stars-component'
 import './review.css'
 import ReviewsForm from './ReviewsForm'
 import { useSelector } from "react-redux";
-function Reviews({hotel, activity, business, userlog}) {
 
-    const [showReviews, setshowReviews] = useState(false);
-    const { cart } = useSelector((state) => state.rootReducer);
-    const [selected, setSelected] = useState('');
-    console.log(cart[0]?.user)
-    const [hotelValues, setHotelValues] = useState({
-      userId: cart[0]?.user.id,
-      hotelId: hotel.id,
-      title: "",
-      comment: "",
-      score: 0,
-    });
-    const [activityValues, setActivityValues] = useState({
-      userId: cart[0]?.user.id,
-      activityId: activity.id,
-      title: "",
-      comment: "",
-      score: 0,
-    });
+function Reviews({hotel, activity, business, userlog, selected}) {
+
+  const { cart } = useSelector((state) => state.rootReducer);
+  
+  console.log(cart[0]?.user)
+  const [hotelValues, setHotelValues] = useState({
+    userId: cart[0]?.user.id,
+    hotelId: hotel,
+    title: "",
+    comment: "",
+    score: 0,
+  });
+  const [activityValues, setActivityValues] = useState({
+    userId: cart[0]?.user.id,
+    activityId: activity,
+    title: "",
+    comment: "",
+    score: 0,
+  });
+  console.log(activityValues.activityId)
     const [businessValues, setBusinessValues] = useState({
       userId: cart[0]?.user.id,
-      businessId: business.id,
+      businessId: business,
       title: "",
       comment: "",
       score: 0,
     });
+
+    useEffect(() => {
+      setHotelValues({...hotelValues, hotelId: hotel})
+      setBusinessValues({...businessValues, businessId: business})
+      setActivityValues({...activityValues, activityId: activity})
+
+    }, [hotel, activity, business]);
 
   if (userlog?.rol === "banned") {
     return <>BANEADO</>;
@@ -40,42 +48,19 @@ function Reviews({hotel, activity, business, userlog}) {
   return (
 
     <>
-     <div className="div-form">
-          <select name="cityId" defaultValue="" onChange={(e)=>setSelected(e.target.value)}>
-            <option key="keycities" value="activityreviews"> Activities </option>
-           <option value="businessreviews">Business</option>
-           <option value="hotelreviews">Hotels</option>
-          </select>
-        </div>
-        {
-          selected === 'activityreviews' ? <ReviewsForm data={activity} values={activityValues} setValues={setActivityValues} selected={selected}/>
-          : selected === 'businessreviews' ? <ReviewsForm data={business} values={businessValues} setValues={setBusinessValues} selected={selected}/>
-          : selected === 'hotelreviews' ? <ReviewsForm data={hotel} values={hotelValues} setValues={setHotelValues} selected={selected}/>
-          : null
-        }
-    {/* <div className="review-container">
-      {hotel?.reviews?.length? (
-
-        <div>
-          <button onClick={() => setshowReviews(!showReviews)}>
-            Mostrar valoraciones del hotel
-          </button>
-          {showReviews && <ShowReviews show={hotel} />}
-        </div>
-      ) : null}
-    </div>
-    <div className="review-container">
-      {activity?.reviews?.length? (
-        <div>
-          <button onClick={() => setshowReviews(!showReviews)}>
-            Mostrar valoraciones del hotel
-          </button>
-          {showReviews && <ShowReviews hotel={hotel} />}
-        </div>
-      ) : null}
-      <ReviewsForm data={hotel} values={hotelValues} setValues={setHotelValues}/>
-    </div>
-     */}
+     {/* <div className="div-form">
+        <select name="cityId" defaultValue="" onChange={(e)=>setSelected(e.target.value)}>
+          <option key="keycities" value="activityreviews"> Activities </option>
+          <option value="businessreviews">Business</option>
+          <option value="hotelreviews">Hotels</option>
+        </select>
+      </div> */}
+      {
+        selected === 'activityreviews' ? <ReviewsForm values={activityValues} setValues={setActivityValues} selected={selected}/>
+        : selected === 'businessreviews' ? <ReviewsForm values={businessValues} setValues={setBusinessValues} selected={selected}/>
+        : selected === 'hotelreviews' ? <ReviewsForm values={hotelValues} setValues={setHotelValues} selected={selected}/>
+        : null
+      }
     </>
   );
 }

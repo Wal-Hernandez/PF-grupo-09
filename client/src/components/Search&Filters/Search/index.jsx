@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import DatePicker from "react-date-picker";
 import { useDispatch } from "react-redux";
 import { filterByDate } from "../../../redux/actions/filterByDate&Dest";
+import { filterPassenger } from "../../../redux/actions/filterByDateReturn";
 import { getPackages } from "../../../redux/actions/getPackages";
 import AutocompleteSearch from "./AutocompleteSearch";
 
-function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock }) {
+function Search({ startDate, setStartDate, cities, setCity, price, stock, setPrice, setStock, setCurrentPage }) {
   const dispatch = useDispatch();
   const [destinationCity, setDestinationCity] = useState('');
   const [values, setValues] = useState({
@@ -13,13 +14,14 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
     start_date: startDate,
     passengers: 0,
   });
-
+ console.log("valores",values)
   const [matchingResults, setMatchingResults] = useState({
     destination: "",
     date: "",
   });
 
   const handlePassenger = (e) => {
+    console.log("pasajeros", e.target.value)
     setValues({
       ...values,
       passengers: e.target.value,
@@ -34,20 +36,21 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
   };
 
   const handleSearch = (e) => {
-    const { destination, start_date } = values;
+    const {destination, start_date } = values;
     e.preventDefault();
     dispatch(filterByDate(destination, start_date, price, stock));
-    setCity(destinationCity)
+    setCity(destinationCity);
     setMatchingResults({
       destination: destination.toUpperCase(),
       date: startDate && new Date(start_date).toDateString(),
     });
+    setCurrentPage(1)
   };
   const handleClear = (e) => {
     e.preventDefault();
     setStartDate("");
-    setDestinationCity('')
-    setCity('')
+    setDestinationCity("");
+    setCity("");
     setValues({
       ...values,
       destination: "",
@@ -56,26 +59,45 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
     setMatchingResults({
       destination: "",
       date: "",
+     
     });
-    setPrice('');
-    setStock('')
+    setPrice("");
+    setStock("");
     dispatch(getPackages());
+  };
+
+  const handlePassengerClick = (e) => {
+    e.preventDefault();
+    dispatch(filterPassenger(values.passengers));
   };
 
   return (
     <div className="container d-flex align-items-center justify-content-center mt-6">
       <div className="row">
         <div className="row">
+<<<<<<< HEAD
           <div className="col-4 mb-4">
+=======
+          <div className="col-6 mb-4">
+>>>>>>> fac26158b1ee4ea38f3705b5da2b2eb76ca12d4a
             <div className="row mb-2">
               <label>Destino: </label>
             </div>
             <div className="row mb-2">
               <AutocompleteSearch
+<<<<<<< HEAD
                 fieldInput={cities?.map(e => e.name)}
                 input={destinationCity}
                 setInput={setDestinationCity}
                 setDestination={(dest) => setValues({ ...values, destination: dest })}
+=======
+                fieldInput={cities?.map((e) => e.name)}
+                input={destinationCity}
+                setInput={setDestinationCity}
+                setDestination={(dest) =>
+                  setValues({ ...values, destination: dest })
+                }
+>>>>>>> fac26158b1ee4ea38f3705b5da2b2eb76ca12d4a
               />
               {/* <input
               type="text"
@@ -99,6 +121,13 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
               format={"dd-MM-y"}
               minDate={new Date()}
             />
+<<<<<<< HEAD
+=======
+        </div>
+        {/* <div className="col-2 mb-4">
+          <div className="row mb-2">
+            <label>Pasajeros:</label>
+>>>>>>> fac26158b1ee4ea38f3705b5da2b2eb76ca12d4a
           </div>
           <div className="col-4 mb-4">
             <div className="row mb-2">
@@ -112,6 +141,10 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
               />
             </div>
           </div>
+<<<<<<< HEAD
+=======
+        </div> */}
+>>>>>>> fac26158b1ee4ea38f3705b5da2b2eb76ca12d4a
         </div>
         <div className="row">
           <div className="row col-sm-12 col-md-12 col-lg-12 justify-content-center">

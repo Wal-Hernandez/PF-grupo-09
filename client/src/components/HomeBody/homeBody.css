@@ -1,7 +1,11 @@
 * {
     font-family: 'Montserrat', sans-serif;
 }
-
+.loader{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 200px;
+}
 .cont-card {
     margin-top: 50px;
 }
@@ -10,6 +14,22 @@
     border-radius: 0px 0px 26px 0px;
    height: auto;
     transition: all .3s;
+}
+.card-bodyhome{
+    min-height: 170px;
+    max-height: 170px;
+}
+@media screen and (max-width: 800px) {
+    .card-bodyhome{
+        min-height: 300px;
+        
+    }
+}
+@media screen and (max-width: 500px) {
+    .card-bodyhome{
+        min-height: 300px;
+        
+    }
 }
 
 .c-name {
@@ -56,7 +76,7 @@
 }
 
 .c-hotel {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -65,7 +85,10 @@
     font-weight: 700;
     margin-bottom: 1px;
 }
-
+.btn-pack-home{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
 /* .btn-sm {
     background-color: #FFDE59;
     color: rgb(50, 50, 50);

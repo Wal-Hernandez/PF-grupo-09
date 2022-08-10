@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getPackageId } from "../../redux/actions/getPackageId";
@@ -7,12 +7,12 @@ import "./details.css";
 import {TYPES} from '../../redux/actions/shoppingActions';
 import { getAuth } from "firebase/auth";
 import CartItem from "../CartItem/CartItem"
-import Reviews from "../Reviews";
 import{addDetailCart} from "../../redux/actions/addDetailCart"
 import {loadCart} from "../../redux/actions/loadCart"
 import {addOnePeople} from "../../redux/actions/addOnePeople"
 import { getPackages } from "../../redux/actions/getPackages";
 import StarRating from "../StarRatings/index"
+import ShowReviews from "../Reviews/ShowReviews";
 
 
 
@@ -28,7 +28,7 @@ export default function Details({userlog}) {
       <div>{e.name}</div>
     )
   })
-  
+  const [showReviews, setshowReviews] = useState(false);
     
 
   const auth = getAuth();
@@ -169,75 +169,140 @@ console.log("CART:",cart)
 console.log(new Date(packageDetail.start_date).toString())
 
   return (
-    <div class="container "> 
-
-<div class="card mb-3">
-  <div class="row g-0 ">
-    <div class="col-md-4 ">
-      <img src={packageDetail.hotel?.urlImage} class="img-fluid rounded-start"  alt="Image not found"/>
-    </div>
-    <div class="col-md-5">
-      <div class="card-body info-det">
-        <h5 class="card-title title-det">{packageDetail.name}</h5>
-        <h6 class="card-title city-det">{packageDetail.city?.name} </h6>
-        <h6 class="card-title hotel-det">{packageDetail.hotel?.name}</h6>
-        <h5 className="card-title star"><StarRating stars = {packageDetail.hotel?.stars}/></h5> 
-        <h5>{packageDetail.hotel?.wifi? <span class="material-symbols-outlined">
-              wifi
-              </span>:null} {packageDetail.hotel?.pool?<span class="material-symbols-outlined">
-              pool
-              </span>:null}{packageDetail.hotel?.gym?<span class="material-symbols-outlined">
-              fitness_center
-              </span>:null}
-        </h5>
-        <div className="activites-det">
-        <a class="card-title" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
-          Actividades incluidas 
-          <span class="material-symbols-outlined">
-          expand_more
-          </span>
-        </a>
-          <div class="col">
-            <div class="collapse" id="multiCollapseExample1">
-              <div class="card card-body">
-              <p class="card-text act">{packageActivity?packageActivity:null}</p>
+    <div class="container ">
+      <div class="card mb-3">
+        <div class="row g-0 ">
+          <div class="col-md-4 ">
+            <img
+              src={packageDetail.hotel?.urlImage}
+              class="img-fluid rounded-start"
+              alt="Image not found"
+            />
+          </div>
+          <div class="col-md-5">
+            <div class="card-body info-det">
+              <h5 class="card-title title-det">{packageDetail.name}</h5>
+              <h6 class="card-title city-det">{packageDetail.city?.name} </h6>
+              <h6 class="card-title hotel-det">{packageDetail.hotel?.name}</h6>
+              <h5 className="card-title star">
+                <StarRating stars={packageDetail.hotel?.stars} />
+              </h5>
+              <h5>
+                {packageDetail.hotel?.wifi ? (
+                  <span class="material-symbols-outlined">wifi</span>
+                ) : null}{" "}
+                {packageDetail.hotel?.pool ? (
+                  <span class="material-symbols-outlined">pool</span>
+                ) : null}
+                {packageDetail.hotel?.gym ? (
+                  <span class="material-symbols-outlined">fitness_center</span>
+                ) : null}
+              </h5>
+              <div className="activites-det">
+                <a
+                  class="card-title"
+                  data-bs-toggle="collapse"
+                  href="#multiCollapseExample1"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="multiCollapseExample1"
+                >
+                  Actividades incluidas
+                  <span class="material-symbols-outlined">expand_more</span>
+                </a>
+                <div class="col">
+                  <div class="collapse" id="multiCollapseExample1">
+                    <div class="card card-body">
+                      <p class="card-text act">
+                        {packageActivity ? packageActivity : null}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* <h6 class="card-title">Actividades incluidas</h6>
+        <p class="card-text act">{packageActivity}</p> */}
               </div>
             </div>
           </div>
-        {/* <h6 class="card-title">Actividades incluidas</h6>
-        <p class="card-text act">{packageActivity}</p> */}
+          <div class="col-md-3">
+            <div class="card-body">
+              <h4 class="card-title">Precio por persona</h4>
+              <h3 class="card-text price-det">$ {packageDetail.price}</h3>
+              <p class="card-text fecha">
+                Salida:{" "}
+                {new Date(packageDetail.start_date).toLocaleString("es-ES")}
+              </p>
+              <p class="card-text fecha">
+                Llegada:{" "}
+                {new Date(packageDetail.end_date).toLocaleString("es-ES")}
+              </p>
+              <p class="card-text stock">
+                {" "}
+                <small class="text-muted">
+                  Stock disponible {packageDetail.stock}
+                </small>
+              </p>
+            </div>
+            <div className="btn-comprar">
+              {paqueteCargado ? (
+                <Link to="/shoppingcart">
+                  <button className="btn btn-warning">
+                    Ver en el Carrito
+                    <span class="material-symbols-outlined">
+                      shopping_cart_checkout
+                    </span>
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  className="btn btn-warning"
+                  onClick={() => addToCart(id)}
+                >
+                  Agregar al carrito
+                  <span class="material-symbols-outlined">
+                    add_shopping_cart
+                  </span>
+                </button>
+              )}
+            </div>
+          </div>
+          <div></div>
         </div>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card-body">
-        <h4 class="card-title">Precio por persona</h4>
-        <h3 class="card-text price-det">$ {packageDetail.price}</h3>
-        <p class="card-text fecha">Salida: {new Date(packageDetail.start_date).toLocaleString('es-ES')}</p>
-        <p class="card-text fecha">Llegada: {new Date(packageDetail.end_date).toLocaleString('es-ES')}</p>
-        <p class="card-text stock"> <small class="text-muted">Stock disponible {packageDetail.stock}</small></p>
-        
-      </div> 
-      <div className="btn-comprar">
-      {paqueteCargado?<Link to="/shoppingcart">
-      <button className="btn btn-warning">Ver en el Carrito<span class="material-symbols-outlined">
-shopping_cart_checkout
-</span></button></Link>:
-      <button className="btn btn-warning" onClick={() => addToCart(id)}>
-        Agregar al carrito 
-        <span class="material-symbols-outlined">
-        add_shopping_cart
-        </span>
-      </button>} 
-      </div>
-    </div>
-    <div>
-    
-    </div>
-  </div>
-</div>
 
-</div>
-);
+      {!packageDetail.hotel?.reviewHotels?.length &&
+      !packageDetail.business?.reviewBusinesses?.length &&
+      !packageDetail.activities?.reviewActivities?.length ? (
+        <p>Aún no hay valoraciones para los elementos de este paquete</p>
+      ) : (
+        <div className="review-container">
+          <button onClick={() => setshowReviews(!showReviews)}>
+            Mostrar valoraciones de usuarios
+          </button>
+          {packageDetail.hotel?.reviewHotels?.length ? (
+            <div>
+              {showReviews && (
+                <ShowReviews data={packageDetail.hotel?.reviewHotels} titulo={'Valoraciones del hotel'} />
+              )}
+            </div>
+          ) : null}
+          {packageDetail.business?.reviewBusinesses?.length ? (
+            <div>
+              {showReviews && (
+                <ShowReviews data={packageDetail.business?.reviewBusinesses} titulo={'Valoraciones de la empresa de transporte'}/>
+              )}
+            </div>
+          ) : null}
+          {packageDetail.activities?.map(act=> act?.reviewActivities.length ? (
+            <div>
+              {showReviews && (
+                <ShowReviews data={act?.reviewActivities} titulo={`Valoración de la actividad - ${act.name}`} />
+              )}
+            </div>
+          ) : null)}
+        </div>
+      )}
+    </div>
+  );
 
 }

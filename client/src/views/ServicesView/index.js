@@ -12,13 +12,22 @@ import { getPackages } from "../../redux/actions/getPackages";
 import { getClean } from "../../redux/actions/getClean";
 
 export default function Services({ userlog }) {
-
   const packages = useSelector((state) => state.rootReducer.packages);
   const dispatch = useDispatch();
   const paquetesDisponibles = packages?.filter((e) => {
     return e.stock > 0;
   });
 
+  // paquetesDisponibles?.sort(function (a, b) {
+  //   if (a.start_date > b.start_date) {
+  //     return 1;
+  //   }
+  //   if (a.start_date < b.start_date) {
+  //     return -1;
+  //   }
+
+  //   return 0;
+  // });
 
   useEffect(() => {
     dispatch(getCities());
@@ -26,8 +35,8 @@ export default function Services({ userlog }) {
     dispatch(getPackages());
 
     return () => {
-      dispatch(getClean())
-    }
+      dispatch(getClean());
+    };
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,10 +54,8 @@ export default function Services({ userlog }) {
 
   return (
     <>
-
       <Navbar setCurrentPage={setCurrentPage} userlog={userlog} />
       <div className="container">
-
         <div className="row align-items-center justify-content-center">
           <div className="row align-items-center">
             <div className="col-sm-1 col-md-2 col-lg-3"></div>
@@ -60,7 +67,6 @@ export default function Services({ userlog }) {
           <div className="row mt-5 mb-3">
             <Productos currentPackages={currentPackages} />
           </div>
-
           <div>
             <button class="btn btn-primary" onClick={mostrarPaquetes}> Ver mas paquetes </button>
           </div>

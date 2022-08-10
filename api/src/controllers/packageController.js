@@ -5,19 +5,14 @@ const getPackages = async(req, res, next) => {
     try {
         const { destination, start, end, price, stock, activity } = req.query;
 
-        const destinationWhere = destination ? {
-            name: {
-                [Op.iLike]: `%${destination}%`
-            }
-        } : {};
+        const destinationWhere = destination ?
+            { name: {
+                    [Op.iLike]: `%${destination}%` } } :
+            {};
         const dateWhere = start && end ? {
-            [Op.and]: [Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start), Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end)]
-        } : start ? Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '>=', start) : end ? Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end) : {}
-        const activityWhere = activity ? {
-            name: {
-                [Op.iLike]: `%${activity}%`
-            }
-        } : {};
+            [Op.and]: [Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '=', start), Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end)] } : start ? Sequelize.where(Sequelize.fn('date', Sequelize.col('start_date')), '>=', start) : end ? Sequelize.where(Sequelize.fn('date', Sequelize.col('end_date')), '=', end) : {}
+        const activityWhere = activity ? { name: {
+                [Op.iLike]: `%${activity}%` } } : {};
 
         let order = []
         if (stock) {
@@ -25,7 +20,7 @@ const getPackages = async(req, res, next) => {
         } else if (price) {
             order = ["price", price.toUpperCase()]
         } else {
-            order = ["stock", "NULLS FIRST"]
+            order = ["start_date", "ASC"]
         }
 
         const allPackages = await Package.findAll({

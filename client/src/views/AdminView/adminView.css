@@ -61,24 +61,21 @@ flex-direction: row;
 .adminViewContainer{
     display: flex;
     flex-direction: column;
-
-    justify-content:flex-start;
-    height: 100vh;
+    max-height: 100vh;
     width: 100vw;
-  
-  
 }
 
 .adminPanelContainer{
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 50%;
+    gap: 0px;
+    margin: 0 auto;
 
 }
 .adminPanelTitle{
-
-   
-    padding-bottom: 2vh;
+    padding-bottom: 1vh;
 }
 
 .btnDel button{
@@ -105,7 +102,7 @@ flex-direction: row;
     background-color:#004AAD;
     color: antiquewhite;
     border-radius: 50%;
-    padding-top: 5px;
+    padding-top: 3px;
 }
 .btnAdd button:hover{
     color: #FFDE59;
@@ -124,6 +121,15 @@ flex-direction: row;
     margin-bottom: 40px;
     background-color: #004AAD;
 }
+.adminPanelContainer a{
+ border: none;
+ background-color: rgba(0, 0, 0, 0);
+}
+.adminPanelContainer a:hover{
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+   }
+   
 
 
 .adminPanelColumn{
@@ -133,11 +139,12 @@ align-items: center;
 width: 45%;
 margin: 0 auto;
 height: 13vh;
-margin-top: 10px;
 border-radius: 3px;
 border-top:5px solid #FFDE59;
 background-color: #004AAD;
 box-shadow: -3px 3px 25px -1px rgba(0,0,0,0.58);
+margin-top: 1px;
+
 }
 .adminPanelColumn h1 {
   font-size: 18px;
@@ -166,6 +173,12 @@ box-shadow: -3px 3px 25px -1px rgba(0,0,0,0.58);
 .flecha.izquierda {
 	transform: rotate(225deg);
 }
+.flecha-nueva {
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  color: black;
+}
 
 .btn-pag{
     border: none;
@@ -184,7 +197,7 @@ box-shadow: -3px 3px 25px -1px rgba(0,0,0,0.58);
 
 }
 .pag-info{
-    font-size: 17px;
+    font-size: 12px;
     font-weight: 500;
 }
 .form{
@@ -225,6 +238,8 @@ box-shadow: -3px 3px 25px -1px rgba(0,0,0,0.58);
     border-radius: 4px;
     padding: 6px;
 }
-.c{
-    border: 1px solid red;
+
+.bienvenida{
+   
+    margin-top: 100px;
 }

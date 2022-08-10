@@ -76,7 +76,7 @@ function Ejemplo({ lang }) {
     urlImage: []
   });
   const [urlHotel, setUrlHotel] = React.useState([]);
-
+console.log(hotel)
   const { platforms, business, cities, hotels, activities } = useSelector(
     (state) => state.adminReducer
   );
@@ -93,7 +93,7 @@ function Ejemplo({ lang }) {
   }, [dispatch]);
 
   function TransformData(x) {
-    if (isNaN(x[0])) return x;
+    if (isNaN(x[0]) && x[0] !== "-")return x;
     return x.split(",");
   }
   function handleChangeCity(event) {

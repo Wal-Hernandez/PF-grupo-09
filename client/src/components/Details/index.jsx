@@ -267,7 +267,7 @@ console.log("CART:",cart)
           <div></div>
         </div>
       </div>
-
+     {/*&& !packageDetail.activities?.length  */}
       {!packageDetail.hotel?.reviewHotels?.length &&
       !packageDetail.business?.reviewBusinesses?.length &&
       !packageDetail.activities?.map(e=>e.reviewActivities).flat().length

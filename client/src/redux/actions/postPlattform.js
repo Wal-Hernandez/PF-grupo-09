@@ -1,10 +1,10 @@
-import {POST_PLATFORM} from './actionTypes'
+import {POST_PLATFORM,DB_HEROKU} from './actionTypes'
 import axios from 'axios'
 
 export const postPlatform= (platform) => {
     return async function(dispatch) {
         try {
-            let result = await axios.post(`http://localhost:3001/plattforms`,platform);
+            let result = await axios.post(`${DB_HEROKU}/plattforms`,platform);
             console.log(result.data)
             return dispatch({
                 type: POST_PLATFORM,

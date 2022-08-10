@@ -39,8 +39,6 @@ router.use("/activityreviews", ReviewActivity);
 router.use("/businessreviews", ReviewBusiness);
 router.use("/mailing", Mailing);
 router.use("/admin", Admin);
-router.use("/mailing", Mailing);
-router.use("/admin", Admin);
 router.use("/shopping", Shopping);
 router.use("/stock", Stock);
 

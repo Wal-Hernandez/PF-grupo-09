@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
@@ -9,12 +9,15 @@ import { getClean } from "../../../redux/actions/getClean";
 import { getHotels } from "../../../redux/actions/getHotels";
 import { getPlatforms } from "../../../redux/actions/getPlatforms";
 import { putPackage } from "../../../redux/actions/putPackage";
+import DateTimePicker from "react-datetime-picker";
 export const PutPackageForm = ({ pack }) => {
   const dispatch = useDispatch();
+
+
   const packAct = pack.activities.map(e => e.name)
   const [packages, setPackages] = React.useState({
-    start_date: pack.start_date,
-    end_date: pack.end_date,
+    start_date: new Date(pack.start_date),
+    end_date: new Date(pack.end_date),
     name: pack.name,
     price: pack.price,
     discount: pack.discount,
@@ -25,7 +28,8 @@ export const PutPackageForm = ({ pack }) => {
     hotelId: pack.hotelId,
     activity: packAct,
   });
-  console.log(pack);
+  let [startDate, setStartDate] = useState(packages["start_date"]);
+  let [endDate, setEndDate] =  useState(packages["start_date"]);
   const {
     register,
     handleSubmit,
@@ -33,7 +37,21 @@ export const PutPackageForm = ({ pack }) => {
   } = useForm();
 
   const { platforms, business, cities, hotels, activities } = useSelector((state) => state.adminReducer);
+  let [newHotels, setNewHotels] = useState([]);
+  let [newActivities, setNewActivities] = useState([])
+  const handleDates = () => {
 
+    setPackages({
+      ...packages,
+      start_date: startDate ? startDate?.toISOString() : "",
+    });
+  };
+  const handleEndDates = () => {
+    setPackages({
+      ...packages,
+      end_date: endDate ? endDate?.toISOString() : "",
+    });
+  };
   useEffect(() => {
     dispatch(getPlatforms())
     dispatch(getBuses())
@@ -42,7 +60,7 @@ export const PutPackageForm = ({ pack }) => {
     dispatch(getActivities())
     return () => dispatch(getClean())
   }, [dispatch])
-
+ 
   /* function TransformData(x) {
     return x.split(",");
   } */
@@ -61,9 +79,29 @@ export const PutPackageForm = ({ pack }) => {
         ...packages,
         [event.target.name]: [... new Set([...packages.activity, event.target.value])] /* [TransformData(event.target.value)] */,
       });
-      console.log("activity", packages.activity)
       return;
     }
+    if (event.target.name === "cityId") {
+    
+    
+      console.log(packages)
+      let newHotel = hotels.filter(
+        (h) => h.cityId === parseInt(event.target.value)
+      );
+      let newActivities = activities.filter(
+        (h) => h.cityId === parseInt(event.target.value)
+      );
+     
+      setNewHotels(newHotel);
+      setNewActivities(newActivities);
+      
+      return   (setPackages({
+        ...packages,
+        [event.target.name]: event.target.value,
+        activity:[]
+      }))  
+    }
+
     setPackages({ ...packages, [event.target.name]: event.target.value });
   }
 
@@ -80,13 +118,13 @@ export const PutPackageForm = ({ pack }) => {
     required: { value: true, message: "REQUERIDO" },
   });
 
-  const start_date = register("start_date", {
+/*   const start_date = register("start_date", {
     required: { value: true, message: "REQUERIDO" },
   });
 
   const end_date = register("end_date", {
     required: { value: true, message: "REQUERIDO" },
-  });
+  }); */
 
   const price = register("price", {
     required: { value: true, message: "REQUERIDO" },
@@ -121,37 +159,41 @@ export const PutPackageForm = ({ pack }) => {
           {errors?.name && <span>{errors?.name?.message}</span>}
         </div>
 
+        
         <div className="div-form">
           <label className="label-form"> Fecha de inicio: </label>
-          <input
-            type="text"
+          <DateTimePicker
             name="start_date"
-            value={packages["start_date"]}
-            placeholder="Ingrese fecha inicio."
-            {...start_date}
-            onChange={(e) => {
-              start_date.onChange(e);
-              handleChange(e);
-            }}
+            onBlur={handleDates}
+            onChange={setStartDate}
+            value={startDate}
+            dayPlaceholder={"DD"}
+            monthPlaceholder={"MM"}
+            yearPlaceholder={"YYYY"}
+            format={"dd-MM-y h:mm:ss a"}
+            minDate={new Date()}
+            hourPlaceholder={"hh"}
+            minutePlaceholder={"mm"}
+            secondPlaceholder={"ss"}
           />
-          {errors?.start_date && <span>{errors?.start_date?.message}</span>}
         </div>
-
         <div className="div-form">
           <label className="label-form"> Fecha de finalización: </label>
-          <input
-            type="text"
+          <DateTimePicker
             name="end_date"
-            value={packages["end_date"]}
-            placeholder="Ingrese fecha finalización."
-            {...end_date}
-            onChange={(e) => {
-              end_date.onChange(e);
-              handleChange(e);
-            }}
+            onBlur={handleEndDates}
+            onChange={setEndDate}
+            value={endDate}
+            dayPlaceholder={"DD"}
+            monthPlaceholder={"MM"}
+            yearPlaceholder={"YYYY"}
+            format={"dd-MM-y h:mm:ss a"}
+            minDate={new Date()}
+            hourPlaceholder={"hh"}
+            minutePlaceholder={"mm"}
+            secondPlaceholder={"ss"}
           />
-          {errors?.end_date && <span>{errors?.end_date?.message}</span>}
-        </div>
+ </div>
 
         <div className="div-form">
           <label className="label-form"> Precio: </label>
@@ -237,7 +279,7 @@ export const PutPackageForm = ({ pack }) => {
         <div className="div-form">
           <select name="hotelId" required defaultValue="" onChange={handleChange}>
             <option key="keyhotels" value="" disabled>Hotel</option>
-            {hotels.map((hotel) => (
+            {newHotels.map((hotel) => (
               <option key={hotel.id} value={hotel.id}>
                 {hotel.name}
               </option>
@@ -256,7 +298,7 @@ export const PutPackageForm = ({ pack }) => {
               <option key="keyactivity" value={''}>
                 Ninguna
               </option>
-              {activities.map((activ) => (
+              {newActivities.map((activ) => (
                 <option value={activ.name} key={activ.id}>
                   {activ.name}
                 </option>
@@ -265,8 +307,8 @@ export const PutPackageForm = ({ pack }) => {
           </div>
           <div>
             <ul>
-              {packages.activity.map((activi) => (
-                <li style={{ listStyle: "none" }} key={activi}>
+              {packages["activity"].map((activi) => (
+                <li style={{ listStyle: "none" }} key={activi.id}>
                   {" "}
                   {activi}
                   <button

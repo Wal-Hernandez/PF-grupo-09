@@ -4,14 +4,14 @@ import Filters from "./Filters";
 import Search from "./Search";
 
 function SearchAndFilters({ setCurrentPage }) {
-  
+
   const [activity, setActivity] = useState("");
   const [city, setCity] = useState("");
   const [startDate, setStartDate] = useState("");
   const [priceOrder, setPriceOrder] = useState("");
   const [stockOrder, setStockOrder] = useState("");
 
-  const {cities, activities} = useSelector(state => state.rootReducer);
+  const { cities, activities } = useSelector(state => state.rootReducer);
 
   return (
     <div className="container w-85 mt-5">
@@ -30,20 +30,20 @@ function SearchAndFilters({ setCurrentPage }) {
         setActivity={setActivity}
       />
       </div>
-       <div className="row">
-      <Filters
-        setCurrentPage={setCurrentPage}
-        price={priceOrder}
-        stock={stockOrder}
-        activity={activity}
-        startDate={startDate}
-        setPrice={setPriceOrder}
-        setStock={setStockOrder}
-        setActivity={setActivity}
-        activities={activities}
-        city={city}
-        cities={cities}
-      />
+      <div className="row border-top border-primary">
+        <Filters
+          setCurrentPage={setCurrentPage}
+          price={priceOrder}
+          stock={stockOrder}
+          activity={activity}
+          startDate={startDate}
+          setPrice={setPriceOrder}
+          setStock={setStockOrder}
+          setActivity={setActivity}
+          activities={activities}
+          city={city}
+          cities={cities}
+        />
       </div>
     </div>
   );

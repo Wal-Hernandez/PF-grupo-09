@@ -28,9 +28,9 @@ import {
     PUT_USER,
     GET_USERS,
     ENABLE_MODEL
-
+    
 } from "../actions/actionTypes";
-import { TYPES } from "../actions/shoppingActions"
+import {TYPES} from "../actions/shoppingActions"
 import { getAuth } from "firebase/auth";
 
 const initialState = {
@@ -97,7 +97,7 @@ export default function adminReducer(state = initialState, action) {
                 adminView: action.payload,
                 users: action.payload,
             }
-
+   
         case GET_PACKAGE_ID:
             return {
                 ...state,
@@ -169,12 +169,12 @@ export default function adminReducer(state = initialState, action) {
             return state;
         case GET_USER:
             return {...state,
-                users: action.payload,
-                adminView: action.payload
-            };
-        case PUT_USER:
+            users: action.payload,
+            adminView: action.payload
+        };
+            case PUT_USER:
             return state;
-        case ENABLE_MODEL:
+            case ENABLE_MODEL:
             return {...state
             }
         default:

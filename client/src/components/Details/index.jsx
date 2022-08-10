@@ -352,6 +352,8 @@ console.log("CART:",cart)
             />
           </div>
 
+          
+
             <div class="d-flex flex-column align-items-center product-details info-cart">
               <h4 class="font-weight-bold">Hotel: {packageDetail.hotel?.name}</h4>
               <div class="d-flex flex-column align-items-start product-desc">

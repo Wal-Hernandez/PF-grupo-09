@@ -51,4 +51,8 @@ export const FINISH_TRAVEL = "FINISH_TRAVEL";
 export const DB_HEROKU = "http://localhost:3001"
 export const SEND_MAIL = "SEND_MAIL";
 export const GET_USER = "GET_USER";
+
 export const PUT_USER = "PUT_USER";
+
+export const SEND_PAYMENT='SEND_PAYMENT'
+

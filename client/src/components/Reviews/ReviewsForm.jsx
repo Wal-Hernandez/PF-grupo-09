@@ -33,7 +33,7 @@ function ReviewsForm({ values, setValues, selected }) {
       ...values,
       title: "",
       comment: "",
-      score: 0,
+      score: 0
     });
     swal({
       title: "Valoracion aceptada",

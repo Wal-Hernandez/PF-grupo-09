@@ -24,4 +24,30 @@ const transport = nodemailer.createTransport(config)
 const info =  await transport.sendMail(mensaje)
 return info
 }
-module.exports={enviarMail}
+
+const sendPaymentConfirmation = async (mail) =>{
+
+     const config={
+    host:'smtp.gmail.com',
+    port: 465,
+    auth: {
+         user: USER_MAIL,
+          pass: PASS_MAIL
+          }
+     }
+    
+    const mensaje ={
+    from: 'carloslamas3.0@gmail.com',
+    to:`${mail}`,
+    subject: 'Pago',
+    text: 'Tu pago ha sido confirmado. Te esperamos'
+    
+    }
+    const transport = nodemailer.createTransport(config)
+    const info =  await transport.sendMail(mensaje)
+    return info
+    }
+
+
+
+module.exports={enviarMail,sendPaymentConfirmation}

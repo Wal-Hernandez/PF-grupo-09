@@ -28,6 +28,8 @@ function Ejemplo({ lang }) {
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
   const expRegEmail =
     /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  const expRegSoloLetras = /^[a-zA-Z ]*$/;
+  const expRegLatLon = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
   const [city, setCity] = React.useState({ name: "", location: [] });
   const [bus, setBus] = React.useState({
     name: "",
@@ -250,10 +252,12 @@ function Ejemplo({ lang }) {
   if (lang === "hotels") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     const stars = register("stars", {
@@ -293,7 +297,7 @@ function Ejemplo({ lang }) {
         <div className="div-form">
           <label className="label-form"> Ubicación: </label>
           <input
-            type="number"
+            type="text"
             name="location"
             value={hotel["location"]}
             placeholder="Ingrese la ubicación."
@@ -309,7 +313,7 @@ function Ejemplo({ lang }) {
         <div className="div-form">
           <label className="label-form"> Estrellas: </label>
           <input
-            type="number"
+            type="text"
             name="stars"
             value={hotel["stars"]}
             placeholder="Ingrese la ubicación."
@@ -326,7 +330,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Telefono: </label>
 
           <input
-            type="number"
+            type="text"
             name="phone"
             value={hotel["phone"]}
             placeholder="Ingrese la ubicación."
@@ -343,7 +347,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Precio: </label>
 
           <input
-            type="text"
+            type="number"
             name="price"
             value={hotel["price"]}
             placeholder="Ingrese el precio."
@@ -425,6 +429,7 @@ function Ejemplo({ lang }) {
   if (lang === "plattforms") {
     const terminal = register("terminal", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     const address = register("address", {
@@ -433,6 +438,7 @@ function Ejemplo({ lang }) {
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     return (
@@ -498,10 +504,12 @@ function Ejemplo({ lang }) {
   if (lang === "cities") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     return (
@@ -553,6 +561,7 @@ function Ejemplo({ lang }) {
   if (lang === "business") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     const phone = register("phone", {
@@ -564,10 +573,10 @@ function Ejemplo({ lang }) {
       pattern: { value: expRegEmail, message: "Email invalido" },
     });
 
-    const score = register("score", {
+    /* const score = register("score", {
       required: { value: true, message: "REQUERIDO" },
       min: { value: 0, message: "Minimo 0" },
-    });
+    }); */
 
     return (
       <form className="form" onSubmit={handleSubmit(handleSubmitBus)}>
@@ -592,7 +601,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Telefono: </label>
 
           <input
-            type="text"
+            type="number"
             name="phone"
             value={bus["phone"]}
             placeholder="Ingrese un telefono."
@@ -622,7 +631,7 @@ function Ejemplo({ lang }) {
           {errors?.email && <span>{errors?.email?.message}</span>}
         </div>
 
-        <div className="div-form">
+        {/* <div className="div-form">
           <label className="label-form"> Puntaje: </label>
 
           <input
@@ -648,7 +657,7 @@ function Ejemplo({ lang }) {
             placeholder="Ingrese un comentario."
             onChange={handleChangeBus}
           />
-        </div>
+        </div> */}
 
         <button type="submit" className="button-form">
           {" "}
@@ -661,6 +670,7 @@ function Ejemplo({ lang }) {
   if (lang === "activities") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     // const image = register("image", {
@@ -717,7 +727,7 @@ function Ejemplo({ lang }) {
           />
           {errors?.price && <span>{errors?.price?.message}</span>}
         </div>
-        <div className="div-form">
+        {/* <div className="div-form">
           <label className="label-form"> Puntaje: </label>
 
           <input
@@ -738,7 +748,7 @@ function Ejemplo({ lang }) {
             placeholder="Ingrese un comentario."
             onChange={handleChangeActivity}
           />
-        </div>
+        </div> */}
 
         <div className="div-form">
           <select name="cityId" required defaultValue="" onChange={handleChangeActivity}>

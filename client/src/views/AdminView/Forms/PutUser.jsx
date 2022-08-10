@@ -98,7 +98,7 @@ export const PutUserForm = ({ pack }) => {
         <div className="div-form">
           <label className="label-form"> Rol: </label>
 
-          <select name="rol" onChange={handleChange} defaultValue="client">
+          <select name="rol" onChange={handleChange} defaultValue={pack.rol}>
             <option value="admin">Administrador</option>
             <option value="banned">Baneado</option>
             <option value="client">Cliente</option>
@@ -107,7 +107,7 @@ export const PutUserForm = ({ pack }) => {
 
         <button type="submit" className="button-form">
           {" "}
-          Actualizar
+          Actualizar usuario
         </button>
       </form>
     </div>

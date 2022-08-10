@@ -88,7 +88,7 @@ export const PutPlatformForm = ({ pack }) => {
         <div className="div-form">
           <label className="label-form"> Ubicación: </label>
           <input
-            type="number"
+            type="text"
             name="location"
             value={platform["location"]}
             {...location}
@@ -102,7 +102,7 @@ export const PutPlatformForm = ({ pack }) => {
 
         <button type="submit" className="button-form">
           {" "}
-          Put Platform
+          Actualizar plataforma
         </button>
 
       </form>

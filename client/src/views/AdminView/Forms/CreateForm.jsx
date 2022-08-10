@@ -251,7 +251,7 @@ function Ejemplo({ lang }) {
   if (lang === "hotels") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegUrl, message: "SOLO LETRAS" }
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     const location = register("location", {
@@ -345,7 +345,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Precio: </label>
 
           <input
-            type="text"
+            type="number"
             name="price"
             value={hotel["price"]}
             placeholder="Ingrese el precio."
@@ -427,6 +427,7 @@ function Ejemplo({ lang }) {
   if (lang === "plattforms") {
     const terminal = register("terminal", {
       required: { value: true, message: "REQUERIDO" },
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     const address = register("address", {
@@ -476,7 +477,7 @@ function Ejemplo({ lang }) {
           <label className="label-form"> Ubicación: </label>
 
           <input
-            type="text"
+            type="number"
             name="location"
             value={platform["location"]}
             placeholder="Ingrese las coordenadas."
@@ -500,7 +501,7 @@ function Ejemplo({ lang }) {
   if (lang === "cities") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegUrl, message: "SOLO LETRAS" }
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     const location = register("location", {
@@ -531,7 +532,7 @@ function Ejemplo({ lang }) {
             <label className="label-form"> Ubicación: </label>
 
             <input
-              type="text"
+              type="number"
               name="location"
               value={city["location"]}
               placeholder="Ingrese la ubicación."
@@ -556,7 +557,7 @@ function Ejemplo({ lang }) {
   if (lang === "business") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegUrl, message: "SOLO LETRAS" }
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     const phone = register("phone", {
@@ -665,7 +666,7 @@ function Ejemplo({ lang }) {
   if (lang === "activities") {
     const name = register("name", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegUrl, message: "SOLO LETRAS" }
+      pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
     });
 
     // const image = register("image", {

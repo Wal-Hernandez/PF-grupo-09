@@ -123,12 +123,18 @@ const getPackageById = async (req, res, next) => {
             model: Activity,
             include: {
               model: ReviewActivity,
+              include: {
+                model: User
+              }
             },
           },
           {
             model: Business,
             include: {
               model: ReviewBusiness,
+              include: {
+                model: User
+              }
             },
           },
           {
@@ -140,9 +146,10 @@ const getPackageById = async (req, res, next) => {
           {
             model: Hotel,
             include: {
-              model: ReviewHotel,  include: {
-                model: User,
-              },
+              model: ReviewHotel,
+              include: {
+                model: User
+              }
             },
           },
         ],

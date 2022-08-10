@@ -19,7 +19,9 @@ function ShowReviews({ data, titulo }) {
       {data.map((e) => (
         <div>
           <h6>{e.title}</h6>
+          <p class="card-text"><small class="text-muted">{e.user.mail}</small></p>
           <span>{e.comment}</span>
+          <hr />
         </div>
       ))}
     </div>

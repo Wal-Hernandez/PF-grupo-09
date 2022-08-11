@@ -230,12 +230,16 @@ function Admin() {
 
         <div className="adminViewContainer">
           <div className="adminPanelTitle">
-            <div className="btnAdd">
-              <button onClick={setCreate}>
-                <span class="material-symbols-outlined">add</span>
-              </button>
-            </div>
-            <h5>Crear</h5>
+          {model !== 'users' ? 
+            (<div>
+              <div className="btnAdd">
+                <button onClick={setCreate}>
+                  <span class="material-symbols-outlined">add</span>
+                </button>
+              </div>
+              <h5>Crear</h5>
+            </div>) : <></>}
+
             {adminView.length && !add && !edit ? (
               <p className="pag-info">{adminView.length} Resultados</p>
             ) : (
@@ -351,9 +355,39 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("hotelreviews", r.id))}>
+
+                                        <button onClick={async () => {
+
+return await swal({
+                                            title: "Confirmar accion",
+                                            text: "El elemento se borrara",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                          }).then(async (willDelete) => {
+                                            if (willDelete) {
+                                      
+                                              await dispatch(deleteReview("hotelreviews", r.id))
+                                             
+                                              swal( {
+                                                title:"Elemento borrado con éxito",
+                                                icon: "success",
+                                              });
+                                              dispatchByName(model)
+                                            } else {
+                                              swal( {
+                                                title:"El elemento no ha sido borrado",
+                                                icon: "warning",
+                                              });
+                                            }
+                                          })
+
+                                       
+                                           }}>
                                           delete
                                         </button>
+
+
                                       </span>
                                     </div>
                                     <hr />
@@ -383,7 +417,30 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("businessreviews", r.id))}>
+                                      <button onClick={async () => {
+                                        return await swal({
+                                          title: "Confirmar accion",
+                                          text: "El elemento se borrara",
+                                          icon: "warning",
+                                          buttons: true,
+                                          dangerMode: true,
+                                        }).then(async (willDelete) => {
+                                          if (willDelete) {
+                                    
+                                            await dispatch(deleteReview("businessreviews", r.id))
+                                           
+                                            swal( {
+                                              title:"Elemento borrado con éxito",
+                                              icon: "success",
+                                            });
+                                            dispatchByName(model)
+                                          } else {
+                                            swal( {
+                                              title:"El elemento no ha sido borrado",
+                                              icon: "warning",
+                                            });
+                                          }
+                                        }) }}>
                                           delete
                                         </button>
                                       </span>
@@ -419,7 +476,30 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("activityreviews", r.id))}>
+                                      <button onClick={async () => {
+                                       return await swal({
+                                        title: "Confirmar accion",
+                                        text: "El elemento se borrara",
+                                        icon: "warning",
+                                        buttons: true,
+                                        dangerMode: true,
+                                      }).then(async (willDelete) => {
+                                        if (willDelete) {
+                                  
+                                          await dispatch(deleteReview("activityreviews", r.id))
+                                         
+                                          swal( {
+                                            title:"Elemento borrado con éxito",
+                                            icon: "success",
+                                          });
+                                          dispatchByName(model)
+                                        } else {
+                                          swal( {
+                                            title:"El elemento no ha sido borrado",
+                                            icon: "warning",
+                                          });
+                                        }
+                                      }) }}>
                                           delete
                                         </button>
                                       </span>
@@ -550,14 +630,44 @@ function Admin() {
                             class="collapse "
                             id={`multiCollapseExample1${packs.id}`}
                           >
-                            <div
-                              class="d-flex flex-column"
-                              id="divCont"
-                            >
+                            <div class="d-flex flex-column" id="divCont">
                               <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
                                 <b>Calificación de usuarios: </b>
                                 {packs.reviewHotels.length ? (
-                                    <h1>{(packs.reviewHotels?.map((e) => e.score).reduce((a, b) => a + b))/ packs.reviewHotels.length} de 5</h1>
+                                  <h1>
+                                    {packs.reviewHotels
+                                      ?.map((e) => e.score)
+                                      .reduce((a, b) => a + b) /
+                                      packs.reviewHotels.length}{" "}
+                                    de 5
+                                  </h1>
+                                ) : (
+                                  <div>No hay reviews</div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                      {packs.reviewBusinesses?.length ? (
+                        <div class="col">
+                          <div
+                            class="collapse "
+                            id={`multiCollapseExample1${packs.id}`}
+                          >
+                            <div class="d-flex flex-column" id="divCont">
+                              <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
+                                <b>Calificación de usuarios: </b>
+                                {packs.reviewBusinesses.length ? (
+                                  <h1>
+                                    {packs.reviewBusinesses
+                                      ?.map((e) => e.score)
+                                      .reduce((a, b) => a + b) /
+                                      packs.reviewBusinesses.length}{" "}
+                                    de 5
+                                  </h1>
                                 ) : (
                                   <div>No hay reviews</div>
                                 )}

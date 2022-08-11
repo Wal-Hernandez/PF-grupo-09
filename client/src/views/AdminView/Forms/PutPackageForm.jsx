@@ -11,6 +11,7 @@ import { getPlatforms } from "../../../redux/actions/getPlatforms";
 import { putPackage } from "../../../redux/actions/putPackage";
 import DateTimePicker from "react-datetime-picker";
 export const PutPackageForm = ({ pack }) => {
+  console.log(pack)
   const dispatch = useDispatch();
   const expRegSoloLetras = /^[a-zA-Z ]*$/;
 
@@ -28,8 +29,10 @@ export const PutPackageForm = ({ pack }) => {
     hotelId: pack.hotelId,
     activity: packAct,
   });
+
+  console.log(packages)
   let [startDate, setStartDate] = useState(packages["start_date"]);
-  let [endDate, setEndDate] =  useState(packages["start_date"]);
+  let [endDate, setEndDate] =  useState(packages["end_date"]);
   const {
     register,
     handleSubmit,
@@ -98,7 +101,9 @@ export const PutPackageForm = ({ pack }) => {
       return   (setPackages({
         ...packages,
         [event.target.name]: event.target.value,
-        activity:[]
+        activity:[],
+        hotel:"",
+        hotelId:null
       }))  
     }
 
@@ -106,6 +111,12 @@ export const PutPackageForm = ({ pack }) => {
   }
 
   function handleSubmitPackage() {
+    if(!packages.hotelId){
+      return  swal({
+        title: "Necesita seleccionar un hotel",
+        icon: "warning",
+      })
+    }
     //e.preventDefault(); // para que era esto?
     dispatch(putPackage(pack.id, packages));
     swal({
@@ -250,6 +261,7 @@ export const PutPackageForm = ({ pack }) => {
         <label className="label-form"> Plataforma: </label>
           <select name="plattformId" defaultValue={packages.plattformId} onChange={handleChange}>
             {/* <option key="keyplatform" value="" disabled>Plataformas</option> */}
+             <option key={packages.plattformId} value={packages.plattformId}>{pack.plattform?.terminal}</option>
             {platforms.map((platform) => (
               <option key={platform.id} value={platform.id}>
                 {platform.terminal}
@@ -262,6 +274,7 @@ export const PutPackageForm = ({ pack }) => {
         <label className="label-form"> Transportista: </label>
           <select name="businessId" defaultValue={packages.businessId} onChange={handleChange}>
             {/* <option key="keybusiness" value="" disabled>Transportista</option> */}
+            <option key={packages.businessId} value={packages.businessId}>{pack.business?.name}</option>
             {business.map((busi) => (
               <option key={busi.id} value={busi.id}>
                 {busi.name}
@@ -272,8 +285,9 @@ export const PutPackageForm = ({ pack }) => {
 
         <div className="div-form">
         <label className="label-form"> Ciudad: </label>
-          <select name="cityId" defaultValue={packages.cityId} onChange={handleChange}>
+          <select name="cityId" defaultValue={packages.cityId} onChange={handleChange} >
             {/* <option key="keycities" value="" disabled>Ciudad</option> */}
+            <option key={packages.cityId} value={packages.cityId} disabled>{pack.city?.name}</option>
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
@@ -286,6 +300,9 @@ export const PutPackageForm = ({ pack }) => {
         <label className="label-form"> Hotel: </label>
           <select name="hotelId" defaultValue={packages.hotelId} onChange={handleChange}>
             {/* <option key="keyhotels" value="" disabled>Hotel</option> */}
+            {packages.hotelId === pack.hotelId 
+            ? <option key={packages.hotelId} value={packages.hotelId}>{pack.hotel?.name}</option> 
+            : <option key="no" value="" disabled>Seleccione Actividad</option>}
             {newHotels.map((hotel) => (
               <option key={hotel.id} value={hotel.id}>
                 {hotel.name}

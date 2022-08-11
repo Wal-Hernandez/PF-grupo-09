@@ -48,7 +48,6 @@ const initialState = {
     showPackages: [],
     detail: [],
     isAdmin: null,
-    adminView: [],
     offers: [],
     hotels: [],
     cities: [],

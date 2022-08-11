@@ -35,8 +35,10 @@ const cart = useSelector((state) => state.rootReducer.cart);
   } else {
     // No user is signed in.
   }
+  let storage=JSON.parse(localStorage.getItem("myCartNotLoggedin"));
+        console.log("STORAGE VACIO LOGIN:"+storage)
 
-
+console.log(storage)
   const { logout } = useAuth();
 
   const handleLogout = async () => {
@@ -81,7 +83,7 @@ const cart = useSelector((state) => state.rootReducer.cart);
       <li class="nav-item">
         <Link to="/shoppingcart" >
             <i class="fas fa-shopping-cart carrito"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">{!totalCart?.length?0:totalCart.length}</span>
+            <span class="badge rounded-pill badge-notification bg-danger">{user?!totalCart?.length?0:totalCart.length:storage?storage.length:0}</span>
           </Link>
         </li>
         <li class="nav-item">

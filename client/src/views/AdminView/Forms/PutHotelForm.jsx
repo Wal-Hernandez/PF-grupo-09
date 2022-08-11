@@ -198,7 +198,7 @@ export const PutHotelForm = ({ pack }) => {
           />
           {errors?.urlImage && <span>{errors?.urlImage?.message}</span>} */}
         </div>
-        <div>{hotel.urlImage === pack.urlImage ? <img src={pack.urlImage} style={{width:"500px"}}></img> : <></> }</div>
+        <div>{hotel.urlImage === pack.urlImage ? <img src={pack.urlImage} style={{width:"55%"}}></img> : <></> }</div>
         <div className="div-form">
           <label className="label-form"> Gimnasio </label>
           <select name="gym" onChange={handleChange} defaultValue={hotel.gym}>

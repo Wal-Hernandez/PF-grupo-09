@@ -188,6 +188,8 @@ export default function ProfileUser({ userlog }) {
         {shopping.length
           ? shopping.filter(cart=>cart.statusCartId==3).map((data) =>
               data?.cartDetails.map((pack) => (
+                <div>
+
                 <div className="user-card">
                   <p className="title">{pack.package?.name}</p>
                   <input type="checkbox" id={`spoiler${pack.id}`} />
@@ -196,9 +198,9 @@ export default function ProfileUser({ userlog }) {
                     {pack.package?.activities?.map((a) => (
                       <div>
                         <p className="title">{a?.name} <button onClick={()=>{
-                            setActivityId(a.id) 
-                            setSelected('activityreviews')
-                          }}>Evaluar</button></p>
+                          setActivityId(a.id) 
+                          setSelected('activityreviews')
+                        }}>Evaluar</button></p>
                       </div>
                     ))}
                     
@@ -210,7 +212,7 @@ export default function ProfileUser({ userlog }) {
                     <button onClick={()=>{
                       setBusinessId(pack.package?.business.id)
                       setSelected('businessreviews')
-                      }}>Evaluar</button>
+                    }}>Evaluar</button>
                   </div>
                   <input type="checkbox" id={`spoiler${pack.id}3`} />
                   <label for={`spoiler${pack.id}3`}>Hospedaje</label>
@@ -219,15 +221,16 @@ export default function ProfileUser({ userlog }) {
                     <button onClick={()=>{
                       setHotelId(pack.package?.hotel.id)
                       setSelected('hotelreviews')
-                      }}>Evaluar</button>
+                    }}>Evaluar</button>
                   </div>
                 </div>
                 
+                <p> Opiniones y Puntajes</p>
+                  <Reviews hotel={hotelId} activity={activityId} business={businessId} userlog={userlog} selected={selected} id={data.userId}/>
+              </div>
               ))
-            )
+              )
           : ""}
-        <p> Opiniones y Puntajes</p>
-          <Reviews hotel={hotelId} activity={activityId} business={businessId} userlog={userlog} selected={selected}/>
       
       </div>
     </div>

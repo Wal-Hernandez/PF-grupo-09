@@ -27,10 +27,10 @@ router.get("/:id", async(req, res) => {
     }
 });
 router.post("/", async(req, res) => {
-    const { name, location } = req.body;
+    const { name, location,image } = req.body;
 
     try {
-        let create = await createCity(name, location);
+        let create = await createCity(name, location,image);
 
         return res.send(create);
     } catch (error) {

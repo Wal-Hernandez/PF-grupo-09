@@ -19,8 +19,6 @@ export const PutActivityForm = ({ pack }) => {
     name: pack.name,
     image: pack.image,
     price: pack.price,
-    score: pack.score,
-    comments: pack.comments,
     cityId: pack.cityId,
   });
   const expRegUrl =
@@ -101,7 +99,7 @@ export const PutActivityForm = ({ pack }) => {
           />
           {errors?.image && <span>{errors?.image?.message}</span>} */}
         </div>
-
+        <div>{activity.image === pack.image ? <img src={pack.image} style={{width:"55%"}}></img> : <></> }</div>
         <div className="div-form">
           <label className="label-form"> Precio: </label>
           <input

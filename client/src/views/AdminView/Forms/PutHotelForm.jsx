@@ -27,13 +27,12 @@ export const PutHotelForm = ({ pack }) => {
     urlImage: pack.urlImage,
     cityId: pack.cityId
   });
-  console.log(pack.id);
   const expRegUrl =
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
   const expRegSoloLetras = /^[a-zA-Z ]*$/;
   const expRegLatLon = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
-    function TransformData(x) {
-    if (isNaN(x[0])) return x;
+  function TransformData(x) {
+    if (isNaN(x[0]) && x[0] !== "-")return x;
     return x.split(",");
   }
 
@@ -199,7 +198,7 @@ export const PutHotelForm = ({ pack }) => {
           />
           {errors?.urlImage && <span>{errors?.urlImage?.message}</span>} */}
         </div>
-
+        <div>{hotel.urlImage === pack.urlImage ? <img src={pack.urlImage} style={{width:"55%"}}></img> : <></> }</div>
         <div className="div-form">
           <label className="label-form"> Gimnasio </label>
           <select name="gym" onChange={handleChange} defaultValue={hotel.gym}>

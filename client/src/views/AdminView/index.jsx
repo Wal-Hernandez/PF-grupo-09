@@ -16,6 +16,7 @@ import Logo from "../../images/Buspack.png";
 import { EditForm } from "./Forms/EditForm";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import { deleteReview } from "../../redux/actions/deleteReview";
 import Stadistic from "../../components/Stadistic";
 
 function Admin() {
@@ -23,7 +24,7 @@ function Admin() {
   const [add, setAdd] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
   const [pack, setPack] = React.useState({});
-  const { adminView } = useSelector((state) => state.adminReducer);
+  const { adminView, packages } = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
 
   function dispatchByName(name) {
@@ -33,8 +34,12 @@ function Admin() {
     else if (name === "activities") dispatch(getActivities());
     else if (name === "cities") dispatch(getCities());
     else if (name === "plattforms") dispatch(getPlatforms());
-    else if (name === "users") dispatch(getUserForAdmin());
+    else if (name === "users") {
+      dispatch(getUserForAdmin())
+      dispatch(getPackages())
+    };
   }
+
 
   function handleSelect(e) {
     e.preventDefault();
@@ -54,28 +59,25 @@ function Admin() {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(async (willDelete) => {
       if (willDelete) {
 
-        dispatch(enableModel(e.target.value, model));
-        swal("Elemento borrado con éxito", {
-          icon: "success",
-        });
-        console.log("HOTEL BORRADO INTELIGENTEMENTEEEEEEEEEEEEEEEEEEEEEEE")
-
+        await dispatch(enableModel(e.target.value, model));
         //dispatch(deleteModel(e.target.value, model));
-        dispatchByName(model);
-        swal("Elemento borrado con éxito", {
+        
+        swal( {
+          title:"Elemento borrado con éxito",
           icon: "success",
         });
-
-
+  
       } else {
-        swal("El elemento no ha sido borrado", {
+        swal( {
+          title:"El elemento no ha sido borrado",
           icon: "success",
         });
       }
-    })}
+    }).then( (e) =>  dispatchByName(model)
+    )}
     
       
   let setCreate = () => {
@@ -229,12 +231,16 @@ function Admin() {
 
         <div className="adminViewContainer">
           <div className="adminPanelTitle">
-            <div className="btnAdd">
-              <button onClick={setCreate}>
-                <span class="material-symbols-outlined">add</span>
-              </button>
-            </div>
-            <h5>Crear</h5>
+          {model !== 'users' ? 
+            (<div>
+              <div className="btnAdd">
+                <button onClick={setCreate}>
+                  <span class="material-symbols-outlined">add</span>
+                </button>
+              </div>
+              <h5>Crear</h5>
+            </div>) : <></>}
+
             {adminView.length && !add && !edit ? (
               <p className="pag-info">{adminView.length} Resultados</p>
             ) : (
@@ -272,11 +278,11 @@ function Admin() {
               adminView
                 .map((packs) => {
                   return model === "users" ? (
-                    <div >
+                    <div>
                       <a
                         class="btn btn-info w-100 p-3"
                         data-bs-toggle="collapse"
-                        href={`#multiCollapseExample1${packs.nombre}`}
+                        href={`#multiCollapseExample1${packs.id}`}
                         role="button"
                         aria-expanded="false"
                         aria-controls="multiCollapseExample1"
@@ -315,13 +321,10 @@ function Admin() {
                       <div class="col">
                         <div
                           class="collapse "
-                          id={`multiCollapseExample1${packs.nombre}`}
+                          id={`multiCollapseExample1${packs.id}`}
                         >
-                          <div
-                            class="d-flex flex-row d-inline-block bg-dark"
-                            id="divCont"
-                          >
-                            <div class="card card-body h-100 w-50 rounded-0 ">
+                          <div class="d-flex flex-column" id="divCont">
+                            {/* <div class="card card-body h-100 w-50 rounded-0 ">
                               <b>Detalles de Carrito</b>
                               {packs.usuarioDB?.carts?.length ? (
                                 packs.usuarioDB.carts[0]?.cartDetails?.map(
@@ -330,11 +333,181 @@ function Admin() {
                               ) : (
                                 <div>Usuario sin carrito</div>
                               )}
-                            </div>
+                            </div> */}
                             <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
-                              <b>REVIEWS</b>
-                              {packs.usuarioDB?.reviewHotels ? (
-                                packs.usuarioDB?.reviewHotels?.map((e) => <h1>{e.title}</h1>)
+                              <b>Reviews a hoteles</b>
+                              {packs.usuarioDB?.reviewHotels.length ? (
+                                packs.usuarioDB?.reviewHotels.map((r) => (
+                                  <div>
+                                    <span>
+                                      Review para:{" "}
+                                      {packages.map((h) =>
+                                        h.hotelId === r.hotelId ? (
+                                          <span>{h.hotel.name}</span>
+                                        ) : null
+                                      )}
+                                    </span>
+                                    <h6>{r.title}</h6>
+                                    <p class="card-text">
+                                      <small class="text-muted">
+                                        {packs.usuarioDB?.mail}
+                                      </small>
+                                    </p>
+                                    <span>{r.comment}</span>
+                                    <div className="btns-reviews btnDel-rev">
+                                      <span class="material-symbols-outlined">
+
+                                        <button onClick={async () => {
+
+return await swal({
+                                            title: "Confirmar accion",
+                                            text: "El elemento se borrara",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                          }).then(async (willDelete) => {
+                                            if (willDelete) {
+                                      
+                                              await dispatch(deleteReview("hotelreviews", r.id))
+                                             
+                                              swal( {
+                                                title:"Elemento borrado con éxito",
+                                                icon: "success",
+                                              });
+                                              dispatchByName(model)
+                                            } else {
+                                              swal( {
+                                                title:"El elemento no ha sido borrado",
+                                                icon: "warning",
+                                              });
+                                            }
+                                          })
+
+                                       
+                                           }}>
+                                          delete
+                                        </button>
+
+
+                                      </span>
+                                    </div>
+                                    <hr />
+                                  </div>
+                                ))
+                              ) : (
+                                <div>No hay reviews</div>
+                              )}
+                              <b>Reviews a empresas</b>
+                              {packs.usuarioDB?.reviewBusinesses.length ? (
+                                packs.usuarioDB?.reviewBusinesses.map((r) => (
+                                  <div>
+                                    <span>
+                                      Review para:{" "}
+                                      {packages.map((h) =>
+                                        h.businessId === r.businessId ? (
+                                          <span>{h.business.name}</span>
+                                        ) : null
+                                      )}
+                                    </span>
+                                    <h6>{r.title}</h6>
+                                    <p class="card-text">
+                                      <small class="text-muted">
+                                        {packs.usuarioDB?.mail}
+                                      </small>
+                                    </p>
+                                    <span>{r.comment}</span>
+                                    <div className="btns-reviews btnDel-rev">
+                                      <span class="material-symbols-outlined">
+                                      <button onClick={async () => {
+                                        return await swal({
+                                          title: "Confirmar accion",
+                                          text: "El elemento se borrara",
+                                          icon: "warning",
+                                          buttons: true,
+                                          dangerMode: true,
+                                        }).then(async (willDelete) => {
+                                          if (willDelete) {
+                                    
+                                            await dispatch(deleteReview("businessreviews", r.id))
+                                           
+                                            swal( {
+                                              title:"Elemento borrado con éxito",
+                                              icon: "success",
+                                            });
+                                            dispatchByName(model)
+                                          } else {
+                                            swal( {
+                                              title:"El elemento no ha sido borrado",
+                                              icon: "warning",
+                                            });
+                                          }
+                                        }) }}>
+                                          delete
+                                        </button>
+                                      </span>
+                                    </div>
+                                    <hr />
+                                  </div>
+                                ))
+                              ) : (
+                                <div>No hay reviews</div>
+                              )}
+                              <b>Reviews a actividades</b>
+                              {packages.map((p) =>
+                                p.activities?.map((a) => a.reviewActivities)
+                              ).length ? (
+                                packs.usuarioDB?.reviewActivities.map((r) => (
+                                  <div>
+                                    <span>
+                                      Review para:{" "}
+                                      {packages.map((h) =>
+                                        h.activities.map((a) =>
+                                          a.id === r.activityId ? (
+                                            <span>{a.name}</span>
+                                          ) : null
+                                        )
+                                      )}
+                                    </span>
+                                    <h6>{r.title}</h6>
+                                    <p class="card-text">
+                                      <small class="text-muted">
+                                        {packs.usuarioDB?.mail}
+                                      </small>
+                                    </p>
+                                    <span>{r.comment}</span>
+                                    <div className="btns-reviews btnDel-rev">
+                                      <span class="material-symbols-outlined">
+                                      <button onClick={async () => {
+                                       return await swal({
+                                        title: "Confirmar accion",
+                                        text: "El elemento se borrara",
+                                        icon: "warning",
+                                        buttons: true,
+                                        dangerMode: true,
+                                      }).then(async (willDelete) => {
+                                        if (willDelete) {
+                                  
+                                          await dispatch(deleteReview("activityreviews", r.id))
+                                         
+                                          swal( {
+                                            title:"Elemento borrado con éxito",
+                                            icon: "success",
+                                          });
+                                          dispatchByName(model)
+                                        } else {
+                                          swal( {
+                                            title:"El elemento no ha sido borrado",
+                                            icon: "warning",
+                                          });
+                                        }
+                                      }) }}>
+                                          delete
+                                        </button>
+                                      </span>
+                                    </div>
+                                    <hr />
+                                  </div>
+                                ))
                               ) : (
                                 <div>No hay reviews</div>
                               )}
@@ -343,7 +516,7 @@ function Admin() {
                         </div>
                       </div>
                     </div>
-                  ) : model === 'plattforms'? (
+                  ) : model === "plattforms" ? (
                     <div>
                       <a
                         class="btn btn-info w-100 p-3"
@@ -355,9 +528,7 @@ function Admin() {
                       >
                         <div class="adminPanelColumn w-100" key={packs.id}>
                           <div className="text">
-                            <h1>
-                              {packs.terminal}
-                            </h1>
+                            <h1>{packs.terminal}</h1>
                           </div>
                           <div className="btns-admin">
                             <div className="btnEdit">
@@ -381,90 +552,135 @@ function Admin() {
                           </div>
                         </div>
                       </a>
-                      {packs.reviewHotels?.length ? (<div class="col">
+                    </div>
+                  ) : (
+                    <div>
+                      <a
+                        class="btn btn-info w-100 p-3"
+                        data-bs-toggle="collapse"
+                        href={`#multiCollapseExample1${packs.id}`}
+                        role="button"
+                        aria-expanded="false"
+                        aria-controls="multiCollapseExample1"
+                      >
                         <div
-                          class="collapse "
-                          id={`multiCollapseExample1${packs.id}`}
+                          class="adminPanelColumn w-100"
+                          key={packs.id}
+                          style={
+                            packs.enabled ? {} : { backgroundColor: "gray" }
+                          }
                         >
                           <div
-                            class="d-flex flex-row d-inline-block bg-dark"
-                            id="divCont"
+                            className="text"
+                            style={
+                              packs.enabled ? {} : { backgroundColor: "gray" }
+                            }
                           >
-
-
-                            <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
-                              <b>REVIEWS</b>
-                              {packs.reviewHotels ? (
-                                packs.reviewHotels?.map((e) => <h1>{e.title}</h1>)
-                              ) : (
-                                <div>No hay reviews</div>
-                              )}
+                            <h1>
+                              {packs.name || packs.patent || packs.terminal}
+                            </h1>
+                          </div>
+                          <div className="btns-admin">
+                            <div
+                              className="btnEdit"
+                              style={
+                                packs.enabled ? {} : { backgroundColor: "gray" }
+                              }
+                            >
+                              <button
+                                onClick={() => {
+                                  setUpdate(packs);
+                                }}
+                                style={
+                                  packs.enabled
+                                    ? {}
+                                    : { backgroundColor: "gray" }
+                                }
+                              >
+                                <span class="material-symbols-outlined">
+                                  edit
+                                </span>
+                              </button>
+                            </div>
+                            <div
+                              className="btnDel"
+                              style={
+                                packs.enabled ? {} : { backgroundColor: "gray" }
+                              }
+                            >
+                              <span class="material-symbols-outlined">
+                                <button
+                                  value={packs.id}
+                                  onClick={handleDelete}
+                                  style={
+                                    packs.enabled
+                                      ? {}
+                                      : { backgroundColor: "gray" }
+                                  }
+                                >
+                                  delete
+                                </button>
+                              </span>
                             </div>
                           </div>
                         </div>
-                      </div>) : <></>}
-                    </div>
-                  ):(<div>
-                  <a
-                    class="btn btn-info w-100 p-3"
-                    data-bs-toggle="collapse"
-                    href={`#multiCollapseExample1${packs.id}`}
-                    role="button"
-                    aria-expanded="false"
-                    aria-controls="multiCollapseExample1"
-                  >
-                    <div class="adminPanelColumn w-100" key={packs.id} style={packs.enabled? {}:{backgroundColor : 'gray'} }>
-                      <div className="text" style={packs.enabled? {}:{backgroundColor : 'gray'} }>
-                        <h1>
-                          {packs.name || packs.patent || packs.terminal}
-                        </h1>
-                      </div>
-                      <div className="btns-admin">
-                        <div className="btnEdit" style={packs.enabled? {}:{backgroundColor : 'gray'} }>
-                          <button
-                            onClick={() => {
-                              setUpdate(packs);
-                            }} style={packs.enabled? {}:{backgroundColor : 'gray'} }
+                      </a>
+                      {packs.reviewHotels?.length ? (
+                        <div class="col">
+                          <div
+                            class="collapse "
+                            id={`multiCollapseExample1${packs.id}`}
                           >
-                            <span class="material-symbols-outlined">
-                              edit
-                            </span>
-                          </button>
+                            <div class="d-flex flex-column" id="divCont">
+                              <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
+                                <b>Calificación de usuarios: </b>
+                                {packs.reviewHotels.length ? (
+                                  <h1>
+                                    {packs.reviewHotels
+                                      ?.map((e) => e.score)
+                                      .reduce((a, b) => a + b) /
+                                      packs.reviewHotels.length}{" "}
+                                    de 5
+                                  </h1>
+                                ) : (
+                                  <div>No hay reviews</div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div className="btnDel" style={packs.enabled? {}:{backgroundColor : 'gray'} }>
-                          <span class="material-symbols-outlined">
-                            <button value={packs.id} onClick={handleDelete} style={packs.enabled? {}:{backgroundColor : 'gray'} }>
-                              delete
-                            </button>
-                          </span>
+                      ) : (
+                        <></>
+                      )}
+                      {packs.reviewBusinesses?.length ? (
+                        <div class="col">
+                          <div
+                            class="collapse "
+                            id={`multiCollapseExample1${packs.id}`}
+                          >
+                            <div class="d-flex flex-column" id="divCont">
+                              <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
+                                <b>Calificación de usuarios: </b>
+                                {packs.reviewBusinesses.length ? (
+                                  <h1>
+                                    {packs.reviewBusinesses
+                                      ?.map((e) => e.score)
+                                      .reduce((a, b) => a + b) /
+                                      packs.reviewBusinesses.length}{" "}
+                                    de 5
+                                  </h1>
+                                ) : (
+                                  <div>No hay reviews</div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
-                  </a>
-                  {packs.reviewHotels?.length ? (<div class="col">
-                    <div
-                      class="collapse "
-                      id={`multiCollapseExample1${packs.id}`}
-                    >
-                      <div
-                        class="d-flex flex-row d-inline-block bg-dark"
-                        id="divCont"
-                      >
-
-
-                        <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
-                          <b>REVIEWS</b>
-                          {packs.reviewHotels ? (
-                            packs.reviewHotels?.map((e) => <h1>{e.title}</h1>)
-                          ) : (
-                            <div>No hay reviews</div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>) : <></>}
-                </div>
-              )
+                  );
                 })
                 .slice(indiceInicial, indiceFinal)
             ) : (<>

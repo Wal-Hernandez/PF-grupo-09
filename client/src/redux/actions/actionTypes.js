@@ -45,7 +45,7 @@ export const LOAD_SHOPPING = "LOAD_SHOPPING";
 export const REDUCE_STOCK = "REDUCE_STOCK";
 export const ENABLE_MODEL = "ENABLE_MODEL";
 export const FINISH_TRAVEL = "FINISH_TRAVEL";
-
+export const DELETE_REVIEW = "DELETE_REVIEW"
 
 /* https://whispering-scrubland-86101.herokuapp.com */
 export const DB_HEROKU = "http://localhost:3001"

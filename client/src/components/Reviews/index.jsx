@@ -6,19 +6,20 @@ import './review.css'
 import ReviewsForm from './ReviewsForm'
 import { useSelector } from "react-redux";
 
-function Reviews({hotel, activity, business, userlog, selected}) {
+function Reviews({hotel, activity, business, userlog, selected, id}) {
 
   const { cart } = useSelector((state) => state.rootReducer);
   
   const [hotelValues, setHotelValues] = useState({
-    userId: cart[0]?.user.id,
+    userId: id,
     hotelId: hotel,
     title: "",
     comment: "",
     score: 0,
   });
+  console.log(hotelValues)
   const [activityValues, setActivityValues] = useState({
-    userId: cart[0]?.user.id,
+    userId: id,
     activityId: activity,
     title: "",
     comment: "",
@@ -26,7 +27,7 @@ function Reviews({hotel, activity, business, userlog, selected}) {
   });
   console.log(activityValues.activityId)
     const [businessValues, setBusinessValues] = useState({
-      userId: cart[0]?.user.id,
+      userId: id,
       businessId: business,
       title: "",
       comment: "",

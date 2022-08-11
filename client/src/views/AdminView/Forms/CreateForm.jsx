@@ -30,21 +30,17 @@ function Ejemplo({ lang }) {
     /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
   const expRegSoloLetras = /^[a-zA-Z ]*$/;
   const expRegLatLon = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
-  const [city, setCity] = React.useState({ name: "", location: [] });
+  const [city, setCity] = React.useState({ name: "", location: [], image: []});
   const [bus, setBus] = React.useState({
     name: "",
     phone: "",
     email: "",
-    score: [],
-    comments: [],
   });
   const [activity, setActivity] = React.useState({
     name: "",
     image: "",
     price: "",
     cityId: 0,
-    score: 0,
-    comments: [],
   });
   const [packages, setPackages] = React.useState({
     start_date: "",
@@ -76,7 +72,7 @@ function Ejemplo({ lang }) {
     urlImage: []
   });
   const [urlHotel, setUrlHotel] = React.useState([]);
-console.log(hotel)
+console.log(city)
   const { platforms, business, cities, hotels, activities } = useSelector(
     (state) => state.adminReducer
   );
@@ -231,7 +227,7 @@ console.log(hotel)
   function handleSubmitHotel() {
     //e.preventDefault(); // para que era esto?
     dispatch(postHotel(hotel));
-    console.log(hotel)
+   
     swal({
       title: "Hotel creado con éxito",
       icon: "success",
@@ -262,7 +258,6 @@ if (lang === "users"){
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     const stars = register("stars", {
@@ -425,7 +420,7 @@ if (lang === "users"){
 
         <button type="submit" className="button-form">
           {" "}
-          Create Hotel
+          Crear hotel
         </button>
       </form>
     );
@@ -443,7 +438,6 @@ if (lang === "users"){
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     return (
@@ -500,7 +494,7 @@ if (lang === "users"){
 
         <button type="submit" className="button-form">
           {" "}
-          Create Plattform
+          Crear plataforma
         </button>
       </form>
     );
@@ -514,7 +508,6 @@ if (lang === "users"){
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     return (
@@ -553,10 +546,12 @@ if (lang === "users"){
             />
             {errors?.location && <span>{errors?.location?.message}</span>}
           </div>
-
+<div className="div-form">
+          <Imagenes setUrl={(url) => setCity({ ...city, image: [...city.image, url] })} />
+          </div>
           <button type="submit" className="button-form">
             {" "}
-            Create City
+            Crear ciudad
           </button>
         </form>
       </div>
@@ -666,7 +661,7 @@ if (lang === "users"){
 
         <button type="submit" className="button-form">
           {" "}
-          Create Bus
+          Crear empresa de transporte
         </button>
       </form>
     );
@@ -770,7 +765,7 @@ if (lang === "users"){
 
         <button type="submit" className="button-form">
           {" "}
-          Create Activity
+          Crear actividad
         </button>
       </form>
     );

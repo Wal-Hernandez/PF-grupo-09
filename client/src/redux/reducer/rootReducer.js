@@ -41,23 +41,24 @@ import { TYPES } from "../actions/shoppingActions";
 import { getAuth } from "firebase/auth";
 
 const initialState = {
-  packages: [],
-  showPackages: [],
-  detail: [],
-  isAdmin: null,
-  adminView: [],
-  offers: [],
-  hotels: [],
-  cities: [],
-  business: [],
-  platforms: [],
-  activities: [],
-  cart: [],
-  arrayCartNotLoggedin: [],
-  arrayCartLoggedin: [],
-  shopping: [],
-  aux: [],
-  userReviews: [],
+
+    packages: [],
+    showPackages: [],
+    detail: [],
+    isAdmin: null,
+    offers: [],
+    hotels: [],
+    cities: [],
+    business: [],
+    platforms: [],
+    activities: [],
+    cart:[],
+    arrayCartNotLoggedin:[],
+    arrayCartLoggedin:[],
+    shopping:[],
+    aux: [],
+    userReviews: []
+
 };
 
 export default function rootReducer(state = initialState, action) {

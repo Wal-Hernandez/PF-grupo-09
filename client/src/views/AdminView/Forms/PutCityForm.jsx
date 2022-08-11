@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { putCity } from "../../../redux/actions/putCity";
 import swal from "sweetalert";
+import { Imagenes } from "../../../components/Imagenes/imagenes";
 export const PutCityForm = ({ pack }) => {
   const dispatch = useDispatch();
   const {
@@ -13,10 +14,11 @@ export const PutCityForm = ({ pack }) => {
   const expRegSoloLetras = /^[a-zA-Z ]*$/;
   const expRegLatLon = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
   function TransformData(x) {
-    if (isNaN(x[0])) return x;
+    if (isNaN(x[0]) && x[0] !== "-")return x;
     return x.split(",");
   }
-  const [city, setCity] = React.useState({ name: pack.name, location: pack.location });
+
+  const [city, setCity] = React.useState({ name: pack.name, location: pack.location, image:pack.image });
   function handleChange(event) {
     setCity({
       ...city,
@@ -36,7 +38,7 @@ export const PutCityForm = ({ pack }) => {
       icon: "success",
     })
   }
-
+  console.log(city);
   const name = register("name", {
     required: { value: true, message: "REQUERIDO" },
     pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
@@ -95,7 +97,10 @@ export const PutCityForm = ({ pack }) => {
           />
           {errors?.location && <span>{errors?.location?.message}</span>}
         </div>
-
+        <div className="div-form">
+        <Imagenes setUrl={(url) => setCity({ ...city, image: [url] })} />
+          </div>
+          <div>{city.image === pack.image ? <img src={pack.image} style={{width:"500px"}}></img> : <></> }</div>
         <button
           type="submit"
           className="button-form"

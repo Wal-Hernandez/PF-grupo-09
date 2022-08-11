@@ -105,6 +105,13 @@ const CheckoutForm = ({ total, cart }) => {
         console.log(error);
       }
       setLoading(false);
+    } else {
+      swal({
+        title: `Hay datos invalidos o faltan campos por completar`,
+        icon: "error",
+      });
+      elements.getElement(CardElement).clear();
+      setLoading(false);
     }
   };
 

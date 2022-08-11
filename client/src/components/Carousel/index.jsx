@@ -82,8 +82,8 @@ return (
 </Carousel>
 
 
-)
+)}
 
-}
+
 
 export default Slider

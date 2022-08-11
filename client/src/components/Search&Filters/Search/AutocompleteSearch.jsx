@@ -69,7 +69,7 @@ function AutocompleteSearch({ fieldInput, input, setInput, setDestination }) {
             }
             return (
               <li className={classname} key={suggestion} onClick={handleClick}>
-                {suggestion}
+                <p className="listaaa">{suggestion}</p>
               </li>
             );
           })}
@@ -85,12 +85,13 @@ function AutocompleteSearch({ fieldInput, input, setInput, setDestination }) {
   return (
     <div>
       <input
-        placeholder="Buscar por ciudad de destino"
+        placeholder="Buscar por ciudad..."
         type="text"
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         value={input}
         onClick={handleFocus}
+        className="inputsearch"
         // onBlur={()=>setShow(false)}
       />
       {show && <List />}

@@ -7,6 +7,25 @@
     justify-content: center;
     margin-bottom: 5rem;
 }
+.formUsuario{
+  
+    display: flex;
+    flex-direction: column;
+    margin:0 auto;
+    width: 70%;
+    align-items: center;
+    
+}
+.formUsuario input{
+ 
+    width: 500px;
+    
+}
+.formUsuario textarea{
+  
+    width: 500px;
+    
+}
 
 .review-form{
     display: grid;

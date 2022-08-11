@@ -44,42 +44,30 @@ function ReviewsForm({ values, setValues, selected }) {
 
   if (user) {
     return (
-      <div>
-        <div>
-          <form className="review-form" onSubmit={handleReview}>
-            <label>
-              {" "}
-              Título:
-              <input
-                value={values.title}
-                name="title"
-                type="text"
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-              />
-            </label>
-            <label>
-              {" "}
-              Comentario:
-              <textarea
-                value={values.comment}
-                name="comment"
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-              />
-            </label>
-            <label
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {" "}
-              Calificación:
-              <ReactStars
+     
+          <form className="formUsuario" onSubmit={handleReview}>
+                  <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Título</label>
+                  <input class="form-control" id="exampleFormControlInput1"  
+                    value={values.title}
+                    name="title"
+                    type="text"
+                    onChange={(e) => {
+                    handleChange(e);
+                    }}>      
+                  </input>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"> Comentario</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value={values.comment}
+                              name="comment"
+                              onChange={(e) => {
+                                handleChange(e);
+                              }}></textarea>
+                  </div>
+                <div class="mb-3">
+                Calificación:
+               <ReactStars
                 value={values.score}
                 size={30}
                 isHalf={true}
@@ -88,12 +76,15 @@ function ReviewsForm({ values, setValues, selected }) {
                 emptyIcon={<i className="far fa-star"></i>}
                 halfIcon={<i className="fa fa-star-half-alt"></i>}
                 filledIcon={<i className="fa fa-star"></i>}
-              />
-            </label>
+                />
+                </div>
+           
+           
+        
+       
             <button>Dejar valoración</button>
           </form>
-        </div>
-      </div>
+      
     );
   } else {
     return <h5>Necesitas esta logueado para dejar un comentario</h5>;

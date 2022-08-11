@@ -5,6 +5,25 @@
     padding: 0.8rem;
     align-content:flex-start;
 }
+.formUsuario{
+  
+    display: flex;
+    flex-direction: column;
+    margin:0 auto;
+    width: 70%;
+    align-items: center;
+    
+}
+.formUsuario input{
+ 
+    width: 500px;
+    
+}
+.formUsuario textarea{
+  
+    width: 500px;
+    
+}
 
 .review-form{
     display: grid;

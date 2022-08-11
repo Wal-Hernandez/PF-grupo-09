@@ -1,0 +1,40 @@
+input {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    width: 250px;
+  }
+  
+  .no-suggestions {
+    color: #999;
+    padding: 0.5rem;
+  }
+  
+  .suggestions {
+    border: 1px solid #999;
+    /* border-top-width: 0; */
+    list-style: none;
+    max-height: 80px;
+    overflow-y: auto;
+    padding-left: 0;
+    /* width: calc(300px + 1rem); */
+  }
+  
+  .suggestions li {
+    /* padding: 0.5rem; */
+   
+  }
+  
+  .suggestion-active,
+  .suggestions li:hover {
+    background-color: #FFDE59;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  .listaaa{
+    color: #ffffff;
+  }
+  
+  .suggestions li:not(:last-of-type) {
+    border-bottom: 1px solid #999;
+  }

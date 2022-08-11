@@ -1,0 +1,158 @@
+
+.container-services{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+.searchContainer{
+
+    width: 35%;
+    padding: 20px;
+    background-color:#004AAD;
+    border-bottom-right-radius: 36px;
+    border-right: 3px solid #013476;
+
+}
+.containerSEARCH{
+   
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.searchBar{
+  border-radius: 10px;
+}
+.searchAndDate{
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.searchAndDateAndBtn{
+
+  
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  
+}
+.btnssearchfilter{
+ display: flex;
+ justify-content: space-evenly;
+
+}
+.btnsearch{
+border: none;
+border-radius: 5px;
+padding: 10px;
+height: 50px;
+width: 50px;
+  background-color:#FFDE59 ;
+  
+}
+
+.btnsearch span{
+   font-weight: 800;
+  
+}
+.holll div {
+    color: bisque;
+   
+
+}
+.holll  {
+    color: bisque;
+    background-color: #ffffff;
+    /* border: 0.5px solid white; */
+    border-radius: 6px;
+}
+.title-fecha{
+    color: white;
+    font-weight: 600;
+}
+.inputsearch{
+    border-radius: 10px;
+    border: 2px solid #004AAD;
+}
+.filterIndex{
+   
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 50%;
+}
+.orderItems{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.filterIndex p{
+   
+    color: white;
+    font-weight: 600;
+}
+.cardConatinerServices{
+    display: flex;
+    flex-direction: column;
+
+}
+.cardservices img{
+  width: 100%;
+  height: 150px;
+}
+.cardservices {
+
+width: 100%;
+height: 300px;
+margin: 4px;
+
+
+
+  }
+  .cont{
+    width: 90%;
+    margin-left: 50px;
+    padding: 20px;
+  }
+
+  .fotservices{
+    margin-top: 200px;
+  }
+  .titleservices{
+    margin-top: 3px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .titleservicess{
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .fechasservices {
+    display: flex;
+    justify-content: space-around;
+   }
+  .fechasservices p{
+   font-size: 12px;
+   font-weight: 600;
+  }
+  .fechasservices h5{
+    font-size: 10px;
+   }
+   .priceservices{
+    display: flex;
+    justify-content: space-around;
+   }
+   .priceservices p{
+    font-size: 12px;
+   }
+   .priceservices h5{
+    font-size: 20px;
+   }
+   .paginadoservices{
+
+    display: flex;
+    justify-content: center;
+   }
+/* #FFDE59 */

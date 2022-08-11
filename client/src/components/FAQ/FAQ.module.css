@@ -1,0 +1,6 @@
+.FAQContainer {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    position: relative;
+}

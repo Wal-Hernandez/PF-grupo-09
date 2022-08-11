@@ -1,0 +1,128 @@
+/* a {
+    margin: 1%;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    width: 100vw;
+    margin: 1%;
+    display: flex;
+    margin-left: 30%;
+    justify-content: space-around;
+}
+
+.navbar-nav button {
+    height: 50px;
+    text-align: center;
+    background-color: #ffde5900;
+    border: none;
+    color: antiquewhite;
+    transition: transform .2s ease-in-out;
+    font-weight: 600;
+    font-size: 18px;
+    
+}
+
+.navbar-nav button:hover {
+    background-color:#FFDE59;
+    border: solid 2px silver;
+    color: #004AAD;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+.userlog-container h5{
+
+    color: #FFDE59;
+    font-size: 17px;
+    margin: 0;
+    border-bottom: 1px solid #FFDE59 ;
+}
+
+
+.navbar-expand-lg {
+    background-color:#004AAD;
+    height:150px;
+    width: 100vw;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.512);
+}
+.logo-buspack{
+    object-fit: contain;
+        padding: 0px;
+        width: 250px;
+        height: 146px;
+        margin: 0;
+
+} */
+.nombreperf:hover{
+    background-color:#FFDE59;
+    color: #004AAD;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+    border-radius: 3px;
+}
+.navbar{
+    background-color:#004AAD;
+    border-bottom: 3px solid #062b5b;
+
+}
+.logo-buspack{
+    width: 120px;
+    height: 120px;
+
+}
+.btn-sm a{
+    text-align: center;
+    background-color: #02020200;
+    border: none;
+    color: rgb(251, 251, 251);
+    transition: transform .2s ease-in-out;
+    font-weight: 600;
+    border-radius: 3px;
+    font-size: 18px;
+    margin-right: 20px;
+}
+.btn-sm:hover a{
+    background-color:#FFDE59;
+    color: #004AAD;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+.btn-sm1 a{
+    text-align: center;
+    background-color: #02020200;
+    border: none;
+    color: rgb(251, 251, 251);
+    transition: transform .2s ease-in-out;
+    font-weight: 600;
+    border-radius: 3px;
+    font-size: 18px;
+  
+
+}
+.btn-sm1 a:hover {
+    background-color:#FFDE59;
+    color: #004AAD;
+    transform: scale(1.05);
+    transition: transform .2s ease-in-out;
+}
+.userlog-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userlog-container p {
+   
+    justify-content: center;
+    color: white;
+}
+.navbar-text li{
+ margin-left: 30px;
+ margin-right: 30px;
+ margin-top: 10px;
+}
+.carrito{
+    color: antiquewhite;
+}
+.carrito:hover{
+    color: #FFDE59;
+}

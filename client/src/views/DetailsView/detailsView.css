@@ -1,0 +1,22 @@
+.detailsViewContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+  
+    /* height: 65vh; */
+     margin-left: auto;
+    margin-right: auto;
+    margin-top: 0vh;
+    margin-bottom: 20vh;
+
+}
+
+
+.details-card-top {
+    position: relative;
+    top: 10vh;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}

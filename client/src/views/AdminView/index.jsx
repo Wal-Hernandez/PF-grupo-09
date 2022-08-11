@@ -352,7 +352,13 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("hotelreviews", r.id))}>
+                                        <button
+                                          onClick={() =>
+                                            dispatch(
+                                              deleteReview("hotelreviews", r.id)
+                                            )
+                                          }
+                                        >
                                           delete
                                         </button>
                                       </span>
@@ -384,7 +390,16 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("businessreviews", r.id))}>
+                                        <button
+                                          onClick={() =>
+                                            dispatch(
+                                              deleteReview(
+                                                "businessreviews",
+                                                r.id
+                                              )
+                                            )
+                                          }
+                                        >
                                           delete
                                         </button>
                                       </span>
@@ -420,7 +435,16 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("activityreviews", r.id))}>
+                                        <button
+                                          onClick={() =>
+                                            dispatch(
+                                              deleteReview(
+                                                "activityreviews",
+                                                r.id
+                                              )
+                                            )
+                                          }
+                                        >
                                           delete
                                         </button>
                                       </span>
@@ -551,14 +575,44 @@ function Admin() {
                             class="collapse "
                             id={`multiCollapseExample1${packs.id}`}
                           >
-                            <div
-                              class="d-flex flex-column"
-                              id="divCont"
-                            >
+                            <div class="d-flex flex-column" id="divCont">
                               <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
                                 <b>Calificación de usuarios: </b>
                                 {packs.reviewHotels.length ? (
-                                    <h1>{(packs.reviewHotels?.map((e) => e.score).reduce((a, b) => a + b))/ packs.reviewHotels.length} de 5</h1>
+                                  <h1>
+                                    {packs.reviewHotels
+                                      ?.map((e) => e.score)
+                                      .reduce((a, b) => a + b) /
+                                      packs.reviewHotels.length}{" "}
+                                    de 5
+                                  </h1>
+                                ) : (
+                                  <div>No hay reviews</div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                      {packs.reviewBusinesses?.length ? (
+                        <div class="col">
+                          <div
+                            class="collapse "
+                            id={`multiCollapseExample1${packs.id}`}
+                          >
+                            <div class="d-flex flex-column" id="divCont">
+                              <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
+                                <b>Calificación de usuarios: </b>
+                                {packs.reviewBusinesses.length ? (
+                                  <h1>
+                                    {packs.reviewBusinesses
+                                      ?.map((e) => e.score)
+                                      .reduce((a, b) => a + b) /
+                                      packs.reviewBusinesses.length}{" "}
+                                    de 5
+                                  </h1>
                                 ) : (
                                   <div>No hay reviews</div>
                                 )}

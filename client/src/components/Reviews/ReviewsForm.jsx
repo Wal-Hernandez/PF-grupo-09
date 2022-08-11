@@ -20,10 +20,15 @@ function ReviewsForm({ values, setValues, selected }) {
   };
 
   const handleRating = (newRating) => {
+    newRating > 1 ?
     setValues({
       ...values,
       score: newRating,
-    });
+    }) : 
+    setValues({
+      ...values,
+      score: 1,
+    })
   };
 
   const handleReview = (e) => {

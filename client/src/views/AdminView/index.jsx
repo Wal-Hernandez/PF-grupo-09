@@ -59,28 +59,25 @@ function Admin() {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(async (willDelete) => {
       if (willDelete) {
 
-        dispatch(enableModel(e.target.value, model));
-        swal("Elemento borrado con éxito", {
-          icon: "success",
-        });
-        console.log("HOTEL BORRADO INTELIGENTEMENTEEEEEEEEEEEEEEEEEEEEEEE")
-
+        await dispatch(enableModel(e.target.value, model));
         //dispatch(deleteModel(e.target.value, model));
-        dispatchByName(model);
-        swal("Elemento borrado con éxito", {
+        
+        swal( {
+          title:"Elemento borrado con éxito",
           icon: "success",
         });
-
-
+  
       } else {
-        swal("El elemento no ha sido borrado", {
+        swal( {
+          title:"El elemento no ha sido borrado",
           icon: "success",
         });
       }
-    })}
+    }).then( (e) =>  dispatchByName(model)
+    )}
     
       
   let setCreate = () => {
@@ -576,12 +573,14 @@ function Admin() {
                   );
                 })
                 .slice(indiceInicial, indiceFinal)
-            ) : (
+            ) : (<>
               <div className="bienvenida">
                 <h1>Hola!</h1>
                 <h2>Bienvenido al Panel de Administrador </h2>
                 <p>Para comenzar elige que elementos de tu pagina quieres editar, crear o eliminar</p>
               </div>
+              <Stadistic/>
+              </>
             )}
             {adminView.length && !add && !edit ? (
               <div className="pag">

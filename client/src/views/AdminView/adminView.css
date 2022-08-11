@@ -223,7 +223,7 @@ margin-top: 1px;
 
 .collapse #divCont{
     width: 80vw;
-    height: 200px;
+    height: fit-content;
     margin-left: 1.2vw;
 
 }
@@ -243,4 +243,16 @@ margin-top: 1px;
    
     margin-top: 100px;
 }
-
+.btnDel-rev button{
+    border: none;
+    background-color:#ffffff;
+    color:#004AAD;
+}
+.btnDel-rev button:hover{
+    color: #FFDE59;
+}
+.btns-reviews{
+    display: flex;
+    align-items:flex-end;
+    /* background-color: #004AAD; */
+}

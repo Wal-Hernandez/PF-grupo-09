@@ -36,6 +36,8 @@
 
         "react-bootstrap": "^2.4.0",
 
+        "react-chartjs-2": "^4.3.1",
+
         "react-date-picker": "^8.4.0",
 
         "react-datetime-picker": "^3.5.0",

@@ -17,7 +17,8 @@ import { EditForm } from "./Forms/EditForm";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { deleteReview } from "../../redux/actions/deleteReview";
-import Stadistic from "../../components/Stadistic";
+/* import BarChart from "../../components/BarChart"; */
+/* import getOffers from "../../redux/actions/getOffers"; */
 
 function Admin() {
   const [model, setModel] = React.useState("");
@@ -25,6 +26,16 @@ function Admin() {
   const [edit, setEdit] = React.useState(false);
   const [pack, setPack] = React.useState({});
   const { adminView, packages } = useSelector((state) => state.adminReducer);
+  
+
+
+/*   const [userData,setUserData] = React.useState({
+    labels:[10,12,5,8],
+    datasets:[{
+      label:"User Gained",
+      data: [100,200,300,150]
+    }]
+  }); */
   const dispatch = useDispatch();
 
   function dispatchByName(name) {
@@ -37,7 +48,9 @@ function Admin() {
     else if (name === "users") {
       dispatch(getUserForAdmin())
       dispatch(getPackages())
-    };
+    }
+   /*  else if(name === "home") dispatch(getOffers()) */
+    
   }
 
 
@@ -51,7 +64,7 @@ function Admin() {
   }
 
   async function handleDelete(e) {
-    console.log(e.target.value);
+ 
     
      await swal({
       title: "Confirmar accion",
@@ -82,6 +95,7 @@ function Admin() {
       
   let setCreate = () => {
     setAdd((add) => !add);
+    /* dispatch(getOffers()) */
   };
 
   const { logout } = useAuth();
@@ -105,7 +119,7 @@ function Admin() {
     setPack(false);
     setEdit(false);
   };
-  console.log(adminView);
+
   //Paginado Normal
   const [pageCurrent, setPagC] = React.useState(1);
 
@@ -171,7 +185,7 @@ function Admin() {
     pageLimit * (paginado + 1)
   );
 
-  console.log("hola", adminView);
+
   useEffect(() => {
     return () => { };
   }, []);
@@ -689,7 +703,7 @@ return await swal({
                 <h2>Bienvenido al Panel de Administrador </h2>
                 <p>Para comenzar elige que elementos de tu pagina quieres editar, crear o eliminar</p>
               </div>
-              <Stadistic/>
+          {/*     <BarChart chartData={userData}/>  */}
               </>
             )}
             {adminView.length && !add && !edit ? (

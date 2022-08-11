@@ -5,6 +5,7 @@ import { loadShopping } from '../../redux/actions/loadShopping';
 import {finishTravel} from '../../redux/actions/finishTravel';
 import './Profile.css'
 import Reviews from '../Reviews';
+import StarRating from "../StarRatings/index"
 export default function ProfileUser({ userlog }) {
   const dispatch = useDispatch()
   const { shopping } = useSelector(state => state.rootReducer)
@@ -44,7 +45,7 @@ export default function ProfileUser({ userlog }) {
           ? shopping.filter(cart=>cart.statusCartId==2).map((data) =>
               data?.cartDetails.map((pack) => (
                 <div className='container'>
-                  <div className='row'>
+                  {/* <div className='row'>
                   <div className='col-6'>
                 <div className="user-card">
                   <p className="title">{pack.package?.name}</p>
@@ -74,7 +75,107 @@ export default function ProfileUser({ userlog }) {
                 <div className='col-6'>
                   <button onClick={()=>dispatch(finishTravel(data.id,userlog?.email))} className='btn btn-warning'>Simular Finalizacion</button>
                   </div>
-                  </div> 
+                  </div>  */}
+                       <div class="card mb-3 card-detalles-details">
+        <div class="row g-0 ">
+          <div class="col-md-4 ">
+            <img
+              src={pack.package?.city.image}
+              class="img-fluid rounded-start"
+              alt="Image not found"
+            />
+          </div>
+          <div class="col-md-5">
+            <div class="card-body info-det">
+              <h5 class="card-title title-det">{pack.package?.name}</h5>
+              <h6 class="card-title city-det">{pack.package?.city.name} </h6>
+              <h6 class="card-title hotel-det">{pack.package?.hotel.name}</h6>
+              <h5 className="card-title star">
+                <StarRating stars={pack.package?.hotel.stars} />
+              </h5>
+              <h5>
+                {pack.package?.hotel.wifi? (
+                  <span class="material-symbols-outlined">wifi</span>
+                ) : null}{" "}
+                {pack.package?.hotel.pool ? (
+                  <span class="material-symbols-outlined">pool</span>
+                ) : null}
+                {pack.package?.hotel.gym? (
+                  <span class="material-symbols-outlined">fitness_center</span>
+                ) : null}
+              </h5>
+              {/* <div className="activites-det">
+                <a
+                  class="card-title"
+                  data-bs-toggle="collapse"
+                  href="#multiCollapseExample1"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="multiCollapseExample1"
+                >
+                  Actividades incluidas
+                  <span class="material-symbols-outlined">expand_more</span>
+                </a>
+                <div class="col">
+                  <div class="collapse" id="multiCollapseExample1">
+                    <div class="card card-body">
+                      <p class="card-text act">
+                        {packageActivity ? packageActivity : null}
+                      </p>
+                    </div>
+                  </div>
+                </div> */}
+                {/* <h6 class="card-title">Actividades incluidas</h6>
+        <p class="card-text act">{packageActivity}</p> */}
+              {/* </div> */}
+            </div>
+          </div>
+          <div class="col-md-3">
+          <button class="btnfinaliza" onClick={()=>dispatch(finishTravel(data.id,userlog?.email))} className='btn btn-warning'>Simular Finalizacion</button>
+            {/* <div class="card-body">
+              <h4 class="card-title">Precio por persona</h4>
+              <h3 class="card-text price-det">$ {pack.package?.price}</h3>
+              <p class="card-text fecha">
+                Salida:{" "}
+                {new Date(packageDetail.start_date).toLocaleString("es-ES")}
+              </p>
+              <p class="card-text fecha">
+                Llegada:{" "}
+                {new Date(packageDetail.end_date).toLocaleString("es-ES")}
+              </p>
+              <p class="card-text stock">
+                {" "}
+                <small class="text-muted">
+                  Stock disponible {packageDetail.stock}
+                </small>
+              </p>
+            </div> */}
+            {/* <div className="btn-comprar">
+              {paqueteCargado ? (
+                <Link to="/shoppingcart">
+                  <button className="btn btn-warning">
+                    Ver en el Carrito
+                    <span class="material-symbols-outlined">
+                      shopping_cart_checkout
+                    </span>
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  className="btn btn-warning"
+                  onClick={() => addToCart(id)}
+                >
+                  Agregar al carrito
+                  <span class="material-symbols-outlined">
+                    add_shopping_cart
+                  </span>
+                </button>
+              )}
+            </div> */}
+          </div>
+          <div></div>
+        </div>
+      </div>
                 </div>
               ))
             )

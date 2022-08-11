@@ -21,6 +21,10 @@ export default function Details({ userlog }) {
   const { packages, showPackages } = useSelector((state) => state.rootReducer);
   const { id } = useParams();
 
+  
+  const users = useSelector((state) => state.rootReducer.users);
+
+
   const packageDetail = useSelector((state) => state.rootReducer.detail);
   const cart = useSelector((state) => state.rootReducer.cart);
   const packageActivity = [];

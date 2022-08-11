@@ -41,7 +41,6 @@ export default function Details({userlog}) {
    console.log(packageDetail)
    useEffect(()=>{
      dispatch(getPackages())
-     dispatch(getUsers())
      if(user?.email!==undefined){
          dispatch(loadCart(user?.email)) 
     }

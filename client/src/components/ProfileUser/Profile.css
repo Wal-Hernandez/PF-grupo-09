@@ -5,7 +5,12 @@
   text-align: center;
   background-color:rgb(68, 68, 104);
 }
-
+.btnfinaliza{
+  margin-top: 100px;
+  border-radius: 5px;
+  background-color: #FFDE59;
+  font-weight: 600;
+}
 .user-title {
   color:white;
   font-size: 18px;

@@ -34,7 +34,6 @@ import {
   FILTER_BY_ACTIVITY,
   CHANGE_STATE_CART,
   LOAD_SHOPPING,
-  FILTER_BY_PASSENGER,
   FINISH_TRAVEL,
   GET_USER_REVIEWS,
 } from "../actions/actionTypes";
@@ -118,12 +117,6 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         offers: resp,
-      };
-    case GET_USERS:
-      return {
-        ...state,
-
-        users: action.payload,
       };
 
     case FILTER_BY_DESTINY:
@@ -447,20 +440,20 @@ export default function rootReducer(state = initialState, action) {
         arrayCartNotLoggedin: [],
       };
     }
-    case FILTER_BY_PASSENGER: {
-      if (action.payload) {
-        const filterPassenger = state.aux.filter(
-          (a) => parseInt(action.payload) < a.stock
-        );
-        return {
-          ...state,
-          packages: filterPassenger,
-        };
-      }
-      return {
-        ...state,
-      };
-    }
+    // case FILTER_BY_PASSENGER: {
+    //   if (action.payload) {
+    //     const filterPassenger = state.aux.filter(
+    //       (a) => parseInt(action.payload) < a.stock
+    //     );
+    //     return {
+    //       ...state,
+    //       packages: filterPassenger,
+    //     };
+    //   }
+    //   return {
+    //     ...state,
+    //   };
+    // }
     default:
       return state;
   }

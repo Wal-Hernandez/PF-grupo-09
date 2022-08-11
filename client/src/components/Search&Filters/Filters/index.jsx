@@ -34,10 +34,10 @@ function Filters(props) {
   }
 
   return (
-    <div className="select-container d-flex row-cols-3">
-      <div className="col-1 justify-content-center">
-        <form>
-          Ordenar por:
+    <div className="filterIndex">
+      <div className="orderItems">
+
+          <p>Ordenar por</p>
           <div className="form-check">
             <label>
               <input
@@ -49,7 +49,7 @@ function Filters(props) {
                 }}
                 className="form-check-input"
               />
-              Precio
+              <p>Precio</p>
             </label>
           </div>
           <div className="form-check">
@@ -63,12 +63,10 @@ function Filters(props) {
                 }}
                 className="form-check-input"
               />
-              Stock
+              <p>Stock</p>
             </label>
           </div>
-        </form>
-      </div>
-      <div className="col-4 align-self-center">
+          <div className="">
         {selectOrder === "precio" ? (
           <select
             className="form-select"
@@ -95,7 +93,11 @@ function Filters(props) {
           </select>
         ) : null}
       </div>
-      <div className="col-4 align-self-center">
+   
+      </div>
+
+      <div className="">
+       <p>Filtrar por actividades</p>
         <select
           className="form-select"
           defaultValue=""

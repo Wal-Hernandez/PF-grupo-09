@@ -64,17 +64,10 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
   };
 
   return (
-    <div className="container d-flex align-items-center justify-content-center mt-6">
-      <div className="row">
-        <div className="row">
-
-          <div className="col-6 mb-4">
-            <div className="row mb-2">
-              <label>Destino: </label>
-            </div>
-            <div className="row mb-2">
+    
+      <div className="searchAndDateAndBtn">
+        <div className="searchAndDate">
               <AutocompleteSearch
-
                 fieldInput={cities && cities?.map((e) => e.name)}
                 input={destinationCity}
                 setInput={setDestinationCity}
@@ -82,19 +75,10 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
                   setValues({ ...values, destination: dest })
                 }
               />
-              {/* <input
-              type="text"
-              placeholder="Destino"
-              value={values.destination}
-              onChange={handleDestination}
-              /> */}
-            </div>
-          </div>
-          <div className="col-4 mb-4">
-            <div className="row mb-2">
-              <label>Ida:</label>
-            </div>
+            <div>
+              <p className="title-fecha">Buscar por fecha</p>
             <DatePicker
+            className="holll"
               onChange={setStartDate}
               onBlur={handleDates}
               value={startDate === null ? "" : startDate}
@@ -104,58 +88,42 @@ function Search({ startDate, setStartDate, cities, setCity, price, stock, setPri
               format={"dd-MM-y"}
               minDate={new Date()}
             />
-
-        </div>
-        {/* <div className="col-2 mb-4">
-          <div className="row mb-2">
-            <label>Pasajeros:</label>
-          </div>
-          <div className="col-4 mb-4">
-            <div className="row mb-2">
-              <label>Pasajeros:</label>
             </div>
-            <div className="row mb-2">
-              <input
-                type="text"
-                placeholder="Pasajeros"
-                onChange={handlePassenger}
-              />
-            </div>
-          </div>
-
-        </div> */}
         </div>
-        <div className="row">
-          <div className="row col-sm-12 col-md-12 col-lg-12 justify-content-center">
-            <div className="col-4 mb-4">
-              <button className="btn btn-success" onClick={handleSearch}>
-                Buscar 🔎
+        <div className="btnssearchfilter">
+            <div className="">
+              <button className="btnsearch" onClick={handleSearch}>
+              <span class="material-symbols-outlined">
+                search
+                </span>
               </button>
             </div>
-            <div className="col-4 mb-4">
-              <button className="btn btn-success" onClick={handleClear}>
-                Limpiar búsqueda
+            <div className="">
+              <button className="btnsearch" onClick={handleClear}>
+
+                <span class="material-symbols-outlined">
+                mop
+                </span>
               </button>
-            </div>
-          </div>
-          <div className="col col-sm-12 col-md-6 col-lg-12 align-self-center">
-            {matchingResults.destination && matchingResults.date ? (
-              <h3>
-                {matchingResults.destination} ↪ {matchingResults.date}{" "}
-              </h3>
-            ) : matchingResults.destination.length ? (
-              <h3>{matchingResults.destination}</h3>
-            ) : matchingResults.date.length ? (
-              <h3>{matchingResults.date}</h3>
-            ) : (
-              ""
-            )}
-          </div>
+              </div>
         </div>
       </div>
-    </div>
- 
+
   );
 }
 
 export default Search;
+
+{/* <div className="col col-sm-12 col-md-6 col-lg-12 align-self-center">
+  {matchingResults.destination && matchingResults.date ? (
+    <h3>
+      {matchingResults.destination} ↪ {matchingResults.date}{" "}
+    </h3>
+  ) : matchingResults.destination.length ? (
+    <h3>{matchingResults.destination}</h3>
+  ) : matchingResults.date.length ? (
+    <h3>{matchingResults.date}</h3>
+  ) : (
+    ""
+  )}
+</div> */}

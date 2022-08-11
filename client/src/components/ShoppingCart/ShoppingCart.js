@@ -32,6 +32,8 @@ export default function ShoppingCart({ userlog }) {
 
   const cart = useSelector((state) => state.rootReducer.cart);
 
+  console.log(cart);
+
   const dispatch = useDispatch();
   console.log(packages);
   const auth = getAuth();
@@ -252,6 +254,18 @@ export default function ShoppingCart({ userlog }) {
                     Comprar
                   </button>
                 </Link>
+              ) : cart[0]?.cartDetails.length === 0 ? (
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn-warning btn-block btn-lg ml-2 pay-button bb"
+                    onClick={() => setPulsado(!pulsado)}
+                    disabled={true}
+                  >
+                    Comprar
+                  </button>
+                  <p>Añade paquetes a tu carrito</p>
+                </div>
               ) : comprobarStock(cart[0]?.cartDetails, packages) ? (
                 <button
                   type="button"

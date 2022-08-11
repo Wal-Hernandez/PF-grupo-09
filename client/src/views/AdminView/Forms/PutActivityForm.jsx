@@ -25,7 +25,7 @@ export const PutActivityForm = ({ pack }) => {
   });
   const expRegUrl =
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
-
+  const expRegSoloLetras = /^[a-zA-Z ]*$/;
   function handleChange(event) {
     if (event.target.name === "comments" || event.target.name === "score") {
       setActivity({ ...activity, [event.target.name]: [event.target.value] });
@@ -46,14 +46,15 @@ export const PutActivityForm = ({ pack }) => {
 
   const name = register("name", {
     required: { value: true, message: "REQUERIDO" },
+    pattern: { value: expRegSoloLetras, message: "SOLO LETRAS" }
   });
 
-  const image = register("image", {
+  /* const image = register("image", {
     pattern: {
       value: expRegUrl,
       message: "Url no valida",
     },
-  });
+  }); */
 
   const price = register("price", {
     required: { value: true, message: "REQUERIDO" },
@@ -118,8 +119,9 @@ export const PutActivityForm = ({ pack }) => {
         </div>
 
         <div>
-          <select name="cityId" defaultValue="" onChange={handleChange}>
-            <option key="keycity" value="" disabled>Ciudad</option>
+        <label className="label-form"> Ciudad: </label>
+          <select name="cityId" defaultValue={pack.cityId} onChange={handleChange}>
+            {/* <option key="keycity" value="" disabled>Ciudad</option> */}
             {adminView.map((city) => (
               <option key={city.id} value={city.id}>
                 {city.name}
@@ -130,7 +132,7 @@ export const PutActivityForm = ({ pack }) => {
 
         <button type="submit" className="button-form">
           {" "}
-          Put Activity
+          Actualizar actividad
         </button>
 
       </form>

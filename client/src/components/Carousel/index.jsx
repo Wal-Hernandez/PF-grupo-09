@@ -15,9 +15,7 @@ const Carousel = () => {
     //los paquetes ya están ordenados por fecha en packages
   for (let i=0; i<5; i++ ) {
     array.push(packages[i])
-    console.log(array[i]?.city.image)
   }
-console.log("array:", array)
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -39,7 +37,6 @@ console.log("array:", array)
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
   {array.map((e)=>{ return ( <div class="carousel-item active">
-  { console.log(e?.city.image)}
   {<img src={e?.city.image} class="d-block w-100" alt="..."/>}
 </div>)
  })

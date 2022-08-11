@@ -54,28 +54,25 @@ function Admin() {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(async (willDelete) => {
       if (willDelete) {
 
-        dispatch(enableModel(e.target.value, model));
-        swal("Elemento borrado con éxito", {
-          icon: "success",
-        });
-        console.log("HOTEL BORRADO INTELIGENTEMENTEEEEEEEEEEEEEEEEEEEEEEE")
-
+        await dispatch(enableModel(e.target.value, model));
         //dispatch(deleteModel(e.target.value, model));
-        dispatchByName(model);
-        swal("Elemento borrado con éxito", {
+        
+        swal( {
+          title:"Elemento borrado con éxito",
           icon: "success",
         });
-
-
+  
       } else {
-        swal("El elemento no ha sido borrado", {
+        swal( {
+          title:"El elemento no ha sido borrado",
           icon: "success",
         });
       }
-    })}
+    }).then( (e) =>  dispatchByName(model)
+    )}
     
       
   let setCreate = () => {

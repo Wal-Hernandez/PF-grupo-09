@@ -17,6 +17,7 @@ function Reviews({hotel, activity, business, userlog, selected, id}) {
     comment: "",
     score: 0,
   });
+  console.log(hotelValues)
   const [activityValues, setActivityValues] = useState({
     userId: id,
     activityId: activity,

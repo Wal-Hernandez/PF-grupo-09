@@ -35,16 +35,12 @@ function Ejemplo({ lang }) {
     name: "",
     phone: "",
     email: "",
-    score: [],
-    comments: [],
   });
   const [activity, setActivity] = React.useState({
     name: "",
     image: "",
     price: "",
     cityId: 0,
-    score: 0,
-    comments: [],
   });
   const [packages, setPackages] = React.useState({
     start_date: "",
@@ -231,7 +227,7 @@ console.log(city)
   function handleSubmitHotel() {
     //e.preventDefault(); // para que era esto?
     dispatch(postHotel(hotel));
-    console.log(hotel)
+   
     swal({
       title: "Hotel creado con éxito",
       icon: "success",
@@ -262,7 +258,6 @@ if (lang === "users"){
 
     const location = register("location", {
       required: { value: true, message: "REQUERIDO" },
-      pattern: { value: expRegLatLon, message: "Coordenadas invalidas" },
     });
 
     const stars = register("stars", {

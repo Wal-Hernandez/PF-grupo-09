@@ -231,12 +231,16 @@ function Admin() {
 
         <div className="adminViewContainer">
           <div className="adminPanelTitle">
-            <div className="btnAdd">
-              <button onClick={setCreate}>
-                <span class="material-symbols-outlined">add</span>
-              </button>
-            </div>
-            <h5>Crear</h5>
+          {model !== 'users' ? 
+            (<div>
+              <div className="btnAdd">
+                <button onClick={setCreate}>
+                  <span class="material-symbols-outlined">add</span>
+                </button>
+              </div>
+              <h5>Crear</h5>
+            </div>) : <></>}
+
             {adminView.length && !add && !edit ? (
               <p className="pag-info">{adminView.length} Resultados</p>
             ) : (
@@ -352,15 +356,39 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button
-                                          onClick={() =>
-                                            dispatch(
-                                              deleteReview("hotelreviews", r.id)
-                                            )
-                                          }
-                                        >
+
+                                        <button onClick={async () => {
+
+return await swal({
+                                            title: "Confirmar accion",
+                                            text: "El elemento se borrara",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                          }).then(async (willDelete) => {
+                                            if (willDelete) {
+                                      
+                                              await dispatch(deleteReview("hotelreviews", r.id))
+                                             
+                                              swal( {
+                                                title:"Elemento borrado con éxito",
+                                                icon: "success",
+                                              });
+                                              dispatchByName(model)
+                                            } else {
+                                              swal( {
+                                                title:"El elemento no ha sido borrado",
+                                                icon: "warning",
+                                              });
+                                            }
+                                          })
+
+                                       
+                                           }}>
                                           delete
                                         </button>
+
+
                                       </span>
                                     </div>
                                     <hr />
@@ -390,16 +418,30 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button
-                                          onClick={() =>
-                                            dispatch(
-                                              deleteReview(
-                                                "businessreviews",
-                                                r.id
-                                              )
-                                            )
+                                      <button onClick={async () => {
+                                        return await swal({
+                                          title: "Confirmar accion",
+                                          text: "El elemento se borrara",
+                                          icon: "warning",
+                                          buttons: true,
+                                          dangerMode: true,
+                                        }).then(async (willDelete) => {
+                                          if (willDelete) {
+                                    
+                                            await dispatch(deleteReview("businessreviews", r.id))
+                                           
+                                            swal( {
+                                              title:"Elemento borrado con éxito",
+                                              icon: "success",
+                                            });
+                                            dispatchByName(model)
+                                          } else {
+                                            swal( {
+                                              title:"El elemento no ha sido borrado",
+                                              icon: "warning",
+                                            });
                                           }
-                                        >
+                                        }) }}>
                                           delete
                                         </button>
                                       </span>
@@ -435,16 +477,30 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button
-                                          onClick={() =>
-                                            dispatch(
-                                              deleteReview(
-                                                "activityreviews",
-                                                r.id
-                                              )
-                                            )
-                                          }
-                                        >
+                                      <button onClick={async () => {
+                                       return await swal({
+                                        title: "Confirmar accion",
+                                        text: "El elemento se borrara",
+                                        icon: "warning",
+                                        buttons: true,
+                                        dangerMode: true,
+                                      }).then(async (willDelete) => {
+                                        if (willDelete) {
+                                  
+                                          await dispatch(deleteReview("activityreviews", r.id))
+                                         
+                                          swal( {
+                                            title:"Elemento borrado con éxito",
+                                            icon: "success",
+                                          });
+                                          dispatchByName(model)
+                                        } else {
+                                          swal( {
+                                            title:"El elemento no ha sido borrado",
+                                            icon: "warning",
+                                          });
+                                        }
+                                      }) }}>
                                           delete
                                         </button>
                                       </span>

@@ -15,7 +15,7 @@ export default function Services({ userlog }) {
   const packages = useSelector((state) => state.rootReducer.packages);
   const dispatch = useDispatch();
   const paquetesDisponibles = packages?.filter((e) => {
-    return e.stock > 0;
+    return e.stock > 0 && e.enabled;
   });
 
 /*   paquetesDisponibles?.sort(function (a, b) {

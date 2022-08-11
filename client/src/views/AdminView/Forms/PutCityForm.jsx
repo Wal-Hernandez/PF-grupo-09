@@ -100,7 +100,7 @@ export const PutCityForm = ({ pack }) => {
         <div className="div-form">
         <Imagenes setUrl={(url) => setCity({ ...city, image: [url] })} />
           </div>
-          <div>{city.image === pack.image ? <img src={pack.image} style={{width:"500px"}}></img> : <></> }</div>
+          <div>{city.image === pack.image ? <img src={pack.image} style={{width:"55%"}}></img> : <></> }</div>
         <button
           type="submit"
           className="button-form"

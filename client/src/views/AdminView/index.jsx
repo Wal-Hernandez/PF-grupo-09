@@ -352,7 +352,10 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("hotelreviews", r.id))}>
+                                        <button onClick={async () => {
+                                         await dispatch(deleteReview("hotelreviews", r.id))
+                                          dispatchByName(model)
+                                          return }}>
                                           delete
                                         </button>
                                       </span>
@@ -384,7 +387,10 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("businessreviews", r.id))}>
+                                      <button onClick={async () => {
+                                         await dispatch(deleteReview("businessreviews", r.id))
+                                          dispatchByName(model)
+                                          return }}>
                                           delete
                                         </button>
                                       </span>
@@ -420,7 +426,10 @@ function Admin() {
                                     <span>{r.comment}</span>
                                     <div className="btns-reviews btnDel-rev">
                                       <span class="material-symbols-outlined">
-                                        <button onClick={() => dispatch(deleteReview("activityreviews", r.id))}>
+                                      <button onClick={async () => {
+                                         await dispatch(deleteReview("activityreviews", r.id))
+                                          dispatchByName(model)
+                                          return }}>
                                           delete
                                         </button>
                                       </span>

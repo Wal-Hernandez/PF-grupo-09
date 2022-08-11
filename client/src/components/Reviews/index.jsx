@@ -17,6 +17,7 @@ function Reviews({hotel, activity, business, userlog, selected}) {
     comment: "",
     score: 0,
   });
+  console.log(hotelValues)
   const [activityValues, setActivityValues] = useState({
     userId: cart[0]?.user.id,
     activityId: activity,

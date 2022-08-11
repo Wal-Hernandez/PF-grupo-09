@@ -1,9 +1,23 @@
-.user-card {
+
+.container-userProfile{
+ display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 4px;
+grid-row-gap: 4px;
+padding: 20px;
+margin-top: 30px;
+}
+
+
+.cardUserPanel{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
-  margin: auto;
+  margin-bottom: 10px;
   text-align: center;
-  background-color:rgb(68, 68, 104);
+  background-color:#004AAD;
+  padding: 20px;
+  border-radius: 15px;
 }
 .btnfinaliza{
   margin-top: 100px;
@@ -11,10 +25,13 @@
   background-color: #FFDE59;
   font-weight: 600;
 }
-.user-title {
+.cardUserTitle{
   color:white;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 600;
+
 }
+
 
 .coment-btn {
   border: none;
@@ -50,8 +67,8 @@ input[id^="spoiler"]{
    width: 200px;
    margin: 0 auto;
    padding: 5px 20px;
-   background: #756111;
-   color: white;
+   background-color: #FFDE59;
+   color: black;
    text-align: center;
    font-size: 24px;
    border-radius: 8px;
@@ -60,8 +77,8 @@ input[id^="spoiler"]{
 }
 
 input[id^="spoiler"]:checked+label {
-   color: #333;
-   background: #ccc;
+   color: black;
+   background: white;
 }
 
 input[id^="spoiler"]~.spoiler {
@@ -71,7 +88,9 @@ input[id^="spoiler"]~.spoiler {
    opacity: 0;
    margin: 10px auto 0;
    padding: 10px;
-   background: rgb(181, 181, 185);
+   background: white;
+   color: black;
+   margin-bottom: 7px;
    border: 1px solid #ccc;
    border-radius: 8px;
    transition: all .6s;
@@ -83,3 +102,16 @@ input[id^="spoiler"]:checked+label+.spoiler {
    padding: 10px;
 
  }
+ .btnUserPanel{
+  border: none;
+  border-radius: 5px;
+  background-color:#FFDE59 ;
+  color: black;
+  font-weight: 600;
+ }
+
+ .spoiler{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+}

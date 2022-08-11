@@ -142,7 +142,7 @@ export default function Details({userlog}) {
 
   
 
-  console.log(packageDetail.city?.image)
+  console.log(packageDetail)
 
 let paqueteCargado=false;
  if(cart[0]){
@@ -172,12 +172,12 @@ let paqueteCargado=false;
  let name3
 let imagen=packageDetail.activities
 if(imagen){
- imagen1=imagen[0].image.slice(1, -1)
-  imagen2=imagen[1].image.slice(1, -1)
-  imagen3=imagen[2].image.slice(1, -1)
-  name1=packageDetail.activities[0].name
-  name2=packageDetail.activities[1].name
-  name3=packageDetail.activities[2].name
+ imagen1=imagen[0]?.image?.slice(1, -1)
+  imagen2=imagen[1]?.image?.slice(1, -1)
+  imagen3=imagen[2]?.image?.slice(1, -1)
+  name1=packageDetail?.activities[0]?.name
+  name2=packageDetail?.activities[1]?.name
+  name3=packageDetail?.activities[2]?.name
 
 
 }
@@ -301,9 +301,9 @@ console.log(new Date(packageDetail.start_date).toString())
           <div class="mr-1">
             <img
               class="rounded"
-              src={packageDetail.hotel?.urlImage[0]}
-              width="100"
-              height="80"
+              src={packageDetail.hotel?.urlImage?.join(",")}
+              width="50%"
+             /*  height="80" */
             />
           </div>
 

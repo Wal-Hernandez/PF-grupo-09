@@ -17,7 +17,7 @@ function Reviews({hotel, activity, business, userlog, selected, id}) {
     comment: "",
     score: 0,
   });
-  console.log(hotelValues)
+  console.log(id)
   const [activityValues, setActivityValues] = useState({
     userId: id,
     activityId: activity,
@@ -35,9 +35,9 @@ function Reviews({hotel, activity, business, userlog, selected, id}) {
     });
  
     useEffect(() => {
-      setHotelValues({...hotelValues, hotelId: hotel})
-      setBusinessValues({...businessValues, businessId: business})
-      setActivityValues({...activityValues, activityId: activity})
+      setHotelValues({...hotelValues,userId: id, hotelId: hotel})
+      setBusinessValues({...businessValues,userId: id, businessId: business})
+      setActivityValues({...activityValues,userId: id, activityId: activity})
 
     }, [hotel, activity, business]);
 

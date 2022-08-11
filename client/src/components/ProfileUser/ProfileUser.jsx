@@ -7,6 +7,7 @@ import './Profile.css'
 import Reviews from '../Reviews';
 import StarRating from "../StarRatings/index"
 import Footer from '../Footer'
+import { getAuth } from 'firebase/auth';
 export default function ProfileUser({ userlog }) {
   const dispatch = useDispatch()
   const { shopping } = useSelector(state => state.rootReducer)
@@ -14,23 +15,34 @@ export default function ProfileUser({ userlog }) {
   //   () => { dispatch(loadShopping(userlog?.email)) }, [dispatch]
   // )
 
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  console.log("USERCOMUN:", user?.email);
+
   React.useEffect(() => {
     if (userlog?.email !== undefined) {
       dispatch(loadShopping(userlog?.email));
     }
   }, [userlog, dispatch]);
 
+  React.useEffect(() => {
+    (async()=>{
+      const user = await shopping[0]?.userId
+      return setUserId(user)
+    })()
+  }, [shopping]);
 
-  console.log(shopping)
+
   const [selected, setSelected] = useState('');
   const [activityId, setActivityId] = useState('');
   const [businessId, setBusinessId] = useState('');
   const [hotelId, setHotelId] = useState('');
-  console.log(activityId)
-  console.log(businessId)
+  const [userId, setUserId] = useState('');
+  console.log(userId)
 
 
-   
+  
 
 
   return (
@@ -196,7 +208,7 @@ export default function ProfileUser({ userlog }) {
 
                     <div className="cardUserPanel">
                       <p className="cardUserTitle">{pack.package?.name}</p>
-                      <input type="checkbox" id={`spoiler${pack.id}`} />
+                      <input type="checkbox" id={`spoiler${pack.id}`}/>
                       <label for={`spoiler${pack.id}`}>Actividades</label>
                       <div class="spoiler">
                         {pack.package?.activities?.map((a) => (
@@ -229,14 +241,14 @@ export default function ProfileUser({ userlog }) {
                       </div>
                     </div>
                     
-                    <p> Opiniones y Puntajes</p>
-                        <Reviews hotel={hotelId} activity={activityId} business={businessId} userlog={userlog} selected={selected} id={data.userId}/>
                   </div>
                   ))
-                )
-              : ""}
+                  )
+                  : ""}
             
           </div>
+          <p> Opiniones y Puntajes</p>
+              <Reviews hotel={hotelId} activity={activityId} business={businessId} userlog={userlog} selected={selected} id={userId}/>
           <Footer/>
         </div>
       );

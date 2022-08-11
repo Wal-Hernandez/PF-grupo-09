@@ -24,6 +24,7 @@ margin-left: 40%;
 .swal-modal {
     background-color: rgba(73, 94, 150, 0.69);
     border: 3px solid white;
+    color: white;
   }
   .swal-text {
     color: white;

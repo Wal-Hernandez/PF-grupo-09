@@ -61,8 +61,7 @@ function Admin() {
         //dispatch(deleteModel(e.target.value, model));
         
         swal( {
-          title:"Elemento borrado con éxito",
-          icon: "success",
+          title:"Elemento borrado con éxito",icon: "success",
         });
   
       } else {

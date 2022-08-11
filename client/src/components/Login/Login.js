@@ -75,7 +75,12 @@ export function Login() {
     let r=  await loginWithGoogle()
     let rol = await getRol(r.user.uid);
    if( typeof rol ==='number'){deleteUser(r.user);
-    swal("No estas Registrad@,No esperes mas!");}
+    swal({title:"No estas Registrad@,No esperes mas!",
+  
+    modal:{backgroundColor: "rgba(73, 94, 150, 0.69)",
+    border: "3px solid white",}
+    
+  });}
     else{  if (rol==='client') navigate('/')
     else{navigate('/admin')}}
     } catch (error) {

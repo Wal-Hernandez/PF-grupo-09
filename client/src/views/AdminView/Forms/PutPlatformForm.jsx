@@ -18,9 +18,10 @@ export const PutPlatformForm = ({ pack }) => {
   });
   console.log(platform);
   function TransformData(x) {
-    if (isNaN(x[0])) return x;
+    if (isNaN(x[0]) && x[0] !== "-")return x;
     return x.split(",");
   }
+
 
   function handleChange(event) {
     setPlatform({

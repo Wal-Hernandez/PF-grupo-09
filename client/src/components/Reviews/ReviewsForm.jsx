@@ -45,12 +45,13 @@ function ReviewsForm({ values, setValues, selected }) {
   if (user) {
     return (
       <div>
-        <div>
+        <div className="review-form-container">
           <form className="review-form" onSubmit={handleReview}>
-            <label>
+            <label className="label-form">
               {" "}
               Título:
               <input
+                className="form-control review-items"
                 value={values.title}
                 name="title"
                 type="text"
@@ -63,6 +64,7 @@ function ReviewsForm({ values, setValues, selected }) {
               {" "}
               Comentario:
               <textarea
+                className="form-control review-items"
                 value={values.comment}
                 name="comment"
                 onChange={(e) => {
@@ -90,7 +92,7 @@ function ReviewsForm({ values, setValues, selected }) {
                 filledIcon={<i className="fa fa-star"></i>}
               />
             </label>
-            <button>Dejar valoración</button>
+            <button className="btn-review-form review-items">Dejar valoración</button>
           </form>
         </div>
       </div>

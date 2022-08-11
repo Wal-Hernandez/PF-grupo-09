@@ -25,7 +25,8 @@ const getCity = async(id) => {
         };
     }
 };
-const createCity = async(name, location) => {
+const createCity = async(name, location, image) => {
+    console.log(image,name, "ACA")
     try {
         if (!name || !location) {
             return "All fields are required";
@@ -36,6 +37,7 @@ const createCity = async(name, location) => {
         const cities = await City.create({
             name,
             location,
+            image
         });
         return { msg: "City created successfully" };
     } catch (err) {
@@ -85,7 +87,7 @@ const deleteCitiesById = async(id) => {
         };
     }
 };
-const updateCitiesById = async(id, name, location) => {
+const updateCitiesById = async(id, name, location,urlImage) => {
     try {
         if (!name || !location) {
             return "All fields are required";
@@ -96,6 +98,7 @@ const updateCitiesById = async(id, name, location) => {
         const a = await City.update({
             name,
             location,
+            image: urlImage
         }, { where: { id: id } });
         if (a[0]) {
             return { msg: "The package has been update successfully", valor: true };

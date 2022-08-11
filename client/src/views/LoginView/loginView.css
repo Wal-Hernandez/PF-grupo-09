@@ -20,3 +20,11 @@ margin-left: 40%;
     background-position: center center;
   
 }
+
+.swal-modal {
+    background-color: rgba(73, 94, 150, 0.69);
+    border: 3px solid white;
+  }
+  .swal-text {
+    color: white;
+  }

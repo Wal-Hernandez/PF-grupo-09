@@ -13,6 +13,7 @@ import { app } from "../../Firebase/firebase-config";
 import {  doc, getDoc,getFirestore } from "firebase/firestore";
 import { deleteUser } from "firebase/auth";
 import { loadCartLogin } from "../../redux/actions/loadCartLogin";
+import swal from "sweetalert";
 export function Login() {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -74,7 +75,7 @@ export function Login() {
     let r=  await loginWithGoogle()
     let rol = await getRol(r.user.uid);
    if( typeof rol ==='number'){deleteUser(r.user);
-    alert("No estas Registrad@,No esperes mas!")}
+    swal("No estas Registrad@,No esperes mas!");}
     else{  if (rol==='client') navigate('/')
     else{navigate('/admin')}}
     } catch (error) {

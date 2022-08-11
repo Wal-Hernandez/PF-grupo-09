@@ -39,12 +39,12 @@ export default function ProfileUser({ userlog }) {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       /> */}
       <div>
-        <h1>Mis Compras</h1>
+        <h1>Mis Compras </h1>
         {shopping.length
           ? shopping.filter(cart=>cart.statusCartId==2).map((data) =>
               data?.cartDetails.map((pack) => (
-                <div className='container'>
-                  <div className='row'>
+                
+                <div className='card'>
                   <div className='col-6'>
                 <div className="user-card">
                   <p className="title">{pack.package?.name}</p>
@@ -75,14 +75,14 @@ export default function ProfileUser({ userlog }) {
                   <button onClick={()=>dispatch(finishTravel(data.id,userlog?.email))} className='btn btn-warning'>Simular Finalizacion</button>
                   </div>
                   </div> 
-                </div>
+                
               ))
             )
           : ""}
       </div>
       <div>
         {/* <img src="img.jpg" alt="John" style={{ width: "100%" }} /> */}
-        <h1 className="title">{userlog?.nombre + " " + userlog?.apellido}</h1>
+        
         <p>Viajes Finalizados</p>
         {shopping.length
           ? shopping.filter(cart=>cart.statusCartId==3).map((data) =>

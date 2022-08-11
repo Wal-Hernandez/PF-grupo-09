@@ -25,7 +25,6 @@ import {
   LOAD_CART,
   CLEAR_CART_LOGOUT,
   LOAD_CART_LOGIN,
-  GET_USERS,
   POST_USER,
   REMOVE_DETAIL_CART,
   ADD_DETAIL_CART,
@@ -37,6 +36,7 @@ import {
   LOAD_SHOPPING,
   FILTER_BY_PASSENGER,
   FINISH_TRAVEL,
+  GET_USER_REVIEWS,
 } from "../actions/actionTypes";
 import { TYPES } from "../actions/shoppingActions";
 import { getAuth } from "firebase/auth";
@@ -53,12 +53,12 @@ const initialState = {
   business: [],
   platforms: [],
   activities: [],
-  users: [],
   cart: [],
   arrayCartNotLoggedin: [],
   arrayCartLoggedin: [],
   shopping: [],
   aux: [],
+  userReviews: [],
 };
 
 export default function rootReducer(state = initialState, action) {

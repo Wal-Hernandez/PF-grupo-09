@@ -14,7 +14,7 @@ import { getPackages } from "../../redux/actions/getPackages";
 import StarRating from "../StarRatings/index"
 import ShowReviews from "../Reviews/ShowReviews";
 import MapView from "../Map/MapView.js";
-import {getUsers} from "../../redux/actions/getUsers"
+import {getUserReviews} from '../../redux/actions/getUserReviews'
 
 
 export default function Details({userlog}) {
@@ -443,7 +443,8 @@ console.log(new Date(packageDetail.start_date).toString())
     </div>
     <div className="detalles-div">
       {!packageDetail.hotel?.reviewHotels?.length &&
-      !packageDetail.business?.reviewBusinesses?.length ? (
+      !packageDetail.business?.reviewBusinesses?.length &&
+      !packageDetail.activities?.map(e=>e.reviewActivities).flat().length ? (
         <p>Aún no hay valoraciones para los elementos de este paquete</p>
       ) : (
         <div className="review-container">
@@ -470,7 +471,7 @@ console.log(new Date(packageDetail.start_date).toString())
           {packageDetail.activities?.map(act=> act?.reviewActivities.length ? (
             <div>
               {showReviews && (
-                <ShowReviews data={act?.reviewActivities} titulo={`Actividad - ${act.name}`} />
+                <ShowReviews data={act?.reviewActivities} titulo={`Actividad - ${act.name}`}/>
               )}
             </div>
           ) : null)}

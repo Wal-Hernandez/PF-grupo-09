@@ -1,4 +1,4 @@
-const { Hotel, City, ReviewHotel } = require("../db");
+const { Hotel, City, ReviewHotel,User } = require("../db");
 
 const getHotels = async() => {
     try {
@@ -8,7 +8,9 @@ const getHotels = async() => {
                     attributes: ["name"],
                 },
                 {
-                    model: ReviewHotel,
+                    model: ReviewHotel,   include: {
+                        model: User,
+                      },
                 },
             ],
         });

@@ -3,7 +3,7 @@ export const GET_PACKAGE_ID = "GET_PACKAGE_ID";
 export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 export const FILTER_BY_DESTINY = "FILTER_BY_DESTINY";
 export const FILTER_BY_DATE = "FILTER_BY_DATE";
-export const FILTER_BY_PASSENGER = "FILTER_BY_PASSENGER";
+export const GET_USER_REVIEWS = "GET_USER_REVIEWS";
 export const SORT_BY_PRICE = "SORT_BY_PRICE";
 export const SORT_BY_STOCK = "SORT_BY_STOCK";
 export const GET_OFFERS = "GET_OFFERS";
@@ -51,4 +51,8 @@ export const FINISH_TRAVEL = "FINISH_TRAVEL";
 export const DB_HEROKU = "http://localhost:3001"
 export const SEND_MAIL = "SEND_MAIL";
 export const GET_USER = "GET_USER";
+
 export const PUT_USER = "PUT_USER";
+
+export const SEND_PAYMENT='SEND_PAYMENT'
+

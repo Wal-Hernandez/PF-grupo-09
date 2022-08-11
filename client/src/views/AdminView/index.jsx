@@ -16,6 +16,7 @@ import Logo from "../../images/Buspack.png";
 import { EditForm } from "./Forms/EditForm";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import Stadistic from "../../components/Stadistic";
 
 function Admin() {
   const [model, setModel] = React.useState("");
@@ -46,7 +47,8 @@ function Admin() {
 
   async function handleDelete(e) {
     console.log(e.target.value);
-    swal({
+    
+     await swal({
       title: "Confirmar accion",
       text: "El elemento se borrara",
       icon: "warning",
@@ -73,8 +75,9 @@ function Admin() {
           icon: "success",
         });
       }
-    });
-  }
+    })}
+    
+      
   let setCreate = () => {
     setAdd((add) => !add);
   };
@@ -340,7 +343,7 @@ function Admin() {
                         </div>
                       </div>
                     </div>
-                  ) : (
+                  ) : model === 'plattforms'? (
                     <div>
                       <a
                         class="btn btn-info w-100 p-3"
@@ -353,7 +356,7 @@ function Admin() {
                         <div class="adminPanelColumn w-100" key={packs.id}>
                           <div className="text">
                             <h1>
-                              {packs.name || packs.patent || packs.terminal}
+                              {packs.terminal}
                             </h1>
                           </div>
                           <div className="btns-admin">
@@ -401,15 +404,77 @@ function Admin() {
                         </div>
                       </div>) : <></>}
                     </div>
-                  );
+                  ):(<div>
+                  <a
+                    class="btn btn-info w-100 p-3"
+                    data-bs-toggle="collapse"
+                    href={`#multiCollapseExample1${packs.id}`}
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="multiCollapseExample1"
+                  >
+                    <div class="adminPanelColumn w-100" key={packs.id} style={packs.enabled? {}:{backgroundColor : 'gray'} }>
+                      <div className="text" style={packs.enabled? {}:{backgroundColor : 'gray'} }>
+                        <h1>
+                          {packs.name || packs.patent || packs.terminal}
+                        </h1>
+                      </div>
+                      <div className="btns-admin">
+                        <div className="btnEdit" style={packs.enabled? {}:{backgroundColor : 'gray'} }>
+                          <button
+                            onClick={() => {
+                              setUpdate(packs);
+                            }} style={packs.enabled? {}:{backgroundColor : 'gray'} }
+                          >
+                            <span class="material-symbols-outlined">
+                              edit
+                            </span>
+                          </button>
+                        </div>
+                        <div className="btnDel" style={packs.enabled? {}:{backgroundColor : 'gray'} }>
+                          <span class="material-symbols-outlined">
+                            <button value={packs.id} onClick={handleDelete} style={packs.enabled? {}:{backgroundColor : 'gray'} }>
+                              delete
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  {packs.reviewHotels?.length ? (<div class="col">
+                    <div
+                      class="collapse "
+                      id={`multiCollapseExample1${packs.id}`}
+                    >
+                      <div
+                        class="d-flex flex-row d-inline-block bg-dark"
+                        id="divCont"
+                      >
+
+
+                        <div class="card card-body h-100 w-50 rounded-0 border-left border-info">
+                          <b>REVIEWS</b>
+                          {packs.reviewHotels ? (
+                            packs.reviewHotels?.map((e) => <h1>{e.title}</h1>)
+                          ) : (
+                            <div>No hay reviews</div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>) : <></>}
+                </div>
+              )
                 })
                 .slice(indiceInicial, indiceFinal)
-            ) : (
+            ) : (<>
               <div className="bienvenida">
                 <h1>Hola!</h1>
                 <h2>Bienvenido al Panel de Administrador </h2>
                 <p>Para comenzar elige que elementos de tu pagina quieres editar, crear o eliminar</p>
               </div>
+              <Stadistic/>
+              </>
             )}
             {adminView.length && !add && !edit ? (
               <div className="pag">

@@ -1,5 +1,5 @@
 const {Router}=require("express")
-const { enviarMail } = require("../controllers/mailingController")
+const { enviarMail, sendPaymentConfirmation } = require("../controllers/mailingController")
 
 const router=Router()
 router.post('/', async (req,res)=>{
@@ -17,6 +17,21 @@ catch(err){
 
 })
 
+router.post('/confirmation/:mail', async (req,res)=>{
+    try{ const {mail} =req.params /// no es por body
+    await sendPaymentConfirmation(mail)
+    console.log(mail)
+    res.status(201).json('Exitoo')
+    }
+    
+    catch(err){
+        return res.status(400).json(err);
+    }
+    
+    
+    
+    
+    })
 
 
 module.exports=router;

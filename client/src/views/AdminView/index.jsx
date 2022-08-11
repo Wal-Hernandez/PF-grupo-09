@@ -16,8 +16,8 @@ import Logo from "../../images/Buspack.png";
 import { EditForm } from "./Forms/EditForm";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
-import ShowReviews from "../../components/Reviews/ShowReviews";
 import { deleteReview } from "../../redux/actions/deleteReview";
+import Stadistic from "../../components/Stadistic";
 
 function Admin() {
   const [model, setModel] = React.useState("");
